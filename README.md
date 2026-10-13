@@ -103,7 +103,7 @@ Links for India and Nigeria are synthesised geographically on real city location
 ## Headline results
 
 * Greedy + local search is within **0.3 % of the proven MILP optimum on average** (max ≈2 %) for n ≤ 160,
-  at 10–100× lower runtime; at n = 240 the comparison is against the LP lower bound.
+  at roughly 5× lower runtime (greedy alone is 10–100× cheaper); at n = 240 the comparison is against the LP lower bound.
 * Under tight capacity the latency-first greedies often fail to place every replica, while **FFD packing +
   local search stays feasible**: feasibility and latency pull in different directions.
 * Fibonacci heaps have the better bound but are **slower in CPython** than binary heaps; `heapq` with lazy

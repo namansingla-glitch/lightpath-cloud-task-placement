@@ -1,0 +1,108 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{kariv1979}
+\citation{waxman1988}
+\citation{erdos1959}
+\citation{barabasi1999}
+\citation{alfares2008}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Problem Formulation}{2}{section.2}\protected@file@percent }
+\newlabel{sec:model}{{2}{2}{Problem Formulation}{section.2}{}}
+\newlabel{eq:lat}{{1}{2}{Problem Formulation}{equation.2.1}{}}
+\newlabel{eq:obj}{{2}{2}{Problem Formulation}{equation.2.2}{}}
+\newlabel{eq:cost}{{3}{2}{Problem Formulation}{equation.2.3}{}}
+\newlabel{lem:nocycle}{{1}{2}{Problem Formulation}{lemma.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Datasets}{2}{section.3}\protected@file@percent }
+\newlabel{sec:data}{{3}{2}{Datasets}{section.3}{}}
+\citation{fredman1987}
+\citation{tarjan1975}
+\citation{prim1957}
+\citation{kruskal1956}
+\citation{dijkstra1959}
+\citation{bellman1958}
+\citation{ford1956}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Datasets. Load is the CPU needed by minimum replicas divided by total capacity; best is the recommended plan's mean latency.}}{3}{table.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:data}{{1}{3}{Datasets. Load is the CPU needed by minimum replicas divided by total capacity; best is the recommended plan's mean latency}{table.caption.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Algorithms, Correctness and Complexity}{3}{section.4}\protected@file@percent }
+\newlabel{sec:algo}{{4}{3}{Algorithms, Correctness and Complexity}{section.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The Lightpath pipeline. Stages 1--2 are exact polynomial algorithms, 3--4 pseudo-polynomial dynamic programs, 5--6 heuristics whose gap is measured by the exact MILP.}}{3}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:pipeline}{{1}{3}{The Lightpath pipeline. Stages 1--2 are exact polynomial algorithms, 3--4 pseudo-polynomial dynamic programs, 5--6 heuristics whose gap is measured by the exact MILP}{figure.caption.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data structures}{3}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Minimum spanning tree (backbone)}{3}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Single-source shortest paths}{3}{subsection.4.3}\protected@file@percent }
+\citation{floyd1962}
+\citation{warshall1962}
+\citation{johnson1977}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Dijkstra with an addressable heap}}{4}{algorithm.1}\protected@file@percent }
+\newlabel{alg:dij}{{1}{4}{Dijkstra with an addressable heap}{algorithm.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}All-pairs shortest paths}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Knapsack dynamic programs (budgeted selection)}{4}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Greedy schedulers and local search}{4}{subsection.4.6}\protected@file@percent }
+\citation{leskovec2007}
+\citation{nemhauser1978}
+\citation{martello1990}
+\citation{dosa2007}
+\citation{arya2004}
+\citation{huangfu2018}
+\citation{virtanen2020}
+\citation{graham1969}
+\citation{hagberg2008}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Exact MILP and batch scheduling}{5}{subsection.4.7}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Algorithms used, with guarantees and complexity.}}{5}{table.caption.3}\protected@file@percent }
+\newlabel{tab:cx}{{2}{5}{Algorithms used, with guarantees and complexity}{table.caption.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Implementation and Verification}{5}{section.5}\protected@file@percent }
+\newlabel{sec:impl}{{5}{5}{Implementation and Verification}{section.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The Lightpath dashboard.}}{6}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:ui}{{2}{6}{The Lightpath dashboard}{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Experiments and Results}{6}{section.6}\protected@file@percent }
+\newlabel{sec:exp}{{6}{6}{Experiments and Results}{section.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces E1: Dijkstra and Prim with four priority queues on sparse Waxman graphs ($n$ up to 4000, $m$ up to 252k).}}{6}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:e1}{{3}{6}{E1: Dijkstra and Prim with four priority queues on sparse Waxman graphs ($n$ up to 4000, $m$ up to 252k)}{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces E2: all-pairs algorithms on sparse ($p=3/n$) and dense ($p=0.5$) graphs.}}{7}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:e2}{{4}{7}{E2: all-pairs algorithms on sparse ($p=3/n$) and dense ($p=0.5$) graphs}{figure.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces E4: optimality gap (left) and runtime (right) versus size on Waxman networks; dashed lines are greedy alone, solid lines include local search. At $n=240$ the reference is the LP bound.}}{7}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:e4}{{5}{7}{E4: optimality gap (left) and runtime (right) versus size on Waxman networks; dashed lines are greedy alone, solid lines include local search. At $n=240$ the reference is the LP bound}{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces E5: share of runs with a feasible placement (left) and gap after local search (right) as server capacity shrinks (Waxman, $n=50$, 12 services).}}{8}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:e5}{{6}{8}{E5: share of runs with a feasible placement (left) and gap after local search (right) as server capacity shrinks (Waxman, $n=50$, 12 services)}{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Case Studies and Policy Outputs}{8}{section.7}\protected@file@percent }
+\newlabel{sec:policy}{{7}{8}{Case Studies and Policy Outputs}{section.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Recommended plans. Gap is the best heuristic's distance from the MILP optimum; stretch is the latency increase if requests were routed over the MST backbone only.}}{8}{table.caption.9}\protected@file@percent }
+\newlabel{tab:cases}{{3}{8}{Recommended plans. Gap is the best heuristic's distance from the MILP optimum; stretch is the latency increase if requests were routed over the MST backbone only}{table.caption.9}{}}
+\citation{knight2011}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Recommended placements for India and Nigeria. Yellow sites host replicas; coloured lines are request routes (one colour per service); grey diamonds are routers.}}{9}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:regions}{{7}{9}{Recommended placements for India and Nigeria. Yellow sites host replicas; coloured lines are request routes (one colour per service); grey diamonds are routers}{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Woxsen University campus plan. Replicas cluster around the Academic Block, the hostels and The League sports arena, where demand originates.}}{9}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:woxsen}{{8}{9}{Woxsen University campus plan. Replicas cluster around the Academic Block, the hostels and The League sports arena, where demand originates}{figure.caption.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Recommendations}{9}{section.8}\protected@file@percent }
+\newlabel{sec:rec}{{8}{9}{Recommendations}{section.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Limitations and Future Work}{10}{section.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}Conclusion}{10}{section.10}\protected@file@percent }
+\bibcite{kariv1979}{1}
+\bibcite{waxman1988}{2}
+\bibcite{erdos1959}{3}
+\bibcite{barabasi1999}{4}
+\bibcite{alfares2008}{5}
+\bibcite{fredman1987}{6}
+\bibcite{tarjan1975}{7}
+\bibcite{prim1957}{8}
+\bibcite{kruskal1956}{9}
+\bibcite{dijkstra1959}{10}
+\bibcite{bellman1958}{11}
+\bibcite{ford1956}{12}
+\bibcite{floyd1962}{13}
+\bibcite{warshall1962}{14}
+\bibcite{johnson1977}{15}
+\bibcite{nemhauser1978}{16}
+\bibcite{leskovec2007}{17}
+\bibcite{martello1990}{18}
+\bibcite{dosa2007}{19}
+\bibcite{arya2004}{20}
+\bibcite{huangfu2018}{21}
+\bibcite{virtanen2020}{22}
+\bibcite{graham1969}{23}
+\bibcite{hagberg2008}{24}
+\bibcite{knight2011}{25}
+\gdef \@abspage@last{12}

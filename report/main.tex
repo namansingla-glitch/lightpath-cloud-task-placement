@@ -1,0 +1,53 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[a4paper,margin=2.5cm,headheight=14pt]{geometry}
+\usepackage{mathptmx}              % Times text and maths
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx,xcolor}
+\usepackage{booktabs,tabularx,multirow}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta}
+
+\definecolor{coverblue}{HTML}{4F81BD}
+\setlist{itemsep=1pt,topsep=3pt,parsep=0pt}
+\setlength{\parskip}{4pt}
+\linespread{1.07}
+\titleformat{\section}{\large\bfseries}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titlespacing*{\subsection}{0pt}{7pt}{3pt}
+\setlength{\textfloatsep}{9pt plus 2pt minus 2pt}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\captionsetup{skip=4pt}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Lightpath: Latency-Aware Cloud Task Placement}
+\fancyhead[R]{\small Design and Analysis of Algorithms}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newcommand{\R}{\mathbb{R}}
+\newtheorem{lemma}{Lemma}
+\newenvironment{proofsketch}{\par\noindent\textit{Proof sketch.}\ }{\hfill$\square$\par}
+
+\begin{document}
+\input{cover}
+\setcounter{page}{1}
+\input{body}
+\clearpage
+\input{refs}
+\end{document}

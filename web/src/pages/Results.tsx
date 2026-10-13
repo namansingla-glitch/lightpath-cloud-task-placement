@@ -129,7 +129,7 @@ export default function Results() {
             <Legend series={charts.qs} names={charts.qNames} /></Card>
 
           <Card title="Solver runtime vs size" q="What does the exact answer cost compared with the heuristics?" csv="quality_size.csv" png="e4_quality_size.png"
-            take={<>The exact MILP grows fastest and is skipped beyond a few thousand variables; greedy plus local search stays one to two orders of magnitude cheaper for near-identical quality.</>}>
+            take={<>The exact MILP grows fastest and is skipped beyond a few thousand variables; greedy plus local search runs about 5× faster (greedy alone 10–100×) for near-identical quality.</>}>
             <div className="plot"><Lines data={charts.rt} series={charts.rtS} names={charts.rtN} xl="sites (n)" yl="ms" logY unit="ms" dashed={["exact_milp"]} /></div>
             <Legend series={charts.rtS} names={charts.rtN} dashed={["exact_milp"]} /></Card>
 
