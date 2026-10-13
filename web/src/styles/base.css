@@ -265,7 +265,7 @@ body.intro-on .rail,body.intro-on .page{display:none}
 .intro-brand{display:flex;align-items:center;gap:12px;font-weight:600;font-size:17px}
 .intro-brand .mark{margin:0;width:44px;height:44px;border-radius:14px}
 .intro-main{flex:1;display:flex;flex-direction:column;justify-content:center;padding:24px 40px 40px;max-width:1240px;width:100%;margin:0 auto}
-.intro-title{font-family:var(--display);font-weight:600;font-size:clamp(76px,13vw,200px);line-height:.95;letter-spacing:-.055em;margin-top:22px;font-variation-settings:"opsz" 144}
+.intro-title{font-family:var(--display);font-weight:600;font-size:clamp(76px,13vw,200px);line-height:.95;letter-spacing:-.03em;margin-top:22px;font-variation-settings:"opsz" 144}
 .intro-title .ch{display:inline-block;opacity:0;transform:translateY(.25em);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
 .intro-title .dot{color:var(--blue)}
 .intro-sub{margin-top:22px;font-size:clamp(17px,1.6vw,21px);color:var(--ink2);max-width:36em;line-height:1.55}
@@ -278,7 +278,7 @@ body.intro-on .rail,body.intro-on .page{display:none}
 .member .who{font-weight:600;font-size:18px;line-height:1.25}
 .member .role{display:inline-block;margin-top:6px;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:600}
 .member .what{margin-top:10px;font-size:14px;color:var(--ink2);line-height:1.5}
-.member.guide{background:#fff;border:1.5px solid var(--outline)}
+.member.mentor{background:#fff;border:1.5px solid var(--outline)}
 .intro-cta{display:flex;align-items:center;gap:16px;margin-top:40px;flex-wrap:wrap;opacity:0;animation:rise .7s .95s cubic-bezier(.2,.7,.2,1) forwards}
 .intro-cta .btn{height:56px;padding:0 30px;font-size:16px}
 .intro-cta .hint{font-size:13.5px;color:var(--ink3)}
@@ -363,11 +363,16 @@ body.intro-on .rail,body.intro-on .page{display:none}
 
 /* landing title: light sweep + text pressure */
 .intro-title{position:relative;display:inline-block;align-self:flex-start;font-variation-settings:"wght" 600,"wdth" 100,"opsz" 144}
-.intro-title .ch{font-variation-settings:inherit;transition:font-variation-settings .12s linear}
+.intro-title .ch{font-variation-settings:inherit;transition:font-variation-settings .12s linear;
+  animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards,wave 6s ease-in-out infinite}
+.intro-title .ch.dot{animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards,dotPulse 2.8s ease-in-out infinite}
+@keyframes wave{0%,40%,100%{color:var(--ink)}6%{color:#4285F4}12%{color:#EA4335}18%{color:#F9AB00}24%{color:#34A853}}
+.member > div:last-child{flex:1;min-width:0}
+.member .who{overflow-wrap:break-word}
 .intro-title .sweep{position:absolute;inset:-4% -3% -12% -3%;pointer-events:none;mix-blend-mode:screen;
   background:linear-gradient(100deg,transparent 0 30%,#4285F4 37%,#EA4335 45%,#FBBC05 53%,#34A853 61%,transparent 68% 100%);
   background-size:220% 100%;background-position:130% 0;animation:sweep 5s cubic-bezier(.4,0,.3,1) .9s infinite}
 @keyframes sweep{0%{background-position:150% 0}60%,100%{background-position:-50% 0}}
 .intro-title .dot{animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards,dotPulse 2.8s ease-in-out infinite}
 @keyframes dotPulse{0%,100%{color:var(--blue)}25%{color:var(--red)}50%{color:#F9AB00}75%{color:var(--green)}}
-@media (prefers-reduced-motion: reduce){.intro-title .sweep,.intro-title .dot{animation:none}}
+@media (prefers-reduced-motion: reduce){.intro-title .ch,.intro-title .dot{animation:none;opacity:1;transform:none}}

@@ -35,9 +35,9 @@ function PressureTitle() {
   }, [motion]);
   return (
     <h1 className="intro-title" ref={ref} aria-label="Lightpath">
-      {letters.map((c, i) => <span key={i} className="ch" aria-hidden="true" style={{ animationDelay: `${0.1 + i * 0.045}s` }}>{c}</span>)}
+      {letters.map((c, i) => <span key={i} className="ch" aria-hidden="true" style={{ animationDelay: `${0.1 + i * 0.045}s, ${1.4 + i * 0.11}s` }}>{c}</span>)}
       <span className="ch dot" aria-hidden="true" style={{ animationDelay: `${0.1 + letters.length * 0.045}s, ${1.3 + letters.length * 0.045}s` }}>.</span>
-      {motion && <span className="sweep" aria-hidden="true" />}
+      
     </h1>
   );
 }
@@ -64,7 +64,7 @@ export default function Intro({ onEnter }: { onEnter: () => void }) {
         <div className="team-h">The team</div>
         <div className="team">
           {TEAM.map((m) => (
-            <div key={m.name} className={`member${m.guide ? " guide" : ""}`}>
+            <div key={m.name} className={`member${m.guide ? " mentor" : ""}`}>
               <div className="avatar" style={{ background: m.bg }}>{m.ini}</div>
               <div><div className="who">{m.name}</div><span className="role" style={{ background: m.chip[0], color: m.chip[1] }}>{m.role}</span><p className="what">{m.what}</p></div>
             </div>
