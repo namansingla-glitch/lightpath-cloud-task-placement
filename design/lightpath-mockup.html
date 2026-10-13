@@ -26,7 +26,7 @@ button,select,input{font:inherit;color:inherit}
 
 /* ---------- nav ---------- */
 .nav{position:sticky;top:0;z-index:20;height:64px;display:flex;align-items:center;gap:40px;padding:0 32px;
-  background:rgba(10,16,36,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  background:color-mix(in srgb,var(--abyss) 84%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:27px;letter-spacing:.005em;cursor:pointer}
 .brand svg{display:block}
 .links{display:flex;gap:4px;flex:1;overflow-x:auto}
@@ -53,9 +53,9 @@ h1.display .ch{display:inline-block;opacity:0;transform:translateY(.35em);filter
 .btn.primary:hover{background:#86ecf0}
 .hero-map{position:absolute;inset:0 0 118px 30%;z-index:1}
 .hero-map svg{width:100%;height:100%}
-.hero-map::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--abyss) 0%,rgba(10,16,36,0) 28%);pointer-events:none;z-index:2}
+.hero-map::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--abyss) 0%,transparent 28%);pointer-events:none;z-index:2}
 .map-caption{position:absolute;right:32px;bottom:138px;z-index:3;max-width:330px;font-size:12.5px;color:var(--dim);text-align:right}
-.telemetry{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);position:relative;z-index:3;background:linear-gradient(0deg,var(--abyss),rgba(10,16,36,.6))}
+.telemetry{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);position:relative;z-index:3;background:linear-gradient(0deg,var(--abyss),color-mix(in srgb,var(--abyss) 60%,transparent))}
 .telemetry div{padding:24px 32px 28px;border-right:1px solid var(--line)}
 .telemetry div:first-child{padding-left:64px}
 .telemetry div:last-child{border-right:0}
@@ -115,11 +115,11 @@ input[type=range]{width:100%;accent-color:var(--fibre)}
 .inst-sum{margin-top:auto;font-size:12.5px;color:var(--muted);line-height:1.7;border-top:1px solid var(--line);padding-top:14px}
 
 .center{display:grid;grid-template-rows:minmax(0,1fr) 290px;min-width:0;min-height:0}
-.mapwrap{position:relative;overflow:hidden;min-height:0;background:radial-gradient(ellipse at 60% 40%,#111b3d 0%,var(--abyss) 70%);cursor:grab}
+.mapwrap{position:relative;overflow:hidden;min-height:0;background:radial-gradient(ellipse at 60% 40%,var(--panel) 0%,var(--abyss) 70%);cursor:grab}
 .mapwrap.drag{cursor:grabbing}
 #studioMap{width:100%;height:100%;display:block}
 .toolbar{position:absolute;top:14px;left:14px;display:flex;gap:6px;z-index:2}
-.chip{display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border-radius:999px;border:1px solid var(--line2);background:rgba(14,22,49,.85);font-size:13px;color:var(--muted);cursor:pointer}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border-radius:999px;border:1px solid var(--line2);background:color-mix(in srgb,var(--deep) 88%,transparent);font-size:13px;color:var(--muted);cursor:pointer}
 .chip[aria-pressed="true"]{color:var(--frost);border-color:currentColor}
 .chip i{width:8px;height:8px;border-radius:50%}
 .chip.mst[aria-pressed="true"]{color:var(--violet)}
@@ -127,7 +127,7 @@ input[type=range]{width:100%;accent-color:var(--fibre)}
 .chip.rt[aria-pressed="true"]{color:var(--fibre)}
 .chip span{color:var(--frost)}
 .svc-row{position:absolute;left:14px;right:14px;bottom:12px;display:flex;gap:6px;flex-wrap:wrap;z-index:2}
-.legend{position:absolute;top:14px;right:14px;z-index:2;font-size:12px;color:var(--muted);background:rgba(14,22,49,.85);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:grid;gap:6px}
+.legend{position:absolute;top:14px;right:14px;z-index:2;font-size:12px;color:var(--muted);background:color-mix(in srgb,var(--deep) 88%,transparent);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:grid;gap:6px}
 .legend div{display:flex;align-items:center;gap:8px}
 .legend svg{width:16px;height:16px;flex:none}
 .zoomhint{position:absolute;right:14px;bottom:14px;font-size:12px;color:var(--dim);z-index:2}
@@ -171,8 +171,8 @@ td.chosen{color:var(--amber);font-weight:600}
 .srow .nm{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .srow.best .nm{color:var(--frost)}
 .srow .tr{height:12px;position:relative}
-.srow .tr i{position:absolute;left:0;top:0;bottom:0;border-radius:0 4px 4px 0;background:#3b4675;transition:width .8s cubic-bezier(.2,.7,.2,1)}
-.srow.ls .tr i{background:#5b6aa8}
+.srow .tr i{position:absolute;left:0;top:0;bottom:0;border-radius:0 4px 4px 0;background:color-mix(in srgb,var(--muted) 35%,transparent);transition:width .8s cubic-bezier(.2,.7,.2,1)}
+.srow.ls .tr i{background:color-mix(in srgb,var(--muted) 60%,transparent)}
 .srow.best .tr i{background:var(--fibre)}
 .srow.opt .tr i{background:var(--violet)}
 .srow .v{text-align:right;color:var(--muted)}
@@ -198,7 +198,7 @@ td.chosen{color:var(--amber);font-weight:600}
   .hero-copy{padding:40px 16px 0}
   .hero-map{position:relative;inset:auto;height:420px;grid-row:auto}
   .hero{grid-template-rows:auto}
-  .hero-map::before{background:linear-gradient(180deg,var(--abyss) 0%,rgba(10,16,36,0) 20%)}
+  .hero-map::before{background:linear-gradient(180deg,var(--abyss) 0%,transparent 20%)}
   .map-caption{position:static;padding:0 16px 16px;text-align:left;max-width:none}
   .telemetry{grid-template-columns:1fr 1fr}
   .telemetry div,.telemetry div:first-child{padding:18px 16px}
@@ -217,7 +217,7 @@ body[data-grad="fibre"]{--g1:#5CE1E6;--g2:#7FA8FF;--g3:#9D8CFF}
 body[data-grad="aurora"]{--g1:#5CE1E6;--g2:#9D8CFF;--g3:#FF6EC7}
 body[data-grad="solar"]{--g1:#FFB547;--g2:#FF6E8A;--g3:#9D8CFF}
 .grad-fill{background:linear-gradient(100deg,var(--g1),var(--g2) 55%,var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent}
-.btn.primary,.solve{background:linear-gradient(100deg,var(--g1),var(--g2) 60%,var(--g3));border-color:transparent;color:#0A1024}
+.btn.primary,.solve{background:linear-gradient(100deg,var(--g1),var(--g2) 60%,var(--g3));border-color:transparent;color:var(--ongrad)}
 .btn.primary:hover,.solve:hover{filter:brightness(1.12);background:linear-gradient(100deg,var(--g1),var(--g2) 60%,var(--g3))}
 .links button[aria-current="page"]::after{background:linear-gradient(90deg,var(--g1),var(--g3));box-shadow:0 0 12px var(--g2)}
 .metro-line{background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3))}
@@ -277,7 +277,7 @@ body:not(.glitch-on) .glitch::before,body:not(.glitch-on) .glitch::after{display
 .bigmark p{color:var(--dim);font-size:13px;margin-top:18px}
 
 /* preview panel */
-.pv{position:fixed;right:16px;bottom:16px;z-index:30;background:rgba(17,26,56,.94);border:1px solid var(--line2);border-radius:14px;padding:14px 16px;font-size:13px;width:236px;box-shadow:0 18px 40px rgba(0,0,0,.45)}
+.pv{position:fixed;right:16px;bottom:16px;z-index:30;background:color-mix(in srgb,var(--panel) 95%,transparent);border:1px solid var(--line2);border-radius:14px;padding:14px 16px;font-size:13px;width:236px;box-shadow:0 18px 40px rgba(0,0,0,.45)}
 .pv h6{font-size:13px;font-weight:600;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
 .pv h6 button{background:none;border:0;color:var(--muted);cursor:pointer;font-size:12px}
 .pv label{display:flex;align-items:center;gap:8px;padding:3px 0;cursor:pointer;color:var(--frost)}
@@ -290,12 +290,26 @@ body:not(.glitch-on) .glitch::before,body:not(.glitch-on) .glitch::after{display
 .pv .sub{color:var(--dim);font-size:12px;margin:8px 0 2px}
 @media (max-width:860px){.bigmark{padding:48px 16px 24px}.pv{left:8px;right:8px;width:auto}}
 @media (prefers-reduced-motion: reduce){.hero::after{animation:none}.glitch::before,.glitch::after{animation:none;display:none}}
+
+/* ================= themes ================= */
+body[data-theme="midnight"]{--abyss:#0A1024;--deep:#0E1631;--panel:#111A38;--raise:#17224A;--line:rgba(150,170,255,.12);--line2:rgba(150,170,255,.22);
+  --frost:#E6EBFF;--muted:#8A93B8;--dim:#5B6488;--fibre:#5CE1E6;--amber:#FFB547;--violet:#9D8CFF;--g1:#5CE1E6;--g2:#9D8CFF;--g3:#FF6EC7;--ongrad:#0A1024}
+body[data-theme="nebula"]{--abyss:#0C0817;--deep:#120C22;--panel:#1A1130;--raise:#241842;--line:rgba(196,170,255,.12);--line2:rgba(196,170,255,.22);
+  --frost:#F3EEFF;--muted:#A79DC8;--dim:#6E6494;--fibre:#C4B5FD;--amber:#FFC857;--violet:#5EEAD4;--g1:#8B5CF6;--g2:#EC4899;--g3:#FB923C;--ongrad:#FFFFFF}
+body[data-theme="lagoon"]{--abyss:#04161A;--deep:#072026;--panel:#0B2A31;--raise:#10363F;--line:rgba(120,230,215,.12);--line2:rgba(120,230,215,.22);
+  --frost:#E4FBF7;--muted:#88B3AD;--dim:#587D78;--fibre:#2DD4BF;--amber:#FDE047;--violet:#A78BFA;--g1:#22D3EE;--g2:#34D399;--g3:#FDE047;--ongrad:#04161A}
+body[data-theme="ember"]{--abyss:#0F0E11;--deep:#151418;--panel:#1C1A20;--raise:#26232B;--line:rgba(255,235,225,.09);--line2:rgba(255,235,225,.18);
+  --frost:#F7F3F0;--muted:#A9A1A0;--dim:#6C6566;--fibre:#FF8A65;--amber:#FACC15;--violet:#60A5FA;--g1:#FFB347;--g2:#FF5E62;--g3:#C14BFF;--ongrad:#FFFFFF}
+.pv .gr{grid-template-columns:1fr 1fr}
+.pv .gr button{padding:7px 6px 8px;text-align:left}
+.pv .gr button i{margin:0 0 6px;height:26px;border-radius:5px}
+.pv .gr button small{display:block;color:var(--dim);font-size:11px;margin-top:1px}
 </style>
 </head>
-<body data-grad="aurora" class="swarm-on tc-on glitch-on on-home">
+<body data-theme="nebula" class="swarm-on tc-on glitch-on on-home">
 <nav class="nav">
   <div class="brand" data-go="home" tabindex="0">
-    <svg width="30" height="22" viewBox="0 0 30 22" aria-hidden="true"><path d="M4 17 L15 5 L26 15" fill="none" stroke="#5CE1E6" stroke-width="1.6" opacity=".7"/><circle cx="4" cy="17" r="3" fill="#E6EBFF"/><circle cx="15" cy="5" r="3" fill="#FFB547"/><circle cx="26" cy="15" r="3" fill="#E6EBFF"/><circle r="1.8" fill="#fff"><animateMotion dur="2.2s" repeatCount="indefinite" path="M4 17 L15 5 L26 15"/></circle></svg>
+    <svg width="30" height="22" viewBox="0 0 30 22" aria-hidden="true"><path d="M4 17 L15 5 L26 15" fill="none" style="stroke:var(--g1)" stroke-width="1.6" opacity=".7"/><circle cx="4" cy="17" r="3" style="fill:var(--frost)"/><circle cx="15" cy="5" r="3" style="fill:var(--amber)"/><circle cx="26" cy="15" r="3" style="fill:var(--frost)"/><circle r="1.8" fill="#fff"><animateMotion dur="2.2s" repeatCount="indefinite" path="M4 17 L15 5 L26 15"/></circle></svg>
     <span class="glitch hover-only" data-text="Lightpath">Lightpath</span>
   </div>
   <div class="links" role="navigation">
@@ -381,10 +395,10 @@ body:not(.glitch-on) .glitch::before,body:not(.glitch-on) .glitch::after{display
           <button class="chip rt" aria-pressed="true" data-layer="rt"><i style="background:var(--fibre)"></i>Routes</button>
         </div>
         <div class="legend">
-          <div><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#0A1024" stroke="#E6EBFF" stroke-width="1.5"/></svg>Core server</div>
-          <div><svg width="16" height="16"><circle cx="8" cy="8" r="4.5" fill="#0A1024" stroke="#E6EBFF" stroke-width="1.5"/></svg>Regional / edge server</div>
-          <div><svg width="16" height="16"><rect x="5" y="5" width="6" height="6" fill="#5B6488" transform="rotate(45 8 8)"/></svg>Router (cannot host)</div>
-          <div><svg width="16" height="16"><circle cx="8" cy="8" r="5" fill="#FFB547"/></svg>Hosts replicas</div>
+          <div><svg width="16" height="16"><circle cx="8" cy="8" r="6" style="fill:var(--abyss);stroke:var(--frost)" stroke-width="1.5"/></svg>Core server</div>
+          <div><svg width="16" height="16"><circle cx="8" cy="8" r="4.5" style="fill:var(--abyss);stroke:var(--frost)" stroke-width="1.5"/></svg>Regional / edge server</div>
+          <div><svg width="16" height="16"><rect x="5" y="5" width="6" height="6" style="fill:var(--dim)" transform="rotate(45 8 8)"/></svg>Router (cannot host)</div>
+          <div><svg width="16" height="16"><circle cx="8" cy="8" r="5" style="fill:var(--amber)"/></svg>Hosts replicas</div>
         </div>
         <svg id="studioMap"></svg>
         <div class="svc-row" id="svcRow"></div>
@@ -426,11 +440,12 @@ body:not(.glitch-on) .glitch::before,body:not(.glitch-on) .glitch::after{display
     <label><input type="checkbox" data-fx="tc" checked> Text cursor (pipeline)</label>
     <label><input type="checkbox" data-fx="vel" checked> Scroll velocity band</label>
     <label><input type="checkbox" data-fx="glitch" checked> Glitch text (logo, footer)</label>
-    <div class="sub">Colour gradient</div>
-    <div class="gr" id="grads">
-      <button data-g="fibre"><i style="background:linear-gradient(90deg,#5CE1E6,#7FA8FF,#9D8CFF)"></i>Fibre</button>
-      <button data-g="aurora" aria-pressed="true"><i style="background:linear-gradient(90deg,#5CE1E6,#9D8CFF,#FF6EC7)"></i>Aurora</button>
-      <button data-g="solar"><i style="background:linear-gradient(90deg,#FFB547,#FF6E8A,#9D8CFF)"></i>Solar</button>
+    <div class="sub">Theme (background and gradient)</div>
+    <div class="gr" id="themes">
+      <button data-t="nebula" aria-pressed="true"><i style="background:linear-gradient(100deg,#8B5CF6,#EC4899 55%,#FB923C) 0 100%/100% 7px no-repeat,#0C0817;border:1px solid rgba(255,255,255,.08)"></i>Nebula<small>plum, violet to orange</small></button>
+      <button data-t="lagoon"><i style="background:linear-gradient(100deg,#22D3EE,#34D399 55%,#FDE047) 0 100%/100% 7px no-repeat,#04161A;border:1px solid rgba(255,255,255,.08)"></i>Lagoon<small>deep teal, cyan to lime</small></button>
+      <button data-t="ember"><i style="background:linear-gradient(100deg,#FFB347,#FF5E62 55%,#C14BFF) 0 100%/100% 7px no-repeat,#0F0E11;border:1px solid rgba(255,255,255,.08)"></i>Ember<small>graphite, gold to magenta</small></button>
+      <button data-t="midnight"><i style="background:linear-gradient(100deg,#5CE1E6,#9D8CFF 55%,#FF6EC7) 0 100%/100% 7px no-repeat,#0A1024;border:1px solid rgba(255,255,255,.08)"></i>Midnight<small>the previous navy</small></button>
     </div>
   </div>
 </div>
@@ -442,7 +457,7 @@ const PAL = ["#3987e5","#d95926","#199e70","#c98500","#d55181","#008300","#9085e
 S.forEach((s,i)=>s.color = PAL[i % PAL.length]);
 const best = sol.strategies.find(s=>s.name===sol.best);
 const NS = "http://www.w3.org/2000/svg";
-const el = (t,a={},p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e};
+const el = (t,a={},p)=>{const e=document.createElementNS(NS,t);let st="";for(const k in a){const v=String(a[k]);if(v.startsWith("var("))st+=`${k}:${v};`;else e.setAttribute(k,v)}if(st)e.setAttribute("style",(e.getAttribute("style")||"")+st);p&&p.appendChild(e);return e};
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const prettyStrat = n => ({random:"Random", demand_first:"Demand-first", marginal_gain:"Marginal gain", regret:"Regret",
   ffd_pack:"FFD packing", exact_milp:"Exact optimum"}[n.replace("+ls","")] + (n.endsWith("+ls")?" + LS":""));
@@ -499,25 +514,25 @@ function drawNetwork(svg, opts){
   const gL = el("g",{},root), gMst = el("g",{},root), gR = el("g",{},root), gP = el("g",{},root), gN = el("g",{},root), gT = el("g",{},root);
   L.forEach(l=>{
     const a=N[l.u], b=N[l.v];
-    el("line",{x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:"#5CE1E6","stroke-opacity":opts.hero?0.16:0.2,"stroke-width":0.6+Math.log10(l.bandwidth)*0.5},gL);
+    el("line",{x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:"var(--fibre)","stroke-opacity":opts.hero?0.16:0.2,"stroke-width":0.6+Math.log10(l.bandwidth)*0.5},gL);
   });
   N.forEach((n,i)=>{
     const g = el("g",{transform:`translate(${n.x} ${n.y})`,"data-i":i,style:"cursor:pointer"},gN);
     const host = hosts[i];
     if(n.tier==="router"){
-      el("rect",{x:-3,y:-3,width:6,height:6,fill:"#5B6488",transform:"rotate(45)"},g);
+      el("rect",{x:-3,y:-3,width:6,height:6,fill:"var(--dim)",transform:"rotate(45)"},g);
     } else {
       const r = nodeR(n);
       if(host){
-        el("circle",{r:r+5,fill:"none",stroke:"#FFB547","stroke-opacity":.35,"stroke-width":1},g).classList.add("rep-ring");
-        el("circle",{r,fill:"#FFB547",filter:`url(#${opts.id}g)`},g).classList.add("rep-fill");
-        if(!opts.hero) host.forEach((j,k)=>{const a=-Math.PI/2+k*2*Math.PI/Math.max(host.length,1)/1;const rr=r+9;el("circle",{cx:Math.cos(a)*rr,cy:Math.sin(a)*rr,r:3.2,fill:S[j].color,stroke:"#0A1024","stroke-width":1.2},g).classList.add("rep-dot")});
+        el("circle",{r:r+5,fill:"none",stroke:"var(--amber)","stroke-opacity":.35,"stroke-width":1},g).classList.add("rep-ring");
+        el("circle",{r,fill:"var(--amber)",filter:`url(#${opts.id}g)`},g).classList.add("rep-fill");
+        if(!opts.hero) host.forEach((j,k)=>{const a=-Math.PI/2+k*2*Math.PI/Math.max(host.length,1)/1;const rr=r+9;el("circle",{cx:Math.cos(a)*rr,cy:Math.sin(a)*rr,r:3.2,fill:S[j].color,stroke:"var(--abyss)","stroke-width":1.2},g).classList.add("rep-dot")});
       } else {
-        el("circle",{r,fill:"#0A1024",stroke:"#E6EBFF","stroke-opacity":.8,"stroke-width":1.4},g);
+        el("circle",{r,fill:"var(--abyss)",stroke:"var(--frost)","stroke-opacity":.8,"stroke-width":1.4},g);
       }
     }
     if(opts.labels!==false){
-      el("text",{x:10,y:4,fill:host?"#E6EBFF":"#8A93B8","font-size":opts.hero?13:12.5,"font-family":"Geist, sans-serif",opacity:host?0.95:0.7},g).textContent = n.name;
+      el("text",{x:10,y:4,fill:host?"var(--frost)":"var(--muted)","font-size":opts.hero?13:12.5,"font-family":"Geist, sans-serif",opacity:host?0.95:0.7},g).textContent = n.name;
     }
   });
   return {root,gL,gMst,gR,gP,gN};
@@ -528,7 +543,7 @@ function addPulses(gR, gP, routes, id, colorFn){
   routes.forEach((r,k)=>{
     if(r.path.length<2) return;
     const d = pathD(r.path);
-    el("path",{d,fill:"none",stroke:colorFn?colorFn(r):"#5CE1E6","stroke-opacity":.55,"stroke-width":1.8,"stroke-linecap":"round","stroke-linejoin":"round"},gR);
+    el("path",{d,fill:"none",stroke:colorFn?colorFn(r):"var(--fibre)","stroke-opacity":.55,"stroke-width":1.8,"stroke-linecap":"round","stroke-linejoin":"round"},gR);
     if(reduce) return;
     const pid = `${id}p${k}`;
     el("path",{id:pid,d,fill:"none",stroke:"none"},gP);
@@ -536,7 +551,7 @@ function addPulses(gR, gP, routes, id, colorFn){
     const c = el("circle",{r:3.4,fill:"#fff",filter:`url(#${id}g)`},gP);
     const am = el("animateMotion",{dur,repeatCount:"indefinite",begin:(-Math.random()*3).toFixed(2)+"s"},c);
     const mp = el("mpath",{},am); mp.setAttributeNS("http://www.w3.org/1999/xlink","href","#"+pid); mp.setAttribute("href","#"+pid);
-    const halo = el("circle",{r:7,fill:colorFn?colorFn(r):"#5CE1E6",opacity:.35},gP);
+    const halo = el("circle",{r:7,fill:colorFn?colorFn(r):"var(--fibre)",opacity:.35},gP);
     const am2 = el("animateMotion",{dur,repeatCount:"indefinite",begin:am.getAttribute("begin")},halo);
     const mp2 = el("mpath",{},am2); mp2.setAttribute("href","#"+pid);
   });
@@ -578,8 +593,8 @@ function addPulses(gR, gP, routes, id, colorFn){
     card.addEventListener("click",()=>go("studio"));
     const sv=el("svg",{viewBox:`${x0} ${y0} ${w} ${h}`,preserveAspectRatio:"xMidYMid meet"});
     const sw = Math.max(w,h)/220;
-    m.e.forEach(([u,v])=>el("line",{x1:m.n[u][0],y1:m.n[u][1],x2:m.n[v][0],y2:m.n[v][1],stroke:"#5CE1E6","stroke-opacity":.28,"stroke-width":sw},sv));
-    m.n.forEach(p=>el("circle",{cx:p[0],cy:p[1],r:(p[2]==="router"?1.4:p[2]==="core"?3:2.2)*sw,fill:p[2]==="router"?"#5B6488":p[2]==="core"?"#FFB547":"#E6EBFF"},sv));
+    m.e.forEach(([u,v])=>el("line",{x1:m.n[u][0],y1:m.n[u][1],x2:m.n[v][0],y2:m.n[v][1],stroke:"var(--fibre)","stroke-opacity":.28,"stroke-width":sw},sv));
+    m.n.forEach(p=>el("circle",{cx:p[0],cy:p[1],r:(p[2]==="router"?1.4:p[2]==="core"?3:2.2)*sw,fill:p[2]==="router"?"var(--dim)":p[2]==="core"?"var(--amber)":"var(--frost)"},sv));
     card.appendChild(sv);
     card.insertAdjacentHTML("beforeend",`<h4>${m.name}</h4><p>${m.desc}</p><div class="meta"><span class="num">${m.nodes} nodes, ${m.links} links</span><span>best <b class="num">${m.best_ms} ms</b></span></div>`);
     grid.appendChild(card);
@@ -602,7 +617,7 @@ let SM;
   const vb = bounds(30); vb[1]-=30; vb[3]+=110; svg.setAttribute("viewBox", vb.join(" "));
   SM = drawNetwork(svg,{id:"s"});
   // MST layer
-  sol.topology.mst.edges.forEach(e=>{const a=N[e.u],b=N[e.v];el("line",{x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:"#9D8CFF","stroke-width":2.6,"stroke-opacity":.85,"stroke-linecap":"round"},SM.gMst)});
+  sol.topology.mst.edges.forEach(e=>{const a=N[e.u],b=N[e.v];el("line",{x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:"var(--violet)","stroke-width":2.6,"stroke-opacity":.85,"stroke-linecap":"round"},SM.gMst)});
   SM.gMst.style.display="none";
 
   // pan / zoom
@@ -713,12 +728,12 @@ function renderTab(){
     const W = Math.max(body.clientWidth-40, 600), rowH = 22, left = 140, H = lanes.length*rowH+34;
     const x = v=>left+(W-left-10)*v/b.makespan;
     let s = `<svg width="${W}" height="${H}" style="display:block;margin-top:8px">`;
-    for(let t=0;t<=b.makespan;t+=20) s+=`<line x1="${x(t)}" x2="${x(t)}" y1="0" y2="${H-24}" stroke="rgba(150,170,255,.1)"/><text x="${x(t)}" y="${H-8}" fill="#5B6488" font-size="11" text-anchor="middle">${t}s</text>`;
-    lanes.forEach((ln,i)=>{const [sv,lane]=ln.split("/");s+=`<text x="0" y="${i*rowH+15}" fill="#8A93B8" font-size="12">${N[+sv].name}${lane>0?", lane "+(+lane+1):""}</text>`});
+    for(let t=0;t<=b.makespan;t+=20) s+=`<line x1="${x(t)}" x2="${x(t)}" y1="0" y2="${H-24}" stroke="rgba(150,170,255,.1)"/><text x="${x(t)}" y="${H-8}" fill="var(--dim)" font-size="11" text-anchor="middle">${t}s</text>`;
+    lanes.forEach((ln,i)=>{const [sv,lane]=ln.split("/");s+=`<text x="0" y="${i*rowH+15}" fill="var(--muted)" font-size="12">${N[+sv].name}${lane>0?", lane "+(+lane+1):""}</text>`});
     b.entries.forEach(e=>{const i=lanes.indexOf(e.server+"/"+e.lane);const y=i*rowH+4;
-      s+=`<rect x="${x(e.start)}" y="${y}" width="${Math.max(2,x(e.end)-x(e.start)-2)}" height="${rowH-8}" rx="4" fill="#5CE1E6" fill-opacity=".75"><title>${e.name}: ${e.start}s to ${e.end}s on ${N[e.server].name}</title></rect>`;
-      if(x(e.end)-x(e.start)>60) s+=`<text x="${x(e.start)+6}" y="${y+11}" fill="#06202A" font-size="11" font-weight="600">${e.name}</text>`});
-    s+=`<line x1="${x(b.makespan)}" x2="${x(b.makespan)}" y1="0" y2="${H-24}" stroke="#FFB547" stroke-dasharray="4 3"/><text x="${x(b.makespan)-4}" y="${H-28}" fill="#FFB547" font-size="11" text-anchor="end">makespan ${b.makespan}s</text></svg>`;
+      s+=`<rect x="${x(e.start)}" y="${y}" width="${Math.max(2,x(e.end)-x(e.start)-2)}" height="${rowH-8}" rx="4" style="fill:var(--fibre)" fill-opacity=".75"><title>${e.name}: ${e.start}s to ${e.end}s on ${N[e.server].name}</title></rect>`;
+      if(x(e.end)-x(e.start)>60) s+=`<text x="${x(e.start)+6}" y="${y+11}" fill="var(--abyss)" font-size="11" font-weight="600">${e.name}</text>`});
+    s+=`<line x1="${x(b.makespan)}" x2="${x(b.makespan)}" y1="0" y2="${H-24}" stroke="var(--amber)" stroke-dasharray="4 3"/><text x="${x(b.makespan)-4}" y="${H-28}" fill="var(--amber)" font-size="11" text-anchor="end">makespan ${b.makespan}s</text></svg>`;
     body.innerHTML = `<p style="color:var(--muted);font-size:13px;margin:8px 0 0">${b.entries.length} batch jobs, longest first, each sent to the server lane where it finishes earliest after its input data arrives.</p>`+s;
   }
 }
@@ -734,8 +749,8 @@ function gradAt(t){const g=gradStops().map(hex2rgb);const k=t<.5?0:1;const u=t<.
 document.querySelectorAll("[data-fx]").forEach(cb=>cb.onchange=()=>{FX[cb.dataset.fx]=cb.checked;
   document.body.classList.toggle(cb.dataset.fx+"-on",cb.checked);
   if(cb.dataset.fx==="vel") document.querySelector(".velocity").style.display=cb.checked?"":"none";});
-document.querySelectorAll("#grads button").forEach(b=>b.onclick=()=>{document.body.dataset.grad=b.dataset.g;
-  document.querySelectorAll("#grads button").forEach(x=>x.setAttribute("aria-pressed",x===b));swarmRecolor();});
+document.querySelectorAll("#themes button").forEach(b=>b.onclick=()=>{document.body.dataset.theme=b.dataset.t;
+  document.querySelectorAll("#themes button").forEach(x=>x.setAttribute("aria-pressed",x===b));swarmRecolor();});
 document.getElementById("pvMin").onclick=e=>{const p=document.getElementById("pv");p.classList.toggle("min");e.target.textContent=p.classList.contains("min")?"Show":"Hide"};
 const _go = go; go = v=>{_go(v);document.body.classList.toggle("on-home",v==="home")};
 
