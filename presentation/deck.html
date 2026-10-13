@@ -1,0 +1,252 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Lightpath</title>
+<style>
+@font-face{font-family:RF;src:url(img/rf.woff2) format("woff2");font-weight:100 1000;font-stretch:25% 151%}
+:root{--blue:#4285F4;--red:#EA4335;--yellow:#F9AB00;--green:#34A853;--ink:#202124;--ink2:#5F6368;--ink3:#80868B;--surf:#F1F3F4;--tone:#E8F0FE}
+@page{size:1280px 720px;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:RF,Roboto,Arial,sans-serif;color:var(--ink);background:#fff}
+.s{width:1280px;height:720px;position:relative;overflow:hidden;padding:56px 72px 48px;page-break-after:always;display:flex;flex-direction:column}
+.s:last-child{page-break-after:auto}
+.bar{position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,var(--blue) 0 25%,var(--red) 25% 50%,var(--yellow) 50% 75%,var(--green) 75%)}
+.foot{position:absolute;left:72px;right:72px;bottom:22px;display:flex;justify-content:space-between;font-size:13px;color:var(--ink3)}
+.kick{font-size:15px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+h1{font-size:46px;font-weight:600;letter-spacing:-.02em;line-height:1.08}
+h2{font-size:22px;font-weight:600;margin-bottom:6px}
+p,li{font-size:19px;line-height:1.5;color:var(--ink2)}
+b{color:var(--ink)}
+.lede{font-size:21px;margin-top:14px;max-width:1000px}
+.cols{display:grid;gap:22px;margin-top:28px;flex:1;min-height:0}
+.c2{grid-template-columns:1fr 1fr}.c3{grid-template-columns:repeat(3,1fr)}.c4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--surf);border-radius:22px;padding:22px 24px}
+.card p,.card li{font-size:16.5px}
+.card h2{font-size:20px}
+.tag{display:inline-block;font-size:13px;font-weight:600;padding:3px 10px;border-radius:999px;margin-bottom:10px}
+.t-b{background:#E8F0FE;color:#1A56C9}.t-r{background:#FCE8E6;color:#A50E0E}.t-y{background:#FEF7E0;color:#8A5A00}.t-g{background:#E6F4EA;color:#0D652D}
+img.shot{width:100%;border-radius:16px;border:1px solid #E3E5E8;display:block;object-fit:cover}
+ul{padding-left:20px}li{margin:4px 0}
+.why{margin-top:10px;font-size:15px;color:var(--ink);background:#fff;border-radius:12px;padding:8px 12px}
+.cx{font-family:"Roboto Mono",Menlo,monospace;font-size:13px;color:var(--ink3);margin-top:6px}
+.big{font-size:54px;font-weight:600;letter-spacing:-.03em;line-height:1}
+.big small{font-size:22px;color:var(--ink2);font-weight:500}
+.metro{position:relative;display:grid;grid-template-columns:repeat(7,1fr);margin-top:44px}
+.metro:before{content:"";position:absolute;left:7.14%;right:7.14%;top:47px;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--blue) 0 25%,var(--red) 25% 41.67%,var(--yellow) 41.67% 75%,var(--green) 75%)}
+.st{text-align:center;padding:0 6px}
+.st .n{font-size:14px;color:var(--ink3);height:22px}
+.st .d{width:26px;height:26px;margin:14px auto 18px;border-radius:50%;background:#fff;border:5px solid var(--blue);position:relative}
+.st:nth-child(3) .d{border-color:var(--red)}.st:nth-child(4) .d,.st:nth-child(5) .d{border-color:var(--yellow)}.st:nth-child(6) .d,.st:nth-child(7) .d{border-color:var(--green)}
+.st h3{font-size:17px;font-weight:600}.st .a{font-size:14.5px;color:var(--ink2);margin-top:4px}.st .q{font-size:13.5px;color:var(--ink3);margin-top:8px;line-height:1.35}
+.formula{font-size:21px;background:#fff;border:1.5px dashed #DADCE0;border-radius:14px;padding:14px 18px;margin-top:14px;color:var(--ink);text-align:center}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+table{border-collapse:collapse;width:100%;font-size:16px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid #E3E5E8}th{color:var(--ink3);font-weight:600;font-size:14px}
+.num{font-variant-numeric:tabular-nums}
+.sp .card{padding:14px 18px}.sp .card p{font-size:15px;line-height:1.42}.sp .card h2{font-size:19px;margin-bottom:2px}.sp .tag{margin-bottom:6px}.sp .why{margin-top:6px;padding:5px 10px;font-size:13.5px}.sp .cx{margin-top:3px}
+.dots i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:5px}
+</style></head><body>
+
+<!-- 1 TITLE -->
+<section class="s" style="padding:0;flex-direction:row">
+  <div class="bar"></div>
+  <div style="flex:1.15;padding:80px 0 60px 80px;display:flex;flex-direction:column">
+    <div class="kick">Design and Analysis of Algorithms · Project</div>
+    <div style="font-size:104px;font-weight:650;letter-spacing:-.045em;line-height:.95;margin-top:18px">Lightpath<span style="color:var(--blue)">.</span></div>
+    <p style="font-size:27px;color:var(--ink);margin-top:22px;line-height:1.3;max-width:620px">Latency-aware cloud task placement on network graphs</p>
+    <p style="font-size:18px;margin-top:12px;max-width:600px">Where should copies of each cloud service run, so every user is one short path away, without overloading servers or breaking the budget?</p>
+    <div style="margin-top:auto;display:grid;grid-template-columns:auto auto;gap:6px 40px;font-size:16px;color:var(--ink2)">
+      <div><b>Naman Singla</b> · 25WU0101084</div><div><b>Faculty:</b> Dr. Monday Jubrin Abdullahi</div>
+      <div><b>Mohak Gupta</b> · 25WU0101074</div><div><b>Section:</b> CSE RHINOS · 2026–27</div>
+    </div>
+  </div>
+  <div style="flex:1;background:var(--surf);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:30px;padding:40px">
+    <img src="img/plans_regions.png" style="width:100%;border-radius:18px;background:#fff">
+    <img src="img/woxsen_logo.png" style="height:70px">
+  </div>
+</section>
+
+<!-- 2 PROBLEM -->
+<section class="s"><div class="bar"></div>
+  <div class="kick">The problem</div>
+  <h1>A cloud runs many services for users spread across many cities</h1>
+  <div class="cols c2" style="grid-template-columns:1.05fr .95fr">
+    <div>
+      <p class="lede" style="margin-top:0">If a user in Kochi is served from Delhi, every request crosses the country. Put a copy closer and it is fast — but every copy costs money and uses server capacity.</p>
+      <div class="card" style="margin-top:22px">
+        <h2>Our goal</h2>
+        <ul><li><b>Minimise average user latency</b> (ms)</li><li>never exceed a server's <b>CPU / memory</b></li><li>stay within the <b>budget</b> ($ per hour)</li></ul>
+      </div>
+      <div class="card" style="margin-top:14px;background:#FCE8E6">
+        <p style="color:#5f1d17"><b style="color:#A50E0E">Why it is hard:</b> this contains the classic <b>p-median</b> problem, which is <b>NP-hard</b>. No known fast algorithm always finds the exact best answer, so we combine exact algorithms with smart greedy ones — and measure how close they get.</p>
+      </div>
+    </div>
+    <div class="card" style="display:flex;flex-direction:column;justify-content:center;background:#fff;border:1px solid #E3E5E8">
+      <h2>Real-life examples</h2>
+      <ul><li>Netflix / YouTube caching videos in nearby cities</li><li>Banks placing payment servers per region</li><li>Woxsen campus: which building hosts the Wi-Fi login server</li></ul>
+      <div class="why" style="background:var(--tone)">Three questions decide everything: <b>how far</b> are cities, <b>how many copies</b> can we afford, and <b>where</b> do they go?</div>
+    </div>
+  </div>
+  <div class="foot"><span>Lightpath · DAA Project</span><span>2</span></div>
+</section>
+
+<!-- 3 MODEL -->
+<section class="s"><div class="bar"></div>
+  <div class="kick">How we model it</div>
+  <h1>Turn the cloud into a weighted graph</h1>
+  <div class="cols c4" style="flex:none">
+    <div class="card"><span class="tag t-b">Nodes</span><h2>Servers / cities</h2><p>each has CPU, memory and a $/hour cost</p></div>
+    <div class="card"><span class="tag t-r">Edges</span><h2>Fibre links</h2><p>weight = <b>latency in ms</b> (from real distance)</p></div>
+    <div class="card"><span class="tag t-y">Demand</span><h2>Users</h2><p>requests per second from each city for each service</p></div>
+    <div class="card"><span class="tag t-g">Storage</span><h2>Adjacency list</h2><p>O(V+E) memory; real networks are sparse</p></div>
+  </div>
+  <div class="formula">Average latency &nbsp;=&nbsp; <b>Σ</b> (requests from city <i>c</i>) × (shortest distance from <i>c</i> to its nearest copy) &nbsp;÷&nbsp; total requests</div>
+  <div class="cols c2" style="margin-top:20px">
+    <div class="card"><h2>10 networks to test on</h2><p><b>Real:</b> India (25 cities incl. Woxsen), Nigeria (24 cities), Woxsen campus (23 buildings), Abilene &amp; NSFNET (US research networks).<br><b>Synthetic:</b> Waxman, Erdős–Rényi, Barabási–Albert, data-centre fat-tree — so we can vary size and density.</p></div>
+    <div class="card"><h2>Transfer cost with rebates</h2><p>We also model data cost in <b>$/GB</b>. Some peering links pay a rebate → <b>negative edge weights</b>. We proved our cost model never creates a <b>negative cycle</b> (potential function, Lemma 1).</p></div>
+  </div>
+  <div class="foot"><span>Lightpath · DAA Project</span><span>3</span></div>
+</section>
+
+<!-- 4 PIPELINE -->
+<section class="s"><div class="bar"></div>
+  <div class="kick">The solution</div>
+  <h1>Seven stages — each a classic algorithm chosen for what it guarantees</h1>
+  <div class="metro">
+    <div class="st"><div class="n">1</div><div class="d"></div><h3>Latency matrix</h3><div class="a">Floyd–Warshall / Johnson</div><div class="q">How far is every city from every other?</div></div>
+    <div class="st"><div class="n">2</div><div class="d"></div><h3>Backbone</h3><div class="a">Prim / Kruskal MST</div><div class="q">Cheapest links connecting all cities</div></div>
+    <div class="st"><div class="n">3</div><div class="d"></div><h3>Routing</h3><div class="a">Dijkstra / Bellman-Ford</div><div class="q">Which path does each request take?</div></div>
+    <div class="st"><div class="n">4</div><div class="d"></div><h3>Server activation</h3><div class="a">0/1 knapsack DP</div><div class="q">Which servers to switch on within budget?</div></div>
+    <div class="st"><div class="n">5</div><div class="d"></div><h3>Replica sizing</h3><div class="a">Multiple-choice knapsack</div><div class="q">How many copies of each service?</div></div>
+    <div class="st"><div class="n">6</div><div class="d"></div><h3>Placement</h3><div class="a">4 greedy schedulers</div><div class="q">Exactly where does each copy go?</div></div>
+    <div class="st"><div class="n">7</div><div class="d"></div><h3>Refinement</h3><div class="a">Local search</div><div class="q">Move / swap copies until nothing improves</div></div>
+  </div>
+  <div class="card" style="margin-top:40px;display:flex;gap:26px;align-items:center;background:#E6F4EA">
+    <div class="big" style="color:#0D652D;font-size:40px">✓</div>
+    <p style="color:#0d3d1e"><b>Exact check (the referee):</b> on smaller networks a <b>mixed-integer program</b> (MILP, HiGHS solver) finds the <b>proven optimum</b>. Every heuristic reports its <b>gap</b> from it — so we never just claim our answer is good, we prove how good.</p>
+  </div>
+  <div class="foot"><span>Lightpath · DAA Project</span><span>4</span></div>
+</section>
+
+<!-- 5 SHORTEST PATHS -->
+<section class="s"><div class="bar"></div>
+  <div class="kick">Stage 1 &amp; 3 · Shortest paths</div>
+  <h1>Why four shortest-path algorithms?</h1>
+  <div class="cols c2" style="grid-template-columns:1fr 1fr">
+    <div class="sp" style="display:grid;grid-template-rows:auto auto;gap:12px">
+      <div class="vs">
+        <div class="card"><span class="tag t-b">One source</span><h2>Dijkstra</h2><p>Settles the closest city first; its distance is then final. <b>Fast</b>, stops early at the destination.</p><div class="cx">O((V+E) log V)</div><div class="why">Fails with negative weights</div></div>
+        <div class="card"><span class="tag t-r">One source</span><h2>Bellman-Ford</h2><p>Relaxes every edge V−1 rounds. <b>Handles rebates</b> (negative costs) and detects negative cycles.</p><div class="cx">O(V·E)</div><div class="why">Used for $/GB transfer routes</div></div>
+      </div>
+      <div class="vs">
+        <div class="card"><span class="tag t-y">All pairs</span><h2>Floyd–Warshall</h2><p>DP over intermediate cities: d[i][j] = min(d[i][j], d[i][k]+d[k][j]). Builds the full latency table.</p><div class="cx">Θ(V³)</div></div>
+        <div class="card"><span class="tag t-g">All pairs</span><h2>Johnson</h2><p>Bellman-Ford once to reweight edges ≥ 0, then Dijkstra from every city. Better on <b>sparse</b> graphs.</p><div class="cx">O(VE + V² log V)</div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <img class="shot" src="img/lab_route.png" style="height:350px;object-position:left top">
+      <p style="font-size:15px">Algorithm Lab: Dijkstra from Lagos to Calabar, step by step with pseudocode — the blue line is the final route. The code <b>picks automatically</b>: sparse → Johnson/Dijkstra, dense → Floyd–Warshall.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Lightpath · DAA Project</span><span>5</span></div>
+</section>
+
+<!-- 6 MST + DP -->
+<section class="s"><div class="bar"></div>
+  <div class="kick">Stages 2, 4 &amp; 5 · Spanning trees and dynamic programming</div>
+  <h1>Build the backbone, then spend the budget wisely</h1>
+  <div class="cols c3">
+    <div class="card"><span class="tag t-r">Minimum spanning tree</span><h2>Prim vs Kruskal</h2><p><b>Prim</b> grows one tree using a priority queue. <b>Kruskal</b> sorts edges and uses <b>union-find</b> to skip cycles.</p><p style="margin-top:8px">Both give the <b>same cheapest tree</b> (cut property). Rule: Prim if <b>E &gt; V log V</b> (dense), else Kruskal.</p><div class="cx">O(E log V) · O(E log E)</div><div class="why">Measured: sparse → Kruskal 1.5 ms vs Prim 3.7 ms; dense → Prim 42 ms vs Kruskal 126 ms</div></div>
+    <div class="card"><span class="tag t-y">0/1 knapsack DP</span><h2>Which servers to switch on?</h2><p>Each server is <b>on or off</b> (0/1), has a cost and a benefit, and the budget is the knapsack capacity. DP gives the <b>exact</b> best set.</p><div class="cx">Θ(n·W), W = budget in $0.01 steps</div><div class="why">Measured: grows linearly, ≈ 97 ns per table cell</div></div>
+    <div class="card"><span class="tag t-g">Multiple-choice knapsack</span><h2>How many copies?</h2><p>For each service pick <b>exactly one option</b> — 1, 2, 3… copies — each with a cost and a latency saving, all within the VM budget.</p><div class="cx">Θ(W · Σ options)</div><div class="why">Budget $2.41 → $7.51/h cut latency 4.34 → 1.28 ms (−70%)</div></div>
+  </div>
+  <div class="foot"><span>Lightpath · DAA Project</span><span>6</span></div>
+</section>
+
+<!-- 7 GREEDY -->
+<section class="s"><div class="bar"></div>
+  <div class="kick">Stages 6 &amp; 7 · The NP-hard part</div>
+  <h1>Greedy placement + local search, checked against the exact optimum</h1>
+  <div class="cols c2" style="grid-template-columns:1fr 1fr">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="card" style="padding:16px 22px"><h2>Four greedy schedulers</h2>
+        <ul><li><b>Demand-first:</b> copies go where most users are</li><li><b>Marginal gain:</b> add the copy that cuts latency the most (CELF lazy updates)</li><li><b>Regret:</b> first serve the service that loses most if it misses its best city</li><li><b>FFD packing:</b> first-fit-decreasing bin packing — fits capacity first</li></ul></div>
+      <div class="card" style="padding:16px 22px"><h2>Local search</h2><p>Try <b>moving</b> one copy or <b>swapping</b> two; keep any change that lowers latency; repeat until nothing improves.</p></div>
+      <div class="card" style="padding:16px 22px;background:var(--tone)"><p><b>Why not just solve it exactly?</b> The MILP grows exponentially: 27 ms at 20 servers → 1.7 s at 160. Greedy + local search is <b>≈5× faster</b> and almost as good.</p></div>
+    </div>
+    <div class="card" style="background:#fff;border:1px solid #E3E5E8">
+      <h2>Distance from the proven optimum</h2>
+      <table style="margin-top:8px">
+        <tr><th>Method</th><th>Greedy alone</th><th>+ Local search</th></tr>
+        <tr><td>Random placement</td><td class="num" style="color:var(--red)">167 %</td><td>—</td></tr>
+        <tr><td>FFD packing</td><td class="num">38.4 %</td><td class="num"><b>≈0.5 %</b></td></tr>
+        <tr><td>Demand-first</td><td class="num">16.7 %</td><td class="num"><b>≈0.5 %</b></td></tr>
+        <tr><td>Regret</td><td class="num">9.2 %</td><td class="num"><b>≈0.5 %</b></td></tr>
+        <tr><td>Marginal gain</td><td class="num">8.7 %</td><td class="num"><b>≈0.5 %</b></td></tr>
+      </table>
+      <p style="margin-top:16px;font-size:16px">Averaged over Waxman networks of 20–240 servers. Worst case after local search: about <b>3 %</b>.</p>
+      <div class="why" style="background:#FEF7E0">When servers are nearly full (E5), only <b>FFD packing</b> always found a valid plan — so the solver uses it as a fallback.</div>
+    </div>
+  </div>
+  <div class="foot"><span>Lightpath · DAA Project</span><span>7</span></div>
+</section>
+
+<!-- 8 WEBSITE -->
+<section class="s"><div class="bar"></div>
+  <div class="kick">The platform</div>
+  <h1>Everything runs in an interactive website</h1>
+  <div class="cols c2" style="grid-template-columns:1.25fr 1fr;gap:26px">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <img class="shot" src="img/shot_studio.png" style="height:244px;object-position:center top">
+      <img class="shot" src="img/lab_compare.png" style="height:244px;object-position:center top">
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="card" style="padding:14px 20px"><h2>Home</h2><p>Live map of India or Nigeria — moving dots are user requests on their shortest path.</p></div>
+      <div class="card" style="padding:14px 20px"><h2>Placement Studio</h2><p>Pick a network and budget → <b>Solve</b>. Map, every strategy vs the optimum, routes, server load and advice.</p></div>
+      <div class="card" style="padding:14px 20px"><h2>Algorithm Lab</h2><p>Watch each algorithm from a start city to a destination at 0.5×–4×, or <b>compare two</b> and see which suits the trip.</p></div>
+      <div class="card" style="padding:14px 20px"><h2>Results · Data · Guide</h2><p>8 experiment charts, all 10 networks to download, and a guided tour.</p></div>
+      <p style="font-size:14px;margin-top:2px">Python engine (NumPy, SciPy HiGHS) · FastAPI · React. Works offline too.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Lightpath · DAA Project</span><span>8</span></div>
+</section>
+
+<!-- 9 RESULTS -->
+<section class="s"><div class="bar"></div>
+  <div class="kick">Experiments · what we measured</div>
+  <h1>Eight experiments, one big lesson: measure, don't assume</h1>
+  <div class="cols c4" style="flex:none;margin-top:22px">
+    <div class="card"><div class="big num">2.33<small> ms</small></div><p style="margin-top:6px">average latency, India network</p></div>
+    <div class="card"><div class="big num" style="color:var(--green)">−64<small> %</small></div><p style="margin-top:6px">vs a random placement</p></div>
+    <div class="card"><div class="big num" style="color:var(--blue)">≈0.5<small> %</small></div><p style="margin-top:6px">from the proven optimum</p></div>
+    <div class="card"><div class="big num" style="color:var(--red)">191</div><p style="margin-top:6px">automated tests, all passing</p></div>
+  </div>
+  <div class="cols c2" style="margin-top:18px;grid-template-columns:1.1fr 1fr">
+    <img class="shot" src="img/e4_quality_size.png" style="object-fit:contain;background:#fff;height:250px">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <p style="font-size:16.5px"><b>Fibonacci heap:</b> best Big-O, but <b>slower</b> in practice (25.9 vs 17.7 ms) — pointer overhead beats the theory.</p>
+      <p style="font-size:16.5px"><b>All pairs:</b> NumPy Floyd–Warshall beat Johnson at n = 400 (277 vs 5015 ms dense).</p>
+      <p style="font-size:16.5px"><b>MST:</b> Kruskal wins sparse, Prim wins dense — exactly as theory predicts.</p>
+      <p style="font-size:16.5px"><b>Budget &amp; density:</b> more money or more links → lower latency, with diminishing returns.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Lightpath · DAA Project</span><span>9</span></div>
+</section>
+
+<!-- 10 CONCLUSION -->
+<section class="s"><div class="bar"></div>
+  <div class="kick">Conclusion</div>
+  <h1>Right algorithm for each question → fast, near-optimal, provable plans</h1>
+  <div class="cols c3" style="flex:none">
+    <div class="card"><span class="tag t-b">What we built</span><p>A complete system: 6 graph algorithms, 2 knapsack DPs, 4 greedy schedulers, 4 priority queues, an exact solver, 10 networks, 8 experiments and an interactive website.</p></div>
+    <div class="card"><span class="tag t-g">What we found</span><p>Greedy + local search lands within <b>≈0.5 %</b> of the optimum, ≈5× faster than the exact solver. Placement cut latency by up to <b>64 %</b>.</p></div>
+    <div class="card"><span class="tag t-y">What we learned</span><p>Big-O is a guide, not a verdict — constant factors and graph density decide the winner. Always check heuristics against an exact answer.</p></div>
+  </div>
+  <div class="card" style="margin-top:20px;background:#fff;border:1px solid #E3E5E8;padding:16px 24px">
+    <p><b>Future work:</b> changing traffic over time, failures of links, and larger networks with faster approximate all-pairs methods.</p>
+  </div>
+  <div style="margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between">
+    <div><div style="font-size:64px;font-weight:650;letter-spacing:-.04em">Thank you<span style="color:var(--blue)">.</span></div><p style="font-size:20px">Questions? Live demo on the website.</p></div>
+    <div style="text-align:right;font-size:16px;color:var(--ink2);line-height:1.6"><b>Naman Singla</b> · <b>Mohak Gupta</b><br>Guided by Dr. Monday Jubrin Abdullahi<br>CSE RHINOS · Woxsen University</div>
+  </div>
+  <div class="foot" style="justify-content:flex-end"><span>10</span></div>
+</section>
+</body></html>
