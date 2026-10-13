@@ -173,11 +173,14 @@ def run_algorithm(req: AlgoReq) -> dict[str, Any]:
             res["negative_arcs"] = [[e.u, e.v, e.cost] for e in tg.edges() if (e.cost or 0) < 0]
         elif req.algorithm in ("floyd_warshall", "johnson"):
             if req.algorithm == "johnson":
-                r = johnson(transfer_cost_graph(g), "cost", heap=req.heap)
+                tg = transfer_cost_graph(g)
+                r = johnson(tg, "cost", heap=req.heap)
+                choice = choose_apsp(tg, "cost")
             else:
                 r = floyd_warshall_numpy(g)
+                choice = choose_apsp(g)
             res = r.to_dict()
-            res["auto_choice"] = choose_apsp(g)
+            res["auto_choice"] = choice
         else:
             raise HTTPException(422, f"unknown algorithm {req.algorithm}")
     except NegativeCycleError as exc:
@@ -199,9 +202,14 @@ def experiments() -> dict[str, Any]:
 if DIST.exists():
     app.mount("/assets", StaticFiles(directory=DIST / "assets"), name="assets")
 
+    DIST_ROOT = DIST.resolve()
+
     @app.get("/{path:path}")
     def spa(path: str) -> FileResponse:
-        f = DIST / path
-        if path and f.is_file():
+        if path.startswith("api/") or path == "api":
+            raise HTTPException(404, "not found")
+        f = (DIST / path).resolve()
+        # only serve files that really live inside web/dist (no ../ escapes)
+        if path and f.is_file() and f.is_relative_to(DIST_ROOT):
             return FileResponse(f)
         return FileResponse(DIST / "index.html")

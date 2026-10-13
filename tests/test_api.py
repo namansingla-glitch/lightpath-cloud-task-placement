@@ -41,3 +41,10 @@ def test_algorithms(alg):
 def test_bad_algorithm_and_source():
     assert client.post("/api/algorithms/run", json={"dataset": "nsfnet", "algorithm": "x"}).status_code == 422
     assert client.post("/api/algorithms/run", json={"dataset": "nsfnet", "source": 99}).status_code == 422
+
+
+def test_static_server_cannot_escape_dist():
+    for bad in ["/..%2F..%2Fapi%2Fserver.py", "/%2e%2e/%2e%2e/api/server.py", "/demo/../../api/server.py"]:
+        r = client.get(bad)
+        assert "fastapi" not in r.text.lower() and "def solve_ep" not in r.text
+    assert client.get("/api/does-not-exist").status_code == 404

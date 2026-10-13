@@ -2,7 +2,7 @@
  "name": "waxman-60",
  "description": "Waxman geographic WAN, n=60",
  "source": "synthetic",
- "budget": 6.14,
+ "budget": 6.82,
  "meta": {
   "model": "waxman",
   "n": 60,
@@ -754,12 +754,7 @@
     "v": 33,
     "latency": 4.28,
     "bandwidth": 100,
-    "km": 612.4,
-    "rebate": 0.0106,
-    "rebate_dir": [
-     33,
-     8
-    ]
+    "km": 612.4
    },
    {
     "u": 8,
@@ -808,12 +803,7 @@
     "v": 25,
     "latency": 4.238,
     "bandwidth": 10,
-    "km": 605.9,
-    "rebate": 0.0051,
-    "rebate_dir": [
-     25,
-     11
-    ]
+    "km": 605.9
    },
    {
     "u": 11,
@@ -869,24 +859,14 @@
     "v": 22,
     "latency": 1.493,
     "bandwidth": 40,
-    "km": 183.6,
-    "rebate": 0.0134,
-    "rebate_dir": [
-     14,
-     22
-    ]
+    "km": 183.6
    },
    {
     "u": 14,
     "v": 46,
     "latency": 13.37,
     "bandwidth": 10,
-    "km": 2010.8,
-    "rebate": 0.0093,
-    "rebate_dir": [
-     14,
-     46
-    ]
+    "km": 2010.8
    },
    {
     "u": 14,
@@ -1110,12 +1090,7 @@
     "v": 55,
     "latency": 15.765,
     "bandwidth": 100,
-    "km": 2379.2,
-    "rebate": 0.0123,
-    "rebate_dir": [
-     27,
-     55
-    ]
+    "km": 2379.2
    },
    {
     "u": 28,
@@ -1143,12 +1118,7 @@
     "v": 51,
     "latency": 5.918,
     "bandwidth": 100,
-    "km": 864.2,
-    "rebate": 0.009,
-    "rebate_dir": [
-     51,
-     34
-    ]
+    "km": 864.2
    },
    {
     "u": 35,
@@ -1211,12 +1181,7 @@
     "v": 47,
     "latency": 4.057,
     "bandwidth": 100,
-    "km": 578.0,
-    "rebate": 0.006,
-    "rebate_dir": [
-     47,
-     44
-    ]
+    "km": 578.0
    },
    {
     "u": 44,
@@ -1283,15 +1248,16 @@
    "cpu": 4,
    "mem": 8,
    "demand": {
-    "4": 1090.1,
-    "11": 641.9,
-    "3": 428.3,
-    "39": 371.6
+    "28": 1028.7,
+    "57": 488.1,
+    "7": 395.3,
+    "40": 300.9,
+    "13": 260.4
    },
    "min_replicas": 1,
-   "max_replicas": 2,
+   "max_replicas": 4,
    "vm_cost": 0.12,
-   "priority": 1.0,
+   "priority": 1.5,
    "color": "#7c5cff"
   },
   {
@@ -1300,17 +1266,21 @@
    "cpu": 2,
    "mem": 4,
    "demand": {
-    "35": 945.3,
-    "30": 655.1,
-    "18": 393.1,
-    "37": 343.6,
-    "1": 213.0,
-    "11": 249.5
+    "40": 1102.6,
+    "13": 398.6,
+    "28": 282.4,
+    "48": 366.9,
+    "53": 173.2,
+    "50": 149.2,
+    "52": 201.3,
+    "20": 132.0,
+    "42": 126.0,
+    "7": 129.9
    },
    "min_replicas": 1,
-   "max_replicas": 2,
+   "max_replicas": 4,
    "vm_cost": 0.06,
-   "priority": 1.5,
+   "priority": 2.0,
    "color": "#22d3ee"
   },
   {
@@ -1319,16 +1289,19 @@
    "cpu": 8,
    "mem": 32,
    "demand": {
-    "37": 928.7,
-    "55": 416.1,
-    "44": 399.2,
-    "21": 367.3,
-    "11": 172.4,
-    "41": 188.2,
-    "38": 178.9
+    "41": 1278.9,
+    "28": 393.3,
+    "54": 351.2,
+    "45": 296.1,
+    "21": 245.0,
+    "23": 193.7,
+    "13": 138.3,
+    "29": 115.5,
+    "44": 166.5,
+    "43": 93.9
    },
    "min_replicas": 2,
-   "max_replicas": 4,
+   "max_replicas": 5,
    "vm_cost": 0.288,
    "priority": 2.0,
    "color": "#f472b6"
@@ -1339,19 +1312,16 @@
    "cpu": 16,
    "mem": 32,
    "demand": {
-    "4": 725.8,
-    "11": 418.9,
-    "48": 415.9,
-    "49": 252.7,
-    "44": 257.6,
-    "15": 251.3,
-    "47": 198.9,
-    "23": 123.7
+    "56": 781.7,
+    "48": 599.0,
+    "7": 327.4,
+    "5": 314.9,
+    "24": 296.1
    },
-   "min_replicas": 1,
-   "max_replicas": 4,
+   "min_replicas": 2,
+   "max_replicas": 5,
    "vm_cost": 0.48,
-   "priority": 2.0,
+   "priority": 1.0,
    "color": "#facc15"
   },
   {
@@ -1360,14 +1330,13 @@
    "cpu": 8,
    "mem": 64,
    "demand": {
-    "56": 799.9,
-    "34": 430.2,
-    "18": 457.4,
-    "8": 258.1,
-    "37": 199.7,
-    "46": 170.0,
-    "19": 201.8,
-    "23": 109.1
+    "5": 919.8,
+    "15": 636.1,
+    "43": 437.7,
+    "52": 355.8,
+    "54": 216.2,
+    "16": 249.9,
+    "30": 220.9
    },
    "min_replicas": 1,
    "max_replicas": 3,
@@ -1381,16 +1350,21 @@
    "cpu": 4,
    "mem": 32,
    "demand": {
-    "43": 877.4,
-    "54": 677.2,
-    "4": 311.8,
-    "34": 214.0,
-    "7": 263.1
+    "17": 1041.9,
+    "0": 519.8,
+    "22": 471.8,
+    "12": 242.3,
+    "51": 184.2,
+    "28": 168.0,
+    "9": 139.0,
+    "13": 153.1,
+    "58": 164.0,
+    "59": 119.3
    },
    "min_replicas": 2,
-   "max_replicas": 3,
+   "max_replicas": 4,
    "vm_cost": 0.192,
-   "priority": 1.0,
+   "priority": 1.5,
    "color": "#fb923c"
   },
   {
@@ -1399,16 +1373,17 @@
    "cpu": 4,
    "mem": 8,
    "demand": {
-    "39": 927.9,
-    "47": 411.0,
-    "24": 294.8,
-    "28": 372.2,
-    "36": 280.3
+    "32": 1104.4,
+    "9": 488.2,
+    "25": 278.0,
+    "38": 313.0,
+    "55": 239.2,
+    "1": 166.7
    },
    "min_replicas": 1,
-   "max_replicas": 4,
+   "max_replicas": 5,
    "vm_cost": 0.12,
-   "priority": 1.0,
+   "priority": 1.5,
    "color": "#60a5fa"
   },
   {
@@ -1417,21 +1392,16 @@
    "cpu": 16,
    "mem": 64,
    "demand": {
-    "42": 1293.5,
-    "0": 666.4,
-    "10": 350.5,
-    "19": 245.8,
-    "17": 238.1,
-    "3": 168.5,
-    "11": 140.7,
-    "52": 186.1,
-    "40": 125.9,
-    "30": 140.3
+    "38": 1175.8,
+    "0": 644.6,
+    "49": 481.2,
+    "10": 357.1,
+    "37": 221.3
    },
    "min_replicas": 1,
    "max_replicas": 3,
    "vm_cost": 0.576,
-   "priority": 2.0,
+   "priority": 1.0,
    "color": "#e879f9"
   },
   {
@@ -1440,18 +1410,16 @@
    "cpu": 2,
    "mem": 4,
    "demand": {
-    "20": 967.3,
-    "29": 685.5,
-    "48": 364.1,
-    "57": 317.7,
-    "0": 193.9,
-    "26": 148.8,
-    "27": 215.8
+    "20": 839.9,
+    "42": 512.1,
+    "9": 481.2,
+    "12": 247.8,
+    "51": 285.7
    },
    "min_replicas": 1,
    "max_replicas": 3,
    "vm_cost": 0.06,
-   "priority": 1.5,
+   "priority": 1.0,
    "color": "#a3e635"
   },
   {
@@ -1460,17 +1428,20 @@
    "cpu": 4,
    "mem": 16,
    "demand": {
-    "18": 782.5,
-    "48": 416.3,
-    "55": 304.7,
-    "37": 207.5,
-    "24": 261.3,
-    "38": 164.7
+    "59": 1146.2,
+    "13": 514.8,
+    "54": 422.2,
+    "40": 248.1,
+    "56": 184.9,
+    "9": 181.1,
+    "24": 193.5,
+    "22": 120.4,
+    "3": 107.5
    },
    "min_replicas": 1,
-   "max_replicas": 5,
+   "max_replicas": 3,
    "vm_cost": 0.144,
-   "priority": 1.5,
+   "priority": 1.0,
    "color": "#f87171"
   },
   {
@@ -1479,18 +1450,20 @@
    "cpu": 8,
    "mem": 64,
    "demand": {
-    "15": 1116.7,
-    "6": 676.3,
-    "29": 314.1,
-    "54": 266.2,
-    "57": 301.9,
-    "20": 233.6,
-    "39": 124.8
+    "20": 1116.7,
+    "39": 676.3,
+    "9": 314.1,
+    "57": 266.2,
+    "24": 301.9,
+    "25": 233.6,
+    "6": 124.8,
+    "54": 119.6,
+    "12": 113.6
    },
    "min_replicas": 1,
-   "max_replicas": 3,
+   "max_replicas": 4,
    "vm_cost": 0.384,
-   "priority": 1.5,
+   "priority": 1.0,
    "color": "#2dd4bf"
   },
   {
@@ -1499,14 +1472,16 @@
    "cpu": 2,
    "mem": 4,
    "demand": {
-    "1": 1250.6,
-    "27": 496.2,
-    "22": 375.5,
-    "30": 341.1,
-    "16": 195.5,
-    "12": 194.4
+    "2": 832.3,
+    "1": 522.4,
+    "12": 399.7,
+    "56": 223.3,
+    "25": 231.5,
+    "33": 176.1,
+    "28": 167.7,
+    "16": 161.1
    },
-   "min_replicas": 2,
+   "min_replicas": 1,
    "max_replicas": 4,
    "vm_cost": 0.06,
    "priority": 1.0,
@@ -1518,20 +1493,15 @@
    "cpu": 4,
    "mem": 16,
    "demand": {
-    "55": 1056.9,
-    "49": 436.3,
-    "46": 367.3,
-    "13": 297.5,
-    "37": 272.2,
-    "0": 256.8,
-    "21": 199.0,
-    "39": 126.6,
-    "50": 97.9
+    "43": 844.6,
+    "48": 471.1,
+    "38": 351.0,
+    "32": 273.6
    },
    "min_replicas": 1,
-   "max_replicas": 2,
+   "max_replicas": 3,
    "vm_cost": 0.144,
-   "priority": 1.5,
+   "priority": 2.0,
    "color": "#fbbf24"
   },
   {
@@ -1540,182 +1510,181 @@
    "cpu": 8,
    "mem": 32,
    "demand": {
-    "11": 959.5,
-    "36": 518.6,
-    "20": 400.8,
-    "1": 232.8,
-    "24": 302.4,
-    "8": 158.7,
-    "12": 147.9,
-    "7": 173.5
+    "28": 1076.1,
+    "41": 527.2,
+    "46": 273.1,
+    "22": 267.5,
+    "36": 213.0,
+    "52": 256.9,
+    "9": 203.0
    },
    "min_replicas": 1,
-   "max_replicas": 2,
+   "max_replicas": 4,
    "vm_cost": 0.288,
-   "priority": 1.0,
+   "priority": 2.0,
    "color": "#38bdf8"
   }
  ],
  "tasks": [
   {
    "id": 0,
-   "name": "render-00",
-   "duration": 2.6,
-   "data_node": 55,
-   "data_gb": 5.7,
-   "priority": 3.0
-  },
-  {
-   "id": 1,
-   "name": "index-01",
-   "duration": 52.9,
-   "data_node": 19,
-   "data_gb": 17.1,
+   "name": "backup-00",
+   "duration": 30.8,
+   "data_node": 11,
+   "data_gb": 8.2,
    "priority": 2.0
   },
   {
-   "id": 2,
-   "name": "backup-02",
-   "duration": 53.0,
-   "data_node": 41,
-   "data_gb": 5.1,
+   "id": 1,
+   "name": "render-01",
+   "duration": 27.5,
+   "data_node": 53,
+   "data_gb": 3.4,
    "priority": 1.0
+  },
+  {
+   "id": 2,
+   "name": "train-02",
+   "duration": 31.3,
+   "data_node": 46,
+   "data_gb": 6.4,
+   "priority": 2.0
   },
   {
    "id": 3,
-   "name": "report-03",
-   "duration": 25.2,
-   "data_node": 6,
-   "data_gb": 13.7,
-   "priority": 1.0
+   "name": "index-03",
+   "duration": 23.4,
+   "data_node": 16,
+   "data_gb": 17.5,
+   "priority": 3.0
   },
   {
    "id": 4,
-   "name": "index-04",
-   "duration": 7.1,
-   "data_node": 52,
-   "data_gb": 18.6,
+   "name": "report-04",
+   "duration": 41.8,
+   "data_node": 3,
+   "data_gb": 4.5,
    "priority": 2.0
   },
   {
    "id": 5,
-   "name": "encode-05",
-   "duration": 33.5,
-   "data_node": 19,
-   "data_gb": 4.4,
-   "priority": 2.0
-  },
-  {
-   "id": 6,
-   "name": "render-06",
-   "duration": 74.6,
-   "data_node": 21,
-   "data_gb": 19.1,
-   "priority": 2.0
-  },
-  {
-   "id": 7,
-   "name": "render-07",
-   "duration": 11.9,
-   "data_node": 25,
+   "name": "index-05",
+   "duration": 39.1,
+   "data_node": 56,
    "data_gb": 1.2,
    "priority": 1.0
   },
   {
+   "id": 6,
+   "name": "index-06",
+   "duration": 12.3,
+   "data_node": 28,
+   "data_gb": 6.3,
+   "priority": 1.0
+  },
+  {
+   "id": 7,
+   "name": "index-07",
+   "duration": 20.9,
+   "data_node": 1,
+   "data_gb": 18.9,
+   "priority": 1.0
+  },
+  {
    "id": 8,
-   "name": "encode-08",
+   "name": "index-08",
+   "duration": 26.2,
+   "data_node": 46,
+   "data_gb": 3.9,
+   "priority": 1.0
+  },
+  {
+   "id": 9,
+   "name": "render-09",
+   "duration": 19.5,
+   "data_node": 7,
+   "data_gb": 8.1,
+   "priority": 1.0
+  },
+  {
+   "id": 10,
+   "name": "encode-10",
    "duration": 10.0,
    "data_node": 55,
    "data_gb": 16.6,
    "priority": 2.0
   },
   {
-   "id": 9,
-   "name": "report-09",
+   "id": 11,
+   "name": "report-11",
    "duration": 47.0,
    "data_node": 9,
    "data_gb": 13.5,
    "priority": 2.0
   },
   {
-   "id": 10,
-   "name": "etl-10",
+   "id": 12,
+   "name": "etl-12",
    "duration": 59.1,
    "data_node": 51,
    "data_gb": 4.9,
    "priority": 3.0
   },
   {
-   "id": 11,
-   "name": "encode-11",
+   "id": 13,
+   "name": "encode-13",
    "duration": 41.8,
    "data_node": 28,
    "data_gb": 13.3,
    "priority": 1.0
   },
   {
-   "id": 12,
-   "name": "etl-12",
+   "id": 14,
+   "name": "etl-14",
    "duration": 38.6,
    "data_node": 38,
    "data_gb": 19.0,
    "priority": 3.0
   },
   {
-   "id": 13,
-   "name": "train-13",
+   "id": 15,
+   "name": "train-15",
    "duration": 20.0,
    "data_node": 3,
    "data_gb": 0.7,
    "priority": 1.0
   },
   {
-   "id": 14,
-   "name": "index-14",
+   "id": 16,
+   "name": "index-16",
    "duration": 15.0,
    "data_node": 16,
    "data_gb": 15.5,
    "priority": 3.0
   },
   {
-   "id": 15,
-   "name": "train-15",
+   "id": 17,
+   "name": "train-17",
    "duration": 16.6,
    "data_node": 49,
    "data_gb": 3.7,
    "priority": 1.0
   },
   {
-   "id": 16,
-   "name": "render-16",
+   "id": 18,
+   "name": "render-18",
    "duration": 31.4,
    "data_node": 4,
    "data_gb": 19.5,
    "priority": 3.0
   },
   {
-   "id": 17,
-   "name": "report-17",
+   "id": 19,
+   "name": "report-19",
    "duration": 24.5,
    "data_node": 16,
    "data_gb": 13.6,
    "priority": 1.0
-  },
-  {
-   "id": 18,
-   "name": "etl-18",
-   "duration": 22.5,
-   "data_node": 10,
-   "data_gb": 15.1,
-   "priority": 1.0
-  },
-  {
-   "id": 19,
-   "name": "report-19",
-   "duration": 32.4,
-   "data_node": 14,
-   "data_gb": 14.1,
-   "priority": 3.0
   }
  ]
 }

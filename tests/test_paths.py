@@ -155,3 +155,14 @@ def test_transfer_cost_graph_has_negative_arcs_but_no_negative_cycle():
     bf = bellman_ford(tg, 0, "cost")  # must not raise
     jr = johnson(tg, "cost")
     assert np.allclose(jr.dist[0], bf.dist)
+
+
+@pytest.mark.parametrize("model", ["india", "nigeria", "woxsen", "abilene", "nsfnet", "waxman", "barabasi_albert", "fat_tree"])
+def test_transfer_costs_never_have_negative_cycles(model):
+    inst = build_instance(model, n=60, seed=11)
+    tg = transfer_cost_graph(inst.graph)
+    assert tg.has_negative_weights("cost")          # rebates exist...
+    j = johnson(tg, "cost")                          # ...but Johnson never finds a negative cycle
+    for s in range(0, inst.graph.n, 7):
+        bf = bellman_ford(tg, s, "cost")
+        assert np.allclose(j.dist[s], bf.dist)

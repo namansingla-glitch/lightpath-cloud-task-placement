@@ -1,11 +1,11 @@
 server,name,tier,vms,cpu_used,cpu_cap,mem_used,mem_cap,cpu_util,mem_util
-6,Chicago,edge,search,8.0,8.0,32.0,48.0,1.0,0.667
-9,Washington DC,edge,web-frontend;cache,8.0,8.0,40.0,48.0,1.0,0.833
+7,Indianapolis,edge,search,8.0,8.0,32.0,48.0,1.0,0.667
+9,Washington DC,edge,search,8.0,8.0,32.0,48.0,1.0,0.667
 4,Kansas City,regional,web-frontend;auth;video-transcode,22.0,24.0,44.0,96.0,0.917,0.458
+0,Seattle,edge,web-frontend;auth,6.0,8.0,12.0,48.0,0.75,0.25
 2,Los Angeles,edge,web-frontend;auth,6.0,8.0,12.0,48.0,0.75,0.25
+8,Atlanta,edge,auth;cache,6.0,8.0,36.0,48.0,0.75,0.75
 5,Houston,regional,search;ml-inference,16.0,24.0,96.0,96.0,0.667,1.0
 1,Sunnyvale,core,search;video-transcode;cache,28.0,48.0,96.0,192.0,0.583,0.5
-7,Indianapolis,edge,web-frontend,4.0,8.0,8.0,48.0,0.5,0.167
+6,Chicago,edge,web-frontend,4.0,8.0,8.0,48.0,0.5,0.167
 3,Denver,regional,ml-inference,8.0,24.0,64.0,96.0,0.333,0.667
-0,Seattle,edge,auth,2.0,8.0,4.0,48.0,0.25,0.083
-8,Atlanta,edge,auth,2.0,8.0,4.0,48.0,0.25,0.083

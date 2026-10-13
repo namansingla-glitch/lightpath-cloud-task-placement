@@ -334,7 +334,17 @@ def ffd_pack(ctx: PlacementContext, targets: Sequence[int], latency_aware: bool 
         um[s] += svc[j].mem
         if ctx.clients[j].size:
             cur[j] = np.minimum(cur[j], ctx.Dsub[j][:, ctx.col[s]])
-    return _finish(ctx, reps, targets, "ffd_pack" if latency_aware else "ffd_plain", t0)
+    res = _finish(ctx, reps, targets, "ffd_pack" if latency_aware else "ffd_plain", t0)
+    if latency_aware and not res.feasible:
+        # the latency-aware choice painted itself into a corner: fall back to plain FFD,
+        # which sizing has already verified can pack every replica; local search then fixes latency
+        plain = ffd_pack(ctx, targets, latency_aware=False)
+        if plain.feasible:
+            plain.strategy = "ffd_pack"
+            plain.runtime_ms += res.runtime_ms
+            plain.notes.append("latency-aware packing ran out of room; used plain first-fit-decreasing")
+            return plain
+    return res
 
 
 def packing_feasible(ctx: PlacementContext, targets: Sequence[int]) -> bool:

@@ -2,7 +2,7 @@
  "name": "er-100",
  "description": "Erd\u0151s\u2013R\u00e9nyi G(n=100, p=0.050) with spanning tree",
  "source": "synthetic",
- "budget": 6.11,
+ "budget": 8.37,
  "meta": {
   "model": "erdos_renyi",
   "n": 100,
@@ -1148,12 +1148,7 @@
     "v": 72,
     "latency": 2.869,
     "bandwidth": 40,
-    "km": 395.3,
-    "rebate": 0.0089,
-    "rebate_dir": [
-     72,
-     2
-    ]
+    "km": 395.3
    },
    {
     "u": 2,
@@ -1230,12 +1225,7 @@
     "v": 54,
     "latency": 6.989,
     "bandwidth": 100,
-    "km": 1029.1,
-    "rebate": 0.0092,
-    "rebate_dir": [
-     54,
-     4
-    ]
+    "km": 1029.1
    },
    {
     "u": 4,
@@ -1256,12 +1246,7 @@
     "v": 95,
     "latency": 5.468,
     "bandwidth": 10,
-    "km": 795.1,
-    "rebate": 0.0097,
-    "rebate_dir": [
-     4,
-     95
-    ]
+    "km": 795.1
    },
    {
     "u": 5,
@@ -1345,12 +1330,7 @@
     "v": 79,
     "latency": 3.739,
     "bandwidth": 10,
-    "km": 529.1,
-    "rebate": 0.0065,
-    "rebate_dir": [
-     79,
-     6
-    ]
+    "km": 529.1
    },
    {
     "u": 6,
@@ -1399,12 +1379,7 @@
     "v": 72,
     "latency": 8.352,
     "bandwidth": 10,
-    "km": 1238.8,
-    "rebate": 0.0195,
-    "rebate_dir": [
-     72,
-     7
-    ]
+    "km": 1238.8
    },
    {
     "u": 7,
@@ -1565,12 +1540,7 @@
     "v": 23,
     "latency": 16.169,
     "bandwidth": 100,
-    "km": 2441.4,
-    "rebate": 0.0156,
-    "rebate_dir": [
-     12,
-     23
-    ]
+    "km": 2441.4
    },
    {
     "u": 12,
@@ -1717,12 +1687,7 @@
     "v": 90,
     "latency": 6.639,
     "bandwidth": 10,
-    "km": 975.2,
-    "rebate": 0.0069,
-    "rebate_dir": [
-     14,
-     90
-    ]
+    "km": 975.2
    },
    {
     "u": 15,
@@ -1771,12 +1736,7 @@
     "v": 96,
     "latency": 9.157,
     "bandwidth": 100,
-    "km": 1362.6,
-    "rebate": 0.0111,
-    "rebate_dir": [
-     96,
-     15
-    ]
+    "km": 1362.6
    },
    {
     "u": 16,
@@ -2007,12 +1967,7 @@
     "v": 35,
     "latency": 4.478,
     "bandwidth": 10,
-    "km": 642.7,
-    "rebate": 0.0194,
-    "rebate_dir": [
-     22,
-     35
-    ]
+    "km": 642.7
    },
    {
     "u": 22,
@@ -2082,12 +2037,7 @@
     "v": 90,
     "latency": 13.434,
     "bandwidth": 100,
-    "km": 2020.6,
-    "rebate": 0.0057,
-    "rebate_dir": [
-     90,
-     24
-    ]
+    "km": 2020.6
    },
    {
     "u": 24,
@@ -2164,12 +2114,7 @@
     "v": 80,
     "latency": 8.712,
     "bandwidth": 10,
-    "km": 1294.2,
-    "rebate": 0.0091,
-    "rebate_dir": [
-     26,
-     80
-    ]
+    "km": 1294.2
    },
    {
     "u": 27,
@@ -2225,12 +2170,7 @@
     "v": 40,
     "latency": 10.896,
     "bandwidth": 100,
-    "km": 1630.1,
-    "rebate": 0.0077,
-    "rebate_dir": [
-     40,
-     28
-    ]
+    "km": 1630.1
    },
    {
     "u": 28,
@@ -2286,12 +2226,7 @@
     "v": 70,
     "latency": 11.579,
     "bandwidth": 100,
-    "km": 1735.2,
-    "rebate": 0.0149,
-    "rebate_dir": [
-     29,
-     70
-    ]
+    "km": 1735.2
    },
    {
     "u": 29,
@@ -2340,24 +2275,14 @@
     "v": 34,
     "latency": 10.276,
     "bandwidth": 100,
-    "km": 1534.7,
-    "rebate": 0.0062,
-    "rebate_dir": [
-     30,
-     34
-    ]
+    "km": 1534.7
    },
    {
     "u": 30,
     "v": 35,
     "latency": 17.193,
     "bandwidth": 100,
-    "km": 2599.0,
-    "rebate": 0.0187,
-    "rebate_dir": [
-     30,
-     35
-    ]
+    "km": 2599.0
    },
    {
     "u": 31,
@@ -2434,12 +2359,7 @@
     "v": 43,
     "latency": 8.84,
     "bandwidth": 40,
-    "km": 1313.8,
-    "rebate": 0.0155,
-    "rebate_dir": [
-     43,
-     32
-    ]
+    "km": 1313.8
    },
    {
     "u": 32,
@@ -2530,12 +2450,7 @@
     "v": 46,
     "latency": 14.824,
     "bandwidth": 40,
-    "km": 2234.5,
-    "rebate": 0.0064,
-    "rebate_dir": [
-     46,
-     35
-    ]
+    "km": 2234.5
    },
    {
     "u": 35,
@@ -2654,12 +2569,7 @@
     "v": 99,
     "latency": 10.448,
     "bandwidth": 100,
-    "km": 1561.2,
-    "rebate": 0.0169,
-    "rebate_dir": [
-     99,
-     37
-    ]
+    "km": 1561.2
    },
    {
     "u": 38,
@@ -2855,12 +2765,7 @@
     "v": 79,
     "latency": 3.558,
     "bandwidth": 10,
-    "km": 501.2,
-    "rebate": 0.0118,
-    "rebate_dir": [
-     43,
-     79
-    ]
+    "km": 501.2
    },
    {
     "u": 43,
@@ -3056,12 +2961,7 @@
     "v": 84,
     "latency": 5.214,
     "bandwidth": 10,
-    "km": 756.0,
-    "rebate": 0.0189,
-    "rebate_dir": [
-     52,
-     84
-    ]
+    "km": 756.0
    },
    {
     "u": 52,
@@ -3082,12 +2982,7 @@
     "v": 74,
     "latency": 4.916,
     "bandwidth": 10,
-    "km": 710.1,
-    "rebate": 0.0061,
-    "rebate_dir": [
-     74,
-     52
-    ]
+    "km": 710.1
    },
    {
     "u": 53,
@@ -3129,12 +3024,7 @@
     "v": 96,
     "latency": 7.807,
     "bandwidth": 100,
-    "km": 1155.0,
-    "rebate": 0.0131,
-    "rebate_dir": [
-     96,
-     54
-    ]
+    "km": 1155.0
    },
    {
     "u": 56,
@@ -3204,12 +3094,7 @@
     "v": 77,
     "latency": 14.109,
     "bandwidth": 100,
-    "km": 2124.5,
-    "rebate": 0.0179,
-    "rebate_dir": [
-     59,
-     77
-    ]
+    "km": 2124.5
    },
    {
     "u": 59,
@@ -3237,12 +3122,7 @@
     "v": 82,
     "latency": 8.458,
     "bandwidth": 10,
-    "km": 1255.1,
-    "rebate": 0.0087,
-    "rebate_dir": [
-     60,
-     82
-    ]
+    "km": 1255.1
    },
    {
     "u": 61,
@@ -3305,12 +3185,7 @@
     "v": 94,
     "latency": 14.774,
     "bandwidth": 10,
-    "km": 2226.8,
-    "rebate": 0.0133,
-    "rebate_dir": [
-     63,
-     94
-    ]
+    "km": 2226.8
    },
    {
     "u": 63,
@@ -3422,24 +3297,14 @@
     "v": 75,
     "latency": 14.254,
     "bandwidth": 10,
-    "km": 2146.7,
-    "rebate": 0.0189,
-    "rebate_dir": [
-     73,
-     75
-    ]
+    "km": 2146.7
    },
    {
     "u": 73,
     "v": 77,
     "latency": 8.623,
     "bandwidth": 10,
-    "km": 1280.5,
-    "rebate": 0.0111,
-    "rebate_dir": [
-     73,
-     77
-    ]
+    "km": 1280.5
    },
    {
     "u": 73,
@@ -3593,12 +3458,7 @@
     "v": 95,
     "latency": 19.869,
     "bandwidth": 10,
-    "km": 3010.7,
-    "rebate": 0.0155,
-    "rebate_dir": [
-     95,
-     93
-    ]
+    "km": 3010.7
    },
    {
     "u": 93,
@@ -3616,19 +3476,19 @@
    "cpu": 4,
    "mem": 8,
    "demand": {
-    "67": 833.1,
-    "8": 395.6,
-    "58": 272.8,
-    "54": 363.4,
-    "85": 247.9,
-    "44": 167.0,
-    "19": 162.9,
-    "43": 117.8
+    "34": 823.6,
+    "22": 672.2,
+    "68": 359.7,
+    "52": 358.6,
+    "33": 286.2,
+    "58": 223.4,
+    "83": 197.3,
+    "55": 157.4
    },
    "min_replicas": 2,
-   "max_replicas": 3,
+   "max_replicas": 4,
    "vm_cost": 0.12,
-   "priority": 2.0,
+   "priority": 1.0,
    "color": "#7c5cff"
   },
   {
@@ -3637,16 +3497,20 @@
    "cpu": 2,
    "mem": 4,
    "demand": {
-    "72": 1071.1,
-    "91": 582.3,
-    "27": 433.0,
-    "50": 264.1,
-    "28": 278.9
+    "36": 906.9,
+    "73": 670.7,
+    "74": 431.0,
+    "71": 218.2,
+    "5": 291.5,
+    "24": 195.7,
+    "38": 156.6,
+    "58": 139.2,
+    "83": 163.4
    },
    "min_replicas": 1,
-   "max_replicas": 4,
+   "max_replicas": 2,
    "vm_cost": 0.06,
-   "priority": 2.0,
+   "priority": 1.0,
    "color": "#22d3ee"
   },
   {
@@ -3655,18 +3519,17 @@
    "cpu": 8,
    "mem": 32,
    "demand": {
-    "32": 1151.7,
-    "87": 669.1,
-    "18": 279.8,
-    "76": 362.5,
-    "11": 263.3,
-    "24": 259.0,
-    "25": 136.0
+    "11": 796.8,
+    "52": 402.1,
+    "62": 447.5,
+    "24": 214.2,
+    "27": 259.2,
+    "35": 212.8
    },
    "min_replicas": 1,
-   "max_replicas": 4,
+   "max_replicas": 3,
    "vm_cost": 0.288,
-   "priority": 2.0,
+   "priority": 1.0,
    "color": "#f472b6"
   },
   {
@@ -3675,16 +3538,21 @@
    "cpu": 16,
    "mem": 32,
    "demand": {
-    "20": 907.9,
-    "12": 571.3,
-    "78": 417.5,
-    "46": 266.5,
-    "15": 180.2
+    "12": 1244.6,
+    "44": 465.0,
+    "32": 461.7,
+    "90": 328.6,
+    "95": 244.8,
+    "66": 195.8,
+    "14": 191.8,
+    "11": 160.4,
+    "3": 176.7,
+    "17": 92.8
    },
-   "min_replicas": 1,
-   "max_replicas": 2,
+   "min_replicas": 2,
+   "max_replicas": 5,
    "vm_cost": 0.48,
-   "priority": 2.0,
+   "priority": 1.0,
    "color": "#facc15"
   },
   {
@@ -3693,17 +3561,16 @@
    "cpu": 8,
    "mem": 64,
    "demand": {
-    "79": 970.3,
-    "34": 606.4,
-    "49": 271.1,
-    "8": 314.1,
-    "36": 238.9,
-    "23": 234.4,
-    "16": 208.7,
-    "63": 199.1,
-    "67": 172.1
+    "87": 984.5,
+    "46": 587.7,
+    "22": 339.2,
+    "1": 289.7,
+    "91": 224.2,
+    "99": 219.1,
+    "92": 192.8,
+    "41": 162.8
    },
-   "min_replicas": 1,
+   "min_replicas": 2,
    "max_replicas": 4,
    "vm_cost": 0.384,
    "priority": 1.0,
@@ -3715,16 +3582,15 @@
    "cpu": 4,
    "mem": 32,
    "demand": {
-    "58": 999.5,
-    "82": 526.6,
-    "29": 263.2,
-    "81": 369.4,
-    "87": 284.1
+    "30": 1206.0,
+    "72": 576.6,
+    "18": 321.2,
+    "69": 203.5
    },
-   "min_replicas": 1,
-   "max_replicas": 2,
+   "min_replicas": 2,
+   "max_replicas": 4,
    "vm_cost": 0.192,
-   "priority": 1.0,
+   "priority": 2.0,
    "color": "#fb923c"
   },
   {
@@ -3733,16 +3599,19 @@
    "cpu": 4,
    "mem": 8,
    "demand": {
-    "13": 1038.7,
-    "55": 447.9,
-    "91": 322.5,
-    "81": 350.4,
-    "34": 220.5
+    "77": 706.3,
+    "34": 598.3,
+    "63": 292.2,
+    "74": 317.8,
+    "61": 282.5,
+    "9": 193.5,
+    "35": 196.4,
+    "14": 112.1
    },
-   "min_replicas": 1,
+   "min_replicas": 2,
    "max_replicas": 3,
    "vm_cost": 0.12,
-   "priority": 1.0,
+   "priority": 2.0,
    "color": "#60a5fa"
   },
   {
@@ -3751,14 +3620,19 @@
    "cpu": 16,
    "mem": 64,
    "demand": {
-    "45": 722.6,
-    "12": 596.0,
-    "26": 307.4,
-    "70": 225.0,
-    "73": 230.3
+    "20": 862.9,
+    "98": 651.7,
+    "35": 275.9,
+    "88": 236.3,
+    "41": 180.0,
+    "67": 250.4,
+    "26": 183.5,
+    "50": 140.7,
+    "82": 164.4,
+    "27": 152.7
    },
    "min_replicas": 1,
-   "max_replicas": 5,
+   "max_replicas": 3,
    "vm_cost": 0.576,
    "priority": 2.0,
    "color": "#e879f9"
@@ -3769,18 +3643,15 @@
    "cpu": 2,
    "mem": 4,
    "demand": {
-    "98": 835.3,
-    "93": 475.9,
-    "57": 361.9,
-    "97": 354.9,
-    "21": 294.5,
-    "6": 212.2,
-    "41": 159.8
+    "88": 832.7,
+    "35": 614.2,
+    "55": 357.4,
+    "26": 325.9
    },
-   "min_replicas": 2,
+   "min_replicas": 1,
    "max_replicas": 3,
    "vm_cost": 0.06,
-   "priority": 2.0,
+   "priority": 1.0,
    "color": "#a3e635"
   },
   {
@@ -3789,15 +3660,17 @@
    "cpu": 4,
    "mem": 16,
    "demand": {
-    "40": 748.3,
-    "50": 446.7,
-    "18": 465.3,
-    "25": 265.9
+    "80": 1027.0,
+    "19": 685.7,
+    "93": 297.7,
+    "66": 363.9,
+    "54": 241.5,
+    "37": 143.5
    },
-   "min_replicas": 2,
-   "max_replicas": 5,
+   "min_replicas": 1,
+   "max_replicas": 2,
    "vm_cost": 0.144,
-   "priority": 1.0,
+   "priority": 2.0,
    "color": "#f87171"
   },
   {
@@ -3806,16 +3679,18 @@
    "cpu": 8,
    "mem": 64,
    "demand": {
-    "28": 1081.4,
-    "13": 548.5,
-    "59": 423.7,
-    "42": 342.5,
-    "44": 279.2
+    "67": 950.9,
+    "21": 378.5,
+    "93": 294.2,
+    "39": 238.2,
+    "40": 262.5,
+    "46": 252.0,
+    "96": 143.7
    },
-   "min_replicas": 1,
-   "max_replicas": 2,
+   "min_replicas": 2,
+   "max_replicas": 5,
    "vm_cost": 0.384,
-   "priority": 2.0,
+   "priority": 1.0,
    "color": "#2dd4bf"
   },
   {
@@ -3824,16 +3699,13 @@
    "cpu": 2,
    "mem": 4,
    "demand": {
-    "56": 742.4,
-    "92": 537.0,
-    "18": 261.2,
-    "33": 243.9,
-    "44": 225.5,
-    "99": 194.3,
-    "9": 137.6
+    "89": 1107.5,
+    "6": 644.4,
+    "3": 339.4,
+    "60": 314.5
    },
-   "min_replicas": 1,
-   "max_replicas": 5,
+   "min_replicas": 2,
+   "max_replicas": 4,
    "vm_cost": 0.06,
    "priority": 1.5,
    "color": "#c084fc"
@@ -3844,15 +3716,15 @@
    "cpu": 4,
    "mem": 16,
    "demand": {
-    "33": 959.5,
-    "77": 518.6,
-    "97": 400.8,
-    "36": 232.8
+    "21": 995.4,
+    "82": 499.7,
+    "0": 483.4,
+    "90": 357.2
    },
    "min_replicas": 1,
-   "max_replicas": 3,
+   "max_replicas": 5,
    "vm_cost": 0.144,
-   "priority": 1.5,
+   "priority": 1.0,
    "color": "#fbbf24"
   },
   {
@@ -3861,15 +3733,18 @@
    "cpu": 8,
    "mem": 32,
    "demand": {
-    "84": 836.2,
-    "14": 439.3,
-    "67": 474.4,
-    "15": 244.4,
-    "7": 181.6,
-    "38": 178.8
+    "88": 931.6,
+    "77": 485.8,
+    "33": 479.4,
+    "35": 335.9,
+    "43": 200.4,
+    "37": 252.6,
+    "56": 157.6,
+    "15": 161.6,
+    "65": 132.8
    },
    "min_replicas": 1,
-   "max_replicas": 3,
+   "max_replicas": 4,
    "vm_cost": 0.288,
    "priority": 1.0,
    "color": "#38bdf8"
@@ -3880,11 +3755,13 @@
    "cpu": 4,
    "mem": 8,
    "demand": {
-    "36": 879.6,
-    "87": 412.5,
-    "26": 305.6,
-    "9": 263.0,
-    "53": 166.9
+    "84": 819.7,
+    "24": 683.3,
+    "14": 316.7,
+    "69": 222.1,
+    "15": 210.7,
+    "41": 186.5,
+    "6": 145.9
    },
    "min_replicas": 1,
    "max_replicas": 4,
@@ -3898,16 +3775,15 @@
    "cpu": 2,
    "mem": 8,
    "demand": {
-    "14": 1029.8,
-    "58": 686.6,
-    "93": 409.0,
-    "18": 333.9,
-    "41": 296.2,
-    "77": 142.6,
-    "84": 200.7
+    "18": 793.8,
+    "77": 678.7,
+    "79": 300.6,
+    "1": 350.1,
+    "69": 203.4,
+    "68": 253.7
    },
    "min_replicas": 1,
-   "max_replicas": 2,
+   "max_replicas": 3,
    "vm_cost": 0.072,
    "priority": 1.0,
    "color": "#f9a8d4"
@@ -3916,195 +3792,195 @@
  "tasks": [
   {
    "id": 0,
-   "name": "backup-00",
+   "name": "render-00",
+   "duration": 19.5,
+   "data_node": 15,
+   "data_gb": 8.1,
+   "priority": 1.0
+  },
+  {
+   "id": 1,
+   "name": "encode-01",
+   "duration": 10.0,
+   "data_node": 23,
+   "data_gb": 8.3,
+   "priority": 3.0
+  },
+  {
+   "id": 2,
+   "name": "report-02",
    "duration": 59.1,
    "data_node": 28,
    "data_gb": 15.2,
    "priority": 2.0
   },
   {
-   "id": 1,
-   "name": "index-01",
+   "id": 3,
+   "name": "index-03",
    "duration": 63.4,
    "data_node": 18,
    "data_gb": 17.3,
    "priority": 1.0
   },
   {
-   "id": 2,
-   "name": "index-02",
+   "id": 4,
+   "name": "index-04",
    "duration": 47.7,
    "data_node": 43,
    "data_gb": 11.0,
    "priority": 1.0
   },
   {
-   "id": 3,
-   "name": "index-03",
+   "id": 5,
+   "name": "index-05",
    "duration": 20.2,
    "data_node": 92,
    "data_gb": 8.6,
    "priority": 3.0
   },
   {
-   "id": 4,
-   "name": "train-04",
+   "id": 6,
+   "name": "train-06",
    "duration": 16.6,
    "data_node": 99,
    "data_gb": 3.7,
    "priority": 1.0
   },
   {
-   "id": 5,
-   "name": "render-05",
+   "id": 7,
+   "name": "render-07",
    "duration": 31.4,
    "data_node": 9,
    "data_gb": 19.5,
    "priority": 3.0
   },
   {
-   "id": 6,
-   "name": "report-06",
+   "id": 8,
+   "name": "report-08",
    "duration": 24.5,
    "data_node": 33,
    "data_gb": 13.6,
    "priority": 1.0
   },
   {
-   "id": 7,
-   "name": "etl-07",
+   "id": 9,
+   "name": "etl-09",
    "duration": 22.5,
    "data_node": 21,
    "data_gb": 15.1,
    "priority": 1.0
   },
   {
-   "id": 8,
-   "name": "report-08",
+   "id": 10,
+   "name": "report-10",
    "duration": 32.4,
    "data_node": 29,
    "data_gb": 14.1,
    "priority": 3.0
   },
   {
-   "id": 9,
-   "name": "render-09",
+   "id": 11,
+   "name": "render-11",
    "duration": 44.2,
    "data_node": 92,
    "data_gb": 8.4,
    "priority": 2.0
   },
   {
-   "id": 10,
-   "name": "render-10",
+   "id": 12,
+   "name": "render-12",
    "duration": 32.0,
    "data_node": 6,
    "data_gb": 18.6,
    "priority": 2.0
   },
   {
-   "id": 11,
-   "name": "simulate-11",
+   "id": 13,
+   "name": "simulate-13",
    "duration": 34.1,
    "data_node": 34,
    "data_gb": 9.0,
    "priority": 1.0
   },
   {
-   "id": 12,
-   "name": "report-12",
+   "id": 14,
+   "name": "report-14",
    "duration": 28.8,
    "data_node": 76,
    "data_gb": 15.0,
    "priority": 2.0
   },
   {
-   "id": 13,
-   "name": "backup-13",
+   "id": 15,
+   "name": "backup-15",
    "duration": 5.3,
    "data_node": 77,
    "data_gb": 10.6,
    "priority": 2.0
   },
   {
-   "id": 14,
-   "name": "train-14",
+   "id": 16,
+   "name": "train-16",
    "duration": 59.8,
    "data_node": 18,
    "data_gb": 10.9,
    "priority": 1.0
   },
   {
-   "id": 15,
-   "name": "index-15",
+   "id": 17,
+   "name": "index-17",
    "duration": 41.7,
    "data_node": 80,
    "data_gb": 8.1,
    "priority": 2.0
   },
   {
-   "id": 16,
-   "name": "backup-16",
+   "id": 18,
+   "name": "backup-18",
    "duration": 19.4,
    "data_node": 85,
    "data_gb": 5.2,
    "priority": 1.0
   },
   {
-   "id": 17,
-   "name": "encode-17",
+   "id": 19,
+   "name": "encode-19",
    "duration": 50.0,
    "data_node": 78,
    "data_gb": 11.4,
    "priority": 2.0
   },
   {
-   "id": 18,
-   "name": "etl-18",
+   "id": 20,
+   "name": "etl-20",
    "duration": 58.3,
    "data_node": 88,
    "data_gb": 15.0,
    "priority": 2.0
   },
   {
-   "id": 19,
-   "name": "backup-19",
+   "id": 21,
+   "name": "backup-21",
    "duration": 54.6,
    "data_node": 75,
    "data_gb": 10.5,
    "priority": 3.0
   },
   {
-   "id": 20,
-   "name": "encode-20",
+   "id": 22,
+   "name": "encode-22",
    "duration": 53.0,
    "data_node": 43,
    "data_gb": 1.2,
    "priority": 1.0
   },
   {
-   "id": 21,
-   "name": "train-21",
+   "id": 23,
+   "name": "train-23",
    "duration": 18.4,
    "data_node": 60,
    "data_gb": 9.8,
    "priority": 1.0
-  },
-  {
-   "id": 22,
-   "name": "encode-22",
-   "duration": 53.9,
-   "data_node": 23,
-   "data_gb": 15.9,
-   "priority": 2.0
-  },
-  {
-   "id": 23,
-   "name": "backup-23",
-   "duration": 27.1,
-   "data_node": 5,
-   "data_gb": 9.2,
-   "priority": 2.0
   }
  ]
 }

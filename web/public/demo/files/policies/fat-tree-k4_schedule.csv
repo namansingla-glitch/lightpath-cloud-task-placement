@@ -1,0 +1,17 @@
+server,name,tier,vms,cpu_used,cpu_cap,mem_used,mem_cap,cpu_util,mem_util
+8,host-0-0-0,edge,web-frontend;cache,8.0,8.0,40.0,48.0,1.0,0.833
+26,host-2-1-0,regional,web-frontend;video-transcode,20.0,24.0,40.0,96.0,0.833,0.417
+27,host-2-1-1,edge,auth;cache,6.0,8.0,36.0,48.0,0.75,0.75
+32,host-3-0-0,regional,auth;search;cache,14.0,24.0,68.0,96.0,0.583,0.708
+16,host-1-0-0,regional,auth;ml-inference,10.0,24.0,68.0,96.0,0.417,0.708
+9,host-0-0-1,regional,ml-inference,8.0,24.0,64.0,96.0,0.333,0.667
+35,host-3-1-1,edge,auth,2.0,8.0,4.0,48.0,0.25,0.083
+10,host-0-1-0,edge,,0.0,8.0,0.0,48.0,0.0,0.0
+11,host-0-1-1,edge,,0.0,8.0,0.0,48.0,0.0,0.0
+17,host-1-0-1,regional,,0.0,24.0,0.0,96.0,0.0,0.0
+18,host-1-1-0,edge,,0.0,8.0,0.0,48.0,0.0,0.0
+19,host-1-1-1,regional,,0.0,24.0,0.0,96.0,0.0,0.0
+24,host-2-0-0,edge,,0.0,8.0,0.0,48.0,0.0,0.0
+25,host-2-0-1,edge,,0.0,8.0,0.0,48.0,0.0,0.0
+33,host-3-0-1,regional,,0.0,24.0,0.0,96.0,0.0,0.0
+34,host-3-1-0,regional,,0.0,24.0,0.0,96.0,0.0,0.0

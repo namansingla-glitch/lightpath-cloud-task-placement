@@ -1,0 +1,14 @@
+server,name,tier,vms,cpu_used,cpu_cap,mem_used,mem_cap,cpu_util,mem_util
+15,The League (Sports Arena),edge,sports-live-stream,8.0,8.0,16.0,48.0,1.0,0.333
+20,Student Hostel B,edge,lecture-capture,8.0,8.0,32.0,48.0,1.0,0.667
+19,Student Hostel A,edge,learning-portal;wifi-auth,6.0,8.0,20.0,48.0,0.75,0.417
+22,Student Hostel D,edge,learning-portal;wifi-auth,6.0,8.0,20.0,48.0,0.75,0.417
+4,Bloomberg Finance Lab,edge,bloomberg-feed,4.0,8.0,8.0,48.0,0.5,0.167
+5,AI & Robotics Studio,regional,ai-lab-gpu-jobs,16.0,32.0,64.0,256.0,0.5,0.25
+9,Central Library (Vithal Gandhi Centre),regional,library-search;dining-and-tuck-pos,6.0,24.0,20.0,96.0,0.25,0.208
+13,Hostel Tower,regional,learning-portal;wifi-auth,6.0,24.0,20.0,96.0,0.25,0.208
+21,Student Hostel C,edge,wifi-auth,2.0,8.0,4.0,48.0,0.25,0.083
+3,Academic Block (Data Centre A),core,learning-portal;lecture-capture,12.0,64.0,48.0,256.0,0.188,0.188
+8,Trade Tower,regional,bloomberg-feed,4.0,24.0,8.0,96.0,0.167,0.083
+6,Admin Block / Gateway (Data Centre B),core,,0.0,64.0,0.0,256.0,0.0,0.0
+12,Care & Cure (Medical Facility),edge,,0.0,8.0,0.0,48.0,0.0,0.0

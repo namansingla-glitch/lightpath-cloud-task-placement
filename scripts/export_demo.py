@@ -6,6 +6,7 @@ without the Python backend (static hosting / offline demo).
 from __future__ import annotations
 
 import json
+import shutil
 import sys
 from pathlib import Path
 
@@ -41,6 +42,23 @@ def main() -> None:
                 if r.status_code == 200:
                     dump(OUT / "algo" / name / f"{alg}.json", r.json())
         print("exported", name)
+    # static downloads used by the Data page (identical in live and snapshot mode)
+    files = OUT / "files"
+    if files.exists():
+        shutil.rmtree(files)
+    for sub in ("", "gexf", "policies"):
+        src = ROOT / "datasets" / sub
+        dst = files / sub
+        dst.mkdir(parents=True, exist_ok=True)
+        for f in src.iterdir():
+            if f.is_file() and f.suffix in (".json", ".gexf", ".csv"):
+                shutil.copy2(f, dst / f.name)
+    figs = ROOT / "experiments" / "figures"
+    if figs.exists():
+        shutil.copytree(figs, files / "figures", dirs_exist_ok=True)
+    for f in (ROOT / "experiments" / "results").glob("*.csv"):
+        (files / "results").mkdir(exist_ok=True)
+        shutil.copy2(f, files / "results" / f.name)
     e = c.get("/api/experiments")
     if e.status_code == 200:
         dump(OUT / "experiments.json", e.json())

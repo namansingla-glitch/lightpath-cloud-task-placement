@@ -240,3 +240,11 @@ def test_woxsen_and_nigeria_datasets():
     assert ng.meta["region"] == "nigeria" and w.meta["region"] == "india"
     india = build_instance("india", seed=7)
     assert "Woxsen University" in {a["name"] for a in india.graph.nodes}
+
+
+def test_some_strategy_is_always_feasible_when_sizing_says_packable():
+    for model, seed, budget in [("nsfnet", 3, 8.0), ("waxman", 2, 12.0), ("india", 5, 15.0)]:
+        inst = build_instance(model, n=40, seed=seed)
+        out = solve(inst, SolveConfig(vm_budget=budget, exact="never", include_routes=False))
+        if out["sizing"]["packable"]:
+            assert any(s["feasible"] for s in out["strategies"] if s["name"].startswith("ffd_pack"))

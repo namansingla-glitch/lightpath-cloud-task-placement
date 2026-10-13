@@ -2,7 +2,7 @@
  "name": "india",
  "description": "24 Indian metros plus Woxsen University, geographic 3-nearest-neighbour mesh",
  "source": "real-coordinates",
- "budget": 4.45,
+ "budget": 3.86,
  "meta": {
   "model": "india",
   "n": 25,
@@ -433,12 +433,7 @@
     "v": 12,
     "latency": 3.048,
     "bandwidth": 10,
-    "km": 422.8,
-    "rebate": 0.0133,
-    "rebate_dir": [
-     4,
-     12
-    ]
+    "km": 422.8
    },
    {
     "u": 4,
@@ -550,12 +545,7 @@
     "v": 22,
     "latency": 3.213,
     "bandwidth": 100,
-    "km": 448.2,
-    "rebate": 0.0147,
-    "rebate_dir": [
-     11,
-     22
-    ]
+    "km": 448.2
    },
    {
     "u": 12,
@@ -625,12 +615,7 @@
     "v": 22,
     "latency": 3.092,
     "bandwidth": 10,
-    "km": 429.5,
-    "rebate": 0.0145,
-    "rebate_dir": [
-     22,
-     17
-    ]
+    "km": 429.5
    },
    {
     "u": 22,
@@ -648,20 +633,19 @@
    "cpu": 4,
    "mem": 8,
    "demand": {
-    "8": 925.7,
-    "0": 380.0,
-    "7": 474.8,
-    "13": 313.1,
-    "24": 281.4,
-    "11": 229.5,
-    "6": 224.5,
-    "5": 133.2,
-    "15": 152.4
+    "15": 738.1,
+    "14": 579.8,
+    "19": 344.0,
+    "4": 216.0,
+    "7": 172.7,
+    "0": 161.9,
+    "8": 131.9,
+    "20": 166.7
    },
-   "min_replicas": 2,
-   "max_replicas": 3,
+   "min_replicas": 1,
+   "max_replicas": 5,
    "vm_cost": 0.12,
-   "priority": 1.5,
+   "priority": 2.0,
    "color": "#7c5cff"
   },
   {
@@ -670,16 +654,13 @@
    "cpu": 2,
    "mem": 4,
    "demand": {
-    "2": 1201.9,
-    "5": 390.5,
-    "10": 369.2,
-    "12": 349.1,
-    "17": 227.2,
-    "9": 176.7,
-    "1": 169.6
+    "1": 977.0,
+    "14": 455.4,
+    "19": 410.2,
+    "5": 213.6
    },
-   "min_replicas": 2,
-   "max_replicas": 4,
+   "min_replicas": 1,
+   "max_replicas": 2,
    "vm_cost": 0.06,
    "priority": 1.0,
    "color": "#22d3ee"
@@ -690,17 +671,21 @@
    "cpu": 8,
    "mem": 32,
    "demand": {
-    "13": 1157.6,
-    "23": 539.4,
-    "9": 356.1,
-    "2": 349.7,
-    "0": 289.6,
-    "22": 182.1
+    "10": 895.2,
+    "23": 547.5,
+    "4": 365.8,
+    "6": 244.5,
+    "2": 168.2,
+    "14": 219.0,
+    "21": 140.4,
+    "9": 178.1,
+    "22": 139.3,
+    "18": 120.5
    },
    "min_replicas": 1,
-   "max_replicas": 5,
+   "max_replicas": 4,
    "vm_cost": 0.288,
-   "priority": 1.0,
+   "priority": 2.0,
    "color": "#f472b6"
   },
   {
@@ -709,15 +694,18 @@
    "cpu": 16,
    "mem": 32,
    "demand": {
-    "5": 793.1,
-    "19": 527.3,
-    "9": 467.7,
-    "20": 283.5
+    "23": 733.4,
+    "16": 678.1,
+    "21": 392.6,
+    "12": 240.6,
+    "5": 220.5,
+    "1": 152.6,
+    "2": 188.3
    },
    "min_replicas": 1,
    "max_replicas": 3,
    "vm_cost": 0.48,
-   "priority": 1.0,
+   "priority": 1.5,
    "color": "#facc15"
   },
   {
@@ -726,13 +714,15 @@
    "cpu": 8,
    "mem": 64,
    "demand": {
-    "5": 961.9,
-    "2": 521.1,
-    "17": 463.1,
-    "0": 249.2,
-    "23": 291.6
+    "12": 928.2,
+    "18": 514.8,
+    "22": 358.8,
+    "6": 355.9,
+    "17": 289.7,
+    "15": 240.9,
+    "11": 122.2
    },
-   "min_replicas": 2,
+   "min_replicas": 1,
    "max_replicas": 4,
    "vm_cost": 0.384,
    "priority": 1.5,
@@ -744,15 +734,18 @@
    "cpu": 4,
    "mem": 32,
    "demand": {
-    "2": 704.1,
-    "14": 431.8,
-    "15": 449.3,
-    "1": 369.7,
-    "23": 214.1,
-    "17": 193.8,
-    "16": 224.5
+    "16": 1093.0,
+    "0": 603.8,
+    "23": 458.5,
+    "8": 274.8,
+    "2": 283.3,
+    "3": 214.5,
+    "24": 149.8,
+    "17": 109.0,
+    "18": 176.0,
+    "5": 120.1
    },
-   "min_replicas": 1,
+   "min_replicas": 2,
    "max_replicas": 3,
    "vm_cost": 0.192,
    "priority": 1.0,
@@ -764,15 +757,16 @@
    "cpu": 4,
    "mem": 8,
    "demand": {
-    "23": 855.7,
-    "2": 470.2,
-    "16": 470.2,
-    "19": 240.6
+    "14": 819.6,
+    "20": 448.9,
+    "9": 262.1,
+    "21": 360.4,
+    "24": 288.2
    },
    "min_replicas": 1,
    "max_replicas": 3,
    "vm_cost": 0.12,
-   "priority": 1.0,
+   "priority": 2.0,
    "color": "#60a5fa"
   },
   {
@@ -781,151 +775,146 @@
    "cpu": 16,
    "mem": 64,
    "demand": {
-    "15": 1164.8,
-    "22": 496.1,
-    "7": 410.9,
-    "4": 261.6,
-    "6": 175.6,
-    "9": 217.3,
-    "20": 176.7,
-    "17": 128.7,
-    "0": 102.6
+    "4": 1017.0,
+    "16": 630.1,
+    "21": 447.5,
+    "17": 371.5
    },
    "min_replicas": 1,
-   "max_replicas": 4,
+   "max_replicas": 5,
    "vm_cost": 0.576,
-   "priority": 1.0,
+   "priority": 1.5,
    "color": "#e879f9"
   }
  ],
  "tasks": [
   {
    "id": 0,
-   "name": "encode-00",
-   "duration": 9.6,
-   "data_node": 17,
-   "data_gb": 9.3,
-   "priority": 3.0
-  },
-  {
-   "id": 1,
-   "name": "render-01",
-   "duration": 43.2,
-   "data_node": 16,
-   "data_gb": 19.8,
-   "priority": 1.0
-  },
-  {
-   "id": 2,
-   "name": "encode-02",
-   "duration": 61.7,
+   "name": "backup-00",
+   "duration": 7.8,
    "data_node": 19,
    "data_gb": 7.3,
    "priority": 3.0
   },
   {
-   "id": 3,
-   "name": "index-03",
+   "id": 1,
+   "name": "index-01",
    "duration": 22.0,
    "data_node": 13,
    "data_gb": 7.9,
    "priority": 3.0
   },
   {
-   "id": 4,
-   "name": "report-04",
+   "id": 2,
+   "name": "report-02",
    "duration": 20.9,
    "data_node": 8,
    "data_gb": 17.1,
    "priority": 2.0
   },
   {
-   "id": 5,
-   "name": "train-05",
+   "id": 3,
+   "name": "train-03",
    "duration": 9.0,
    "data_node": 19,
    "data_gb": 5.9,
    "priority": 2.0
   },
   {
-   "id": 6,
-   "name": "simulate-06",
+   "id": 4,
+   "name": "simulate-04",
    "duration": 19.2,
    "data_node": 13,
    "data_gb": 2.0,
    "priority": 3.0
   },
   {
-   "id": 7,
-   "name": "report-07",
+   "id": 5,
+   "name": "report-05",
    "duration": 23.2,
    "data_node": 11,
    "data_gb": 8.3,
    "priority": 1.0
   },
   {
-   "id": 8,
-   "name": "render-08",
+   "id": 6,
+   "name": "render-06",
    "duration": 43.6,
    "data_node": 23,
    "data_gb": 14.0,
    "priority": 3.0
   },
   {
-   "id": 9,
-   "name": "index-09",
+   "id": 7,
+   "name": "index-07",
    "duration": 45.3,
    "data_node": 22,
    "data_gb": 12.0,
    "priority": 3.0
   },
   {
-   "id": 10,
-   "name": "render-10",
+   "id": 8,
+   "name": "render-08",
    "duration": 58.7,
    "data_node": 21,
    "data_gb": 7.9,
    "priority": 2.0
   },
   {
-   "id": 11,
-   "name": "render-11",
+   "id": 9,
+   "name": "render-09",
    "duration": 44.7,
    "data_node": 12,
    "data_gb": 14.5,
    "priority": 2.0
   },
   {
-   "id": 12,
-   "name": "report-12",
+   "id": 10,
+   "name": "report-10",
    "duration": 180.4,
    "data_node": 5,
    "data_gb": 11.0,
    "priority": 2.0
   },
   {
-   "id": 13,
-   "name": "index-13",
+   "id": 11,
+   "name": "index-11",
    "duration": 14.8,
    "data_node": 14,
    "data_gb": 8.9,
    "priority": 2.0
   },
   {
-   "id": 14,
-   "name": "report-14",
+   "id": 12,
+   "name": "report-12",
    "duration": 96.8,
    "data_node": 13,
    "data_gb": 5.2,
    "priority": 2.0
   },
   {
-   "id": 15,
-   "name": "backup-15",
+   "id": 13,
+   "name": "backup-13",
    "duration": 21.5,
    "data_node": 1,
    "data_gb": 11.2,
    "priority": 3.0
+  },
+  {
+   "id": 14,
+   "name": "encode-14",
+   "duration": 32.2,
+   "data_node": 15,
+   "data_gb": 18.8,
+   "priority": 1.0
+  },
+  {
+   "id": 15,
+   "name": "train-15",
+   "duration": 142.0,
+   "data_node": 1,
+   "data_gb": 4.8,
+   "priority": 2.0
   }
  ]
 }

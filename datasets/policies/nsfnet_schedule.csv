@@ -1,13 +1,13 @@
 server,name,tier,vms,cpu_used,cpu_cap,mem_used,mem_cap,cpu_util,mem_util
-7,Champaign,edge,search,8.0,8.0,32.0,48.0,1.0,0.667
-8,Pittsburgh,regional,video-transcode;ml-inference,24.0,24.0,96.0,96.0,1.0,1.0
-0,Seattle,regional,web-frontend;video-transcode,20.0,24.0,40.0,96.0,0.833,0.417
-11,Ithaca,edge,web-frontend;auth,6.0,8.0,12.0,48.0,0.75,0.25
-10,Ann Arbor,edge,payments,4.0,8.0,8.0,48.0,0.5,0.167
-13,College Park,edge,cache,4.0,8.0,32.0,48.0,0.5,0.667
-1,Palo Alto,regional,auth;cache;payments,10.0,24.0,44.0,96.0,0.417,0.458
-9,Atlanta,edge,auth,2.0,8.0,4.0,48.0,0.25,0.083
-5,Houston,core,payments,4.0,48.0,8.0,192.0,0.083,0.042
+1,Palo Alto,regional,video-transcode;ml-inference,24.0,24.0,96.0,96.0,1.0,1.0
+3,Salt Lake City,edge,search,8.0,8.0,32.0,48.0,1.0,0.667
+9,Atlanta,edge,search,8.0,8.0,32.0,48.0,1.0,0.667
+8,Pittsburgh,regional,video-transcode;payments,20.0,24.0,40.0,96.0,0.833,0.417
+7,Champaign,edge,web-frontend;auth,6.0,8.0,12.0,48.0,0.75,0.25
+10,Ann Arbor,edge,auth;cache,6.0,8.0,36.0,48.0,0.75,0.75
+11,Ithaca,edge,web-frontend,4.0,8.0,8.0,48.0,0.5,0.167
+0,Seattle,regional,search,8.0,24.0,32.0,96.0,0.333,0.333
 2,San Diego,regional,,0.0,24.0,0.0,96.0,0.0,0.0
-3,Salt Lake City,edge,,0.0,8.0,0.0,48.0,0.0,0.0
 4,Boulder,edge,,0.0,8.0,0.0,48.0,0.0,0.0
+5,Houston,core,,0.0,48.0,0.0,192.0,0.0,0.0
+13,College Park,edge,,0.0,8.0,0.0,48.0,0.0,0.0

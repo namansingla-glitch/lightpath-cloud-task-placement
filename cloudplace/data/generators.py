@@ -460,7 +460,7 @@ def build_instance(model: str = "waxman", n: int = 30, seed: int = 0, services: 
         for a in g.nodes:
             a["cpu"] = round(a.get("cpu", 0) * capacity_factor)
             a["mem"] = round(a.get("mem", 0) * capacity_factor)
-    add_rebates(g, rng)
+    # negative transfer costs come from site price levels (model/costs.py), so no per-link rebates are stored
     svcs = woxsen_services(g, rng) if model in ("woxsen", "campus") else make_services(g, services, rng)
     tsk = make_tasks(g, tasks, rng)
     budget = round(budget_factor * sum(s.vm_cost * s.min_replicas for s in svcs), 2)

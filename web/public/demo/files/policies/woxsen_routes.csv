@@ -1,0 +1,51 @@
+service,service_id,client,client_name,replica,replica_name,rate,latency_ms,hops,path,path_names,backbone_latency_ms,stretch
+learning-portal,0,20,Student Hostel B,19,Student Hostel A,704.9,0.07,1,20 > 19,Student Hostel B > Student Hostel A,0.07,1.0
+learning-portal,0,22,Student Hostel D,22,Student Hostel D,675.3,0.0,0,22,Student Hostel D,0.0,1.0
+wifi-auth,1,19,Student Hostel A,19,Student Hostel A,639.7,0.0,0,19,Student Hostel A,0.0,1.0
+learning-portal,0,19,Student Hostel A,19,Student Hostel A,624.1,0.0,0,19,Student Hostel A,0.0,1.0
+wifi-auth,1,22,Student Hostel D,22,Student Hostel D,614.2,0.0,0,22,Student Hostel D,0.0,1.0
+learning-portal,0,21,Student Hostel C,22,Student Hostel D,600.9,0.07,1,21 > 22,Student Hostel C > Student Hostel D,0.07,1.0
+wifi-auth,1,13,Hostel Tower,13,Hostel Tower,576.0,0.0,0,13,Hostel Tower,0.0,1.0
+wifi-auth,1,21,Student Hostel C,21,Student Hostel C,564.5,0.0,0,21,Student Hostel C,0.0,1.0
+sports-live-stream,7,15,The League (Sports Arena),15,The League (Sports Arena),558.8,0.0,0,15,The League (Sports Arena),0.0,1.0
+library-search,2,9,Central Library (Vithal Gandhi Centre),9,Central Library (Vithal Gandhi Centre),548.0,0.0,0,9,Central Library (Vithal Gandhi Centre),0.0,1.0
+dining-and-tuck-pos,6,14,Oval Dining Hall,9,Central Library (Vithal Gandhi Centre),546.2,0.133,2,14 > 13 > 9,Oval Dining Hall > Hostel Tower > Central Library (Vithal Gandhi Centre),0.387,2.913
+learning-portal,0,5,AI & Robotics Studio,3,Academic Block (Data Centre A),532.4,0.061,1,5 > 3,AI & Robotics Studio > Academic Block (Data Centre A),0.061,1.0
+ai-lab-gpu-jobs,4,5,AI & Robotics Studio,5,AI & Robotics Studio,524.9,0.0,0,5,AI & Robotics Studio,0.0,1.0
+learning-portal,0,13,Hostel Tower,13,Hostel Tower,521.8,0.0,0,13,Hostel Tower,0.0,1.0
+lecture-capture,5,3,Academic Block (Data Centre A),3,Academic Block (Data Centre A),517.3,0.0,0,3,Academic Block (Data Centre A),0.0,1.0
+learning-portal,0,3,Academic Block (Data Centre A),3,Academic Block (Data Centre A),508.4,0.0,0,3,Academic Block (Data Centre A),0.0,1.0
+sports-live-stream,7,18,ICC Cricket Ground,15,The League (Sports Arena),507.2,0.142,2,18 > 16 > 15,ICC Cricket Ground > SportX > The League (Sports Arena),0.142,1.0
+learning-portal,0,4,Bloomberg Finance Lab,3,Academic Block (Data Centre A),505.5,0.071,1,4 > 3,Bloomberg Finance Lab > Academic Block (Data Centre A),0.071,1.0
+bloomberg-feed,3,4,Bloomberg Finance Lab,4,Bloomberg Finance Lab,500.9,0.0,0,4,Bloomberg Finance Lab,0.0,1.0
+learning-portal,0,9,Central Library (Vithal Gandhi Centre),3,Academic Block (Data Centre A),490.6,0.061,1,9 > 3,Central Library (Vithal Gandhi Centre) > Academic Block (Data Centre A),0.061,1.0
+wifi-auth,1,20,Student Hostel B,19,Student Hostel A,481.3,0.07,1,20 > 19,Student Hostel B > Student Hostel A,0.07,1.0
+learning-portal,0,8,Trade Tower,19,Student Hostel A,435.4,0.062,1,8 > 19,Trade Tower > Student Hostel A,0.062,1.0
+wifi-auth,1,9,Central Library (Vithal Gandhi Centre),13,Hostel Tower,434.8,0.062,1,9 > 13,Central Library (Vithal Gandhi Centre) > Hostel Tower,0.062,1.0
+sports-live-stream,7,16,SportX,15,The League (Sports Arena),385.6,0.071,1,16 > 15,SportX > The League (Sports Arena),0.071,1.0
+dining-and-tuck-pos,6,11,Ink & Water (Tuck Shop),9,Central Library (Vithal Gandhi Centre),384.2,0.071,1,11 > 9,Ink & Water (Tuck Shop) > Central Library (Vithal Gandhi Centre),0.071,1.0
+wifi-auth,1,14,Oval Dining Hall,13,Hostel Tower,358.3,0.071,1,14 > 13,Oval Dining Hall > Hostel Tower,0.448,6.314
+bloomberg-feed,3,8,Trade Tower,8,Trade Tower,345.8,0.0,0,8,Trade Tower,0.0,1.0
+lecture-capture,5,2,Amphitheatre,3,Academic Block (Data Centre A),342.2,0.061,1,2 > 3,Amphitheatre > Academic Block (Data Centre A),0.061,1.0
+sports-live-stream,7,22,Student Hostel D,15,The League (Sports Arena),330.8,0.214,3,22 > 18 > 16 > 15,Student Hostel D > ICC Cricket Ground > SportX > The League (Sports Arena),0.353,1.653
+wifi-auth,1,15,The League (Sports Arena),13,Hostel Tower,310.4,0.071,1,15 > 13,The League (Sports Arena) > Hostel Tower,0.449,6.318
+sports-live-stream,7,19,Student Hostel A,15,The League (Sports Arena),305.6,0.142,2,19 > 16 > 15,Student Hostel A > SportX > The League (Sports Arena),0.142,1.0
+dining-and-tuck-pos,6,7,Rise Café,9,Central Library (Vithal Gandhi Centre),304.3,0.253,3,7 > 6 > 3 > 9,Rise Café > Admin Block / Gateway (Data Centre B) > Academic Block (Data Centre A) > Central Library (Vithal Gandhi Centre),0.253,1.0
+lecture-capture,5,13,Hostel Tower,3,Academic Block (Data Centre A),287.0,0.122,2,13 > 9 > 3,Hostel Tower > Central Library (Vithal Gandhi Centre) > Academic Block (Data Centre A),0.122,1.0
+library-search,2,3,Academic Block (Data Centre A),9,Central Library (Vithal Gandhi Centre),284.9,0.061,1,3 > 9,Academic Block (Data Centre A) > Central Library (Vithal Gandhi Centre),0.061,1.0
+lecture-capture,5,19,Student Hostel A,20,Student Hostel B,284.2,0.07,1,19 > 20,Student Hostel A > Student Hostel B,0.07,1.0
+dining-and-tuck-pos,6,10,Cup of Joe Café,9,Central Library (Vithal Gandhi Centre),283.0,0.131,1,10 > 9,Cup of Joe Café > Central Library (Vithal Gandhi Centre),0.131,1.0
+lecture-capture,5,21,Student Hostel C,20,Student Hostel B,271.6,0.07,1,21 > 20,Student Hostel C > Student Hostel B,0.07,1.0
+lecture-capture,5,22,Student Hostel D,20,Student Hostel B,264.2,0.141,2,22 > 21 > 20,Student Hostel D > Student Hostel C > Student Hostel B,0.141,1.0
+sports-live-stream,7,20,Student Hostel B,15,The League (Sports Arena),263.3,0.212,3,20 > 19 > 16 > 15,Student Hostel B > Student Hostel A > SportX > The League (Sports Arena),0.212,1.0
+dining-and-tuck-pos,6,17,Swimming Pool & Blue Embers,9,Central Library (Vithal Gandhi Centre),257.4,0.263,3,17 > 15 > 13 > 9,Swimming Pool & Blue Embers > The League (Sports Arena) > Hostel Tower > Central Library (Vithal Gandhi Centre),0.517,1.966
+lecture-capture,5,20,Student Hostel B,20,Student Hostel B,254.4,0.0,0,20,Student Hostel B,0.0,1.0
+sports-live-stream,7,13,Hostel Tower,15,The League (Sports Arena),253.6,0.071,1,13 > 15,Hostel Tower > The League (Sports Arena),0.449,6.318
+library-search,2,13,Hostel Tower,9,Central Library (Vithal Gandhi Centre),247.6,0.062,1,13 > 9,Hostel Tower > Central Library (Vithal Gandhi Centre),0.062,1.0
+sports-live-stream,7,21,Student Hostel C,15,The League (Sports Arena),243.3,0.283,4,21 > 20 > 19 > 16 > 15,Student Hostel C > Student Hostel B > Student Hostel A > SportX > The League (Sports Arena),0.283,1.0
+lecture-capture,5,8,Trade Tower,3,Academic Block (Data Centre A),241.8,0.122,2,8 > 6 > 3,Trade Tower > Admin Block / Gateway (Data Centre B) > Academic Block (Data Centre A),0.122,1.0
+library-search,2,10,Cup of Joe Café,9,Central Library (Vithal Gandhi Centre),214.2,0.131,1,10 > 9,Cup of Joe Café > Central Library (Vithal Gandhi Centre),0.131,1.0
+ai-lab-gpu-jobs,4,3,Academic Block (Data Centre A),5,AI & Robotics Studio,201.6,0.061,1,3 > 5,Academic Block (Data Centre A) > AI & Robotics Studio,0.061,1.0
+wifi-auth,1,6,Admin Block / Gateway (Data Centre B),19,Student Hostel A,195.5,0.123,2,6 > 8 > 19,Admin Block / Gateway (Data Centre B) > Trade Tower > Student Hostel A,0.123,1.0
+library-search,2,20,Student Hostel B,9,Central Library (Vithal Gandhi Centre),189.8,0.316,5,20 > 19 > 8 > 6 > 3 > 9,Student Hostel B > Student Hostel A > Trade Tower > Admin Block / Gateway (Data Centre B) > Academic Block (Data Centre A) > Central Library (Vithal Gandhi Centre),0.316,1.0
+ai-lab-gpu-jobs,4,13,Hostel Tower,5,AI & Robotics Studio,126.6,0.183,3,13 > 9 > 3 > 5,Hostel Tower > Central Library (Vithal Gandhi Centre) > Academic Block (Data Centre A) > AI & Robotics Studio,0.183,1.0

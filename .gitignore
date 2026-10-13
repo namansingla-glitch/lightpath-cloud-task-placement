@@ -2,7 +2,8 @@ __pycache__/
 *.pyc
 .pytest_cache/
 .hypothesis/
-web/node_modules/
-web/dist/
+.ipynb_checkpoints/
 .venv/
+web/node_modules/
 .DS_Store
+# web/dist is committed on purpose so the site runs without Node.js

@@ -51,6 +51,8 @@ def main() -> None:
         index.append({"name": name, "model": model, "description": inst.description, "source": inst.source,
                       **inst.summary(), "best": sol["best"],
                       "region": inst.meta.get("region", "global"),
+                      "preview": {"n": [[round(a["x"]), round(a["y"]), a.get("tier", "router")] for a in inst.graph.nodes],
+                                  "e": [[e.u, e.v] for e in inst.graph.edges()]},
                       "best_mean_ms": next(s["mean_ms"] for s in sol["strategies"] if s["name"] == sol["best"])})
         print(f"{name:16s} n={inst.graph.n:4d} m={inst.graph.m:4d} best={sol['best']}")
     (out / "index.json").write_text(json.dumps(index, indent=1))

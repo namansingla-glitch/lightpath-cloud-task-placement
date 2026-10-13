@@ -2,7 +2,7 @@
  "name": "abilene",
  "description": "Internet2 Abilene backbone (11 PoPs, 14 links)",
  "source": "real",
- "budget": 3.82,
+ "budget": 4.01,
  "meta": {
   "model": "abilene",
   "n": 11,
@@ -230,12 +230,7 @@
     "v": 8,
     "latency": 4.77,
     "bandwidth": 10,
-    "km": 687.7,
-    "rebate": 0.0126,
-    "rebate_dir": [
-     8,
-     7
-    ]
+    "km": 687.7
    },
    {
     "u": 8,
@@ -260,19 +255,18 @@
    "cpu": 4,
    "mem": 8,
    "demand": {
-    "10": 1276.1,
-    "4": 584.2,
-    "2": 445.6,
-    "6": 330.6,
-    "8": 304.0,
-    "5": 172.5,
-    "1": 191.1,
-    "9": 157.2,
-    "0": 126.7,
-    "7": 139.6
+    "6": 1197.8,
+    "0": 616.8,
+    "2": 481.4,
+    "4": 248.5,
+    "1": 258.6,
+    "5": 203.7,
+    "3": 158.8,
+    "10": 170.6,
+    "7": 124.1
    },
-   "min_replicas": 1,
-   "max_replicas": 5,
+   "min_replicas": 2,
+   "max_replicas": 4,
    "vm_cost": 0.12,
    "priority": 2.0,
    "color": "#7c5cff"
