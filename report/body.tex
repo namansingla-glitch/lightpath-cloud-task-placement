@@ -57,7 +57,7 @@ Around any directed cycle the terms $\varphi(u)-\varphi(v)$ telescope to zero, s
 \section{Datasets}\label{sec:data}
 Table~\ref{tab:data} lists the ten instances. Abilene (Internet2) and NSFNET T1 are real research backbones. India (24 metros plus Woxsen University at Kamkole) and Nigeria (24 cities, with Lagos, Abuja and Port Harcourt as core data centres) use real coordinates with links synthesised to each city's three nearest neighbours; they are not carrier maps. The Woxsen campus has 23 sites named and arranged from the official campus map (Main Entrance in the west to Student Hostels A--D in the east), with sub-millisecond links, two data centres (Academic Block and Admin Block) and campus workloads such as the learning portal, Bloomberg feed, AI-lab GPU jobs and sports live streaming. Synthetic families cover geographic WANs (Waxman \cite{waxman1988}), random graphs (Erd\H{o}s--R\'enyi \cite{erdos1959}), scale-free ISP-like graphs (Barab\'asi--Albert \cite{barabasi1999}) and a $k=4$ data-centre fat-tree \cite{alfares2008}. Server tiers (core 48 vCPU, regional 24, edge 8, routers 0) are assigned by degree centrality. Services draw Zipf-like demand clustered around a random centre.
 
-\begin{table}[ht]
+\begin{table}[!htbp]
 \centering\small
 \caption{Datasets. Load is the CPU needed by minimum replicas divided by total capacity; best is the recommended plan's mean latency.}\label{tab:data}
 \begin{tabular}{@{}llrrrrrr@{}}
@@ -82,7 +82,7 @@ ba-150 & Barab\'asi--Albert & 150 & 296 & 128 & 20 & 7\% & 7.594\\
 \section{Algorithms, Correctness and Complexity}\label{sec:algo}
 Fig.~\ref{fig:pipeline} shows the pipeline; Table~\ref{tab:cx} summarises the bounds.
 
-\begin{figure}[ht]
+\begin{figure}[!htbp]
 \centering
 \resizebox{\textwidth}{!}{%
 \begin{tikzpicture}[font=\small,node distance=3mm,
@@ -111,7 +111,7 @@ The MST is the cheapest set of links that keeps every site connected, which is t
 \textit{Complexity:} Prim $O((n+m)\log n)$ with a binary heap and $O(m+n\log n)$ with a Fibonacci heap; Kruskal $O(m\log m)$ for sorting plus $O(m\,\alpha(n))$. The pipeline selects Prim when $m>n\log_2 n$ and Kruskal otherwise.
 
 \subsection{Single-source shortest paths}
-\begin{algorithm}[ht]
+\begin{algorithm}[!htbp]
 \caption{Dijkstra with an addressable heap}\label{alg:dij}
 \small
 \begin{algorithmic}[1]
@@ -157,7 +157,7 @@ Let $F_j(T)=\sum_c w_{jc}\,(P-\min_{s\in T}d(c,s))$ be the latency \emph{saving}
 For the optimality reference we solve
 $\min \sum w_{jc}d(c,s)x_{csj}/\sum w_{jc}$ s.t.\ $\sum_s x_{csj}=1$, $x_{csj}\le y_{sj}$, $\sum_s y_{sj}=k_j$, and the capacity rows, with $y$ binary and $x\in[0,1]$, using HiGHS \cite{huangfu2018} through SciPy \cite{virtanen2020}. The disaggregated constraints $x\le y$ give a tight LP relaxation, which we also report as a lower bound when the MILP is too large. Services that no server can host keep the same penalty in both the MILP and the heuristics, so the objectives match. For background \emph{batch jobs}, a list scheduler orders jobs longest-first (LPT) and assigns each to the server lane with the earliest finish time after its input data arrives (latency plus size over bottleneck bandwidth). Without transfer delays, LPT is within $\tfrac43-\tfrac1{3m}$ of the optimal makespan \cite{graham1969}.
 
-\begin{table}[ht]
+\begin{table}[!htbp]
 \centering\small
 \caption{Algorithms used, with guarantees and complexity.}\label{tab:cx}
 \begin{tabularx}{\textwidth}{@{}llX@{}}
@@ -176,13 +176,31 @@ Batch & LPT earliest-finish-time & $\tfrac43-\tfrac1{3m}$ without transfers; $O(
 \end{tabularx}
 \end{table}
 
+\input{uml}
+
 %======================================================================
 \section{Implementation and Verification}\label{sec:impl}
 Lightpath is a Python package (\texttt{cloudplace}) with modules for core data structures, algorithms, the problem model, data generators and the end-to-end solver. A FastAPI service exposes datasets, network generation, solving and step-by-step algorithm traces. A React/TypeScript dashboard (Fig.~\ref{fig:ui}) offers a placement studio with live solving, an algorithm lab that replays traces alongside pseudocode, experiment charts, dataset downloads (JSON, Gephi GEXF, CSV) and a guided tour. When the Python service is not running, the dashboard falls back to saved results so it also works on a static host.
 
-\textbf{Testing.} 191 automated tests check every algorithm against independent references. MST weights, single-source distances (including negative arcs) and all-pairs matrices from every heap and algorithm are compared with NetworkX \cite{hagberg2008} on random graphs. 0/1 and multiple-choice knapsack results are compared with brute force. The MILP is compared with exhaustive search on small placements, and it lower-bounds every heuristic. Further tests check heap operations with property-based testing, verify that greedy placements never exceed capacity, check that batch-schedule lanes never overlap, confirm that the transfer-cost graph never contains a negative cycle on any dataset (Lemma~\ref{lem:nocycle}), and check that the web server cannot be tricked into serving files outside its directory.
+\textbf{Testing.} 191 automated tests check every algorithm against independent references. MST weights, single-source distances (including negative arcs) and all-pairs matrices from every heap and algorithm are compared with NetworkX \cite{hagberg2008} on random graphs. 0/1 and multiple-choice knapsack results are compared with brute force. The MILP is compared with exhaustive search on small placements, and it lower-bounds every heuristic. Further tests check heap operations with property-based testing, verify that greedy placements never exceed capacity, check that batch-schedule lanes never overlap, confirm that the transfer-cost graph never contains a negative cycle on any dataset (Lemma~\ref{lem:nocycle}), and check that the web server cannot be tricked into serving files outside its directory. Table~\ref{tab:tests} breaks the suite down by file.
 
-\begin{figure}[ht]
+\begin{table}[!htbp]
+\centering\small
+\caption{Automated test suite (191 tests, all passing).}\label{tab:tests}
+\begin{tabularx}{\textwidth}{@{}l r X@{}}
+\toprule
+File & Tests & What is checked \\
+\midrule
+\texttt{test\_core.py} & 15 & Heap operations (property-based), union-find, graph construction \\
+\texttt{test\_paths.py} & 66 & MST, Dijkstra, Bellman-Ford, Floyd--Warshall and Johnson against NetworkX; negative-cycle detection; no negative cycle in any transfer graph \\
+\texttt{test\_optimisation.py} & 100 & Knapsack and MCKP against brute force; MILP against exhaustive search; greedies respect capacity; scheduler lanes never overlap; full pipeline on every dataset \\
+\texttt{test\_api.py} & 10 & Every endpoint, error codes, path-traversal guard \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\begin{figure}[!htbp]
 \centering
 \begin{subfigure}{0.49\textwidth}\includegraphics[width=\linewidth]{figures/shot_studio.png}\caption{Placement studio (Nigeria).}\end{subfigure}\hfill
 \begin{subfigure}{0.49\textwidth}\includegraphics[width=\linewidth]{figures/shot_lab.png}\caption{Algorithm lab: Bellman-Ford with negative arcs.}\end{subfigure}
@@ -193,51 +211,112 @@ Lightpath is a Python package (\texttt{cloudplace}) with modules for core data s
 \section{Experiments and Results}\label{sec:exp}
 All timings are medians of repeated runs in CPython~3.13 on a single core. Quality experiments average three seeds. The full suite runs in about 80 seconds and writes CSV files and the figures below.
 
-\begin{figure}[ht]
+\begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.98\textwidth]{figures/e1_heaps.png}
+\includegraphics[width=0.86\textwidth]{figures/e1_heaps.png}
 \caption{E1: Dijkstra and Prim with four priority queues on sparse Waxman graphs ($n$ up to 4000, $m$ up to 252k).}\label{fig:e1}
 \end{figure}
 
 \textbf{E1, priority queues (Fig.~\ref{fig:e1}).} The Fibonacci heap has the best asymptotic bound but is consistently slower: at $n=1000$ Dijkstra takes 25.9\,ms with it against 17.7\,ms with the binary heap, and at $n=4000$ 196\,ms against 144\,ms. Its pointer-based nodes and consolidation cost more in an interpreter than the saved $O(\log n)$ decrease-keys. \texttt{heapq} with lazy deletion (implemented in C) is fastest up to $n=2000$ but falls behind at $n=4000$ (212\,ms) as stale entries accumulate on dense graphs. Bellman-Ford on the transfer graph costs 490\,ms at $n=4000$, reflecting its $O(nm)$ bound.
 
-\begin{figure}[ht]
+\begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.98\textwidth]{figures/e2_apsp.png}
+\includegraphics[width=0.86\textwidth]{figures/e2_apsp.png}
 \caption{E2: all-pairs algorithms on sparse ($p=3/n$) and dense ($p=0.5$) graphs.}\label{fig:e2}
 \end{figure}
 
 \textbf{E2, all pairs (Fig.~\ref{fig:e2}).} On dense graphs the choice is clear-cut: at $n=400$ vectorised Floyd--Warshall needs 277\,ms against 5015\,ms for Johnson and 5323\,ms for repeated Dijkstra, and the rule correctly selects it. On sparse graphs repeated Dijkstra (724\,ms) beats Johnson (985\,ms), but the NumPy Floyd--Warshall is faster still (285\,ms). The asymptotic rule is right about Dijkstra versus the pure-Python $\Theta(n^3)$ loop (234\,ms already at $n=200$), but vectorisation shifts the crossover well beyond $n=400$. \emph{Recommendation:} calibrate the threshold with the constant factors of the actual implementation rather than the asymptotics alone.
 
-\textbf{E3, MST versus density} ($n=600$, $m$ from 1.5k to 108k). Kruskal is fastest on sparse graphs (1.5\,ms against 3.7\,ms for binary-heap Prim) and slowest on dense ones (126\,ms against 42\,ms), matching its $O(m\log m)$ sort against Prim's single pass per edge. All variants return identical tree weights, as the cut property requires.
-
-\begin{figure}[ht]
+\begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.98\textwidth]{figures/e4_quality_size.png}
+\includegraphics[width=0.86\textwidth]{figures/e3_mst.png}
+\caption{E3: Prim (four heaps) versus Kruskal as edge density grows ($n=600$).}\label{fig:e3}
+\end{figure}
+
+\textbf{E3, MST versus density (Fig.~\ref{fig:e3})} ($n=600$, $m$ from 1.5k to 108k). Kruskal is fastest on sparse graphs (1.5\,ms against 3.7\,ms for binary-heap Prim) and slowest on dense ones (126\,ms against 42\,ms), matching its $O(m\log m)$ sort against Prim's single pass per edge. All variants return identical tree weights, as the cut property requires.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.86\textwidth]{figures/e4_quality_size.png}
 \caption{E4: optimality gap (left) and runtime (right) versus size on Waxman networks; dashed lines are greedy alone, solid lines include local search. At $n=240$ the reference is the LP bound.}\label{fig:e4}
 \end{figure}
 
-\textbf{E4, quality and cost versus size (Fig.~\ref{fig:e4}).} Averaged over $n\in\{20,\dots,240\}$, greedy alone is 8.7\,\% (marginal gain), 9.2\,\% (regret), 16.7\,\% (demand-first) and 38.4\,\% (FFD) above the reference, while a random placement is 167\,\% above. Local search reduces every method to 0.45--0.53\,\% on average and at most 3.0\,\%. The exact MILP grows from 27\,ms at $n=20$ to 1.7\,s at $n=160$, against 4\,ms and 344\,ms for regret plus local search: about five times cheaper, and the gap in growth rate widens with size. Greedy alone is one to two orders of magnitude cheaper than the MILP. Beyond roughly 60\,000 MILP variables we skip the exact solve and report the LP bound.
+\textbf{E4, quality and cost versus size (Fig.~\ref{fig:e4}).} Averaged over $n\in\{20,\dots,240\}$, greedy alone is 8.7\,\% (marginal gain), 9.2\,\% (regret), 16.7\,\% (demand-first) and 38.4\,\% (FFD) above the reference, while a random placement is 167\,\% above. Local search reduces every method to 0.45--0.53\,\% on average and at most 3.0\,\%. The exact MILP grows from 27\,ms at $n=20$ to 1.7\,s at $n=160$, against 4\,ms and 344\,ms for regret plus local search: about five times cheaper, and the gap in growth rate widens with size. Greedy alone is one to two orders of magnitude cheaper than the MILP. Beyond roughly 60\,000 MILP variables we skip the exact solve and report the LP bound. Table~\ref{tab:gap} lists the per-size gaps.
 
-\begin{figure}[ht]
+\begin{table}[!htbp]
+\centering\small
+\caption{E4: mean optimality gap (\%) against the MILP optimum on Waxman networks (three seeds per size).}\label{tab:gap}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Strategy & $n=20$ & 40 & 60 & 80 & 120 & 160 \\
+\midrule
+Random & 186.63 & 163.01 & 165.61 & 137.93 & 166.80 & 172.12 \\
+FFD pack & 39.35 & 47.34 & 33.14 & 35.75 & 44.54 & 32.50 \\
+Demand-first & 35.41 & 14.06 & 14.11 & 15.73 & 11.80 & 10.12 \\
+Regret & 17.23 & 11.61 & 4.24 & 5.73 & 7.44 & 8.51 \\
+Marginal gain & 13.73 & 11.39 & 4.97 & 5.30 & 7.09 & 8.51 \\
+\midrule
+FFD pack + LS & 0.14 & 0.00 & 0.44 & 0.00 & 0.41 & 0.11 \\
+Demand-first + LS & 0.00 & 0.00 & 0.65 & 0.05 & 0.00 & 0.29 \\
+Regret + LS & 0.00 & 0.00 & 0.00 & 0.45 & 0.72 & 0.24 \\
+Marginal gain + LS & 0.14 & 0.00 & 0.00 & 0.00 & 0.52 & 0.24 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.98\textwidth]{figures/e5_capacity.png}
+\includegraphics[width=0.86\textwidth]{figures/e6_density.png}
+\caption{E6: optimal mean latency and heuristic gap versus edge probability (Erd\H{o}s--R\'enyi, $n=80$).}\label{fig:e6}
+\end{figure}
+
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.86\textwidth]{figures/e5_capacity.png}
 \caption{E5: share of runs with a feasible placement (left) and gap after local search (right) as server capacity shrinks (Waxman, $n=50$, 12 services).}\label{fig:e5}
 \end{figure}
 
 \textbf{E5, capacity pressure (Fig.~\ref{fig:e5}).} At nominal capacity every method is feasible. At $0.35\times$ capacity (34\,\% minimum load, more after sizing) demand-first, marginal gain and regret all fail to place every replica in every run, because latency-first choices fragment server capacity. FFD packing stays feasible at every capacity level, and local search then brings its latency within a few percent of optimal. Under tight capacity, feasibility and latency pull in different directions, and packing first is the safer strategy.
 
-\textbf{E6, density.} On Erd\H{o}s--R\'enyi graphs with $n=80$, raising the edge probability from 0.025 to 0.7 cuts the optimal mean latency from 7.71\,ms to 2.59\,ms, with diminishing returns beyond $p\approx0.2$. Regret plus local search matches the optimum at five of six densities (0.9\,\% gap at $p=0.2$). The automatic rule switches from repeated Dijkstra to Floyd--Warshall at $p=0.2$.
+\textbf{E6, density (Fig.~\ref{fig:e6}).} On Erd\H{o}s--R\'enyi graphs with $n=80$, raising the edge probability from 0.025 to 0.7 cuts the optimal mean latency from 7.71\,ms to 2.59\,ms, with diminishing returns beyond $p\approx0.2$. Regret plus local search matches the optimum at five of six densities (0.9\,\% gap at $p=0.2$). The automatic rule switches from repeated Dijkstra to Floyd--Warshall at $p=0.2$.
 
 \textbf{E7, budget frontier.} On the India network, raising the VM budget lets the multiple-choice knapsack buy replicas where they help most. Spending rises from \$2.41/h (9 replicas) to \$7.51/h (27 replicas) and mean latency falls from 4.34\,ms to 1.28\,ms (70\,\%), with diminishing returns. Beyond \$7.51/h every service is already at its maximum replica count. The minimum-replica plan stays at 4.34\,ms regardless of budget.
 
-\textbf{E8, knapsack scaling.} Runtime grows linearly in the number of table cells $n(W+1)$, from 0.15\,ms (1\,010 cells) to 96.9\,ms (1\,000\,200 cells), roughly 97\,ns per cell, which confirms the $\Theta(nW)$ bound.
+\textbf{E8, knapsack scaling.} Runtime grows linearly in the number of table cells $n(W+1)$, from 0.15\,ms (1\,010 cells) to 96.9\,ms (1\,000\,200 cells), roughly 97\,ns per cell, which confirms the $\Theta(nW)$ bound. Fig.~\ref{fig:e78} shows E7 and E8 and Table~\ref{tab:expsum} summarises all eight experiments.
+
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}{0.49\textwidth}\includegraphics[width=\linewidth]{figures/e7_budget.png}\caption{E7: VM budget versus latency (India).}\end{subfigure}\hfill
+\begin{subfigure}{0.49\textwidth}\includegraphics[width=\linewidth]{figures/e8_knapsack.png}\caption{E8: knapsack runtime versus table size.}\end{subfigure}
+\caption{Budget frontier and knapsack scaling.}\label{fig:e78}
+\end{figure}
+
+\begin{table}[!htbp]
+\centering\small
+\caption{Summary of the eight experiments.}\label{tab:expsum}
+\begin{tabularx}{\textwidth}{@{}l l X@{}}
+\toprule
+Exp. & Varied & Main finding \\
+\midrule
+E1 & graph size, heap type & Binary heap fastest at scale; Fibonacci slower in practice despite better bound \\
+E2 & size, density & NumPy Floyd--Warshall wins on dense graphs; repeated Dijkstra beats Johnson on sparse \\
+E3 & density & Kruskal best when sparse, Prim best when dense; identical tree weight \\
+E4 & size & Greedy + LS within $\approx$0.5\,\% of optimum, about 5$\times$ faster than MILP \\
+E5 & capacity & Under tight capacity only FFD packing stays feasible \\
+E6 & density & More links cut latency 67\,\%, with diminishing returns after $p\approx0.2$ \\
+E7 & VM budget & \$2.41$\to$\$7.51/h cuts latency 70\,\% (4.34$\to$1.28\,ms) \\
+E8 & DP table size & Linear in $n(W+1)$, about 97\,ns per cell \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
 
 %======================================================================
 \section{Case Studies and Policy Outputs}\label{sec:policy}
 For every instance the solver emits a route table (client $\to$ replica, path, latency, backbone-only stretch), a server schedule (VMs and utilisation), a cost/benefit table (latency for every replica count and the saving per extra dollar), cheapest replica-sync routes, and a batch Gantt chart. Table~\ref{tab:cases} and Figs.~\ref{fig:regions}--\ref{fig:woxsen} summarise the three main networks.
 
-\begin{table}[ht]
+\begin{table}[!htbp]
 \centering\small
 \caption{Recommended plans. Gap is the best heuristic's distance from the MILP optimum; stretch is the latency increase if requests were routed over the MST backbone only.}\label{tab:cases}
 \begin{tabular}{@{}lrrrrrrl@{}}
@@ -251,13 +330,13 @@ Woxsen & 0.055 & 0.21 & $-38.9\%$ & 0.00\,\% in 2.9\,ms & 20\,ms & 1.39$\times$ 
 \end{tabular}
 \end{table}
 
-\begin{figure}[ht]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.92\textwidth]{figures/plans_regions.png}
 \caption{Recommended placements for India and Nigeria. Yellow sites host replicas; coloured lines are request routes (one colour per service); grey diamonds are routers.}\label{fig:regions}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{figures/plan_woxsen.png}
 \caption{Woxsen University campus plan. Replicas cluster around the Academic Block, the hostels and The League sports arena, where demand originates.}\label{fig:woxsen}

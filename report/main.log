@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.10.2)  13 OCT 2026 12:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.10.2)  13 OCT 2026 12:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -520,6 +520,9 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 (/usr/share/texlive/texmf-dist/tex/latex/xurl/xurl.sty
 Package: xurl 2022/01/09 v 0.10 modify URL breaks
 )
+(/usr/share/texlive/texmf-dist/tex/latex/placeins/placeins.sty
+Package: placeins 2005/04/18  v 2.2
+)
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
@@ -798,34 +801,70 @@ File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfarrowwidth=\dimen308
 \pgfarrowlinewidth=\dimen309
 )
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshapes.multipart.code.tex
+File: tikzlibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
+s.multipart.code.tex
+File: pgflibraryshapes.multipart.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfnodepartlowerbox=\box71
+\pgfnodeparttwobox=\box72
+\pgfnodepartthreebox=\box73
+\pgfnodepartfourbox=\box74
+\pgfnodeparttwentybox=\box75
+\pgfnodepartnineteenbox=\box76
+\pgfnodeparteighteenbox=\box77
+\pgfnodepartseventeenbox=\box78
+\pgfnodepartsixteenbox=\box79
+\pgfnodepartfifteenbox=\box80
+\pgfnodepartfourteenbox=\box81
+\pgfnodepartthirteenbox=\box82
+\pgfnodeparttwelvebox=\box83
+\pgfnodepartelevenbox=\box84
+\pgfnodeparttenbox=\box85
+\pgfnodepartninebox=\box86
+\pgfnodeparteightbox=\box87
+\pgfnodepartsevenbox=\box88
+\pgfnodepartsixbox=\box89
+\pgfnodepartfivebox=\box90
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshapes.geometric.code.tex
+File: tikzlibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshape
+s.geometric.code.tex
+File: pgflibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))
 \c@lemma=\count332
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count333
-\l__pdf_internal_box=\box71
+\l__pdf_internal_box=\box91
 )
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -865,7 +904,7 @@ LaTeX Font Info:    ... okay on input line 47.
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count334
 \scratchdimen=\dimen310
-\scratchbox=\box72
+\scratchbox=\box92
 \nofMPsegments=\count335
 \nofMParguments=\count336
 \everyMPshowfont=\toks45
@@ -886,19 +925,19 @@ e
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \microtypecontext on input line 47.
-Package microtype Info: Applying patch `item' on input line 47.
-Package microtype Info: Applying patch `toc' on input line 47.
-Package microtype Info: Applying patch `eqnum' on input line 47.
-Package microtype Info: Applying patch `footnote' on input line 47.
-Package microtype Info: Applying patch `verbatim' on input line 47.
+LaTeX Info: Redefining \microtypecontext on input line 49.
+Package microtype Info: Applying patch `item' on input line 49.
+Package microtype Info: Applying patch `toc' on input line 49.
+Package microtype Info: Applying patch `eqnum' on input line 49.
+Package microtype Info: Applying patch `footnote' on input line 49.
+Package microtype Info: Applying patch `verbatim' on input line 49.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 47.
+LaTeX Info: Redefining \showhyphens on input line 49.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -906,14 +945,14 @@ Package microtype Info: No adjustment of character kerning.
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg
 File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 )
-Package hyperref Info: Link coloring OFF on input line 47.
+Package hyperref Info: Link coloring OFF on input line 49.
  (./main.out)
 (./main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
  (./cover.tex
-<figures/woxsen_logo.png, id=75, 717.68124pt x 336.25626pt>
+<figures/woxsen_logo.png, id=103, 717.68124pt x 336.25626pt>
 File: figures/woxsen_logo.png Graphic file (type png)
 <use figures/woxsen_logo.png>
 Package pdftex.def Info: figures/woxsen_logo.png  used on input line 13.
@@ -999,63 +1038,91 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 115.
- [3] [4] [5]
-<figures/shot_studio.png, id=183, 1445.4pt x 903.375pt>
+ [3] [4] (./uml.tex
+[5]
+\pgf@layerbox@bg=\box93
+\pgf@layerboxsaved@bg=\box94
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
+ [6]) [7] [8]
+<figures/shot_studio.png, id=240, 1445.4pt x 903.375pt>
 File: figures/shot_studio.png Graphic file (type png)
 <use figures/shot_studio.png>
-Package pdftex.def Info: figures/shot_studio.png  used on input line 187.
+Package pdftex.def Info: figures/shot_studio.png  used on input line 205.
 (pdftex.def)             Requested size: 223.07211pt x 139.41516pt.
-<figures/shot_lab.png, id=184, 1445.4pt x 903.375pt>
+<figures/shot_lab.png, id=241, 1445.4pt x 903.375pt>
 File: figures/shot_lab.png Graphic file (type png)
 <use figures/shot_lab.png>
-Package pdftex.def Info: figures/shot_lab.png  used on input line 188.
+Package pdftex.def Info: figures/shot_lab.png  used on input line 206.
 (pdftex.def)             Requested size: 223.07211pt x 139.41516pt.
-<figures/e1_heaps.png, id=185, 715.473pt x 267.399pt>
+ [9]
+<figures/e1_heaps.png, id=249, 715.473pt x 267.399pt>
 File: figures/e1_heaps.png Graphic file (type png)
 <use figures/e1_heaps.png>
-Package pdftex.def Info: figures/e1_heaps.png  used on input line 198.
-(pdftex.def)             Requested size: 446.13727pt x 166.73634pt.
-<figures/e2_apsp.png, id=188, 712.5822pt x 267.399pt>
+Package pdftex.def Info: figures/e1_heaps.png  used on input line 216.
+(pdftex.def)             Requested size: 391.51021pt x 146.31915pt.
+<figures/e2_apsp.png, id=252, 712.5822pt x 267.399pt>
 File: figures/e2_apsp.png Graphic file (type png)
 <use figures/e2_apsp.png>
-Package pdftex.def Info: figures/e2_apsp.png  used on input line 206.
-(pdftex.def)             Requested size: 446.13727pt x 167.41772pt.
- [6 <./figures/shot_studio.png (PNG copy)> <./figures/shot_lab.png (PNG copy)> 
-<./figures/e1_heaps.png>]
-<figures/e4_quality_size.png, id=199, 714.9912pt x 267.399pt>
+Package pdftex.def Info: figures/e2_apsp.png  used on input line 224.
+(pdftex.def)             Requested size: 391.51021pt x 146.91893pt.
+ [10 <./figures/shot_studio.png (PNG copy)> <./figures/shot_lab.png (PNG copy)>
+ <./figures/e1_heaps.png>]
+<figures/e3_mst.png, id=261, 426.393pt x 267.399pt>
+File: figures/e3_mst.png Graphic file (type png)
+<use figures/e3_mst.png>
+Package pdftex.def Info: figures/e3_mst.png  used on input line 232.
+(pdftex.def)             Requested size: 391.51021pt x 245.53268pt.
+<figures/e4_quality_size.png, id=263, 714.9912pt x 267.399pt>
 File: figures/e4_quality_size.png Graphic file (type png)
 <use figures/e4_quality_size.png>
-Package pdftex.def Info: figures/e4_quality_size.png  used on input line 216.
-(pdftex.def)             Requested size: 446.13727pt x 166.85466pt.
-<figures/e5_capacity.png, id=201, 715.473pt x 267.399pt>
+Package pdftex.def Info: figures/e4_quality_size.png  used on input line 240.
+(pdftex.def)             Requested size: 391.51021pt x 146.42116pt.
+<figures/e6_density.png, id=266, 715.473pt x 267.399pt>
+File: figures/e6_density.png Graphic file (type png)
+<use figures/e6_density.png>
+Package pdftex.def Info: figures/e6_density.png  used on input line 269.
+(pdftex.def)             Requested size: 391.51021pt x 146.31915pt.
+<figures/e5_capacity.png, id=267, 715.473pt x 267.399pt>
 File: figures/e5_capacity.png Graphic file (type png)
 <use figures/e5_capacity.png>
-Package pdftex.def Info: figures/e5_capacity.png  used on input line 224.
-(pdftex.def)             Requested size: 446.13727pt x 166.73634pt.
- [7 <./figures/e2_apsp.png> <./figures/e4_quality_size.png>]
-Overfull \hbox (81.69286pt too wide) in paragraph at lines 243--252
+Package pdftex.def Info: figures/e5_capacity.png  used on input line 276.
+(pdftex.def)             Requested size: 391.51021pt x 146.31915pt.
+ [11 <./figures/e2_apsp.png> <./figures/e3_mst.png>] [12 <./figures/e4_quality_
+size.png> <./figures/e6_density.png>]
+<figures/e7_budget.png, id=290, 426.393pt x 267.399pt>
+File: figures/e7_budget.png Graphic file (type png)
+<use figures/e7_budget.png>
+Package pdftex.def Info: figures/e7_budget.png  used on input line 290.
+(pdftex.def)             Requested size: 223.07211pt x 139.89287pt.
+<figures/e8_knapsack.png, id=291, 426.393pt x 267.399pt>
+File: figures/e8_knapsack.png Graphic file (type png)
+<use figures/e8_knapsack.png>
+Package pdftex.def Info: figures/e8_knapsack.png  used on input line 291.
+(pdftex.def)             Requested size: 223.07211pt x 139.89287pt.
+
+Overfull \hbox (81.69286pt too wide) in paragraph at lines 322--331
  [][] 
  []
 
-<figures/plans_regions.png, id=214, 675.7245pt x 372.9132pt>
+<figures/plans_regions.png, id=295, 675.7245pt x 372.9132pt>
 File: figures/plans_regions.png Graphic file (type png)
 <use figures/plans_regions.png>
-Package pdftex.def Info: figures/plans_regions.png  used on input line 256.
+Package pdftex.def Info: figures/plans_regions.png  used on input line 335.
 (pdftex.def)             Requested size: 418.82375pt x 231.1355pt.
-<figures/plan_woxsen.png, id=215, 625.8582pt x 257.2812pt>
+<figures/plan_woxsen.png, id=296, 625.8582pt x 257.2812pt>
 File: figures/plan_woxsen.png Graphic file (type png)
 <use figures/plan_woxsen.png>
-Package pdftex.def Info: figures/plan_woxsen.png  used on input line 262.
+Package pdftex.def Info: figures/plan_woxsen.png  used on input line 341.
 (pdftex.def)             Requested size: 432.48051pt x 177.78725pt.
-[8 <./figures/e5_capacity.png>] [9 <./figures/plans_regions.png> <./figures/pla
-n_woxsen.png>]) [10] (./refs.tex
+[13 <./figures/e5_capacity.png> <./figures/e7_budget.png> <./figures/e8_knapsac
+k.png>] [14 <./figures/plans_regions.png> <./figures/plan_woxsen.png>])
+[15] (./refs.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 4.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 4.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 4.
-) [11
+) [16
 
 ] (./main.aux)
  ***********
@@ -1063,29 +1130,31 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 5A1A8911F5667006CB964521F5E19287;3075.
+(rerunfilecheck)             Checksum: AC4BA584ABDA2EA64EF8D8B888A913E5;4396.
  ) 
 Here is how much of TeX's memory you used:
- 27304 strings out of 476106
- 493711 string characters out of 5793933
- 1950975 words of memory out of 5000000
- 48240 multiletter control sequences out of 15000+600000
- 675364 words of font info for 484 fonts, out of 8000000 for 9000
+ 29024 strings out of 476106
+ 536110 string characters out of 5793933
+ 1966975 words of memory out of 5000000
+ 49859 multiletter control sequences out of 15000+600000
+ 687460 words of font info for 523 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 84i,13n,87p,1587b,866s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </root/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/ut
-mb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (12 pages, 1396998 bytes).
+ 84i,13n,87p,1587b,864s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </root/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </
+root/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk> </root/
+.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/sy
+mbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (17 pages, 1641357 bytes).
 PDF statistics:
- 321 PDF objects out of 1000 (max. 8388607)
- 261 compressed objects within 3 object streams
- 79 named destinations out of 1000 (max. 500000)
- 117442 words of extra memory for PDF output out of 128383 (max. 10000000)
+ 486 PDF objects out of 1000 (max. 8388607)
+ 343 compressed objects within 4 object streams
+ 104 named destinations out of 1000 (max. 500000)
+ 132878 words of extra memory for PDF output out of 154059 (max. 10000000)
 

@@ -1,0 +1,239 @@
+%======================================================================
+\section{System Design (UML)}\label{sec:uml}
+This section describes Lightpath in standard UML views: who uses the system (use cases), how it is split into deployable parts (components), the main classes and their relationships (class diagram), what happens during one solve request (sequence diagram), and the decision flow of the solver (activity diagram).
+
+\tikzset{
+  cls/.style={draw, rectangle split, rectangle split parts=3, rectangle split part fill={blue!12,white,white},
+              font=\scriptsize, align=left, inner sep=2pt, text width=#1},
+  cls/.default=3.3cm,
+  comp/.style={draw, fill=blue!6, rounded corners=1pt, font=\scriptsize, align=center, minimum height=8mm, inner sep=3pt},
+  uc/.style={draw, ellipse, fill=yellow!10, font=\scriptsize, align=center, minimum width=26mm, minimum height=7mm, inner sep=1pt},
+  act/.style={draw, rounded corners=5pt, fill=green!8, font=\scriptsize, align=center, minimum width=30mm, minimum height=6mm},
+  dec/.style={draw, diamond, aspect=2.4, fill=orange!12, font=\scriptsize, align=center, inner sep=1pt},
+  inh/.style={-{Triangle[open,length=2.4mm,width=2.4mm]}},
+  comp-arr/.style={{Diamond[length=2.6mm,width=1.8mm]}-},
+  agg/.style={{Diamond[open,length=2.6mm,width=1.8mm]}-},
+  dep/.style={-{Stealth[length=2mm]}, dashed},
+  ass/.style={-{Stealth[length=2mm]}},
+}
+
+\subsection{Use-case diagram}
+Fig.~\ref{fig:usecase} shows the three actors. A \emph{network planner} uses the studio to load or generate networks and obtain placement policies. A \emph{student or instructor} uses the algorithm lab and experiment pages to study the algorithms. A \emph{researcher} runs the experiment suite and exports data. All actions go through the dashboard or the Python API.
+
+\begin{figure}[!htbp]
+\centering
+\begin{tikzpicture}[font=\scriptsize]
+  \pgfdeclarelayer{bg}\pgfsetlayers{bg,main}
+  \begin{pgfonlayer}{bg}\draw[rounded corners, thick, fill=gray!3] (-3.7,-3.15) rectangle (3.7,3.15);\end{pgfonlayer}
+  \node[anchor=north] at (0,3.1) {\bfseries Lightpath system};
+  \node[uc] (u1) at (-1.75, 2.15) {Load / generate\\network};
+  \node[uc] (u2) at ( 1.75, 2.15) {Solve placement\\policy};
+  \node[uc] (u3) at (-1.75, 0.95) {Compare\\strategies};
+  \node[uc] (u4) at ( 1.75, 0.95) {Export routes,\\schedule, data};
+  \node[uc] (u5) at (-1.75,-0.35) {Step through an\\algorithm trace};
+  \node[uc] (u6) at ( 1.75,-0.35) {View experiment\\charts};
+  \node[uc] (u7) at (-1.75,-1.65) {Run experiment\\suite};
+  \node[uc] (u8) at ( 1.75,-1.65) {Switch region\\(India / Nigeria)};
+  \node[uc] (u9) at ( 0,-2.65) {Read in-app guide};
+  % actors
+  \foreach \nm/\x/\y/\lab in {a1/-5.6/1.6/Network\\planner, a2/5.6/0.3/Student or\\instructor, a3/-5.6/-1.6/Researcher}{
+    \begin{scope}[shift={(\x,\y)}]
+      \draw (0,0.55) circle (0.16); \draw (0,0.39)--(0,0.0); \draw (-0.22,0.28)--(0.22,0.28);
+      \draw (0,0)--(-0.17,-0.3); \draw (0,0)--(0.17,-0.3);
+      \node[align=center] (\nm) at (0,-0.62) {\lab};
+      \coordinate (\nm c) at (0,0.2);
+    \end{scope}}
+  \begin{pgfonlayer}{bg}\foreach \u in {u1,u2,u3,u4,u8}{\draw (a1c) -- (\u);}\end{pgfonlayer}
+  \begin{pgfonlayer}{bg}\foreach \u in {u5,u6,u9,u8}{\draw (a2c) -- (\u);}\end{pgfonlayer}
+  \begin{pgfonlayer}{bg}\foreach \u in {u7,u6,u4}{\draw (a3c) -- (\u);}\end{pgfonlayer}
+  \draw[dep] (u3) -- node[left,font=\tiny]{$\langle\langle$include$\rangle\rangle$} (u2) ;
+\end{tikzpicture}
+\caption{Use-case diagram: three actors and the nine main use cases.}\label{fig:usecase}
+\end{figure}
+
+\subsection{Component and deployment view}
+Lightpath has four layers (Fig.~\ref{fig:component}). The React dashboard runs in the browser. It talks over HTTP/JSON to a FastAPI server, which also serves the built web files. The server calls the \texttt{cloudplace} solver, which uses the algorithm and core packages. When no server is running, the dashboard reads pre-computed snapshot files instead, so the same build also works offline.
+
+\begin{figure}[!htbp]
+\centering
+\begin{tikzpicture}[node distance=5mm and 6mm, font=\scriptsize]
+  \node[comp, minimum width=38mm] (ui) {\textbf{Web dashboard}\\React 18 + TypeScript (Vite)\\Landing $\cdot$ Studio $\cdot$ Lab $\cdot$ Data $\cdot$ Results};
+  \node[comp, right=14mm of ui, fill=gray!8, minimum width=30mm] (snap) {\textbf{Snapshot data}\\\texttt{web/public/demo/*.json}\\(offline mode)};
+  \node[comp, below=7mm of ui, minimum width=38mm] (api) {\textbf{API server}\\FastAPI + Uvicorn\\\texttt{api/server.py}};
+  \node[comp, below=7mm of api, minimum width=38mm] (solver) {\textbf{Solver pipeline}\\\texttt{cloudplace.solver}};
+  \node[comp, below left=7mm and -14mm of solver, minimum width=30mm] (alg) {\textbf{algorithms}\\mst, sssp, apsp, knapsack,\\placement, exact, scheduler};
+  \node[comp, below right=7mm and -14mm of solver, minimum width=30mm] (model) {\textbf{model} + \textbf{data}\\Instance, Service, costs,\\generators, exporters};
+  \node[comp, below=27mm of solver, minimum width=46mm] (core) {\textbf{core}: Graph (adjacency lists), BinaryHeap, FibonacciHeap,\\PairingHeap, LazyHeap, UnionFind};
+  \node[comp, right=14mm of solver, fill=gray!8, minimum width=30mm] (ext) {\textbf{External libraries}\\NumPy, SciPy (HiGHS MILP)};
+  \node[comp, left=10mm of solver, fill=gray!8, minimum width=24mm] (exp) {\textbf{Experiments}\\run\_experiments.py\\notebook};
+  \draw[ass] (ui) -- node[left]{HTTP / JSON} (api);
+  \draw[dep] (ui) -- node[above]{fallback} (snap);
+  \draw[ass] (api) -- (solver);
+  \draw[ass] (solver) -- (alg); \draw[ass] (solver) -- (model);
+  \draw[ass] (alg) -- (core); \draw[ass] (model) -- (core);
+  \draw[dep] (solver) -- (ext);
+  \draw[ass] (exp) -- (solver);
+  \draw[dep] (exp.north) |- node[pos=0.25,left]{exports} ([yshift=5mm]ui.north) -| (snap.north);
+\end{tikzpicture}
+\caption{Component diagram. Solid arrows are calls; dashed arrows are optional or data dependencies.}\label{fig:component}
+\end{figure}
+
+\subsection{Class diagram}
+Fig.~\ref{fig:class} shows the main classes. An \texttt{Instance} is composed of one \texttt{Graph} and a list of \texttt{Service} and \texttt{BatchTask} objects. A \texttt{PlacementContext} wraps an instance together with its all-pairs distance matrix and provides the objective and capacity checks used by every placement algorithm. All four heaps share one interface (\texttt{push}, \texttt{pop}, \texttt{decrease\_key}), so Dijkstra and Prim can be run with any of them.
+
+\begin{figure}[!htbp]
+\centering
+\begin{tikzpicture}[node distance=7mm and 5mm]
+  \node[cls=3.4cm] (inst) {\textbf{Instance}
+    \nodepart{second} name: str\\graph: Graph\\services: list[Service]\\tasks: list[BatchTask]\\budget: float
+    \nodepart{third} servers(): list[int]\\server\_cost(s): float\\validate(): list[str]};
+  \node[cls=3.2cm, left=9mm of inst] (graph) {\textbf{Graph}
+    \nodepart{second} nodes: list[dict]\\adj: list[list[Edge]]
+    \nodepart{third} add\_node(**attr): int\\add\_edge(u,v,latency)\\neighbors(u)\\is\_connected(): bool};
+  \node[cls=2.6cm, below=6mm of graph] (edge) {\textbf{Edge}
+    \nodepart{second} u, v: int\\latency, bw: float
+    \nodepart{third} other(x): int};
+  \node[cls=3.0cm, right=9mm of inst] (svc) {\textbf{Service}
+    \nodepart{second} cpu, mem: float\\demand: dict[int,float]\\min/max\_replicas: int
+    \nodepart{third} total\_demand(): float};
+  \node[cls=2.6cm, below=6mm of svc] (task) {\textbf{BatchTask}
+    \nodepart{second} duration: float\\data\_at: int
+    \nodepart{third} };
+  \node[cls=3.6cm, below=14mm of inst] (ctx) {\textbf{PlacementContext}
+    \nodepart{second} inst: Instance\\D: ndarray (APSP)
+    \nodepart{third} objective(p): float\\check(p, targets): list\\load(p): dict};
+  \node[cls=2.9cm, below=6mm of ctx] (pl) {\textbf{Placement}
+    \nodepart{second} replicas: dict[int,list]\\feasible: bool\\stats: dict
+    \nodepart{third} };
+  \node[cls=3.0cm, left=9mm of pl] (heap) {\textbf{$\langle\langle$interface$\rangle\rangle$}\\\textbf{PriorityQueue}
+    \nodepart{second} \textit{(no state)}
+    \nodepart{third} push(key, item)\\pop(): (key, item)\\decrease\_key(h, k)};
+  \node[cls=3.0cm, right=9mm of pl] (res) {\textbf{Result types}
+    \nodepart{second} MSTResult, SSSPResult,\\APSPResult, KnapsackResult,\\Schedule
+    \nodepart{third} to\_dict()};
+  \node[font=\scriptsize, draw, fill=blue!12, below=6mm of heap, align=center] (heaps) {BinaryHeap $\cdot$ FibonacciHeap\\PairingHeap $\cdot$ LazyHeap};
+  \node[font=\scriptsize, draw, fill=blue!12, below=6mm of res, align=center] (uf) {UnionFind\\(Kruskal)};
+  \draw[comp-arr] (inst.west) -- node[above,font=\tiny]{1} (graph.east);
+  \draw[comp-arr] (graph.south) -- node[right,font=\tiny]{0..*} (edge.north);
+  \draw[comp-arr] (inst.east) -- node[above,font=\tiny]{1..*} (svc.west);
+  \draw[comp-arr] (inst.south east) -- node[above,font=\tiny,pos=0.7]{0..*} (task.west);
+  \draw[agg] (ctx.north) -- (inst.south);
+  \draw[dep] (ctx.south) -- node[right,font=\tiny]{evaluates} (pl.north);
+  \draw[inh] (heaps.north) -- (heap.south);
+  \draw[dep] (res.south) -- node[right,font=\tiny]{uses} (uf.north);
+\end{tikzpicture}
+\caption{UML class diagram of the core model (filled diamond: composition; hollow diamond: aggregation; hollow triangle: realisation of an interface; dashed: dependency).}\label{fig:class}
+\end{figure}
+
+\subsection{Sequence diagram for one solve request}
+Fig.~\ref{fig:sequence} follows a request from the studio. The API builds an \texttt{Instance}; the solver computes the MST backbone and the all-pairs matrix, sizes replicas with the knapsack DP, runs every greedy (each followed by local search), runs the MILP when the instance is small enough, and assembles routes, schedules and recommendations into one JSON response.
+
+\begin{figure}[!htbp]
+\centering
+\begin{tikzpicture}[font=\scriptsize, x=1cm, y=0.52cm]
+  \foreach \i/\nm in {0/User, 2.3/Dashboard, 4.6/API server, 7.0/Solver, 9.4/Algorithms, 11.8/MILP (HiGHS)}{
+    \node[draw, fill=blue!10, minimum width=17mm, minimum height=5mm] at (\i,0) {\nm};
+    \draw[dashed, gray] (\i,-0.6) -- (\i,-16.2);}
+  \fill[blue!20] (4.5,-2.6) rectangle (4.7,-15.2);
+  \fill[blue!20] (6.9,-3.4) rectangle (7.1,-14.4);
+  \newcommand{\msg}[4]{\draw[-{Stealth[length=1.8mm]}] (#1,#3) -- node[above,font=\tiny]{#4} (#2,#3);}
+  \newcommand{\ret}[4]{\draw[-{Stealth[length=1.8mm]}, dashed] (#1,#3) -- node[above,font=\tiny]{#4} (#2,#3);}
+  \msg{0}{2.3}{-1.4}{press Solve}
+  \msg{2.3}{4.6}{-2.6}{POST /api/solve}
+  \msg{4.6}{7.0}{-3.4}{solve(instance, cfg)}
+  \msg{7.0}{9.4}{-4.4}{mst(g): Prim / Kruskal}
+  \msg{7.0}{9.4}{-5.4}{apsp(g): FW / Johnson}
+  \msg{7.0}{9.4}{-6.4}{size\_replicas: knapsack DP}
+  \msg{7.0}{9.4}{-7.4}{greedy $\times 4$ + local search}
+  \draw[dashed,rounded corners] (6.6,-8.0) rectangle (12.6,-10.6); \node[anchor=north west,font=\tiny] at (6.6,-8.0) {\textbf{opt} [vars $\le$ limit]};
+  \msg{7.0}{11.8}{-9.1}{solve\_exact(ctx, targets)}
+  \ret{11.8}{7.0}{-10.1}{optimum, LP bound}
+  \msg{7.0}{9.4}{-11.4}{routes: Dijkstra / Bellman-Ford}
+  \msg{7.0}{9.4}{-12.4}{schedule\_batch: LPT / EFT}
+  \ret{7.0}{4.6}{-14.0}{result dict}
+  \ret{4.6}{2.3}{-15.0}{200 OK (JSON)}
+  \ret{2.3}{0}{-16.0}{map, tables, policy}
+\end{tikzpicture}
+\caption{Sequence diagram of \texttt{POST /api/solve}. Dashed arrows are returns; the \textbf{opt} frame runs only when the MILP is small enough.}\label{fig:sequence}
+\end{figure}
+
+\subsection{Activity diagram of the solver}
+Fig.~\ref{fig:activity} shows the decisions inside the solver. Two of them are made automatically from graph size: Prim or Kruskal for the backbone, and a dense or sparse all-pairs method. If the plan does not fit in capacity, the solver falls back to first-fit-decreasing packing before local search.
+
+\begin{figure}[!htbp]
+\centering
+\begin{tikzpicture}[node distance=4.5mm and 8mm, font=\scriptsize]
+  \node[circle, fill=black, inner sep=2.5pt] (s) {};
+  \node[act, below=of s] (a1) {Validate instance};
+  \node[dec, below=of a1] (d1) {$m > n\log_2 n$?};
+  \node[act, below left=5mm and 2mm of d1] (p) {Prim (heap)};
+  \node[act, below right=5mm and 2mm of d1] (k) {Kruskal (union-find)};
+  \node[dec, below=14mm of d1] (d2) {$m\log_2 n < n^2$?};
+  \node[act, below left=5mm and 2mm of d2] (j) {Johnson / repeated\\Dijkstra};
+  \node[act, below right=5mm and 2mm of d2] (f) {Floyd--Warshall\\(NumPy)};
+  \node[act, below=15mm of d2] (a2) {Size replicas (knapsack DP)};
+  \node[act, below=of a2] (a3) {Greedy placements};
+  \node[dec, below=of a3] (d3) {Capacity\\feasible?};
+  \node[act, right=12mm of d3] (ffd) {FFD repair};
+  \node[act, below=of d3] (a4) {Local search};
+  \node[act, below=of a4] (a5) {MILP check (if small)};
+  \node[act, below=of a5] (a6) {Routes, schedule, advice};
+  \node[circle, draw, inner sep=2pt, below=of a6] (e) {}; \fill (e) circle (1.6pt);
+  \draw[ass] (s)--(a1); \draw[ass] (a1)--(d1);
+  \draw[ass] (d1) -| node[above,pos=0.2]{yes} (p); \draw[ass] (d1) -| node[above,pos=0.2]{no} (k);
+  \draw[ass] (p) |- (d2); \draw[ass] (k) |- (d2);
+  \draw[ass] (d2) -| node[above,pos=0.2]{yes} (j); \draw[ass] (d2) -| node[above,pos=0.2]{no} (f);
+  \draw[ass] (j) |- (a2); \draw[ass] (f) |- (a2);
+  \draw[ass] (a2)--(a3); \draw[ass] (a3)--(d3);
+  \draw[ass] (d3) -- node[above]{no} (ffd); \draw[ass] (ffd) |- (a4);
+  \draw[ass] (d3) -- node[right]{yes} (a4);
+  \draw[ass] (a4)--(a5); \draw[ass] (a5)--(a6); \draw[ass] (a6)--(e);
+\end{tikzpicture}
+\caption{Activity diagram of the solver pipeline with its automatic algorithm choices.}\label{fig:activity}
+\end{figure}
+
+\subsection{Module and interface summary}
+Table~\ref{tab:modules} lists the packages and Table~\ref{tab:api} the REST interface used by the dashboard.
+
+\begin{table}[!htbp]
+\centering\small
+\caption{Package structure of \texttt{cloudplace}.}\label{tab:modules}
+\begin{tabularx}{\textwidth}{@{}l l X@{}}
+\toprule
+Package / module & Main contents & Responsibility \\
+\midrule
+\texttt{core.graph} & Graph, Edge & Adjacency-list graph with node and edge attributes \\
+\texttt{core.heaps} & Binary, Fibonacci, Pairing, Lazy & Priority queues with a common interface \\
+\texttt{core.unionfind} & UnionFind & Union by rank with path compression \\
+\texttt{algorithms.mst} & prim, kruskal, mst & Backbone tree with automatic choice \\
+\texttt{algorithms.sssp} & dijkstra, bellman\_ford & Routing; negative arcs and cycle detection \\
+\texttt{algorithms.apsp} & floyd\_warshall, johnson, apsp & All-pairs latency matrix \\
+\texttt{algorithms.knapsack} & knapsack\_01, MCKP & Server activation and replica sizing \\
+\texttt{algorithms.placement} & 4 greedies, local\_search & Heuristic placement under capacity \\
+\texttt{algorithms.exact} & solve\_exact & MILP optimum and LP lower bound \\
+\texttt{algorithms.scheduler} & schedule\_batch & LPT/EFT batch task schedule \\
+\texttt{model} & Instance, Service, costs & Problem model and transfer-cost graph \\
+\texttt{data} & generators, export & 10 datasets; JSON, GEXF, CSV export \\
+\texttt{solver} & solve, SolveConfig & End-to-end pipeline and policy output \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[!htbp]
+\centering\small
+\caption{REST endpoints exposed by \texttt{api/server.py}.}\label{tab:api}
+\begin{tabularx}{\textwidth}{@{}l l X@{}}
+\toprule
+Method & Path & Purpose \\
+\midrule
+GET  & \texttt{/api/health} & Liveness check used by the dashboard to pick live or offline mode \\
+GET  & \texttt{/api/datasets} & List the built-in networks \\
+GET  & \texttt{/api/datasets/\{name\}} & Return one network with services and tasks \\
+POST & \texttt{/api/generate} & Generate a synthetic network (Waxman, ER, BA, fat-tree) \\
+POST & \texttt{/api/solve} & Run the full pipeline and return the placement policy \\
+POST & \texttt{/api/algorithms/run} & Run one algorithm and return its step-by-step trace \\
+GET  & \texttt{/api/experiments} & Return experiment results for the charts \\
+GET  & \texttt{/\{path\}} & Serve the built dashboard (guarded against path traversal) \\
+\bottomrule
+\end{tabularx}
+\end{table}
