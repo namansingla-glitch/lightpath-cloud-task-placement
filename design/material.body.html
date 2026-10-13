@@ -1,0 +1,141 @@
+<body class="splash-on tc-on glitch-on vel-on on-home">
+<nav class="rail" aria-label="Main">
+  <div class="mark" data-go="home" tabindex="0" title="Lightpath"><span class="glitch hover-only" data-text="Lp">Lp</span></div>
+  <div class="links">
+    <button class="dest" data-go="home" aria-current="page"><span class="ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 11.5 12 5l8 6.5V20h-5v-5H9v5H4z"/></svg></span>Home</button>
+    <button class="dest" data-go="studio"><span class="ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="17" r="2.2"/><circle cx="12" cy="6" r="2.2"/><circle cx="19" cy="15" r="2.2"/><path d="M6.4 15.3 10.8 7.8M13.6 7.3l4.2 6"/></svg></span>Studio</button>
+    <button class="dest soon" title="Not part of this mockup"><span class="ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M9 3h6M10 3v6L5 19a1.5 1.5 0 0 0 1.3 2h11.4a1.5 1.5 0 0 0 1.3-2l-5-10V3"/></svg></span>Lab</button>
+    <button class="dest soon" title="Not part of this mockup"><span class="ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 20V11M12 20V5M19 20v-7"/></svg></span>Results</button>
+    <button class="dest soon" title="Not part of this mockup"><span class="ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="6" rx="7" ry="2.6"/><path d="M5 6v12c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6V6M5 12c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6"/></svg></span>Data</button>
+  </div>
+  <div class="spacer"></div>
+  <div class="status"><i></i>Python API connected</div>
+</nav>
+
+<div class="page">
+<!-- =============================== HOME =============================== -->
+<main id="home" class="view on">
+  <div class="hero">
+    <div>
+      <span class="chip-k"><span class="dots"><i style="background:var(--blue)"></i><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--green)"></i></span>Cloud task placement on network graphs</span>
+      <h1 class="display" id="headline">Put every workload one short path from its users.</h1>
+      <p class="lede">Servers are nodes and fibre links are weighted edges. Lightpath combines shortest paths, spanning trees and knapsack dynamic programming to decide where each replica runs, without breaking capacity or budget.</p>
+      <div class="ctas">
+        <button class="btn primary" data-go="studio">Open the placement studio</button>
+        <button class="btn tonal" title="Algorithm lab is not part of this mockup">Step through the algorithms</button>
+      </div>
+    </div>
+    <div class="mapcard">
+      <div class="bar"><span class="pill"><i style="background:var(--yellow);box-shadow:0 0 0 1.5px #B06000 inset"></i>Hosts replicas</span><span class="pill"><i style="background:var(--blue)"></i>Live request routes</span></div>
+      <div id="heroMap" style="position:absolute;inset:0"></div>
+      <p class="cap">India backbone, 24 cities. Each moving dot is a request on its computed shortest path to the nearest replica.</p>
+    </div>
+  </div>
+  <div class="tiles" id="telemetry"></div>
+
+  <section class="velocity" aria-label="Algorithms and live routes">
+    <div class="vrow r1" id="vr1"></div>
+    <div class="vrow r2" id="vr2"></div>
+    <span class="velocity-note">Scroll faster and the rows speed up</span>
+  </section>
+
+  <section class="block tc-zone" id="tcZone">
+    <h2 class="title">From a graph to a placement plan</h2>
+    <p class="intro">Seven stages, each a classic algorithm chosen for what it guarantees. The line runs left to right exactly as the solver does.</p>
+    <div class="metro"><div class="metro-inner" id="metro"><div class="metro-line"></div></div></div>
+    <div class="branch"><strong>Exact check.</strong> On graphs small enough, a mixed-integer program solves placement to proven optimality, so every heuristic reports its gap.</div>
+  </section>
+
+  <section class="block" style="padding-top:24px">
+    <h2 class="title">Nine networks to test on</h2>
+    <p class="intro">Two real research backbones, real Indian city coordinates, a hand-built campus, a data-centre fat-tree and three random graph families at different sizes and densities.</p>
+    <div class="ds-grid" id="dsGrid"></div>
+  </section>
+  <div class="bigmark"><span class="glitch" data-text="Lightpath">Lightpath</span>
+    <p>Latency-aware cloud task placement. Graph algorithms, dynamic programming and greedy scheduling.</p></div>
+  <footer>Lightpath. Python 3 (NumPy, SciPy HiGHS) backend, React dashboard. Mockup built from real solver output for the India dataset.</footer>
+</main>
+
+<!-- =============================== STUDIO =============================== -->
+<main id="studio" class="view">
+  <div class="studio">
+    <aside class="card rail-c">
+      <div class="ttl">Placement studio</div>
+      <div class="field"><label class="lab" for="ds">Network</label>
+        <select id="ds"></select></div>
+      <div class="field"><label class="lab" for="vmb">VM budget <b id="vmbv" class="num"></b></label>
+        <input id="vmb" type="range" min="2" max="12" step="0.1"></div>
+      <div class="field"><div class="lab">Server budget <b>All servers on</b></div>
+        <label class="check"><input type="checkbox"> Limit with a knapsack budget</label></div>
+      <div class="field"><div class="lab">Replica sizing</div>
+        <div class="seg" id="sizing"><button aria-pressed="true">Knapsack DP</button><button aria-pressed="false">Minimum</button><button aria-pressed="false">Maximum</button></div></div>
+      <div class="field"><div class="lab">Strategies</div>
+        <div class="checks">
+          <label class="check"><input type="checkbox" checked> Demand-first <small>greedy</small></label>
+          <label class="check"><input type="checkbox" checked> Marginal gain <small>CELF</small></label>
+          <label class="check"><input type="checkbox" checked> Regret <small>GAP</small></label>
+          <label class="check"><input type="checkbox" checked> FFD packing <small>bin-pack</small></label>
+          <label class="check"><input type="checkbox" checked> Local search refinement</label>
+          <label class="check"><input type="checkbox" checked> Exact MILP check</label>
+        </div></div>
+      <button class="solve" id="solveBtn">Solve placement</button>
+      <div class="inst-sum" id="instSum"></div>
+    </aside>
+
+    <div class="center">
+      <div class="mapwrap" id="mapwrap">
+        <div class="toolbar">
+          <button class="chip mst" aria-pressed="false" data-layer="mst"><i style="background:var(--red)"></i>Backbone (MST)</button>
+          <button class="chip rep" aria-pressed="true" data-layer="rep"><i style="background:var(--yellow);box-shadow:0 0 0 1.5px #B06000 inset"></i>Replicas</button>
+          <button class="chip rt" aria-pressed="true" data-layer="rt"><i style="background:var(--blue)"></i>Routes</button>
+        </div>
+        <div class="legend">
+          <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="#fff" stroke="#202124" stroke-width="1.5"/></svg>Core server</div>
+          <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="4.5" fill="#fff" stroke="#202124" stroke-width="1.5"/></svg>Regional / edge server</div>
+          <div><svg viewBox="0 0 16 16"><rect x="5" y="5" width="6" height="6" fill="#9AA0A6" transform="rotate(45 8 8)"/></svg>Router (cannot host)</div>
+          <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5" fill="#FBBC05" stroke="#B06000"/></svg>Hosts replicas</div>
+        </div>
+        <svg id="studioMap"></svg>
+        <div class="svc-row" id="svcRow"></div>
+        <div class="tip" id="tip"></div>
+      </div>
+      <div class="card tabs">
+        <div class="tablist" role="tablist" id="tablist">
+          <button role="tab" aria-selected="true" data-tab="routes">Routes</button>
+          <button role="tab" aria-selected="false" data-tab="servers">Servers</button>
+          <button role="tab" aria-selected="false" data-tab="cost">Cost and benefit</button>
+          <button role="tab" aria-selected="false" data-tab="sync">Replica sync</button>
+          <button role="tab" aria-selected="false" data-tab="batch">Batch jobs</button>
+        </div>
+        <div class="tabbody" id="tabbody"></div>
+      </div>
+    </div>
+
+    <aside class="card results">
+      <div class="readouts" id="readouts"></div>
+      <p class="verdict" id="verdict"></p>
+      <div>
+        <div class="h-sub"><span>Average latency by strategy</span><span>ms, lower is better</span></div>
+        <div class="stratchart" id="strat"></div>
+      </div>
+      <div>
+        <div class="h-sub"><span>Recommendations</span></div>
+        <ul class="recs" id="recs"></ul>
+      </div>
+    </aside>
+  </div>
+</main>
+</div>
+
+<canvas id="splash" aria-hidden="true"></canvas>
+<canvas id="swarm" aria-hidden="true"></canvas>
+<div class="pv" id="pv">
+  <h6>Preview options <button id="pvMin">Hide</button></h6>
+  <div class="body">
+    <label><input type="checkbox" data-fx="splash" checked> Splash cursor (home)</label>
+    <label><input type="checkbox" data-fx="swarm"> Swarm cursor (hero)</label>
+    <label><input type="checkbox" data-fx="tc" checked> Text cursor (pipeline)</label>
+    <label><input type="checkbox" data-fx="vel" checked> Scroll velocity band</label>
+    <label><input type="checkbox" data-fx="glitch" checked> Glitch text (logo, footer)</label>
+  </div>
+</div>
