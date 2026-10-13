@@ -18,6 +18,7 @@ from fastapi.testclient import TestClient  # noqa: E402
 from api.server import app  # noqa: E402
 
 OUT = ROOT / "web" / "public" / "demo"
+PER_SOURCE_MAX = 30
 ALGOS = ["prim", "kruskal", "dijkstra", "bellman_ford", "floyd_warshall", "johnson"]
 
 
@@ -41,6 +42,12 @@ def main() -> None:
                 r = c.post("/api/algorithms/run", json={"dataset": name, "algorithm": alg, "source": 0})
                 if r.status_code == 200:
                     dump(OUT / "algo" / name / f"{alg}.json", r.json())
+            if d["nodes"] <= PER_SOURCE_MAX:  # every start city, so the offline lab can start anywhere
+                for alg in ("dijkstra", "bellman_ford", "prim"):
+                    for s in range(1, d["nodes"]):
+                        r = c.post("/api/algorithms/run", json={"dataset": name, "algorithm": alg, "source": s})
+                        if r.status_code == 200:
+                            dump(OUT / "algo" / name / f"{alg}-{s}.json", r.json())
         print("exported", name)
     # static downloads used by the Data page (identical in live and snapshot mode)
     files = OUT / "files"

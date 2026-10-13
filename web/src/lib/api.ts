@@ -76,7 +76,9 @@ export async function runAlgorithm(args: { dataset?: string; instance?: Instance
   const m = await detectMode();
   if (m === "live") return postJSON(`${BASE}/api/algorithms/run`, args);
   if (!args.dataset) throw new Error("Generated networks need the Python API.");
-  const r: any = await cached(`algo:${args.dataset}:${args.algorithm}`, () => getJSON(snap(`algo/${args.dataset}/${args.algorithm}.json`)));
+  const per = args.source > 0 && ["dijkstra", "bellman_ford", "prim"].includes(args.algorithm);
+  const file = per ? `${args.algorithm}-${args.source}` : args.algorithm;
+  const r: any = await cached(`algo:${args.dataset}:${file}`, () => getJSON(snap(`algo/${args.dataset}/${file}.json`)));
   return { ...r, _snapshot: true };
 }
 

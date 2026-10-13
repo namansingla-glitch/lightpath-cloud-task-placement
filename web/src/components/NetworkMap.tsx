@@ -16,7 +16,7 @@ interface Props {
   mst?: { u: number; v: number }[];
   showMst?: boolean;
   focusNodes?: Set<number> | null;          // others are dimmed
-  nodeMark?: Record<number, "settled" | "frontier" | "current" | "source">;
+  nodeMark?: Record<number, "settled" | "frontier" | "current" | "source" | "target">;
   edgeMark?: Record<string, EdgeMark>;
   extraArcs?: { u: number; v: number; kind: "negative" }[];
   badges?: Record<number, string>;          // small text under a node (e.g. distance)
@@ -107,7 +107,8 @@ export default function NetworkMap(p: Props) {
                 onPointerEnter={(e) => { const rr = wrapRef.current!.getBoundingClientRect(); setTip({ i, x: e.clientX - rr.left, y: e.clientY - rr.top }); }}
                 onPointerMove={(e) => { const rr = wrapRef.current!.getBoundingClientRect(); setTip({ i, x: e.clientX - rr.left, y: e.clientY - rr.top }); }}
                 onPointerLeave={() => setTip(null)}>
-                {mark && <circle r={r + 7} fill={mark === "current" ? "#FBBC05" : mark === "source" ? "#1A73E8" : mark === "settled" ? "#34A853" : "#D3E3FD"} opacity={mark === "frontier" ? 0.9 : 0.35} />}
+                {mark && <circle r={r + 7} fill={mark === "current" ? "#FBBC05" : mark === "source" ? "#1A73E8" : mark === "target" ? "#EA4335" : mark === "settled" ? "#34A853" : "#D3E3FD"} opacity={mark === "frontier" ? 0.9 : 0.35} />}
+                {mark === "target" && <circle r={r + 11} fill="none" stroke="#EA4335" strokeWidth={2} strokeDasharray="3 3" />}
                 {n.tier === "router"
                   ? <rect x={-3.2} y={-3.2} width={6.4} height={6.4} fill="#9AA0A6" transform="rotate(45)" />
                   : showHost
