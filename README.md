@@ -8,6 +8,15 @@ then explains the plan as routes, server schedules, cost/benefit tables and plai
 
 ![Home](docs/screenshots/home.png)
 
+## Deliverables
+
+| | |
+|---|---|
+| **Report** (cover + 25 pages, IEEE references) | [`report/Lightpath_Report.pdf`](report/Lightpath_Report.pdf) |
+| **Presentation** (10 slides) | [`presentation/Lightpath_Presentation.pdf`](presentation/Lightpath_Presentation.pdf) |
+| **Website** | `./run.sh`, then http://localhost:8000 |
+| **Demo notebook** | [`notebooks/lightpath_demo.ipynb`](notebooks/lightpath_demo.ipynb) |
+
 ## Run it
 
 ```bash
@@ -23,7 +32,7 @@ Without Python the website still works: open `web/dist` on any static host and i
 
 | Task | Command |
 |---|---|
-| Tests (190, checked against NetworkX and brute force) | `python -m pytest -q` |
+| Tests (191, checked against NetworkX and brute force) | `python -m pytest -q` |
 | Regenerate datasets, Gephi files and policy CSVs | `python scripts/build_datasets.py` |
 | Run all experiments (~80 s) → CSVs + report figures | `python experiments/run_experiments.py` |
 | Refresh the website's saved results | `python scripts/export_demo.py` |
@@ -34,10 +43,10 @@ Without Python the website still works: open `web/dist` on any static host and i
 
 | Page | What it does |
 |---|---|
-| **Landing** | Project title with a light-sweep / text-pressure effect and the team. |
-| **Home** | India / Nigeria switch, live map with requests travelling their shortest paths, headline numbers, the 7-stage pipeline, all networks. |
+| **Landing** | Project title with a colour-wave / text-pressure effect and the team. |
+| **Home** | Quick-tour button, India / Nigeria switch, live map with requests travelling their shortest paths, headline numbers, the 7-stage pipeline, all networks. |
 | **Placement studio** | Pick a network, VM budget, server budget, sizing and strategies, then solve live. Map layers (MST, replicas, routes), service filter, and tabs for routes, server load, cost/benefit, replica sync and batch schedule. |
-| **Algorithm lab** | Step-by-step playback of Prim, Kruskal, Dijkstra and Bellman-Ford with highlighted pseudocode; distance heatmaps for Floyd–Warshall and Johnson. |
+| **Algorithm lab** | Pick a start city and a destination and watch Prim, Kruskal, Dijkstra or Bellman-Ford step by step (0.5×–4×) with highlighted pseudocode; the final route is drawn and listed hop by hop. Floyd–Warshall and Johnson show distance heatmaps. *Compare two algorithms* runs two on the same trip and says which suits it. |
 | **Results** | Interactive charts for the 8 experiments with takeaways, CSV and report-figure downloads. |
 | **Data** | Every network with JSON, Gephi (GEXF) and CSV downloads, plus a generator for new networks. |
 | **Guide** | How to use each page, a glossary, a 1-minute guided tour and `?` help on every panel. |
