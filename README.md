@@ -12,7 +12,7 @@ then explains the plan as routes, server schedules, cost/benefit tables and plai
 
 | | |
 |---|---|
-| **Report** (cover + 25 pages, IEEE references) | [`report/Lightpath_Report.pdf`](report/Lightpath_Report.pdf) |
+| **Report** (22 pages incl. cover, contents and IEEE references) | [`report/Lightpath_Report.pdf`](report/Lightpath_Report.pdf) |
 | **Presentation** (10 slides) | [`presentation/Lightpath_Presentation.pdf`](presentation/Lightpath_Presentation.pdf) |
 | **Website** | `./run.sh`, then http://localhost:8000 |
 | **Demo notebook** | [`notebooks/lightpath_demo.ipynb`](notebooks/lightpath_demo.ipynb) |

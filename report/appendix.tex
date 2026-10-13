@@ -1,28 +1,5 @@
 %======================================================================
-\clearpage
 \appendix
-\section{Project File Structure}
-\begin{small}
-\begin{tabularx}{\textwidth}{@{}p{5.2cm}X@{}}
-\toprule
-Path & Contents\\
-\midrule
-\texttt{cloudplace/core/} & Adjacency-list graph, four priority queues, union-find\\
-\texttt{cloudplace/algorithms/} & MST, shortest paths, all-pairs, knapsack DPs, greedy placement and local search, MILP, batch scheduler\\
-\texttt{cloudplace/model/} & Instance, services and the transfer-cost model\\
-\texttt{cloudplace/data/} & Generators for the ten networks and exporters (JSON, GEXF, CSV)\\
-\texttt{cloudplace/solver.py} & The seven-stage pipeline and policy outputs\\
-\texttt{api/server.py} & FastAPI service and static website host\\
-\texttt{web/src/} & React dashboard: pages, map, Lab, charts, guide\\
-\texttt{experiments/} & Experiment runner, CSV results and figures\\
-\texttt{tests/} & 191 automated tests\\
-\texttt{notebooks/} & Executed demonstration notebook\\
-\texttt{report/}, \texttt{presentation/} & This report and the slides\\
-\texttt{run.sh}, \texttt{run.bat} & One-command start on macOS/Linux and Windows\\
-\bottomrule
-\end{tabularx}
-\end{small}
-
 \section{Running the Application}
 \begin{enumerate}[leftmargin=*]
 \item Install Python 3.10 or newer (and Node.js if the website should be rebuilt).
@@ -30,4 +7,5 @@ Path & Contents\\
 \item Open \url{http://localhost:8000}. Stop the server with Ctrl+C.
 \item Tests: \texttt{python -m pytest}. Experiments: \texttt{python experiments/run\_experiments.py}.
 \item Without Python, \texttt{web/dist/index.html} opens the website on saved results.
+\item Source code: \url{https://github.com/namansingla-glitch/lightpath-cloud-task-placement}. Main folders: \texttt{cloudplace/} (algorithms), \texttt{api/} (server), \texttt{web/} (website), \texttt{experiments/}, \texttt{tests/}, \texttt{report/}, \texttt{presentation/}.
 \end{enumerate}

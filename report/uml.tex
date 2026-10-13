@@ -83,7 +83,7 @@ Fig.~\ref{fig:class} shows the main classes. An \texttt{Instance} is composed of
 
 \begin{figure}[!htbp]
 \centering
-\begin{tikzpicture}[node distance=7mm and 5mm]
+\scalebox{0.82}{\begin{tikzpicture}[node distance=7mm and 5mm]
   \node[cls=3.4cm] (inst) {\textbf{Instance}
     \nodepart{second} name: str\\graph: Graph\\services: list[Service]\\tasks: list[BatchTask]\\budget: float
     \nodepart{third} servers(): list[int]\\server\_cost(s): float\\validate(): list[str]};
@@ -121,7 +121,7 @@ Fig.~\ref{fig:class} shows the main classes. An \texttt{Instance} is composed of
   \draw[dep] (ctx.south) -- node[right,font=\tiny]{evaluates} (pl.north);
   \draw[inh] (heaps.north) -- (heap.south);
   \draw[dep] (res.south) -- node[right,font=\tiny]{uses} (uf.north);
-\end{tikzpicture}
+\end{tikzpicture}}
 \caption{UML class diagram of the core model (filled diamond: composition; hollow diamond: aggregation; hollow triangle: realisation of an interface; dashed: dependency).}\label{fig:class}
 \end{figure}
 
@@ -162,7 +162,7 @@ Fig.~\ref{fig:activity} shows the decisions inside the solver. Two of them are m
 
 \begin{figure}[!htbp]
 \centering
-\begin{tikzpicture}[node distance=4.5mm and 8mm, font=\scriptsize]
+\scalebox{0.82}{\begin{tikzpicture}[node distance=4.5mm and 8mm, font=\scriptsize]
   \node[circle, fill=black, inner sep=2.5pt] (s) {};
   \node[act, below=of s] (a1) {Validate instance};
   \node[dec, below=of a1] (d1) {$m > n\log_2 n$?};
@@ -188,52 +188,7 @@ Fig.~\ref{fig:activity} shows the decisions inside the solver. Two of them are m
   \draw[ass] (d3) -- node[above]{no} (ffd); \draw[ass] (ffd) |- (a4);
   \draw[ass] (d3) -- node[right]{yes} (a4);
   \draw[ass] (a4)--(a5); \draw[ass] (a5)--(a6); \draw[ass] (a6)--(e);
-\end{tikzpicture}
+\end{tikzpicture}}
 \caption{Activity diagram of the solver pipeline with its automatic algorithm choices.}\label{fig:activity}
 \end{figure}
 
-\subsection{Module and interface summary}
-Table~\ref{tab:modules} lists the packages and Table~\ref{tab:api} the REST interface used by the dashboard.
-
-\begin{table}[!htbp]
-\centering\small
-\caption{Package structure of \texttt{cloudplace}.}\label{tab:modules}
-\begin{tabularx}{\textwidth}{@{}l l X@{}}
-\toprule
-Package / module & Main contents & Responsibility \\
-\midrule
-\texttt{core.graph} & Graph, Edge & Adjacency-list graph with node and edge attributes \\
-\texttt{core.heaps} & Binary, Fibonacci, Pairing, Lazy & Priority queues with a common interface \\
-\texttt{core.unionfind} & UnionFind & Union by rank with path compression \\
-\texttt{algorithms.mst} & prim, kruskal, mst & Backbone tree with automatic choice \\
-\texttt{algorithms.sssp} & dijkstra, bellman\_ford & Routing; negative arcs and cycle detection \\
-\texttt{algorithms.apsp} & floyd\_warshall, johnson, apsp & All-pairs latency matrix \\
-\texttt{algorithms.knapsack} & knapsack\_01, MCKP & Server activation and replica sizing \\
-\texttt{algorithms.placement} & 4 greedies, local\_search & Heuristic placement under capacity \\
-\texttt{algorithms.exact} & solve\_exact & MILP optimum and LP lower bound \\
-\texttt{algorithms.scheduler} & schedule\_batch & LPT/EFT batch task schedule \\
-\texttt{model} & Instance, Service, costs & Problem model and transfer-cost graph \\
-\texttt{data} & generators, export & 10 datasets; JSON, GEXF, CSV export \\
-\texttt{solver} & solve, SolveConfig & End-to-end pipeline and policy output \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\begin{table}[!htbp]
-\centering\small
-\caption{REST endpoints exposed by \texttt{api/server.py}.}\label{tab:api}
-\begin{tabularx}{\textwidth}{@{}l l X@{}}
-\toprule
-Method & Path & Purpose \\
-\midrule
-GET  & \texttt{/api/health} & Liveness check used by the dashboard to pick live or offline mode \\
-GET  & \texttt{/api/datasets} & List the built-in networks \\
-GET  & \texttt{/api/datasets/\{name\}} & Return one network with services and tasks \\
-POST & \texttt{/api/generate} & Generate a synthetic network (Waxman, ER, BA, fat-tree) \\
-POST & \texttt{/api/solve} & Run the full pipeline and return the placement policy \\
-POST & \texttt{/api/algorithms/run} & Run one algorithm and return its step-by-step trace \\
-GET  & \texttt{/api/experiments} & Return experiment results for the charts \\
-GET  & \texttt{/\{path\}} & Serve the built dashboard (guarded against path traversal) \\
-\bottomrule
-\end{tabularx}
-\end{table}
