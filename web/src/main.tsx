@@ -8,7 +8,7 @@ import "./styles/base.css";
 import "./styles/app.css";
 import { AppProvider, useApp } from "./lib/app";
 import Rail from "./components/Rail";
-import { SplashCanvas } from "./components/effects";
+import { TargetCursor } from "./components/effects";
 import { Tour, TourOffer } from "./components/Help";
 import Intro from "./pages/Intro";
 import Home from "./pages/Home";
@@ -42,7 +42,7 @@ function Shell() {
 
   return (
     <>
-      <SplashCanvas active={intro || loc.pathname === "/"} />
+      <TargetCursor />
       {intro ? <Intro onEnter={enter} /> : (
         <>
           <Rail />

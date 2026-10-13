@@ -17,7 +17,7 @@ const STAGES = [
 const ALGOS = ["Dijkstra", "Prim", "Kruskal", "Bellman-Ford", "Floyd–Warshall", "Johnson", "Knapsack DP", "Local search"];
 
 export default function Home() {
-  const { region, setRegion } = useApp();
+  const { region, setRegion, setTourOn } = useApp();
   const nav = useNavigate();
   const ds = region;
   const inst = useAsync(() => getDataset(ds), [ds]);
@@ -40,7 +40,11 @@ export default function Home() {
   return (
     <main>
       <div className="hero">
-        <div>
+        <div className="hero-copy">
+          <div className="hero-brand">
+            <div className="hb-mark"><Glitch text="Lightpath" hoverOnly /></div>
+            <div className="hb-sub">Latency-aware cloud task placement<span>Design and Analysis of Algorithms · Woxsen University</span></div>
+          </div>
           <div className="region" role="radiogroup" aria-label="Region" data-tour="region">
             {(["india", "nigeria"] as const).map((r) => (
               <button key={r} role="radio" aria-checked={region === r} onClick={() => setRegion(r)}>{r === "india" ? "India" : "Nigeria"}</button>
@@ -53,6 +57,10 @@ export default function Home() {
             <button className="btn primary" onClick={() => nav(`/studio?ds=${ds}`)}>Open the placement studio</button>
             <button className="btn tonal" onClick={() => nav("/lab")}>Step through the algorithms</button>
           </div>
+          <button className="tour-link" onClick={() => setTourOn(true)}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="m10 8 6 4-6 4z" fill="currentColor" /></svg>
+            <span><b>New here? Take the quick tour</b><small>A 60-second walk through every page</small></span>
+          </button>
         </div>
         <div className="mapcard" data-tour="heromap">
           <div className="mapbar"><span className="pill"><i style={{ background: "var(--yellow)", boxShadow: "0 0 0 1.5px #B06000 inset" }} />Hosts replicas</span><span className="pill"><i style={{ background: "var(--blue)" }} />Live request routes</span></div>

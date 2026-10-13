@@ -91,18 +91,66 @@ export function ScrollVelocity({ rows }: { rows: string[][] }) {
 
 /* ---------- Text cursor: labels trail the pointer inside a zone ---------- */
 const TC = ["#1A73E8", "#D93025", "#E37400", "#188038"];
-export function TextCursorZone({ words, children, className, id }: { words: string[]; children: ReactNode; className?: string; id?: string }) {
+/** Section wrapper kept for layout; the old floating-word trail was replaced by the target cursor. */
+export function TextCursorZone({ children, className, id }: { words?: string[]; children: ReactNode; className?: string; id?: string }) {
+  return <section className={className} id={id}>{children}</section>;
+}
+
+/* ---------- Target cursor: a reticle whose corner brackets snap around what you hover ---------- */
+const TARGETS = "a,button,[role=button],[role=tab],[role=radio],summary,label[for],.ds,.member,.station,.pill,[data-node],.tiles > div,.algos button,.speeds button,.card.click";
+const NO_RETICLE = "input,textarea,select,[contenteditable=true]";
+export function TargetCursor() {
   const { motion } = useApp();
-  const st = useRef({ last: 0, lx: 0, ly: 0, k: 0 });
-  const onMove = (e: React.PointerEvent) => {
-    if (!motion || e.pointerType !== "mouse" || !words.length) return;
-    const s = st.current; const now = performance.now(), d = Math.hypot(e.clientX - s.lx, e.clientY - s.ly);
-    if (now - s.last < 45 || d < 18) return; s.last = now; s.lx = e.clientX; s.ly = e.clientY;
-    const el = document.createElement("span"); el.className = "tc-item"; el.textContent = words[s.k % words.length]; el.style.color = TC[s.k % 4]; s.k++;
-    el.style.left = e.clientX + "px"; el.style.top = e.clientY + "px"; document.body.appendChild(el);
-    const dx = (Math.random() - 0.5) * 60, dy = -20 - Math.random() * 40, rot = (Math.random() - 0.5) * 30;
-    el.animate([{ opacity: 0, transform: "translate(-50%,-50%) scale(.6)" }, { opacity: 1, transform: "translate(-50%,-50%) scale(1)", offset: 0.15 },
-      { opacity: 0, transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(.9) rotate(${rot}deg)` }], { duration: 1300, easing: "cubic-bezier(.2,.7,.2,1)" }).onfinish = () => el.remove();
-  };
-  return <section className={`${className ?? ""} tc-zone`} id={id} onPointerMove={onMove}>{children}</section>;
+  const root = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = root.current; if (!el) return;
+    const fine = matchMedia("(pointer:fine)").matches;
+    if (!motion || !fine) { el.style.display = "none"; document.documentElement.classList.remove("tcur"); return; }
+    el.style.display = ""; document.documentElement.classList.add("tcur");
+    const corners = [...el.querySelectorAll<HTMLElement>(".tc-c")];
+    const S = 12, IDLE = 22;                                  // bracket size, idle box size
+    let mx = -100, my = -100, x = -100, y = -100, raf = 0, angle = 0, last = performance.now();
+    let target: Element | null = null; let hidden = true;
+    const cur = corners.map(() => ({ x: 0, y: 0 })), rad = { r: 2 };
+    const frame = (t: number) => {
+      const dt = Math.min(50, t - last); last = t;
+      x += (mx - x) * 0.35; y += (my - y) * 0.35;
+      el.style.transform = `translate3d(${x}px,${y}px,0)`;
+      let goals: { x: number; y: number }[]; let rot = 0;
+      if (target && target.isConnected) {
+        const r = target.getBoundingClientRect(), pad = 6;
+        const l = r.left - pad - x, tp = r.top - pad - y, rr = r.right + pad - x, b = r.bottom + pad - y;
+        goals = [{ x: l, y: tp }, { x: rr - S, y: tp }, { x: rr - S, y: b - S }, { x: l, y: b - S }];
+        const br = parseFloat(getComputedStyle(target).borderTopLeftRadius) || 0; rad.r = Math.min(10, br / 2.5);
+        angle = angle > 180 ? angle + (360 - angle) * 0.3 : angle * 0.7; if (angle < 0.5 || angle > 359.5) angle = 0; rot = angle;
+      } else {
+        target = null; angle = (angle + dt * 0.09) % 360; rot = angle; rad.r = 2;
+        const h = IDLE / 2; goals = [{ x: -h, y: -h }, { x: h - S, y: -h }, { x: h - S, y: h - S }, { x: -h, y: h - S }];
+      }
+      (el.firstElementChild as HTMLElement).style.transform = `rotate(${rot}deg)`; el.style.setProperty("--cr", rad.r + "px");
+      corners.forEach((c, i) => { cur[i].x += (goals[i].x - cur[i].x) * 0.3; cur[i].y += (goals[i].y - cur[i].y) * 0.3; c.style.transform = `translate3d(${cur[i].x}px,${cur[i].y}px,0)`; });
+      raf = requestAnimationFrame(frame);
+    };
+    const move = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse") return;
+      mx = e.clientX; my = e.clientY;
+      if (hidden) { x = mx; y = my; hidden = false; el.classList.remove("off"); }
+      const t = e.target as Element | null;
+      const plain = t?.closest?.(NO_RETICLE);
+      el.classList.toggle("text", !!plain);
+      target = plain ? null : t?.closest?.(TARGETS) ?? null;
+    };
+    const out = (e: PointerEvent) => { if (!e.relatedTarget) { hidden = true; el.classList.add("off"); } };
+    const down = () => el.classList.add("press"), up = () => el.classList.remove("press");
+    addEventListener("pointermove", move, { passive: true }); document.addEventListener("pointerout", out);
+    addEventListener("pointerdown", down); addEventListener("pointerup", up);
+    raf = requestAnimationFrame(frame);
+    return () => { cancelAnimationFrame(raf); removeEventListener("pointermove", move); document.removeEventListener("pointerout", out);
+      removeEventListener("pointerdown", down); removeEventListener("pointerup", up); document.documentElement.classList.remove("tcur"); };
+  }, [motion]);
+  return (
+    <div ref={root} className="tcursor off" aria-hidden="true">
+      <div className="tc-rot"><i className="tc-dot" />{[0, 1, 2, 3].map((k) => <i key={k} className={`tc-c c${k}`} />)}</div>
+    </div>
+  );
 }
