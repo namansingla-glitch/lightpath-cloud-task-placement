@@ -268,6 +268,11 @@ td.chosen{color:var(--primary);font-weight:700}
   .metro-line::after{animation:none}
   .glitch::before,.glitch::after{animation:none;display:none}
 }
+
+.region{display:inline-flex;padding:4px;background:var(--surface);border-radius:999px;margin-right:10px;vertical-align:middle}
+.region button{border:0;background:none;padding:6px 16px;border-radius:999px;font-size:14px;font-weight:600;color:var(--ink2);cursor:pointer}
+.region button[aria-checked="true"]{background:var(--ink);color:#fff}
+.hero .region + .chip-k{vertical-align:middle}
 </style>
 </head>
 <body class="splash-on tc-on glitch-on vel-on on-home">
@@ -289,6 +294,9 @@ td.chosen{color:var(--primary);font-weight:700}
 <main id="home" class="view on">
   <div class="hero">
     <div>
+      <div class="region" role="radiogroup" aria-label="Region">
+        <button role="radio" data-region="india">India</button><button role="radio" data-region="nigeria">Nigeria</button>
+      </div>
       <span class="chip-k"><span class="dots"><i style="background:var(--blue)"></i><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--green)"></i></span>Cloud task placement on network graphs</span>
       <h1 class="display" id="headline">Put every workload one short path from its users.</h1>
       <p class="lede">Servers are nodes and fibre links are weighted edges. Lightpath combines shortest paths, spanning trees and knapsack dynamic programming to decide where each replica runs, without breaking capacity or budget.</p>
@@ -300,7 +308,7 @@ td.chosen{color:var(--primary);font-weight:700}
     <div class="mapcard">
       <div class="mapbar"><span class="pill"><i style="background:var(--yellow);box-shadow:0 0 0 1.5px #B06000 inset"></i>Hosts replicas</span><span class="pill"><i style="background:var(--blue)"></i>Live request routes</span></div>
       <div id="heroMap" style="position:absolute;inset:0"></div>
-      <p class="cap">India backbone, 24 cities. Each moving dot is a request on its computed shortest path to the nearest replica.</p>
+      <p class="cap" id="mapCap"></p>
     </div>
   </div>
   <div class="tiles" id="telemetry"></div>
@@ -319,13 +327,13 @@ td.chosen{color:var(--primary);font-weight:700}
   </section>
 
   <section class="block" style="padding-top:24px">
-    <h2 class="title">Nine networks to test on</h2>
-    <p class="intro">Two real research backbones, real Indian city coordinates, a hand-built campus, a data-centre fat-tree and three random graph families at different sizes and densities.</p>
+    <h2 class="title">Ten networks to test on</h2>
+    <p class="intro">Two real research backbones, real Indian and Nigerian city coordinates, the Woxsen University campus, a data-centre fat-tree and three random graph families at different sizes and densities.</p>
     <div class="ds-grid" id="dsGrid"></div>
   </section>
   <div class="bigmark"><span class="glitch" data-text="Lightpath">Lightpath</span>
     <p>Latency-aware cloud task placement. Graph algorithms, dynamic programming and greedy scheduling.</p></div>
-  <footer>Lightpath. Python 3 (NumPy, SciPy HiGHS) backend, React dashboard. Mockup built from real solver output for the India dataset.</footer>
+  <footer>Lightpath. Python 3 (NumPy, SciPy HiGHS) backend, React dashboard. Mockup built from real solver output for the India, Nigeria and Woxsen datasets.</footer>
 </main>
 
 <!-- =============================== STUDIO =============================== -->
@@ -413,7 +421,10 @@ td.chosen{color:var(--primary);font-weight:700}
 </div>
 <script>/*DATA*/</script>
 <script>
-const {inst, sol, minis} = window.DATA;
+const [KEY, START_VIEW] = (()=>{const [k,v]=location.hash.slice(1).split("/");return [window.DATA.bundles[k]?k:"india", v||"home"]})();
+const REGION = KEY==="nigeria" ? "nigeria" : "india";
+const {inst, sol} = window.DATA.bundles[KEY]; const minis = window.DATA.minis;
+function openDataset(k, view){location.hash = k + "/" + (view||"home"); location.reload();}
 const N = inst.graph.nodes, L = inst.graph.links, S = inst.services;
 const PAL = ["#2a78d6","#eb6834","#1baf7a","#eda100","#e87ba4","#008300","#6250d6","#e34948"];
 S.forEach((s,i)=>s.color = PAL[i % PAL.length]);
@@ -494,7 +505,7 @@ function drawNetwork(svg, opts){
       }
     }
     if(opts.labels!==false){
-      el("text",{x:10,y:4,fill:host?"var(--frost)":"var(--muted)","font-size":opts.hero?13:12.5,"font-family":"Roboto Flex, sans-serif",opacity:host?0.95:0.7},g).textContent = n.name;
+      el("text",{x:10,y:4,fill:host?"var(--frost)":"var(--muted)","font-size":opts.hero?13:12.5,"font-family":"Roboto Flex, sans-serif",opacity:host?0.95:0.7},g).textContent = n.name.replace(/ \(.*\)$/,"");
     }
   });
   return {root,gL,gMst,gR,gP,gN};
@@ -527,7 +538,7 @@ function addPulses(gR, gP, routes, id, colorFn){
   addPulses(g.gR,g.gP,sol.policy.routes,"h");
   const rnd = sol.strategies.find(s=>s.name==="random").mean_ms;
   const tel = [
-    [best.mean_ms,2,"ms","average user latency across 8 services"],
+    [best.mean_ms,2,"ms",`average user latency across ${S.length} services`],
     [100*(1-best.mean_ms/rnd),1,"%","lower than a random placement"],
     [best.gap_pct??0,1,"%","from the proven optimum (MILP)"],
     [best.runtime_ms,1,"ms","to compute the plan"],
@@ -552,7 +563,7 @@ function addPulses(gR, gP, routes, id, colorFn){
     const xs=m.n.map(p=>p[0]), ys=m.n.map(p=>p[1]);
     const x0=Math.min(...xs)-30,y0=Math.min(...ys)-30,w=Math.max(...xs)-x0+30,h=Math.max(...ys)-y0+30;
     const card=document.createElement("button");card.className="ds";card.style.textAlign="left";card.style.border="0";card.style.color="inherit";
-    card.addEventListener("click",()=>go("studio"));
+    card.addEventListener("click",()=>window.DATA.bundles[m.name]?openDataset(m.name,"studio"):go("studio"));
     const sv=el("svg",{viewBox:`${x0} ${y0} ${w} ${h}`,preserveAspectRatio:"xMidYMid meet"});
     const sw = Math.max(w,h)/220;
     m.e.forEach(([u,v])=>el("line",{x1:m.n[u][0],y1:m.n[u][1],x2:m.n[v][0],y2:m.n[v][1],stroke:"var(--fibre)","stroke-opacity":.28,"stroke-width":sw},sv));
@@ -568,7 +579,10 @@ const state = {svc:null, layers:{mst:false,rep:true,rt:true}, tab:"routes", sel:
 let SM;
 (function(){
   const ds = document.getElementById("ds");
-  minis.forEach(m=>{const o=document.createElement("option");o.textContent=`${m.name} (${m.nodes} nodes)`;o.selected=m.name==="india";ds.appendChild(o)});
+  const order = m => (m.region===REGION?0:m.region==="global"?2:1);
+  minis.slice().sort((a,b)=>order(a)-order(b)).forEach(m=>{const o=document.createElement("option");const live=!!window.DATA.bundles[m.name];
+    o.value=m.name;o.textContent=`${m.name} (${m.nodes} nodes)${live?"":" (full app only)"}`;o.disabled=!live;o.selected=m.name===KEY;ds.appendChild(o)});
+  ds.onchange=()=>openDataset(ds.value,"studio");
   const vmb=document.getElementById("vmb"), vmbv=document.getElementById("vmbv");
   vmb.value = sol.sizing.budget; const upd=()=>vmbv.textContent=`$${(+vmb.value).toFixed(2)} / h`; upd(); vmb.oninput=upd;
   document.querySelectorAll("#sizing button").forEach(b=>b.onclick=()=>document.querySelectorAll("#sizing button").forEach(x=>x.setAttribute("aria-pressed",x===b)));
@@ -576,7 +590,7 @@ let SM;
   document.getElementById("instSum").innerHTML = `${inst.description}<br>${sm.nodes} nodes, ${sm.links} links, ${sm.servers} servers<br>${S.length} services, ${inst.tasks.length} batch jobs<br>Minimum load ${(sm.cpu_load_min*100).toFixed(0)}% of CPU`;
 
   const svg = document.getElementById("studioMap");
-  const vb = bounds(30); vb[1]-=30; vb[3]+=110; svg.setAttribute("viewBox", vb.join(" "));
+  const vb = bounds(30); vb[1]-=30; vb[3]+=110; vb[2]+=110; svg.setAttribute("viewBox", vb.join(" "));
   SM = drawNetwork(svg,{id:"s"});
   // MST layer
   sol.topology.mst.edges.forEach(e=>{const a=N[e.u],b=N[e.v];el("line",{x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:"var(--violet)","stroke-width":2.6,"stroke-opacity":.85,"stroke-linecap":"round"},SM.gMst)});
@@ -701,6 +715,11 @@ function renderTab(){
 }
 countReadouts();
 
+
+/* ---------- region + dataset switching ---------- */
+document.getElementById("mapCap").textContent = `${inst.description}. Each moving dot is a request on its computed shortest path to the nearest replica.`;
+document.querySelectorAll("[data-region]").forEach(b=>{b.setAttribute("aria-checked", b.dataset.region===REGION);
+  b.onclick=()=>{ if(b.dataset.region!==REGION) openDataset(b.dataset.region,"home"); }});
 
 /* ================= effects (preview) ================= */
 const FX = {splash:true, swarm:false, tc:true, vel:true, glitch:true};
@@ -887,6 +906,8 @@ const onHome = ()=>document.body.classList.contains("on-home");
       {opacity:0,transform:`translate(calc(-50% + ${dx}px), calc(-50% + ${dy2}px)) scale(.9) rotate(${rot}deg)`}],{duration:1300,easing:"cubic-bezier(.2,.7,.2,1)"}).onfinish=()=>el.remove();
   });
 })();
+
+if(START_VIEW==="studio") go("studio");
 </script>
 </body>
 </html>

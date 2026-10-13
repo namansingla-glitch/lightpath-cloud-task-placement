@@ -11,7 +11,7 @@ client = TestClient(app)
 def test_health_and_datasets():
     assert client.get("/api/health").json()["ok"]
     ds = client.get("/api/datasets").json()
-    assert {d["name"] for d in ds} >= {"abilene", "india", "campus"}
+    assert {d["name"] for d in ds} >= {"abilene", "india", "nigeria", "woxsen"}
     one = client.get("/api/datasets/abilene").json()
     assert one["summary"]["nodes"] == 11
     assert client.get("/api/datasets/nope").status_code == 404

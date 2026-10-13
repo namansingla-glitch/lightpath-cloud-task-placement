@@ -60,8 +60,9 @@ web/           dashboard (in design)
 |---|---|---|
 | abilene | Internet2 Abilene backbone (real topology) | 11 / 14 |
 | nsfnet | NSFNET T1 backbone (real topology) | 14 / 21 |
-| india | 24 Indian metros, real coordinates, geographic 3-NN mesh | 24 / 42 |
-| campus | hand-built university campus | 20 / 29 |
+| india | 24 Indian metros + Woxsen University, real coordinates, geographic 3-NN mesh | 25 / 44 |
+| woxsen | Woxsen University campus (sites from the official campus map) | 23 / 29 |
+| nigeria | 24 Nigerian cities, real coordinates, geographic 3-NN mesh | 24 / 47 |
 | fat-tree-k4 | k=4 data-centre fat-tree | 36 / 48 |
 | waxman-60, waxman-60-tight | Waxman geographic WAN (nominal and 0.5× capacity) | 60 / 89 |
 | er-100 | Erdős–Rényi | 100 / 350 |

@@ -224,6 +224,7 @@ INDIA_CITIES = [  # major Indian metros (real coordinates); links synthesised ge
     ("Nagpur", 21.15, 79.09), ("Guwahati", 26.14, 91.74), ("Chandigarh", 30.73, 76.78), ("Indore", 22.72, 75.86),
     ("Patna", 25.59, 85.14), ("Visakhapatnam", 17.69, 83.22), ("Coimbatore", 11.02, 76.96), ("Bhopal", 23.26, 77.41),
     ("Srinagar", 34.08, 74.80), ("Goa", 15.50, 73.83), ("Raipur", 21.25, 81.63), ("Varanasi", 25.32, 82.97),
+    ("Woxsen University", 17.62, 77.94),  # Kamkole, Sangareddy district, Telangana (approximate)
 ]
 
 
@@ -257,42 +258,124 @@ def from_cities(cities: list[tuple[str, float, float]], links: list[tuple[int, i
     return g
 
 
-def campus() -> Graph:
-    """Hand-built university campus: 2 core DC routers, building distribution
-    switches, and edge server rooms.  Latencies are sub-millisecond."""
+WOXSEN_SITES = [
+    # name, tier, x, y   (positions traced from the Woxsen University campus map, west to east)
+    ("Main Entrance (ISP uplink)", "router", 70, 470),
+    ("Parking", "router", 235, 400),
+    ("Amphitheatre", "router", 350, 330),
+    ("Academic Block (Data Centre A)", "core", 470, 345),
+    ("Bloomberg Finance Lab", "edge", 430, 400),
+    ("AI & Robotics Studio", "regional", 505, 405),
+    ("Admin Block / Gateway (Data Centre B)", "core", 465, 520),
+    ("Rise Café", "router", 410, 560),
+    ("Trade Tower", "regional", 520, 485),
+    ("Central Library (Vithal Gandhi Centre)", "regional", 535, 330),
+    ("Cup of Joe Café", "router", 580, 355),
+    ("Ink & Water (Tuck Shop)", "router", 525, 250),
+    ("Care & Cure (Medical Facility)", "edge", 585, 270),
+    ("Hostel Tower", "regional", 690, 230),
+    ("Oval Dining Hall", "router", 770, 300),
+    ("The League (Sports Arena)", "edge", 800, 240),
+    ("SportX", "router", 815, 330),
+    ("Swimming Pool & Blue Embers", "router", 850, 210),
+    ("ICC Cricket Ground", "router", 930, 300),
+    ("Student Hostel A", "edge", 790, 420),
+    ("Student Hostel B", "edge", 840, 445),
+    ("Student Hostel C", "edge", 895, 465),
+    ("Student Hostel D", "edge", 950, 485),
+]
+WOXSEN_FIBRE = [  # (a, b, Gbit/s)
+    ("Main Entrance (ISP uplink)", "Parking", 40), ("Parking", "Amphitheatre", 40),
+    ("Amphitheatre", "Academic Block (Data Centre A)", 40),
+    ("Main Entrance (ISP uplink)", "Admin Block / Gateway (Data Centre B)", 40),
+    ("Academic Block (Data Centre A)", "Admin Block / Gateway (Data Centre B)", 100),
+    ("Academic Block (Data Centre A)", "Bloomberg Finance Lab", 10),
+    ("Academic Block (Data Centre A)", "AI & Robotics Studio", 40),
+    ("Academic Block (Data Centre A)", "Central Library (Vithal Gandhi Centre)", 40),
+    ("Admin Block / Gateway (Data Centre B)", "Rise Café", 1),
+    ("Admin Block / Gateway (Data Centre B)", "Trade Tower", 40),
+    ("Trade Tower", "AI & Robotics Studio", 10),
+    ("Central Library (Vithal Gandhi Centre)", "Cup of Joe Café", 1),
+    ("Central Library (Vithal Gandhi Centre)", "Ink & Water (Tuck Shop)", 10),
+    ("Ink & Water (Tuck Shop)", "Care & Cure (Medical Facility)", 10),
+    ("Central Library (Vithal Gandhi Centre)", "Hostel Tower", 40),
+    ("Care & Cure (Medical Facility)", "Hostel Tower", 10),
+    ("Hostel Tower", "Oval Dining Hall", 10), ("Hostel Tower", "The League (Sports Arena)", 10),
+    ("The League (Sports Arena)", "Swimming Pool & Blue Embers", 1), ("The League (Sports Arena)", "SportX", 10),
+    ("Oval Dining Hall", "SportX", 10), ("SportX", "ICC Cricket Ground", 10),
+    ("Swimming Pool & Blue Embers", "ICC Cricket Ground", 1),
+    ("Trade Tower", "Student Hostel A", 40),            # southern ring back to the data centres
+    ("SportX", "Student Hostel A", 10), ("Student Hostel A", "Student Hostel B", 10),
+    ("Student Hostel B", "Student Hostel C", 10), ("Student Hostel C", "Student Hostel D", 10),
+    ("Student Hostel D", "ICC Cricket Ground", 10),
+]
+
+
+def woxsen_campus() -> Graph:
+    """Woxsen University, Kamkole (Sangareddy, Telangana).  Site names and their
+    west-to-east arrangement follow the official campus map; the fibre plan,
+    server sizes and the two data-centre locations are modelling assumptions.
+    The campus spans roughly 1.7 km, so links are sub-millisecond."""
     g = Graph()
-    spec = [
-        # name, tier, x, y
-        ("Core DC-A", "core", 480, 460), ("Core DC-B", "core", 560, 520),
-        ("Admin Block", "router", 300, 300), ("Library", "regional", 700, 280), ("CSE Block", "regional", 820, 480),
-        ("ECE Block", "edge", 760, 680), ("Mech Block", "edge", 560, 780), ("Civil Block", "router", 360, 760),
-        ("Hostel A", "edge", 140, 560), ("Hostel B", "edge", 160, 720), ("Hostel C", "edge", 320, 900),
-        ("Hostel D", "router", 120, 400), ("Sports Complex", "router", 920, 820), ("Research Park", "regional", 900, 200),
-        ("Auditorium", "router", 520, 200), ("Medical Centre", "edge", 220, 160), ("Cafeteria", "router", 640, 620),
-        ("Guest House", "edge", 900, 640), ("Main Gate ISP", "router", 60, 60), ("Innovation Lab", "edge", 380, 560),
-    ]
-    for name, tier, x, y in spec:
+    for name, tier, x, y in WOXSEN_SITES:
         cpu, mem, cost = TIERS[tier]
         if tier == "core":
             cpu, mem, cost = 64, 256, 1.8
+        if name.startswith("AI & Robotics"):
+            cpu, mem, cost = 32, 256, 1.6  # GPU workstation room
         g.add_node(name=name, tier=tier, cpu=cpu, mem=mem, cost=cost, x=float(x), y=float(y))
-    idx = {s[0]: i for i, s in enumerate(spec)}
-    fibre = [("Core DC-A", "Core DC-B", 40), ("Core DC-A", "Admin Block", 40), ("Core DC-A", "Innovation Lab", 10),
-             ("Core DC-A", "Auditorium", 10), ("Core DC-A", "Hostel D", 10), ("Core DC-B", "Library", 40),
-             ("Core DC-B", "CSE Block", 40), ("Core DC-B", "Cafeteria", 10), ("Core DC-B", "Mech Block", 10),
-             ("Admin Block", "Medical Centre", 10), ("Admin Block", "Main Gate ISP", 40), ("Admin Block", "Auditorium", 10),
-             ("Library", "Research Park", 40), ("Library", "Auditorium", 10), ("CSE Block", "Research Park", 40),
-             ("CSE Block", "ECE Block", 10), ("CSE Block", "Guest House", 10), ("ECE Block", "Cafeteria", 10),
-             ("ECE Block", "Sports Complex", 1), ("Guest House", "Sports Complex", 1), ("Mech Block", "Civil Block", 10),
-             ("Civil Block", "Hostel C", 10), ("Civil Block", "Innovation Lab", 10), ("Hostel A", "Hostel B", 1),
-             ("Hostel A", "Hostel D", 10), ("Hostel A", "Innovation Lab", 10), ("Hostel B", "Hostel C", 1),
-             ("Hostel D", "Medical Centre", 1), ("Mech Block", "Cafeteria", 10)]
-    for a, b, bw in fibre:
+    idx = {s[0]: i for i, s in enumerate(WOXSEN_SITES)}
+    for a, b, bw in WOXSEN_FIBRE:
         u, v = idx[a], idx[b]
-        meters = math.hypot(spec[u][2] - spec[v][2], spec[u][3] - spec[v][3]) * 2.0
+        meters = math.hypot(WOXSEN_SITES[u][2] - WOXSEN_SITES[v][2], WOXSEN_SITES[u][3] - WOXSEN_SITES[v][3]) * 1.8
         lat = round(0.05 + meters / 200_000.0 + (0.08 if bw <= 1 else 0.02 if bw <= 10 else 0.01), 4)
         g.add_edge(u, v, latency=lat, bandwidth=bw, meters=round(meters))
     return g
+
+
+campus = woxsen_campus  # backwards-compatible name
+
+
+def woxsen_services(g: Graph, rng: random.Random) -> list[Service]:
+    """Campus workloads with demand where the users actually are."""
+    idx = {a["name"]: i for i, a in enumerate(g.nodes)}
+    H = ["Student Hostel A", "Student Hostel B", "Student Hostel C", "Student Hostel D", "Hostel Tower"]
+    ACAD = ["Academic Block (Data Centre A)", "Trade Tower", "Central Library (Vithal Gandhi Centre)",
+            "AI & Robotics Studio", "Bloomberg Finance Lab"]
+    spec = [
+        # name, cpu, mem, kmin, kmax, priority, {site: weight}
+        ("learning-portal", 4, 16, 1, 4, 2.0, {**{h: 1.0 for h in H}, **{a: 0.8 for a in ACAD}}),
+        ("wifi-auth", 2, 4, 2, 4, 2.0, {**{h: 1.0 for h in H}, "Oval Dining Hall": .6, "The League (Sports Arena)": .5,
+                                        "Central Library (Vithal Gandhi Centre)": .8, "Admin Block / Gateway (Data Centre B)": .4}),
+        ("library-search", 4, 16, 1, 3, 1.0, {"Central Library (Vithal Gandhi Centre)": 1.0, "Cup of Joe Café": .3,
+                                              "Hostel Tower": .5, "Student Hostel B": .3, "Academic Block (Data Centre A)": .5}),
+        ("bloomberg-feed", 4, 8, 1, 2, 1.5, {"Bloomberg Finance Lab": 1.0, "Trade Tower": .7}),
+        ("ai-lab-gpu-jobs", 16, 64, 1, 2, 1.0, {"AI & Robotics Studio": 1.0, "Academic Block (Data Centre A)": .4,
+                                                "Hostel Tower": .2}),
+        ("lecture-capture", 8, 32, 1, 3, 1.0, {"Academic Block (Data Centre A)": 1.0, "Amphitheatre": .6, "Trade Tower": .5,
+                                               **{h: .4 for h in H}}),
+        ("dining-and-tuck-pos", 2, 4, 1, 3, 1.0, {"Oval Dining Hall": 1.0, "Ink & Water (Tuck Shop)": .6, "Rise Café": .5,
+                                                  "Cup of Joe Café": .5, "Swimming Pool & Blue Embers": .4}),
+        ("sports-live-stream", 8, 16, 1, 3, 1.0, {"The League (Sports Arena)": 1.0, "ICC Cricket Ground": .8, "SportX": .6,
+                                                  **{h: .5 for h in H}}),
+    ]
+    out = []
+    for j, (name, cpu, mem, kmin, kmax, pr, dem) in enumerate(spec):
+        demand = {idx[k]: round(600 * w * rng.uniform(.8, 1.2), 1) for k, w in dem.items()}
+        out.append(Service(id=j, name=name, cpu=cpu, mem=mem, demand=demand, min_replicas=kmin, max_replicas=kmax,
+                           vm_cost=round(0.024 * cpu + 0.003 * mem, 3), priority=pr, color=PALETTE[j % len(PALETTE)]))
+    return out
+
+
+NIGERIA_CITIES = [  # 24 major Nigerian cities (real coordinates); links synthesised geographically
+    ("Lagos", 6.52, 3.38), ("Abuja", 9.06, 7.49), ("Kano", 12.00, 8.52), ("Ibadan", 7.38, 3.95),
+    ("Port Harcourt", 4.82, 7.03), ("Benin City", 6.34, 5.63), ("Kaduna", 10.52, 7.44), ("Enugu", 6.44, 7.50),
+    ("Jos", 9.90, 8.86), ("Ilorin", 8.50, 4.55), ("Abeokuta", 7.16, 3.35), ("Onitsha", 6.15, 6.79),
+    ("Warri", 5.52, 5.75), ("Calabar", 4.95, 8.32), ("Maiduguri", 11.83, 13.15), ("Sokoto", 13.06, 5.24),
+    ("Owerri", 5.48, 7.03), ("Uyo", 5.04, 7.93), ("Akure", 7.25, 5.19), ("Yola", 9.20, 12.48),
+    ("Makurdi", 7.73, 8.54), ("Bauchi", 10.31, 9.84), ("Minna", 9.61, 6.56), ("Katsina", 12.99, 7.60),
+]
+NIGERIA_CORE = ("Lagos", "Abuja", "Port Harcourt")
 
 
 # ---------------------------------------------------------------- workloads
@@ -333,7 +416,7 @@ def make_tasks(g: Graph, T: int, rng: random.Random) -> list[BatchTask]:
 def build_instance(model: str = "waxman", n: int = 30, seed: int = 0, services: int = 6, tasks: int = 12,
                    capacity_factor: float = 1.0, budget_factor: float = 1.6, **params: Any) -> Instance:
     """Generate a complete instance. ``model`` in waxman | erdos_renyi | barabasi_albert |
-    fat_tree | abilene | nsfnet | india | campus."""
+    fat_tree | abilene | nsfnet | india | nigeria | woxsen (alias campus)."""
     rng = random.Random(seed * 7919 + 17)
     source, desc = "synthetic", ""
     if model == "waxman":
@@ -357,22 +440,32 @@ def build_instance(model: str = "waxman", n: int = 30, seed: int = 0, services: 
         source, desc = "real", "NSFNET T1 backbone (14 nodes, 21 links)"
     elif model == "india":
         g = from_cities(INDIA_CITIES, None, params.get("k_nearest", 3), seed)
-        source, desc = "real-coordinates", "24 Indian metros, geographic 3-nearest-neighbour fibre mesh"
-    elif model == "campus":
-        g = campus()
-        source, desc = "hand-built", "University campus network (20 sites)"
+        source, desc = "real-coordinates", "24 Indian metros plus Woxsen University, geographic 3-nearest-neighbour mesh"
+    elif model == "nigeria":
+        g = from_cities(NIGERIA_CITIES, None, params.get("k_nearest", 3), seed)
+        source, desc = "real-coordinates", "24 Nigerian cities, geographic 3-nearest-neighbour mesh"
+    elif model in ("woxsen", "campus"):
+        g = woxsen_campus()
+        source, desc = "campus-map", "Woxsen University campus, Kamkole (23 sites from the campus map)"
     else:
         raise ValueError(f"unknown model {model}")
-    if model not in ("fat_tree", "campus"):
+    if model not in ("fat_tree", "campus", "woxsen"):
         assign_tiers(g, rng, capacity_factor, router_frac=params.get("router_frac", 0.15))
+        if model == "nigeria":  # the three commercial hubs host the core data centres
+            for a in g.nodes:
+                t = "core" if a["name"] in NIGERIA_CORE else ("regional" if a["tier"] == "core" else a["tier"])
+                cpu, mem, cost = TIERS[t]
+                a.update(tier=t, cpu=round(cpu * capacity_factor), mem=round(mem * capacity_factor), cost=cost)
     elif capacity_factor != 1.0:
         for a in g.nodes:
             a["cpu"] = round(a.get("cpu", 0) * capacity_factor)
             a["mem"] = round(a.get("mem", 0) * capacity_factor)
     add_rebates(g, rng)
-    svcs = make_services(g, services, rng)
+    svcs = woxsen_services(g, rng) if model in ("woxsen", "campus") else make_services(g, services, rng)
     tsk = make_tasks(g, tasks, rng)
     budget = round(budget_factor * sum(s.vm_cost * s.min_replicas for s in svcs), 2)
-    name = params.get("name") or (model if model in ("abilene", "nsfnet", "india", "campus") else f"{model}-{n}-s{seed}")
+    named = ("abilene", "nsfnet", "india", "nigeria", "woxsen", "campus")
+    name = params.get("name") or ("woxsen" if model == "campus" else model if model in named else f"{model}-{n}-s{seed}")
+    region = "nigeria" if model == "nigeria" else "india" if model in ("india", "woxsen", "campus") else "global"
     return Instance(name=name, graph=g, services=svcs, tasks=tsk, budget=budget, description=desc, source=source,
-                    meta={"model": model, "n": g.n, "seed": seed, "capacity_factor": capacity_factor, **params})
+                    meta={"model": model, "n": g.n, "seed": seed, "capacity_factor": capacity_factor, "region": region, **params})

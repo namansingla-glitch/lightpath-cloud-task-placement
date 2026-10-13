@@ -8,6 +8,7 @@
   "n": 36,
   "seed": 7,
   "capacity_factor": 1.0,
+  "region": "global",
   "name": "fat-tree-k4",
   "k": 4
  },

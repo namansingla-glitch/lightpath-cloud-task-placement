@@ -1,0 +1,942 @@
+{
+ "name": "nigeria",
+ "description": "24 Nigerian cities, geographic 3-nearest-neighbour mesh",
+ "source": "real-coordinates",
+ "budget": 4.67,
+ "meta": {
+  "model": "nigeria",
+  "n": 24,
+  "seed": 7,
+  "capacity_factor": 1.0,
+  "region": "nigeria",
+  "name": "nigeria"
+ },
+ "graph": {
+  "directed": false,
+  "nodes": [
+   {
+    "id": 0,
+    "name": "Lagos",
+    "lat": 6.52,
+    "lon": 3.38,
+    "x": 62.7,
+    "y": 654.5,
+    "tier": "core",
+    "cpu": 48,
+    "mem": 192,
+    "cost": 1.9
+   },
+   {
+    "id": 1,
+    "name": "Abuja",
+    "lat": 9.06,
+    "lon": 7.49,
+    "x": 431.8,
+    "y": 423.6,
+    "tier": "core",
+    "cpu": 48,
+    "mem": 192,
+    "cost": 1.9
+   },
+   {
+    "id": 2,
+    "name": "Kano",
+    "lat": 12.0,
+    "lon": 8.52,
+    "x": 524.2,
+    "y": 156.4,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 3,
+    "name": "Ibadan",
+    "lat": 7.38,
+    "lon": 3.95,
+    "x": 113.9,
+    "y": 576.3,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 4,
+    "name": "Port Harcourt",
+    "lat": 4.82,
+    "lon": 7.03,
+    "x": 390.4,
+    "y": 809.0,
+    "tier": "core",
+    "cpu": 48,
+    "mem": 192,
+    "cost": 1.9
+   },
+   {
+    "id": 5,
+    "name": "Benin City",
+    "lat": 6.34,
+    "lon": 5.63,
+    "x": 264.7,
+    "y": 670.8,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 6,
+    "name": "Kaduna",
+    "lat": 10.52,
+    "lon": 7.44,
+    "x": 427.3,
+    "y": 290.9,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 7,
+    "name": "Enugu",
+    "lat": 6.44,
+    "lon": 7.5,
+    "x": 432.7,
+    "y": 661.8,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 8,
+    "name": "Jos",
+    "lat": 9.9,
+    "lon": 8.86,
+    "x": 554.8,
+    "y": 347.2,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 9,
+    "name": "Ilorin",
+    "lat": 8.5,
+    "lon": 4.55,
+    "x": 167.8,
+    "y": 474.5,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 10,
+    "name": "Abeokuta",
+    "lat": 7.16,
+    "lon": 3.35,
+    "x": 60.0,
+    "y": 596.3,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 11,
+    "name": "Onitsha",
+    "lat": 6.15,
+    "lon": 6.79,
+    "x": 368.9,
+    "y": 688.1,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 12,
+    "name": "Warri",
+    "lat": 5.52,
+    "lon": 5.75,
+    "x": 275.5,
+    "y": 745.4,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 13,
+    "name": "Calabar",
+    "lat": 4.95,
+    "lon": 8.32,
+    "x": 506.3,
+    "y": 797.2,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 14,
+    "name": "Maiduguri",
+    "lat": 11.83,
+    "lon": 13.15,
+    "x": 940.0,
+    "y": 171.8,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 15,
+    "name": "Sokoto",
+    "lat": 13.06,
+    "lon": 5.24,
+    "x": 229.7,
+    "y": 60.0,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 16,
+    "name": "Owerri",
+    "lat": 5.48,
+    "lon": 7.03,
+    "x": 390.4,
+    "y": 749.0,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 17,
+    "name": "Uyo",
+    "lat": 5.04,
+    "lon": 7.93,
+    "x": 471.3,
+    "y": 789.0,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 18,
+    "name": "Akure",
+    "lat": 7.25,
+    "lon": 5.19,
+    "x": 225.2,
+    "y": 588.1,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 19,
+    "name": "Yola",
+    "lat": 9.2,
+    "lon": 12.48,
+    "x": 879.8,
+    "y": 410.9,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 20,
+    "name": "Makurdi",
+    "lat": 7.73,
+    "lon": 8.54,
+    "x": 526.0,
+    "y": 544.5,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 21,
+    "name": "Bauchi",
+    "lat": 10.31,
+    "lon": 9.84,
+    "x": 642.8,
+    "y": 310.0,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 22,
+    "name": "Minna",
+    "lat": 9.61,
+    "lon": 6.56,
+    "x": 348.2,
+    "y": 373.6,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 23,
+    "name": "Katsina",
+    "lat": 12.99,
+    "lon": 7.6,
+    "x": 441.6,
+    "y": 66.4,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   }
+  ],
+  "links": [
+   {
+    "u": 0,
+    "v": 10,
+    "latency": 0.763,
+    "bandwidth": 40,
+    "km": 71.2
+   },
+   {
+    "u": 0,
+    "v": 3,
+    "latency": 1.044,
+    "bandwidth": 10,
+    "km": 114.5
+   },
+   {
+    "u": 0,
+    "v": 18,
+    "latency": 1.702,
+    "bandwidth": 40,
+    "km": 215.7
+   },
+   {
+    "u": 1,
+    "v": 22,
+    "latency": 1.073,
+    "bandwidth": 100,
+    "km": 119.0
+   },
+   {
+    "u": 1,
+    "v": 6,
+    "latency": 1.356,
+    "bandwidth": 10,
+    "km": 162.4
+   },
+   {
+    "u": 1,
+    "v": 8,
+    "latency": 1.45,
+    "bandwidth": 10,
+    "km": 176.9
+   },
+   {
+    "u": 1,
+    "v": 20,
+    "latency": 1.52,
+    "bandwidth": 100,
+    "km": 187.6
+   },
+   {
+    "u": 2,
+    "v": 23,
+    "latency": 1.266,
+    "bandwidth": 100,
+    "km": 148.6
+   },
+   {
+    "u": 2,
+    "v": 6,
+    "latency": 1.615,
+    "bandwidth": 10,
+    "km": 202.4
+   },
+   {
+    "u": 2,
+    "v": 8,
+    "latency": 1.837,
+    "bandwidth": 40,
+    "km": 236.4
+   },
+   {
+    "u": 2,
+    "v": 14,
+    "latency": 3.577,
+    "bandwidth": 10,
+    "km": 504.1
+   },
+   {
+    "u": 2,
+    "v": 15,
+    "latency": 2.738,
+    "bandwidth": 100,
+    "km": 375.0,
+    "rebate": 0.0073,
+    "rebate_dir": [
+     2,
+     15
+    ]
+   },
+   {
+    "u": 2,
+    "v": 21,
+    "latency": 1.839,
+    "bandwidth": 100,
+    "km": 236.7
+   },
+   {
+    "u": 3,
+    "v": 10,
+    "latency": 0.759,
+    "bandwidth": 100,
+    "km": 70.6
+   },
+   {
+    "u": 3,
+    "v": 18,
+    "latency": 1.194,
+    "bandwidth": 10,
+    "km": 137.5
+   },
+   {
+    "u": 3,
+    "v": 9,
+    "latency": 1.216,
+    "bandwidth": 100,
+    "km": 141.0
+   },
+   {
+    "u": 4,
+    "v": 16,
+    "latency": 0.777,
+    "bandwidth": 100,
+    "km": 73.4,
+    "rebate": 0.0081,
+    "rebate_dir": [
+     16,
+     4
+    ]
+   },
+   {
+    "u": 4,
+    "v": 17,
+    "latency": 0.967,
+    "bandwidth": 10,
+    "km": 102.7
+   },
+   {
+    "u": 4,
+    "v": 13,
+    "latency": 1.234,
+    "bandwidth": 10,
+    "km": 143.6
+   },
+   {
+    "u": 5,
+    "v": 12,
+    "latency": 0.899,
+    "bandwidth": 10,
+    "km": 92.1
+   },
+   {
+    "u": 5,
+    "v": 18,
+    "latency": 1.03,
+    "bandwidth": 40,
+    "km": 112.2
+   },
+   {
+    "u": 5,
+    "v": 11,
+    "latency": 1.145,
+    "bandwidth": 40,
+    "km": 129.9
+   },
+   {
+    "u": 6,
+    "v": 22,
+    "latency": 1.208,
+    "bandwidth": 10,
+    "km": 139.7
+   },
+   {
+    "u": 6,
+    "v": 8,
+    "latency": 1.405,
+    "bandwidth": 10,
+    "km": 170.0
+   },
+   {
+    "u": 6,
+    "v": 15,
+    "latency": 2.707,
+    "bandwidth": 10,
+    "km": 370.3
+   },
+   {
+    "u": 6,
+    "v": 21,
+    "latency": 2.013,
+    "bandwidth": 40,
+    "km": 263.5
+   },
+   {
+    "u": 6,
+    "v": 23,
+    "latency": 2.089,
+    "bandwidth": 100,
+    "km": 275.2
+   },
+   {
+    "u": 7,
+    "v": 11,
+    "latency": 0.851,
+    "bandwidth": 10,
+    "km": 84.8
+   },
+   {
+    "u": 7,
+    "v": 16,
+    "latency": 1.072,
+    "bandwidth": 100,
+    "km": 118.7
+   },
+   {
+    "u": 7,
+    "v": 17,
+    "latency": 1.358,
+    "bandwidth": 40,
+    "km": 162.8
+   },
+   {
+    "u": 7,
+    "v": 20,
+    "latency": 1.494,
+    "bandwidth": 10,
+    "km": 183.7
+   },
+   {
+    "u": 8,
+    "v": 21,
+    "latency": 1.058,
+    "bandwidth": 10,
+    "km": 116.6
+   },
+   {
+    "u": 8,
+    "v": 19,
+    "latency": 2.929,
+    "bandwidth": 40,
+    "km": 404.5
+   },
+   {
+    "u": 8,
+    "v": 20,
+    "latency": 1.885,
+    "bandwidth": 10,
+    "km": 243.8
+   },
+   {
+    "u": 9,
+    "v": 18,
+    "latency": 1.313,
+    "bandwidth": 10,
+    "km": 155.8
+   },
+   {
+    "u": 9,
+    "v": 10,
+    "latency": 1.595,
+    "bandwidth": 10,
+    "km": 199.2
+   },
+   {
+    "u": 9,
+    "v": 22,
+    "latency": 1.944,
+    "bandwidth": 100,
+    "km": 252.9
+   },
+   {
+    "u": 11,
+    "v": 16,
+    "latency": 0.814,
+    "bandwidth": 100,
+    "km": 79.1
+   },
+   {
+    "u": 11,
+    "v": 12,
+    "latency": 1.176,
+    "bandwidth": 100,
+    "km": 134.7
+   },
+   {
+    "u": 12,
+    "v": 16,
+    "latency": 1.221,
+    "bandwidth": 100,
+    "km": 141.7
+   },
+   {
+    "u": 13,
+    "v": 17,
+    "latency": 0.588,
+    "bandwidth": 10,
+    "km": 44.3
+   },
+   {
+    "u": 13,
+    "v": 16,
+    "latency": 1.304,
+    "bandwidth": 100,
+    "km": 154.5
+   },
+   {
+    "u": 14,
+    "v": 19,
+    "latency": 2.26,
+    "bandwidth": 100,
+    "km": 301.5,
+    "rebate": 0.0198,
+    "rebate_dir": [
+     19,
+     14
+    ]
+   },
+   {
+    "u": 14,
+    "v": 21,
+    "latency": 2.892,
+    "bandwidth": 40,
+    "km": 398.8
+   },
+   {
+    "u": 15,
+    "v": 23,
+    "latency": 1.963,
+    "bandwidth": 10,
+    "km": 255.8
+   },
+   {
+    "u": 16,
+    "v": 17,
+    "latency": 1.022,
+    "bandwidth": 10,
+    "km": 111.0
+   },
+   {
+    "u": 19,
+    "v": 21,
+    "latency": 2.344,
+    "bandwidth": 40,
+    "km": 314.5
+   }
+  ]
+ },
+ "services": [
+  {
+   "id": 0,
+   "name": "web-frontend",
+   "cpu": 4,
+   "mem": 8,
+   "demand": {
+    "10": 1120.5,
+    "3": 609.3,
+    "2": 380.6,
+    "13": 329.1,
+    "6": 177.6,
+    "5": 226.6,
+    "18": 139.9,
+    "17": 144.9,
+    "11": 134.4
+   },
+   "min_replicas": 2,
+   "max_replicas": 5,
+   "vm_cost": 0.12,
+   "priority": 2.0,
+   "color": "#7c5cff"
+  },
+  {
+   "id": 1,
+   "name": "auth",
+   "cpu": 2,
+   "mem": 4,
+   "demand": {
+    "8": 711.5,
+    "19": 545.7,
+    "20": 466.7,
+    "1": 292.8,
+    "14": 286.1,
+    "6": 148.9,
+    "21": 155.4,
+    "13": 157.2,
+    "2": 136.1
+   },
+   "min_replicas": 1,
+   "max_replicas": 4,
+   "vm_cost": 0.06,
+   "priority": 1.0,
+   "color": "#22d3ee"
+  },
+  {
+   "id": 2,
+   "name": "search",
+   "cpu": 8,
+   "mem": 32,
+   "demand": {
+    "16": 746.0,
+    "9": 591.3,
+    "8": 397.2,
+    "1": 278.2,
+    "2": 168.5,
+    "23": 143.8
+   },
+   "min_replicas": 1,
+   "max_replicas": 5,
+   "vm_cost": 0.288,
+   "priority": 1.5,
+   "color": "#f472b6"
+  },
+  {
+   "id": 3,
+   "name": "video-transcode",
+   "cpu": 16,
+   "mem": 32,
+   "demand": {
+    "7": 961.9,
+    "6": 521.1,
+    "0": 463.1,
+    "15": 249.2,
+    "4": 291.6,
+    "3": 228.1,
+    "22": 180.9
+   },
+   "min_replicas": 1,
+   "max_replicas": 2,
+   "vm_cost": 0.48,
+   "priority": 1.5,
+   "color": "#facc15"
+  },
+  {
+   "id": 4,
+   "name": "ml-inference",
+   "cpu": 8,
+   "mem": 64,
+   "demand": {
+    "7": 1247.6,
+    "21": 617.2,
+    "19": 464.5,
+    "10": 216.0,
+    "2": 296.6,
+    "9": 223.4,
+    "22": 225.4,
+    "5": 120.6
+   },
+   "min_replicas": 1,
+   "max_replicas": 4,
+   "vm_cost": 0.384,
+   "priority": 2.0,
+   "color": "#34d399"
+  },
+  {
+   "id": 5,
+   "name": "cache",
+   "cpu": 4,
+   "mem": 32,
+   "demand": {
+    "11": 1066.0,
+    "21": 601.3,
+    "2": 345.2,
+    "5": 220.3,
+    "8": 186.2
+   },
+   "min_replicas": 1,
+   "max_replicas": 5,
+   "vm_cost": 0.192,
+   "priority": 1.5,
+   "color": "#fb923c"
+  },
+  {
+   "id": 6,
+   "name": "payments",
+   "cpu": 4,
+   "mem": 8,
+   "demand": {
+    "8": 706.3,
+    "18": 598.3,
+    "2": 292.2,
+    "17": 317.8,
+    "13": 282.5
+   },
+   "min_replicas": 1,
+   "max_replicas": 5,
+   "vm_cost": 0.12,
+   "priority": 1.0,
+   "color": "#60a5fa"
+  },
+  {
+   "id": 7,
+   "name": "analytics",
+   "cpu": 16,
+   "mem": 64,
+   "demand": {
+    "11": 1197.7,
+    "1": 452.9,
+    "19": 438.9,
+    "12": 306.7
+   },
+   "min_replicas": 2,
+   "max_replicas": 4,
+   "vm_cost": 0.576,
+   "priority": 1.0,
+   "color": "#e879f9"
+  }
+ ],
+ "tasks": [
+  {
+   "id": 0,
+   "name": "backup-00",
+   "duration": 52.4,
+   "data_node": 22,
+   "data_gb": 7.0,
+   "priority": 2.0
+  },
+  {
+   "id": 1,
+   "name": "etl-01",
+   "duration": 36.5,
+   "data_node": 0,
+   "data_gb": 19.8,
+   "priority": 2.0
+  },
+  {
+   "id": 2,
+   "name": "simulate-02",
+   "duration": 19.1,
+   "data_node": 3,
+   "data_gb": 19.0,
+   "priority": 3.0
+  },
+  {
+   "id": 3,
+   "name": "index-03",
+   "duration": 14.6,
+   "data_node": 14,
+   "data_gb": 7.3,
+   "priority": 3.0
+  },
+  {
+   "id": 4,
+   "name": "backup-04",
+   "duration": 29.4,
+   "data_node": 18,
+   "data_gb": 7.4,
+   "priority": 3.0
+  },
+  {
+   "id": 5,
+   "name": "index-05",
+   "duration": 23.7,
+   "data_node": 0,
+   "data_gb": 12.1,
+   "priority": 3.0
+  },
+  {
+   "id": 6,
+   "name": "backup-06",
+   "duration": 9.9,
+   "data_node": 13,
+   "data_gb": 16.9,
+   "priority": 3.0
+  },
+  {
+   "id": 7,
+   "name": "index-07",
+   "duration": 45.3,
+   "data_node": 22,
+   "data_gb": 12.0,
+   "priority": 3.0
+  },
+  {
+   "id": 8,
+   "name": "render-08",
+   "duration": 58.7,
+   "data_node": 21,
+   "data_gb": 7.9,
+   "priority": 2.0
+  },
+  {
+   "id": 9,
+   "name": "render-09",
+   "duration": 44.7,
+   "data_node": 12,
+   "data_gb": 14.5,
+   "priority": 2.0
+  },
+  {
+   "id": 10,
+   "name": "report-10",
+   "duration": 180.4,
+   "data_node": 5,
+   "data_gb": 11.0,
+   "priority": 2.0
+  },
+  {
+   "id": 11,
+   "name": "index-11",
+   "duration": 14.8,
+   "data_node": 14,
+   "data_gb": 8.9,
+   "priority": 2.0
+  },
+  {
+   "id": 12,
+   "name": "report-12",
+   "duration": 96.8,
+   "data_node": 13,
+   "data_gb": 5.2,
+   "priority": 2.0
+  },
+  {
+   "id": 13,
+   "name": "backup-13",
+   "duration": 21.5,
+   "data_node": 1,
+   "data_gb": 11.2,
+   "priority": 3.0
+  },
+  {
+   "id": 14,
+   "name": "encode-14",
+   "duration": 32.2,
+   "data_node": 15,
+   "data_gb": 18.8,
+   "priority": 1.0
+  },
+  {
+   "id": 15,
+   "name": "train-15",
+   "duration": 142.0,
+   "data_node": 1,
+   "data_gb": 4.8,
+   "priority": 2.0
+  }
+ ]
+}

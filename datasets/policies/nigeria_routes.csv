@@ -1,0 +1,54 @@
+service,service_id,client,client_name,replica,replica_name,rate,latency_ms,hops,path,path_names,backbone_latency_ms,stretch
+ml-inference,4,7,Enugu,7,Enugu,1247.6,0.0,0,7,Enugu,0.0,1.0
+analytics,7,11,Onitsha,16,Owerri,1197.7,0.814,1,11 > 16,Onitsha > Owerri,0.814,1.0
+web-frontend,0,10,Abeokuta,10,Abeokuta,1120.5,0.0,0,10,Abeokuta,0.0,1.0
+cache,5,11,Onitsha,11,Onitsha,1066.0,0.0,0,11,Onitsha,0.0,1.0
+video-transcode,3,7,Enugu,7,Enugu,961.9,0.0,0,7,Enugu,0.0,1.0
+search,2,16,Owerri,16,Owerri,746.0,0.0,0,16,Owerri,0.0,1.0
+auth,1,8,Jos,8,Jos,711.5,0.0,0,8,Jos,0.0,1.0
+payments,6,8,Jos,8,Jos,706.3,0.0,0,8,Jos,0.0,1.0
+ml-inference,4,21,Bauchi,21,Bauchi,617.2,0.0,0,21,Bauchi,0.0,1.0
+web-frontend,0,3,Ibadan,10,Abeokuta,609.3,0.759,1,3 > 10,Ibadan > Abeokuta,0.759,1.0
+cache,5,21,Bauchi,21,Bauchi,601.3,0.0,0,21,Bauchi,0.0,1.0
+payments,6,18,Akure,11,Onitsha,598.3,2.175,2,18 > 5 > 11,Akure > Benin City > Onitsha,2.175,1.0
+search,2,9,Ilorin,1,Abuja,591.3,3.017,2,9 > 22 > 1,Ilorin > Minna > Abuja,8.45,2.801
+auth,1,19,Yola,19,Yola,545.7,0.0,0,19,Yola,0.0,1.0
+video-transcode,3,6,Kaduna,6,Kaduna,521.1,0.0,0,6,Kaduna,0.0,1.0
+auth,1,20,Makurdi,8,Jos,466.7,1.885,1,20 > 8,Makurdi > Jos,5.206,2.762
+ml-inference,4,19,Yola,21,Bauchi,464.5,2.344,1,19 > 21,Yola > Bauchi,2.344,1.0
+video-transcode,3,0,Lagos,7,Enugu,463.1,4.728,4,0 > 18 > 5 > 11 > 7,Lagos > Akure > Benin City > Onitsha > Enugu,5.742,1.214
+analytics,7,1,Abuja,1,Abuja,452.9,0.0,0,1,Abuja,0.0,1.0
+analytics,7,19,Yola,1,Abuja,438.9,4.379,2,19 > 8 > 1,Yola > Jos > Abuja,7.088,1.619
+search,2,8,Jos,1,Abuja,397.2,1.45,1,8 > 1,Jos > Abuja,3.686,2.542
+web-frontend,0,2,Kano,2,Kano,380.6,0.0,0,2,Kano,0.0,1.0
+cache,5,2,Kano,21,Bauchi,345.2,1.839,1,2 > 21,Kano > Bauchi,4.078,2.218
+web-frontend,0,13,Calabar,13,Calabar,329.1,0.0,0,13,Calabar,0.0,1.0
+payments,6,17,Uyo,11,Onitsha,317.8,1.836,2,17 > 16 > 11,Uyo > Owerri > Onitsha,2.558,1.393
+analytics,7,12,Warri,16,Owerri,306.7,1.221,1,12 > 16,Warri > Owerri,2.858,2.341
+ml-inference,4,2,Kano,21,Bauchi,296.6,1.839,1,2 > 21,Kano > Bauchi,4.078,2.218
+auth,1,1,Abuja,8,Jos,292.8,1.45,1,1 > 8,Abuja > Jos,3.686,2.542
+payments,6,2,Kano,8,Jos,292.2,1.837,1,2 > 8,Kano > Jos,3.02,1.644
+video-transcode,3,4,Port Harcourt,7,Enugu,291.6,1.849,2,4 > 16 > 7,Port Harcourt > Owerri > Enugu,2.442,1.321
+auth,1,14,Maiduguri,19,Yola,286.1,2.26,1,14 > 19,Maiduguri > Yola,2.26,1.0
+payments,6,13,Calabar,11,Onitsha,282.5,2.118,2,13 > 16 > 11,Calabar > Owerri > Onitsha,3.146,1.485
+search,2,1,Abuja,1,Abuja,278.2,0.0,0,1,Abuja,0.0,1.0
+video-transcode,3,15,Sokoto,6,Kaduna,249.2,2.707,1,15 > 6,Sokoto > Kaduna,4.844,1.789
+video-transcode,3,3,Ibadan,7,Enugu,228.1,4.22,4,3 > 18 > 5 > 11 > 7,Ibadan > Akure > Benin City > Onitsha > Enugu,4.22,1.0
+web-frontend,0,5,Benin City,10,Abeokuta,226.6,2.983,3,5 > 18 > 3 > 10,Benin City > Akure > Ibadan > Abeokuta,2.983,1.0
+ml-inference,4,22,Minna,21,Bauchi,225.4,3.221,2,22 > 6 > 21,Minna > Kaduna > Bauchi,3.671,1.14
+ml-inference,4,9,Ilorin,7,Enugu,223.4,4.339,4,9 > 18 > 5 > 11 > 7,Ilorin > Akure > Benin City > Onitsha > Enugu,5.436,1.253
+cache,5,5,Benin City,11,Onitsha,220.3,1.145,1,5 > 11,Benin City > Onitsha,1.145,1.0
+ml-inference,4,10,Abeokuta,7,Enugu,216.0,4.979,5,10 > 3 > 18 > 5 > 11 > 7,Abeokuta > Ibadan > Akure > Benin City > Onitsha > Enugu,4.979,1.0
+cache,5,8,Jos,21,Bauchi,186.2,1.058,1,8 > 21,Jos > Bauchi,1.058,1.0
+video-transcode,3,22,Minna,6,Kaduna,180.9,1.208,1,22 > 6,Minna > Kaduna,1.208,1.0
+web-frontend,0,6,Kaduna,2,Kano,177.6,1.615,1,6 > 2,Kaduna > Kano,1.615,1.0
+search,2,2,Kano,1,Abuja,168.5,2.971,2,2 > 6 > 1,Kano > Kaduna > Abuja,3.896,1.311
+auth,1,13,Calabar,13,Calabar,157.2,0.0,0,13,Calabar,0.0,1.0
+auth,1,21,Bauchi,8,Jos,155.4,1.058,1,21 > 8,Bauchi > Jos,1.058,1.0
+auth,1,6,Kaduna,8,Jos,148.9,1.405,1,6 > 8,Kaduna > Jos,1.405,1.0
+web-frontend,0,17,Uyo,13,Calabar,144.9,0.588,1,17 > 13,Uyo > Calabar,0.588,1.0
+search,2,23,Katsina,1,Abuja,143.8,3.445,2,23 > 6 > 1,Katsina > Kaduna > Abuja,5.162,1.498
+web-frontend,0,18,Akure,10,Abeokuta,139.9,1.953,2,18 > 3 > 10,Akure > Ibadan > Abeokuta,1.953,1.0
+auth,1,2,Kano,8,Jos,136.1,1.837,1,2 > 8,Kano > Jos,3.02,1.644
+web-frontend,0,11,Onitsha,13,Calabar,134.4,2.118,2,11 > 16 > 13,Onitsha > Owerri > Calabar,3.146,1.485
+ml-inference,4,5,Benin City,7,Enugu,120.6,1.996,2,5 > 11 > 7,Benin City > Onitsha > Enugu,1.996,1.0

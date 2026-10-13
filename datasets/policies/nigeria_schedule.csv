@@ -1,0 +1,22 @@
+server,name,tier,vms,cpu_used,cpu_cap,mem_used,mem_cap,cpu_util,mem_util
+7,Enugu,regional,video-transcode;ml-inference,24.0,24.0,96.0,96.0,1.0,1.0
+11,Onitsha,edge,cache;payments,8.0,8.0,40.0,48.0,1.0,0.833
+16,Owerri,regional,search;analytics,24.0,24.0,96.0,96.0,1.0,1.0
+13,Calabar,edge,web-frontend;auth,6.0,8.0,12.0,48.0,0.75,0.25
+6,Kaduna,regional,video-transcode,16.0,24.0,32.0,96.0,0.667,0.333
+1,Abuja,core,search;analytics,24.0,48.0,96.0,192.0,0.5,0.5
+10,Abeokuta,edge,web-frontend,4.0,8.0,8.0,48.0,0.5,0.167
+21,Bauchi,regional,ml-inference;cache,12.0,24.0,96.0,96.0,0.5,1.0
+8,Jos,regional,auth;payments,6.0,24.0,12.0,96.0,0.25,0.125
+19,Yola,edge,auth,2.0,8.0,4.0,48.0,0.25,0.083
+2,Kano,regional,web-frontend,4.0,24.0,8.0,96.0,0.167,0.083
+0,Lagos,core,,0.0,48.0,0.0,192.0,0.0,0.0
+3,Ibadan,regional,,0.0,24.0,0.0,96.0,0.0,0.0
+4,Port Harcourt,core,,0.0,48.0,0.0,192.0,0.0,0.0
+5,Benin City,edge,,0.0,8.0,0.0,48.0,0.0,0.0
+12,Warri,edge,,0.0,8.0,0.0,48.0,0.0,0.0
+15,Sokoto,edge,,0.0,8.0,0.0,48.0,0.0,0.0
+17,Uyo,edge,,0.0,8.0,0.0,48.0,0.0,0.0
+18,Akure,edge,,0.0,8.0,0.0,48.0,0.0,0.0
+22,Minna,edge,,0.0,8.0,0.0,48.0,0.0,0.0
+23,Katsina,edge,,0.0,8.0,0.0,48.0,0.0,0.0

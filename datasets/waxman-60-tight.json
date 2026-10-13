@@ -8,6 +8,7 @@
   "n": 60,
   "seed": 7,
   "capacity_factor": 0.5,
+  "region": "global",
   "name": "waxman-60-tight"
  },
  "graph": {

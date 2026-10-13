@@ -16,6 +16,7 @@
   "cpu_load_min": 0.393,
   "connected": true,
   "best": "exact_milp",
+  "region": "global",
   "best_mean_ms": 3.982
  },
  {
@@ -35,45 +36,68 @@
   "cpu_load_min": 0.25,
   "connected": true,
   "best": "ffd_pack+ls",
+  "region": "global",
   "best_mean_ms": 4.892
  },
  {
   "name": "india",
   "model": "india",
-  "description": "24 Indian metros, geographic 3-nearest-neighbour fibre mesh",
+  "description": "24 Indian metros plus Woxsen University, geographic 3-nearest-neighbour mesh",
+  "source": "real-coordinates",
+  "nodes": 25,
+  "links": 44,
+  "servers": 22,
+  "services": 8,
+  "tasks": 16,
+  "density": 0.1467,
+  "cpu_capacity": 368.0,
+  "mem_capacity": 1680.0,
+  "cpu_demand_min": 76,
+  "cpu_load_min": 0.207,
+  "connected": true,
+  "best": "demand_first+ls",
+  "region": "india",
+  "best_mean_ms": 2.387
+ },
+ {
+  "name": "nigeria",
+  "model": "nigeria",
+  "description": "24 Nigerian cities, geographic 3-nearest-neighbour mesh",
   "source": "real-coordinates",
   "nodes": 24,
-  "links": 42,
+  "links": 47,
   "servers": 21,
   "services": 8,
   "tasks": 16,
-  "density": 0.1522,
-  "cpu_capacity": 344.0,
-  "mem_capacity": 1584.0,
-  "cpu_demand_min": 94,
-  "cpu_load_min": 0.273,
-  "connected": true,
-  "best": "ffd_pack+ls",
-  "best_mean_ms": 1.582
- },
- {
-  "name": "campus",
-  "model": "campus",
-  "description": "University campus network (20 sites)",
-  "source": "hand-built",
-  "nodes": 20,
-  "links": 29,
-  "servers": 13,
-  "services": 6,
-  "tasks": 10,
-  "density": 0.1526,
-  "cpu_capacity": 264.0,
-  "mem_capacity": 1184.0,
-  "cpu_demand_min": 78,
-  "cpu_load_min": 0.295,
+  "density": 0.1703,
+  "cpu_capacity": 400.0,
+  "mem_capacity": 1776.0,
+  "cpu_demand_min": 82,
+  "cpu_load_min": 0.205,
   "connected": true,
   "best": "demand_first+ls",
-  "best_mean_ms": 0.056
+  "region": "nigeria",
+  "best_mean_ms": 1.109
+ },
+ {
+  "name": "woxsen",
+  "model": "woxsen",
+  "description": "Woxsen University campus, Kamkole (23 sites from the campus map)",
+  "source": "campus-map",
+  "nodes": 23,
+  "links": 29,
+  "servers": 13,
+  "services": 8,
+  "tasks": 12,
+  "density": 0.1146,
+  "cpu_capacity": 288.0,
+  "mem_capacity": 1392.0,
+  "cpu_demand_min": 50,
+  "cpu_load_min": 0.174,
+  "connected": true,
+  "best": "marginal_gain",
+  "region": "india",
+  "best_mean_ms": 0.055
  },
  {
   "name": "fat-tree-k4",
@@ -92,6 +116,7 @@
   "cpu_load_min": 0.281,
   "connected": true,
   "best": "demand_first+ls",
+  "region": "global",
   "best_mean_ms": 0.016
  },
  {
@@ -111,6 +136,7 @@
   "cpu_load_min": 0.117,
   "connected": true,
   "best": "ffd_pack+ls",
+  "region": "global",
   "best_mean_ms": 6.609
  },
  {
@@ -130,6 +156,7 @@
   "cpu_load_min": 0.071,
   "connected": true,
   "best": "demand_first+ls",
+  "region": "global",
   "best_mean_ms": 6.625
  },
  {
@@ -149,6 +176,7 @@
   "cpu_load_min": 0.064,
   "connected": true,
   "best": "exact_milp",
+  "region": "global",
   "best_mean_ms": 8.558
  },
  {
@@ -168,6 +196,7 @@
   "cpu_load_min": 0.234,
   "connected": true,
   "best": "exact_milp",
+  "region": "global",
   "best_mean_ms": 8.352
  }
 ]

@@ -176,7 +176,7 @@ def test_batch_schedule_lanes_never_overlap():
 
 
 # --------------------------------------------------------------- pipeline
-@pytest.mark.parametrize("model", ["abilene", "nsfnet", "india", "campus", "fat_tree", "waxman"])
+@pytest.mark.parametrize("model", ["abilene", "nsfnet", "india", "nigeria", "woxsen", "fat_tree", "waxman"])
 def test_solve_pipeline_end_to_end(model):
     inst = build_instance(model, n=30, seed=4)
     assert not inst.validate()
@@ -227,3 +227,16 @@ def test_exact_handles_unhostable_service():
     assert ex.stats["objective"] == pytest.approx(ctx.objective(ex), rel=1e-6)
     p = GREEDY["ffd_pack"](ctx, t)
     assert p.feasible and ctx.objective(p) >= ctx.objective(ex) - 1e-9
+
+
+def test_woxsen_and_nigeria_datasets():
+    w = build_instance("woxsen", seed=7)
+    names = {a["name"] for a in w.graph.nodes}
+    assert {"Main Entrance (ISP uplink)", "Trade Tower", "Hostel Tower", "Student Hostel D", "The League (Sports Arena)"} <= names
+    assert w.graph.is_connected() and not w.validate()
+    assert all(e.latency < 1.0 for e in w.graph.edges())  # campus links are sub-millisecond
+    ng = build_instance("nigeria", seed=7)
+    assert {a["name"] for a in ng.graph.nodes if a["tier"] == "core"} == {"Lagos", "Abuja", "Port Harcourt"}
+    assert ng.meta["region"] == "nigeria" and w.meta["region"] == "india"
+    india = build_instance("india", seed=7)
+    assert "Woxsen University" in {a["name"] for a in india.graph.nodes}

@@ -20,7 +20,8 @@ SPECS = [
     ("abilene",        "abilene",         dict(services=6, tasks=12)),
     ("nsfnet",         "nsfnet",          dict(services=7, tasks=14)),
     ("india",          "india",           dict(services=8, tasks=16)),
-    ("campus",         "campus",          dict(services=6, tasks=10)),
+    ("nigeria",        "nigeria",         dict(services=8, tasks=16)),
+    ("woxsen",         "woxsen",          dict(tasks=12)),
     ("fat-tree-k4",    "fat_tree",        dict(services=6, tasks=12, k=4)),
     ("waxman-60",      "waxman",          dict(n=60, services=14, tasks=20)),
     ("er-100",         "erdos_renyi",     dict(n=100, services=16, tasks=24, p=0.05)),
@@ -49,6 +50,7 @@ def main() -> None:
                      for s in sol["strategies"]], out / "policies" / f"{name}_strategies.csv")
         index.append({"name": name, "model": model, "description": inst.description, "source": inst.source,
                       **inst.summary(), "best": sol["best"],
+                      "region": inst.meta.get("region", "global"),
                       "best_mean_ms": next(s["mean_ms"] for s in sol["strategies"] if s["name"] == sol["best"])})
         print(f"{name:16s} n={inst.graph.n:4d} m={inst.graph.m:4d} best={sol['best']}")
     (out / "index.json").write_text(json.dumps(index, indent=1))
