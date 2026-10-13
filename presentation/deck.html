@@ -42,6 +42,7 @@ table{border-collapse:collapse;width:100%;font-size:16px}
 th,td{text-align:left;padding:9px 12px;border-bottom:1px solid #E3E5E8}th{color:var(--ink3);font-weight:600;font-size:14px}
 .num{font-variant-numeric:tabular-nums}
 .sp .card{padding:14px 18px}.sp .card p{font-size:15px;line-height:1.42}.sp .card h2{font-size:19px;margin-bottom:2px}.sp .tag{margin-bottom:6px}.sp .why{margin-top:6px;padding:5px 10px;font-size:13.5px}.sp .cx{margin-top:3px}
+.nets{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;margin-top:6px}.nets div{font-size:13.5px;line-height:1.35;color:var(--ink2);padding-left:14px;position:relative}.nets i{position:absolute;left:0;top:5px;width:8px;height:8px;border-radius:50%}
 .dots i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:5px}
 </style></head><body>
 
@@ -67,50 +68,25 @@ th,td{text-align:left;padding:9px 12px;border-bottom:1px solid #E3E5E8}th{color:
 <!-- 2 PROBLEM -->
 <section class="s"><div class="bar"></div>
   <div class="kick">The problem</div>
-  <h1>A cloud runs many services for users spread across many cities</h1>
-  <div class="cols c2" style="grid-template-columns:1.05fr .95fr">
-    <div>
-      <p class="lede" style="margin-top:0">If a user in Kochi is served from Delhi, every request crosses the country. Put a copy closer and it is fast — but every copy costs money and uses server capacity.</p>
-      <div class="card" style="margin-top:22px">
-        <h2>Our goal</h2>
-        <ul><li><b>Minimise average user latency</b> (ms)</li><li>never exceed a server's <b>CPU / memory</b></li><li>stay within the <b>budget</b> ($ per hour)</li></ul>
-      </div>
-      <div class="card" style="margin-top:14px;background:#FCE8E6">
-        <p style="color:#5f1d17"><b style="color:#A50E0E">Why it is hard:</b> this contains the classic <b>p-median</b> problem, which is <b>NP-hard</b>. No known fast algorithm always finds the exact best answer, so we combine exact algorithms with smart greedy ones — and measure how close they get.</p>
-      </div>
-    </div>
-    <div class="card" style="display:flex;flex-direction:column;justify-content:center;background:#fff;border:1px solid #E3E5E8">
-      <h2>Real-life examples</h2>
-      <ul><li>Netflix / YouTube caching videos in nearby cities</li><li>Banks placing payment servers per region</li><li>Woxsen campus: which building hosts the Wi-Fi login server</li></ul>
-      <div class="why" style="background:var(--tone)">Three questions decide everything: <b>how far</b> are cities, <b>how many copies</b> can we afford, and <b>where</b> do they go?</div>
-    </div>
+  <h1>Where should each service run so every user gets a fast answer?</h1>
+  <p class="lede">A user in Kochi served from Delhi waits for every request to cross the country. A copy closer by is fast, but every copy costs money and uses server capacity.</p>
+  <div class="cols c3" style="flex:none;margin-top:22px">
+    <div class="card"><span class="tag t-b">Nodes</span><h2>Servers / cities</h2><p>each with CPU, memory and a $/hour cost</p></div>
+    <div class="card"><span class="tag t-r">Edges</span><h2>Fibre links</h2><p>weight = <b>latency in ms</b>, from real distance</p></div>
+    <div class="card"><span class="tag t-y">Demand</span><h2>Users</h2><p>requests per second from each city for each service</p></div>
+  </div>
+  <div class="formula"><b>Goal:</b> minimise average latency from every user to the nearest copy &nbsp;·&nbsp; within <b>server capacity</b> &nbsp;·&nbsp; within <b>budget</b></div>
+  <div class="card" style="margin-top:16px;background:#FCE8E6;padding:16px 22px">
+    <p style="color:#5f1d17"><b style="color:#A50E0E">Why it is hard:</b> it contains the classic <b>p-median</b> problem, which is <b>NP-hard</b>. So we solve the easy parts exactly, the hard part with fast greedy methods, and measure how close they get to the true optimum.</p>
   </div>
   <div class="foot"><span>Lightpath · DAA Project</span><span>2</span></div>
-</section>
-
-<!-- 3 MODEL -->
-<section class="s"><div class="bar"></div>
-  <div class="kick">How we model it</div>
-  <h1>Turn the cloud into a weighted graph</h1>
-  <div class="cols c4" style="flex:none">
-    <div class="card"><span class="tag t-b">Nodes</span><h2>Servers / cities</h2><p>each has CPU, memory and a $/hour cost</p></div>
-    <div class="card"><span class="tag t-r">Edges</span><h2>Fibre links</h2><p>weight = <b>latency in ms</b> (from real distance)</p></div>
-    <div class="card"><span class="tag t-y">Demand</span><h2>Users</h2><p>requests per second from each city for each service</p></div>
-    <div class="card"><span class="tag t-g">Storage</span><h2>Adjacency list</h2><p>O(V+E) memory; real networks are sparse</p></div>
-  </div>
-  <div class="formula">Average latency &nbsp;=&nbsp; <b>Σ</b> (requests from city <i>c</i>) × (shortest distance from <i>c</i> to its nearest copy) &nbsp;÷&nbsp; total requests</div>
-  <div class="cols c2" style="margin-top:20px">
-    <div class="card"><h2>10 networks to test on</h2><p><b>Real:</b> India (25 cities incl. Woxsen), Nigeria (24 cities), Woxsen campus (23 buildings), Abilene &amp; NSFNET (US research networks).<br><b>Synthetic:</b> Waxman, Erdős–Rényi, Barabási–Albert, data-centre fat-tree — so we can vary size and density.</p></div>
-    <div class="card"><h2>Transfer cost with rebates</h2><p>We also model data cost in <b>$/GB</b>. Some peering links pay a rebate → <b>negative edge weights</b>. We proved our cost model never creates a <b>negative cycle</b> (potential function, Lemma 1).</p></div>
-  </div>
-  <div class="foot"><span>Lightpath · DAA Project</span><span>3</span></div>
 </section>
 
 <!-- 4 PIPELINE -->
 <section class="s"><div class="bar"></div>
   <div class="kick">The solution</div>
   <h1>Seven stages — each a classic algorithm chosen for what it guarantees</h1>
-  <div class="metro">
+  <div class="metro" style="margin-top:30px">
     <div class="st"><div class="n">1</div><div class="d"></div><h3>Latency matrix</h3><div class="a">Floyd–Warshall / Johnson</div><div class="q">How far is every city from every other?</div></div>
     <div class="st"><div class="n">2</div><div class="d"></div><h3>Backbone</h3><div class="a">Prim / Kruskal MST</div><div class="q">Cheapest links connecting all cities</div></div>
     <div class="st"><div class="n">3</div><div class="d"></div><h3>Routing</h3><div class="a">Dijkstra / Bellman-Ford</div><div class="q">Which path does each request take?</div></div>
@@ -119,11 +95,22 @@ th,td{text-align:left;padding:9px 12px;border-bottom:1px solid #E3E5E8}th{color:
     <div class="st"><div class="n">6</div><div class="d"></div><h3>Placement</h3><div class="a">4 greedy schedulers</div><div class="q">Exactly where does each copy go?</div></div>
     <div class="st"><div class="n">7</div><div class="d"></div><h3>Refinement</h3><div class="a">Local search</div><div class="q">Move / swap copies until nothing improves</div></div>
   </div>
-  <div class="card" style="margin-top:40px;display:flex;gap:26px;align-items:center;background:#E6F4EA">
+  <div class="card" style="margin-top:30px;display:flex;gap:26px;align-items:center;background:#E6F4EA;padding:16px 24px">
     <div class="big" style="color:#0D652D;font-size:40px">✓</div>
     <p style="color:#0d3d1e"><b>Exact check (the referee):</b> on smaller networks a <b>mixed-integer program</b> (MILP, HiGHS solver) finds the <b>proven optimum</b>. Every heuristic reports its <b>gap</b> from it — so we never just claim our answer is good, we prove how good.</p>
   </div>
-  <div class="foot"><span>Lightpath · DAA Project</span><span>4</span></div>
+  <div class="card" style="margin-top:16px;padding:14px 22px;display:grid;grid-template-columns:auto 1fr;gap:6px 18px;align-items:start">
+    <h2 style="font-size:18px;margin:0">10 test networks</h2>
+    <div class="nets" style="margin-top:0;grid-template-columns:1fr 1fr 1fr">
+      <div><i style="background:var(--ink)"></i><b>Real:</b> India, Nigeria, Woxsen campus, Abilene, NSFNET</div>
+      <div><i style="background:var(--blue)"></i><b>Waxman:</b> nearby servers linked, like an ISP</div>
+      <div><i style="background:var(--red)"></i><b>Erdős–Rényi:</b> random links, density on one knob</div>
+      <div><i style="background:var(--yellow)"></i><b>Barabási–Albert:</b> a few big hubs, like the internet</div>
+      <div><i style="background:var(--green)"></i><b>Fat-tree:</b> switch layers inside a data centre</div>
+      <div><i style="background:var(--ink3)"></i>Synthetic ones let us vary size and density</div>
+    </div>
+  </div>
+  <div class="foot"><span>Lightpath · DAA Project</span><span>3</span></div>
 </section>
 
 <!-- 5 SHORTEST PATHS -->
@@ -146,7 +133,7 @@ th,td{text-align:left;padding:9px 12px;border-bottom:1px solid #E3E5E8}th{color:
       <p style="font-size:15px">Algorithm Lab: Dijkstra from Lagos to Calabar, step by step with pseudocode — the blue line is the final route. The code <b>picks automatically</b>: sparse → Johnson/Dijkstra, dense → Floyd–Warshall.</p>
     </div>
   </div>
-  <div class="foot"><span>Lightpath · DAA Project</span><span>5</span></div>
+  <div class="foot"><span>Lightpath · DAA Project</span><span>4</span></div>
 </section>
 
 <!-- 6 MST + DP -->
@@ -158,7 +145,7 @@ th,td{text-align:left;padding:9px 12px;border-bottom:1px solid #E3E5E8}th{color:
     <div class="card"><span class="tag t-y">0/1 knapsack DP</span><h2>Which servers to switch on?</h2><p>Each server is <b>on or off</b> (0/1), has a cost and a benefit, and the budget is the knapsack capacity. DP gives the <b>exact</b> best set.</p><div class="cx">Θ(n·W), W = budget in $0.01 steps</div><div class="why">Measured: grows linearly, ≈ 97 ns per table cell</div></div>
     <div class="card"><span class="tag t-g">Multiple-choice knapsack</span><h2>How many copies?</h2><p>For each service pick <b>exactly one option</b> — 1, 2, 3… copies — each with a cost and a latency saving, all within the VM budget.</p><div class="cx">Θ(W · Σ options)</div><div class="why">Budget $2.41 → $7.51/h cut latency 4.34 → 1.28 ms (−70%)</div></div>
   </div>
-  <div class="foot"><span>Lightpath · DAA Project</span><span>6</span></div>
+  <div class="foot"><span>Lightpath · DAA Project</span><span>5</span></div>
 </section>
 
 <!-- 7 GREEDY -->
@@ -170,7 +157,7 @@ th,td{text-align:left;padding:9px 12px;border-bottom:1px solid #E3E5E8}th{color:
       <div class="card" style="padding:16px 22px"><h2>Four greedy schedulers</h2>
         <ul><li><b>Demand-first:</b> copies go where most users are</li><li><b>Marginal gain:</b> add the copy that cuts latency the most (CELF lazy updates)</li><li><b>Regret:</b> first serve the service that loses most if it misses its best city</li><li><b>FFD packing:</b> first-fit-decreasing bin packing — fits capacity first</li></ul></div>
       <div class="card" style="padding:16px 22px"><h2>Local search</h2><p>Try <b>moving</b> one copy or <b>swapping</b> two; keep any change that lowers latency; repeat until nothing improves.</p></div>
-      <div class="card" style="padding:16px 22px;background:var(--tone)"><p><b>Why not just solve it exactly?</b> The MILP grows exponentially: 27 ms at 20 servers → 1.7 s at 160. Greedy + local search is <b>≈5× faster</b> and almost as good.</p></div>
+      
     </div>
     <div class="card" style="background:#fff;border:1px solid #E3E5E8">
       <h2>Distance from the proven optimum</h2>
@@ -186,6 +173,31 @@ th,td{text-align:left;padding:9px 12px;border-bottom:1px solid #E3E5E8}th{color:
       <div class="why" style="background:#FEF7E0">When servers are nearly full (E5), only <b>FFD packing</b> always found a valid plan — so the solver uses it as a fallback.</div>
     </div>
   </div>
+  <div class="foot"><span>Lightpath · DAA Project</span><span>6</span></div>
+</section>
+
+<!-- WHY OUR APPROACH -->
+<section class="s"><div class="bar"></div>
+  <div class="kick">Design decisions</div>
+  <h1>Why we built it this way</h1>
+  <div class="cols c2" style="grid-template-columns:1fr 1fr;gap:20px">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="card" style="padding:16px 22px"><h2>Why not one exact DP for placement?</h2><p>An exact DP must remember every server's remaining capacity, so its table grows with the <b>product of all capacities</b>. That is fine for about 8 servers but impossible at 25–150. We use DP where its tables stay small (budgets) and greedy + local search where they would explode.</p></div>
+      <div class="card" style="padding:16px 22px"><h2>Then how do we know greedy is good?</h2><p>An exact solver (MILP) is used <b>only as a referee</b>: it proves the true optimum on smaller networks, and every greedy reports its gap. Result: about <b>0.5 %</b> from optimal. Every algorithm that builds the plan is our own code.</p></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="card" style="padding:16px 22px;background:#fff;border:1px solid #E3E5E8"><h2>Every algorithm in the brief</h2>
+        <table style="font-size:15px;margin-top:4px">
+          <tr><td>MST</td><td><b>Prim, Kruskal</b> + union-find</td></tr>
+          <tr><td>Single source</td><td><b>Dijkstra, Bellman-Ford</b></td></tr>
+          <tr><td>All pairs</td><td><b>Floyd–Warshall, Johnson</b></td></tr>
+          <tr><td>Dynamic programming</td><td><b>0/1 and multiple-choice knapsack</b></td></tr>
+          <tr><td>Greedy</td><td><b>4 schedulers</b> + local search, LPT batch</td></tr>
+          <tr><td>Priority queues</td><td><b>binary, Fibonacci, pairing, lazy</b></td></tr>
+        </table></div>
+      <div class="card" style="padding:16px 22px;background:var(--tone)"><p><b>Each one has a real job:</b> negative rebate costs are why Bellman-Ford and Johnson are needed, not just added for the list. Choices between alternatives are made automatically and <b>tested by experiments</b>.</p></div>
+    </div>
+  </div>
   <div class="foot"><span>Lightpath · DAA Project</span><span>7</span></div>
 </section>
 
@@ -199,10 +211,10 @@ th,td{text-align:left;padding:9px 12px;border-bottom:1px solid #E3E5E8}th{color:
       <img class="shot" src="img/lab_compare.png" style="height:244px;object-position:center top">
     </div>
     <div style="display:flex;flex-direction:column;gap:10px">
-      <div class="card" style="padding:14px 20px"><h2>Home</h2><p>Live map of India or Nigeria — moving dots are user requests on their shortest path.</p></div>
-      <div class="card" style="padding:14px 20px"><h2>Placement Studio</h2><p>Pick a network and budget → <b>Solve</b>. Map, every strategy vs the optimum, routes, server load and advice.</p></div>
-      <div class="card" style="padding:14px 20px"><h2>Algorithm Lab</h2><p>Watch each algorithm from a start city to a destination at 0.5×–4×, or <b>compare two</b> and see which suits the trip.</p></div>
-      <div class="card" style="padding:14px 20px"><h2>Results · Data · Guide</h2><p>8 experiment charts, all 10 networks to download, and a guided tour.</p></div>
+      <div class="card" style="padding:14px 20px"><h2>Home</h2><p>Live map: requests travelling to their nearest copy.</p></div>
+      <div class="card" style="padding:14px 20px"><h2>Placement Studio</h2><p>Pick a network and budget → <b>Solve</b> → plan, routes, advice.</p></div>
+      <div class="card" style="padding:14px 20px"><h2>Algorithm Lab</h2><p>Watch any algorithm from a start to a destination, or <b>compare two</b>.</p></div>
+      <div class="card" style="padding:14px 20px"><h2>Results · Data · Guide</h2><p>Experiment charts, downloads and a guided tour.</p></div>
       <p style="font-size:14px;margin-top:2px">Python engine (NumPy, SciPy HiGHS) · FastAPI · React. Works offline too.</p>
     </div>
   </div>
@@ -240,9 +252,7 @@ th,td{text-align:left;padding:9px 12px;border-bottom:1px solid #E3E5E8}th{color:
     <div class="card"><span class="tag t-g">What we found</span><p>Greedy + local search lands within <b>≈0.5 %</b> of the optimum, ≈5× faster than the exact solver. Placement cut latency by up to <b>64 %</b>.</p></div>
     <div class="card"><span class="tag t-y">What we learned</span><p>Big-O is a guide, not a verdict — constant factors and graph density decide the winner. Always check heuristics against an exact answer.</p></div>
   </div>
-  <div class="card" style="margin-top:20px;background:#fff;border:1px solid #E3E5E8;padding:16px 24px">
-    <p><b>Future work:</b> changing traffic over time, failures of links, and larger networks with faster approximate all-pairs methods.</p>
-  </div>
+  
   <div style="margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between">
     <div><div style="font-size:64px;font-weight:650;letter-spacing:-.04em">Thank you<span style="color:var(--blue)">.</span></div><p style="font-size:20px">Questions? Live demo on the website.</p></div>
     <div style="text-align:right;font-size:16px;color:var(--ink2);line-height:1.6"><b>Naman Singla</b> · <b>Mohak Gupta</b><br>Guided by Dr. Monday Jubrin Abdullahi<br>CSE RHINOS · Woxsen University</div>
