@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lightpath mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: dark;
+  --abyss:#0A1024; --deep:#0E1631; --panel:#111A38; --raise:#17224A;
+  --line:rgba(150,170,255,.12); --line2:rgba(150,170,255,.22);
+  --frost:#E6EBFF; --muted:#8A93B8; --dim:#5B6488;
+  --fibre:#5CE1E6; --amber:#FFB547; --violet:#9D8CFF;
+  --serif:"Instrument Serif", "Times New Roman", serif;
+  --sans:"Geist", ui-sans-serif, system-ui, sans-serif;
+  --mono:"Geist Mono", ui-monospace, monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--abyss);color:var(--frost);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button,select,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--fibre);outline-offset:2px;border-radius:4px}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:20;height:64px;display:flex;align-items:center;gap:40px;padding:0 32px;
+  background:rgba(10,16,36,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:27px;letter-spacing:.005em;cursor:pointer}
+.brand svg{display:block}
+.links{display:flex;gap:4px;flex:1;overflow-x:auto}
+.links button{background:none;border:0;padding:8px 14px;color:var(--muted);cursor:pointer;position:relative;white-space:nowrap;border-radius:6px}
+.links button:hover{color:var(--frost)}
+.links button[aria-current="page"]{color:var(--frost)}
+.links button[aria-current="page"]::after{content:"";position:absolute;left:14px;right:14px;bottom:-13px;height:2px;background:var(--fibre);box-shadow:0 0 12px var(--fibre)}
+.links button.soon{opacity:.45;cursor:not-allowed}
+.mode{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;white-space:nowrap}
+.mode i{width:7px;height:7px;border-radius:50%;background:var(--fibre);box-shadow:0 0 8px var(--fibre)}
+
+/* ---------- home ---------- */
+.hero{position:relative;min-height:calc(100vh - 64px);display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:1fr auto;align-items:center;overflow:hidden}
+.hero-copy{padding:64px 0 64px 64px;position:relative;z-index:2;max-width:640px}
+.kicker{color:var(--fibre);font-size:14px;margin-bottom:22px}
+h1.display{font-family:var(--serif);font-weight:400;font-size:clamp(52px,6.4vw,96px);line-height:.94;letter-spacing:-.012em}
+h1.display .ch{display:inline-block;opacity:0;transform:translateY(.35em);filter:blur(6px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes rise{to{opacity:1;transform:none;filter:none}}
+.lede{margin-top:28px;max-width:31em;color:var(--muted);font-size:17px;line-height:1.6}
+.ctas{display:flex;gap:12px;margin-top:36px;flex-wrap:wrap}
+.btn{border:1px solid var(--line2);background:transparent;padding:12px 20px;border-radius:999px;cursor:pointer;transition:background .2s,border-color .2s}
+.btn:hover{border-color:var(--fibre)}
+.btn.primary{background:var(--fibre);color:#06202A;border-color:var(--fibre);font-weight:550}
+.btn.primary:hover{background:#86ecf0}
+.hero-map{position:absolute;inset:0 0 118px 30%;z-index:1}
+.hero-map svg{width:100%;height:100%}
+.hero-map::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--abyss) 0%,rgba(10,16,36,0) 28%);pointer-events:none;z-index:2}
+.map-caption{position:absolute;right:32px;bottom:138px;z-index:3;max-width:330px;font-size:12.5px;color:var(--dim);text-align:right}
+.telemetry{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);position:relative;z-index:3;background:linear-gradient(0deg,var(--abyss),rgba(10,16,36,.6))}
+.telemetry div{padding:24px 32px 28px;border-right:1px solid var(--line)}
+.telemetry div:first-child{padding-left:64px}
+.telemetry div:last-child{border-right:0}
+.telemetry b{display:block;font-family:var(--serif);font-weight:400;font-size:44px;line-height:1}
+.telemetry b small{font-family:var(--sans);font-size:15px;color:var(--muted);margin-left:4px}
+.telemetry > div > span{display:block;margin-top:8px;color:var(--muted);font-size:13.5px}
+.hero-grid{display:contents}
+
+section.block{padding:120px 64px;border-top:1px solid var(--line)}
+h2.title{font-family:var(--serif);font-weight:400;font-size:clamp(36px,4vw,56px);line-height:1.02;max-width:16ch}
+.block p.intro{color:var(--muted);max-width:40em;margin-top:16px;font-size:16px}
+
+/* metro */
+.metro{position:relative;margin-top:72px;overflow-x:auto;padding-bottom:12px}
+.metro-inner{position:relative;min-width:1060px;display:grid;grid-template-columns:repeat(7,1fr);padding-top:8px}
+.metro-line{position:absolute;left:calc(100%/14);right:calc(100%/14);top:63px;height:3px;background:linear-gradient(90deg,var(--fibre),var(--violet));border-radius:3px}
+.metro-line::after{content:"";position:absolute;top:-3px;width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:0 0 14px 4px var(--fibre);animation:travel 7s linear infinite}
+@keyframes travel{from{left:0}to{left:100%}}
+.station{position:relative;text-align:center;padding:0 10px}
+.station .no{color:var(--dim);font-size:13px;height:24px}
+.station .dot{width:22px;height:22px;margin:16px auto 22px;border-radius:50%;background:var(--abyss);border:3px solid var(--fibre);position:relative;z-index:1}
+.station:nth-child(n+5) .dot{border-color:var(--violet)}
+.station h3{font-weight:550;font-size:15.5px}
+.station .alg{margin-top:6px;color:var(--frost);opacity:.85;font-size:13.5px}
+.station .cx{margin-top:4px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.branch{margin:44px auto 0;max-width:520px;text-align:center;color:var(--muted);font-size:14px;border:1px dashed rgba(157,140,255,.45);border-radius:10px;padding:14px 18px}
+.branch strong{color:var(--violet);font-weight:550}
+
+/* datasets */
+.ds-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:56px;border-radius:12px;overflow:hidden}
+.ds{background:var(--abyss);padding:20px 22px 22px;cursor:pointer;transition:background .2s}
+.ds:hover{background:var(--deep)}
+.ds svg{width:100%;height:150px;display:block}
+.ds h4{font-weight:550;font-size:15px;margin-top:12px}
+.ds p{color:var(--muted);font-size:13px;margin-top:2px}
+.ds .meta{display:flex;justify-content:space-between;margin-top:10px;font-size:13px;color:var(--muted)}
+.ds .meta b{color:var(--amber);font-weight:500}
+footer{padding:40px 64px;color:var(--dim);font-size:13px;border-top:1px solid var(--line)}
+
+/* ---------- studio ---------- */
+.studio{height:calc(100vh - 64px);display:grid;grid-template-columns:280px minmax(0,1fr) 380px;grid-template-rows:minmax(0,1fr)}
+.rail{border-right:1px solid var(--line);padding:22px 20px;overflow:auto;display:flex;flex-direction:column;gap:22px;background:var(--deep)}
+.field label,.field .lab{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:8px}
+.field label b{color:var(--frost);font-weight:500}
+select{width:100%;background:var(--panel);border:1px solid var(--line2);border-radius:8px;padding:9px 10px}
+input[type=range]{width:100%;accent-color:var(--fibre)}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);background:var(--panel);border:1px solid var(--line2);border-radius:8px;padding:3px}
+.seg button{background:none;border:0;padding:6px 4px;border-radius:6px;font-size:13px;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--raise);color:var(--frost)}
+.checks{display:flex;flex-direction:column;gap:9px}
+.field label.check,.check{display:flex;justify-content:flex-start;gap:10px;align-items:center;font-size:14px;color:var(--frost);cursor:pointer;margin:0}
+.check input{accent-color:var(--fibre);width:15px;height:15px}
+.check small{color:var(--dim);margin-left:auto;font-size:12px}
+.solve{width:100%;padding:12px;border-radius:10px;background:var(--fibre);border:0;color:#06202A;font-weight:600;cursor:pointer}
+.solve:hover{background:#86ecf0}
+.solve.busy{background:var(--raise);color:var(--muted)}
+.inst-sum{margin-top:auto;font-size:12.5px;color:var(--muted);line-height:1.7;border-top:1px solid var(--line);padding-top:14px}
+
+.center{display:grid;grid-template-rows:minmax(0,1fr) 290px;min-width:0;min-height:0}
+.mapwrap{position:relative;overflow:hidden;min-height:0;background:radial-gradient(ellipse at 60% 40%,#111b3d 0%,var(--abyss) 70%);cursor:grab}
+.mapwrap.drag{cursor:grabbing}
+#studioMap{width:100%;height:100%;display:block}
+.toolbar{position:absolute;top:14px;left:14px;display:flex;gap:6px;z-index:2}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border-radius:999px;border:1px solid var(--line2);background:rgba(14,22,49,.85);font-size:13px;color:var(--muted);cursor:pointer}
+.chip[aria-pressed="true"]{color:var(--frost);border-color:currentColor}
+.chip i{width:8px;height:8px;border-radius:50%}
+.chip.mst[aria-pressed="true"]{color:var(--violet)}
+.chip.rep[aria-pressed="true"]{color:var(--amber)}
+.chip.rt[aria-pressed="true"]{color:var(--fibre)}
+.chip span{color:var(--frost)}
+.svc-row{position:absolute;left:14px;right:14px;bottom:12px;display:flex;gap:6px;flex-wrap:wrap;z-index:2}
+.legend{position:absolute;top:14px;right:14px;z-index:2;font-size:12px;color:var(--muted);background:rgba(14,22,49,.85);border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:grid;gap:6px}
+.legend div{display:flex;align-items:center;gap:8px}
+.legend svg{width:16px;height:16px;flex:none}
+.zoomhint{position:absolute;right:14px;bottom:14px;font-size:12px;color:var(--dim);z-index:2}
+.tip{position:absolute;pointer-events:none;z-index:5;background:var(--raise);border:1px solid var(--line2);border-radius:10px;padding:10px 12px;font-size:13px;min-width:180px;box-shadow:0 12px 30px rgba(0,0,0,.4);display:none}
+.tip h5{font-size:14px;font-weight:600;margin-bottom:4px}
+.tip .r{display:flex;justify-content:space-between;gap:14px;color:var(--muted)}
+.tip .r b{color:var(--frost);font-weight:500}
+
+.tabs{border-top:1px solid var(--line);display:flex;flex-direction:column;min-height:0;overflow:hidden;background:var(--deep)}
+.tablist{display:flex;gap:2px;padding:0 14px;border-bottom:1px solid var(--line)}
+.tablist button{background:none;border:0;color:var(--muted);padding:12px 12px;cursor:pointer;position:relative;font-size:14px}
+.tablist button[aria-selected="true"]{color:var(--frost)}
+.tablist button[aria-selected="true"]::after{content:"";position:absolute;left:12px;right:12px;bottom:-1px;height:2px;background:var(--fibre)}
+.tabbody{overflow:auto;flex:1;padding:6px 14px 14px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;color:var(--dim);font-weight:500;padding:9px 10px;position:sticky;top:0;background:var(--deep);border-bottom:1px solid var(--line)}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr.sel td{background:rgba(92,225,230,.07)}
+tbody tr{cursor:pointer}
+tbody tr:hover td{background:rgba(150,170,255,.05)}
+td.r,th.r{text-align:right;white-space:nowrap}
+.path{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:8px;vertical-align:middle}
+.bar{height:6px;border-radius:3px;background:rgba(150,170,255,.12);position:relative;min-width:90px}
+.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:var(--fibre)}
+.bar.hot i{background:var(--amber)}
+.vm{display:inline-block;font-size:12px;padding:1px 7px;border-radius:5px;margin:1px 3px 1px 0;background:var(--panel);border:1px solid var(--line2)}
+td.chosen{color:var(--amber);font-weight:600}
+
+.results{border-left:1px solid var(--line);overflow:auto;padding:22px 22px 30px;display:flex;flex-direction:column;gap:26px}
+.readouts{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.readouts div{background:var(--abyss);padding:14px 16px}
+.readouts b{font-family:var(--serif);font-weight:400;font-size:34px;line-height:1.05;display:block}
+.readouts b small{font-family:var(--sans);font-size:13px;color:var(--muted);margin-left:3px}
+.readouts > div > span{font-size:12.5px;color:var(--muted)}
+.verdict{font-size:14px;color:var(--muted)}
+.verdict strong{color:var(--frost);font-weight:550}
+.h-sub{font-size:13px;color:var(--muted);margin-bottom:10px;display:flex;justify-content:space-between}
+.stratchart{position:relative}
+.srow{display:grid;grid-template-columns:132px 1fr 52px;align-items:center;gap:10px;font-size:13px;padding:5px 0}
+.srow .nm{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.srow.best .nm{color:var(--frost)}
+.srow .tr{height:12px;position:relative}
+.srow .tr i{position:absolute;left:0;top:0;bottom:0;border-radius:0 4px 4px 0;background:#3b4675;transition:width .8s cubic-bezier(.2,.7,.2,1)}
+.srow.ls .tr i{background:#5b6aa8}
+.srow.best .tr i{background:var(--fibre)}
+.srow.opt .tr i{background:var(--violet)}
+.srow .v{text-align:right;color:var(--muted)}
+.srow.best .v{color:var(--frost)}
+.optline{position:absolute;top:0;bottom:0;width:0;border-left:1.5px dashed var(--violet);pointer-events:none}
+.results > *,.rail > *{flex:none}
+.recs{list-style:none;display:flex;flex-direction:column}
+.recs li{padding:11px 0;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted);line-height:1.5}
+.recs li:first-child{color:var(--frost)}
+
+.view{display:none}.view.on{display:block}
+.view.studio-v.on{display:block}
+
+@media (max-width: 1100px){
+  .studio{grid-template-columns:1fr;height:auto}
+  .center{grid-template-rows:520px auto}
+  .rail,.results{border:0}
+  .tabs{min-height:340px}
+}
+@media (max-width: 860px){
+  .nav{padding:0 16px;gap:16px}.mode{display:none}
+  .hero{grid-template-columns:1fr}
+  .hero-copy{padding:40px 16px 0}
+  .hero-map{position:relative;inset:auto;height:420px;grid-row:auto}
+  .hero{grid-template-rows:auto}
+  .hero-map::before{background:linear-gradient(180deg,var(--abyss) 0%,rgba(10,16,36,0) 20%)}
+  .map-caption{position:static;padding:0 16px 16px;text-align:left;max-width:none}
+  .telemetry{grid-template-columns:1fr 1fr}
+  .telemetry div,.telemetry div:first-child{padding:18px 16px}
+  section.block{padding:72px 16px}
+  .ds-grid{grid-template-columns:1fr}
+  footer{padding:32px 16px}
+}
+@media (prefers-reduced-motion: reduce){
+  h1.display .ch{animation:none;opacity:1;transform:none;filter:none}
+  .metro-line::after{animation:none}
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="brand" data-go="home" tabindex="0">
+    <svg width="30" height="22" viewBox="0 0 30 22" aria-hidden="true"><path d="M4 17 L15 5 L26 15" fill="none" stroke="#5CE1E6" stroke-width="1.6" opacity=".7"/><circle cx="4" cy="17" r="3" fill="#E6EBFF"/><circle cx="15" cy="5" r="3" fill="#FFB547"/><circle cx="26" cy="15" r="3" fill="#E6EBFF"/><circle r="1.8" fill="#fff"><animateMotion dur="2.2s" repeatCount="indefinite" path="M4 17 L15 5 L26 15"/></circle></svg>
+    Lightpath
+  </div>
+  <div class="links" role="navigation">
+    <button data-go="home" aria-current="page">Home</button>
+    <button data-go="studio">Placement studio</button>
+    <button class="soon" title="Not part of this mockup">Algorithm lab</button>
+    <button class="soon" title="Not part of this mockup">Experiments</button>
+    <button class="soon" title="Not part of this mockup">Data</button>
+  </div>
+  <div class="mode"><i></i>Connected to the Python API</div>
+</nav>
+
+<!-- =============================== HOME =============================== -->
+<main id="home" class="view on">
+  <div class="hero">
+    <div class="hero-copy">
+      <p class="kicker">Cloud task placement on network graphs</p>
+      <h1 class="display" id="headline">Put every workload one short path from its users.</h1>
+      <p class="lede">Servers are nodes and fibre links are weighted edges. Lightpath combines shortest paths, spanning trees and knapsack dynamic programming to decide where each replica runs, without breaking capacity or budget.</p>
+      <div class="ctas">
+        <button class="btn primary" data-go="studio">Open the placement studio</button>
+        <button class="btn" title="Algorithm lab is not part of this mockup">Step through the algorithms</button>
+      </div>
+    </div>
+    <div class="hero-map" id="heroMap"></div>
+    <p class="map-caption">India backbone, 24 cities. Each pulse is a request travelling the computed shortest path from a user city to its nearest replica. Amber cities host replicas.</p>
+    <div class="telemetry" id="telemetry"></div>
+  </div>
+
+  <section class="block">
+    <h2 class="title">From a graph to a placement plan</h2>
+    <p class="intro">Seven stages, each a classic algorithm chosen for what it guarantees. The line runs left to right exactly as the solver does.</p>
+    <div class="metro"><div class="metro-inner" id="metro"><div class="metro-line"></div></div></div>
+    <div class="branch"><strong>Exact check.</strong> On graphs small enough, a mixed-integer program solves placement to proven optimality, so every heuristic reports its gap.</div>
+  </section>
+
+  <section class="block">
+    <h2 class="title">Nine networks to test on</h2>
+    <p class="intro">Two real research backbones, real Indian city coordinates, a hand-built campus, a data-centre fat-tree and three random graph families at different sizes and densities.</p>
+    <div class="ds-grid" id="dsGrid"></div>
+  </section>
+  <footer>Lightpath. Python 3 (NumPy, SciPy HiGHS) backend, React dashboard. Mockup built from real solver output for the India dataset.</footer>
+</main>
+
+<!-- =============================== STUDIO =============================== -->
+<main id="studio" class="view">
+  <div class="studio">
+    <aside class="rail">
+      <div class="field"><label for="ds">Network</label>
+        <select id="ds"></select></div>
+      <div class="field"><label for="vmb">VM budget <b id="vmbv" class="num"></b></label>
+        <input id="vmb" type="range" min="2" max="12" step="0.1"></div>
+      <div class="field"><div class="lab">Server budget <b style="color:var(--frost);font-weight:500">All servers on</b></div>
+        <label class="check"><input type="checkbox"> Limit with a knapsack budget</label></div>
+      <div class="field"><div class="lab">Replica sizing</div>
+        <div class="seg" id="sizing"><button aria-pressed="true">Knapsack DP</button><button aria-pressed="false">Minimum</button><button aria-pressed="false">Maximum</button></div></div>
+      <div class="field"><div class="lab">Strategies</div>
+        <div class="checks">
+          <label class="check"><input type="checkbox" checked> Demand-first <small>greedy</small></label>
+          <label class="check"><input type="checkbox" checked> Marginal gain <small>CELF</small></label>
+          <label class="check"><input type="checkbox" checked> Regret <small>GAP</small></label>
+          <label class="check"><input type="checkbox" checked> FFD packing <small>bin-pack</small></label>
+          <label class="check"><input type="checkbox" checked> Local search refinement</label>
+          <label class="check"><input type="checkbox" checked> Exact MILP check</label>
+        </div></div>
+      <button class="solve" id="solveBtn">Solve placement</button>
+      <div class="inst-sum" id="instSum"></div>
+    </aside>
+
+    <div class="center">
+      <div class="mapwrap" id="mapwrap">
+        <div class="toolbar">
+          <button class="chip mst" aria-pressed="false" data-layer="mst"><i style="background:var(--violet)"></i>Backbone (MST)</button>
+          <button class="chip rep" aria-pressed="true" data-layer="rep"><i style="background:var(--amber)"></i>Replicas</button>
+          <button class="chip rt" aria-pressed="true" data-layer="rt"><i style="background:var(--fibre)"></i>Routes</button>
+        </div>
+        <div class="legend">
+          <div><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#0A1024" stroke="#E6EBFF" stroke-width="1.5"/></svg>Core server</div>
+          <div><svg width="16" height="16"><circle cx="8" cy="8" r="4.5" fill="#0A1024" stroke="#E6EBFF" stroke-width="1.5"/></svg>Regional / edge server</div>
+          <div><svg width="16" height="16"><rect x="5" y="5" width="6" height="6" fill="#5B6488" transform="rotate(45 8 8)"/></svg>Router (cannot host)</div>
+          <div><svg width="16" height="16"><circle cx="8" cy="8" r="5" fill="#FFB547"/></svg>Hosts replicas</div>
+        </div>
+        <svg id="studioMap"></svg>
+        <div class="svc-row" id="svcRow"></div>
+        <div class="tip" id="tip"></div>
+      </div>
+      <div class="tabs">
+        <div class="tablist" role="tablist" id="tablist">
+          <button role="tab" aria-selected="true" data-tab="routes">Routes</button>
+          <button role="tab" aria-selected="false" data-tab="servers">Servers</button>
+          <button role="tab" aria-selected="false" data-tab="cost">Cost and benefit</button>
+          <button role="tab" aria-selected="false" data-tab="sync">Replica sync</button>
+          <button role="tab" aria-selected="false" data-tab="batch">Batch jobs</button>
+        </div>
+        <div class="tabbody" id="tabbody"></div>
+      </div>
+    </div>
+
+    <aside class="results">
+      <div class="readouts" id="readouts"></div>
+      <p class="verdict" id="verdict"></p>
+      <div>
+        <div class="h-sub"><span>Average latency by strategy</span><span>ms, lower is better</span></div>
+        <div class="stratchart" id="strat"></div>
+      </div>
+      <div>
+        <div class="h-sub"><span>Recommendations</span></div>
+        <ul class="recs" id="recs"></ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<script>/*DATA*/</script>
+<script>
+const {inst, sol, minis} = window.DATA;
+const N = inst.graph.nodes, L = inst.graph.links, S = inst.services;
+const PAL = ["#3987e5","#d95926","#199e70","#c98500","#d55181","#008300","#9085e9","#e66767"];
+S.forEach((s,i)=>s.color = PAL[i % PAL.length]);
+const best = sol.strategies.find(s=>s.name===sol.best);
+const NS = "http://www.w3.org/2000/svg";
+const el = (t,a={},p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e};
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const prettyStrat = n => ({random:"Random", demand_first:"Demand-first", marginal_gain:"Marginal gain", regret:"Regret",
+  ffd_pack:"FFD packing", exact_milp:"Exact optimum"}[n.replace("+ls","")] + (n.endsWith("+ls")?" + LS":""));
+
+/* hosts: node -> [service idx] */
+const hosts = {};
+Object.entries(best.replicas).forEach(([j,arr])=>arr.forEach(s=>(hosts[s] ||= []).push(+j)));
+
+/* ---------- routing ---------- */
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.go)));
+function go(v){
+  document.querySelectorAll(".view").forEach(x=>x.classList.toggle("on", x.id===v));
+  document.querySelectorAll(".links button[data-go]").forEach(b=>{ if(b.dataset.go!==v) b.removeAttribute("aria-current"); else b.setAttribute("aria-current","page")});
+  window.scrollTo(0,0);
+  if(v==="studio") countReadouts();
+}
+
+/* ---------- SplitText ---------- */
+(function(){
+  const h = document.getElementById("headline");
+  const words = h.textContent.split(" ");
+  h.textContent = "";
+  let i = 0;
+  words.forEach((w,wi)=>{
+    const ws = document.createElement("span"); ws.style.whiteSpace="nowrap";
+    [...w].forEach(c=>{const s=document.createElement("span");s.className="ch";s.textContent=c;s.style.animationDelay=(0.15+i++*0.022)+"s";ws.appendChild(s)});
+    h.appendChild(ws); if(wi<words.length-1) h.appendChild(document.createTextNode(" "));
+  });
+})();
+
+/* ---------- CountUp ---------- */
+function countUp(node, to, dec=1, dur=1300, delay=0){
+  if(reduce){node.textContent = to.toFixed(dec);return}
+  const t0 = performance.now()+delay;
+  const f = t=>{const k=Math.min(1,Math.max(0,(t-t0)/dur));const e=1-Math.pow(1-k,3);node.textContent=(to*e).toFixed(dec);if(k<1)requestAnimationFrame(f)};
+  requestAnimationFrame(f);
+}
+
+/* ---------- network drawing (shared) ---------- */
+function bounds(pad=60){
+  const xs=N.map(n=>n.x), ys=N.map(n=>n.y);
+  return [Math.min(...xs)-pad, Math.min(...ys)-pad, Math.max(...xs)-Math.min(...xs)+2*pad, Math.max(...ys)-Math.min(...ys)+2*pad];
+}
+function pathD(path){return path.map((v,i)=>(i?"L":"M")+N[v].x+" "+N[v].y).join(" ")}
+function nodeR(n){return n.tier==="core"?9:n.tier==="regional"?7:n.tier==="edge"?5.5:3.5}
+
+function drawNetwork(svg, opts){
+  svg.innerHTML="";
+  const defs = el("defs",{},svg);
+  const glow = el("filter",{id:opts.id+"g",x:"-50%",y:"-50%",width:"200%",height:"200%"},defs);
+  el("feGaussianBlur",{stdDeviation:"3",result:"b"},glow);
+  const m = el("feMerge",{},glow); el("feMergeNode",{in:"b"},m); el("feMergeNode",{in:"SourceGraphic"},m);
+  const root = el("g",{},svg);
+  const gL = el("g",{},root), gMst = el("g",{},root), gR = el("g",{},root), gP = el("g",{},root), gN = el("g",{},root), gT = el("g",{},root);
+  L.forEach(l=>{
+    const a=N[l.u], b=N[l.v];
+    el("line",{x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:"#5CE1E6","stroke-opacity":opts.hero?0.16:0.2,"stroke-width":0.6+Math.log10(l.bandwidth)*0.5},gL);
+  });
+  N.forEach((n,i)=>{
+    const g = el("g",{transform:`translate(${n.x} ${n.y})`,"data-i":i,style:"cursor:pointer"},gN);
+    const host = hosts[i];
+    if(n.tier==="router"){
+      el("rect",{x:-3,y:-3,width:6,height:6,fill:"#5B6488",transform:"rotate(45)"},g);
+    } else {
+      const r = nodeR(n);
+      if(host){
+        el("circle",{r:r+5,fill:"none",stroke:"#FFB547","stroke-opacity":.35,"stroke-width":1},g).classList.add("rep-ring");
+        el("circle",{r,fill:"#FFB547",filter:`url(#${opts.id}g)`},g).classList.add("rep-fill");
+        if(!opts.hero) host.forEach((j,k)=>{const a=-Math.PI/2+k*2*Math.PI/Math.max(host.length,1)/1;const rr=r+9;el("circle",{cx:Math.cos(a)*rr,cy:Math.sin(a)*rr,r:3.2,fill:S[j].color,stroke:"#0A1024","stroke-width":1.2},g).classList.add("rep-dot")});
+      } else {
+        el("circle",{r,fill:"#0A1024",stroke:"#E6EBFF","stroke-opacity":.8,"stroke-width":1.4},g);
+      }
+    }
+    if(opts.labels!==false){
+      el("text",{x:10,y:4,fill:host?"#E6EBFF":"#8A93B8","font-size":opts.hero?13:12.5,"font-family":"Geist, sans-serif",opacity:host?0.95:0.7},g).textContent = n.name;
+    }
+  });
+  return {root,gL,gMst,gR,gP,gN};
+}
+
+function addPulses(gR, gP, routes, id, colorFn){
+  gR.innerHTML=""; gP.innerHTML="";
+  routes.forEach((r,k)=>{
+    if(r.path.length<2) return;
+    const d = pathD(r.path);
+    el("path",{d,fill:"none",stroke:colorFn?colorFn(r):"#5CE1E6","stroke-opacity":.55,"stroke-width":1.8,"stroke-linecap":"round","stroke-linejoin":"round"},gR);
+    if(reduce) return;
+    const pid = `${id}p${k}`;
+    el("path",{id:pid,d,fill:"none",stroke:"none"},gP);
+    const dur = (0.9 + r.latency_ms*0.22).toFixed(2)+"s";
+    const c = el("circle",{r:3.4,fill:"#fff",filter:`url(#${id}g)`},gP);
+    const am = el("animateMotion",{dur,repeatCount:"indefinite",begin:(-Math.random()*3).toFixed(2)+"s"},c);
+    const mp = el("mpath",{},am); mp.setAttributeNS("http://www.w3.org/1999/xlink","href","#"+pid); mp.setAttribute("href","#"+pid);
+    const halo = el("circle",{r:7,fill:colorFn?colorFn(r):"#5CE1E6",opacity:.35},gP);
+    const am2 = el("animateMotion",{dur,repeatCount:"indefinite",begin:am.getAttribute("begin")},halo);
+    const mp2 = el("mpath",{},am2); mp2.setAttribute("href","#"+pid);
+  });
+}
+
+/* ---------- HOME ---------- */
+(function(){
+  const box = document.getElementById("heroMap");
+  const svg = el("svg",{viewBox:bounds(80).join(" "),preserveAspectRatio:"xMidYMid meet"},box);
+  const g = drawNetwork(svg,{id:"h",hero:true});
+  addPulses(g.gR,g.gP,sol.policy.routes,"h");
+  const rnd = sol.strategies.find(s=>s.name==="random").mean_ms;
+  const tel = [
+    [best.mean_ms,2,"ms","average user latency across 8 services"],
+    [100*(1-best.mean_ms/rnd),1,"%","lower than a random placement"],
+    [best.gap_pct??0,1,"%","from the proven optimum (MILP)"],
+    [best.runtime_ms,1,"ms","to compute the plan"],
+  ];
+  const t = document.getElementById("telemetry");
+  tel.forEach(([v,d,u,lab],i)=>{const div=document.createElement("div");div.innerHTML=`<b><span class="num">0</span><small>${u}</small></b><span>${lab}</span>`;t.appendChild(div);countUp(div.querySelector(".num"),v,d,1400,900+i*120)});
+
+  const stages = [
+    ["Latency matrix","Floyd–Warshall or Johnson","Θ(V³) · O(VE log V)"],
+    ["Backbone","Prim or Kruskal MST","O(E log V)"],
+    ["Routing","Dijkstra, Bellman-Ford","O(E log V) · O(VE)"],
+    ["Server activation","0/1 knapsack DP","Θ(nW)"],
+    ["Replica sizing","Multiple-choice knapsack","Θ(W·Σk)"],
+    ["Placement","Greedy schedulers","O(Σk·S·C)"],
+    ["Refinement","Relocate and swap search","local optimum"],
+  ];
+  const metro = document.getElementById("metro");
+  stages.forEach((s,i)=>{const d=document.createElement("div");d.className="station";d.innerHTML=`<div class="no">${i+1}</div><div class="dot"></div><h3>${s[0]}</h3><div class="alg">${s[1]}</div><div class="cx">${s[2]}</div>`;metro.appendChild(d)});
+
+  const grid = document.getElementById("dsGrid");
+  minis.forEach(m=>{
+    const xs=m.n.map(p=>p[0]), ys=m.n.map(p=>p[1]);
+    const x0=Math.min(...xs)-30,y0=Math.min(...ys)-30,w=Math.max(...xs)-x0+30,h=Math.max(...ys)-y0+30;
+    const card=document.createElement("button");card.className="ds";card.style.textAlign="left";card.style.border="0";card.style.color="inherit";
+    card.addEventListener("click",()=>go("studio"));
+    const sv=el("svg",{viewBox:`${x0} ${y0} ${w} ${h}`,preserveAspectRatio:"xMidYMid meet"});
+    const sw = Math.max(w,h)/220;
+    m.e.forEach(([u,v])=>el("line",{x1:m.n[u][0],y1:m.n[u][1],x2:m.n[v][0],y2:m.n[v][1],stroke:"#5CE1E6","stroke-opacity":.28,"stroke-width":sw},sv));
+    m.n.forEach(p=>el("circle",{cx:p[0],cy:p[1],r:(p[2]==="router"?1.4:p[2]==="core"?3:2.2)*sw,fill:p[2]==="router"?"#5B6488":p[2]==="core"?"#FFB547":"#E6EBFF"},sv));
+    card.appendChild(sv);
+    card.insertAdjacentHTML("beforeend",`<h4>${m.name}</h4><p>${m.desc}</p><div class="meta"><span class="num">${m.nodes} nodes, ${m.links} links</span><span>best <b class="num">${m.best_ms} ms</b></span></div>`);
+    grid.appendChild(card);
+  });
+})();
+
+/* ---------- STUDIO ---------- */
+const state = {svc:null, layers:{mst:false,rep:true,rt:true}, tab:"routes", sel:null};
+let SM;
+(function(){
+  const ds = document.getElementById("ds");
+  minis.forEach(m=>{const o=document.createElement("option");o.textContent=`${m.name} (${m.nodes} nodes)`;o.selected=m.name==="india";ds.appendChild(o)});
+  const vmb=document.getElementById("vmb"), vmbv=document.getElementById("vmbv");
+  vmb.value = sol.sizing.budget; const upd=()=>vmbv.textContent=`$${(+vmb.value).toFixed(2)} / h`; upd(); vmb.oninput=upd;
+  document.querySelectorAll("#sizing button").forEach(b=>b.onclick=()=>document.querySelectorAll("#sizing button").forEach(x=>x.setAttribute("aria-pressed",x===b)));
+  const sm = inst.summary;
+  document.getElementById("instSum").innerHTML = `${inst.description}<br>${sm.nodes} nodes, ${sm.links} links, ${sm.servers} servers<br>${S.length} services, ${inst.tasks.length} batch jobs<br>Minimum load ${(sm.cpu_load_min*100).toFixed(0)}% of CPU`;
+
+  const svg = document.getElementById("studioMap");
+  const vb = bounds(30); vb[1]-=30; vb[3]+=110; svg.setAttribute("viewBox", vb.join(" "));
+  SM = drawNetwork(svg,{id:"s"});
+  // MST layer
+  sol.topology.mst.edges.forEach(e=>{const a=N[e.u],b=N[e.v];el("line",{x1:a.x,y1:a.y,x2:b.x,y2:b.y,stroke:"#9D8CFF","stroke-width":2.6,"stroke-opacity":.85,"stroke-linecap":"round"},SM.gMst)});
+  SM.gMst.style.display="none";
+
+  // pan / zoom
+  let z=1, tx=0, ty=0, drag=null;
+  const wrap = document.getElementById("mapwrap");
+  const apply=()=>SM.root.setAttribute("transform",`translate(${tx} ${ty}) scale(${z})`);
+  const toSvg=(cx,cy)=>{const r=svg.getBoundingClientRect();const s=Math.max(vb[2]/r.width,vb[3]/r.height);return [vb[0]+(cx-r.left-(r.width-vb[2]/s)/2)*s, vb[1]+(cy-r.top-(r.height-vb[3]/s)/2)*s]};
+  svg.addEventListener("wheel",e=>{e.preventDefault();const [px,py]=toSvg(e.clientX,e.clientY);const k=Math.exp(-e.deltaY*0.0015);const nz=Math.min(6,Math.max(.6,z*k));tx=px-(px-tx)*nz/z;ty=py-(py-ty)*nz/z;z=nz;apply()},{passive:false});
+  svg.addEventListener("pointerdown",e=>{if(e.target.closest("[data-i]"))return;drag=[e.clientX,e.clientY,tx,ty];wrap.classList.add("drag");svg.setPointerCapture(e.pointerId)});
+  svg.addEventListener("pointermove",e=>{if(!drag)return;const r=svg.getBoundingClientRect();const s=Math.max(vb[2]/r.width,vb[3]/r.height);tx=drag[2]+(e.clientX-drag[0])*s;ty=drag[3]+(e.clientY-drag[1])*s;apply()});
+  svg.addEventListener("pointerup",()=>{drag=null;wrap.classList.remove("drag")});
+
+  // tooltip
+  const tip = document.getElementById("tip");
+  const sched = Object.fromEntries(sol.policy.schedule.map(r=>[r.server,r]));
+  SM.gN.querySelectorAll("[data-i]").forEach(g=>{
+    g.addEventListener("pointerenter",()=>{
+      const i=+g.dataset.i, n=N[i], sc=sched[i];
+      const vms = (hosts[i]||[]).map(j=>`<span class="vm"><i class="sw" style="background:${S[j].color};margin-right:5px;width:7px;height:7px"></i>${S[j].name}</span>`).join("");
+      const dem = S.reduce((a,s)=>a+(s.demand[i]||0),0);
+      tip.innerHTML = `<h5>${n.name}</h5><div class="r"><span>Tier</span><b>${n.tier}</b></div>`+
+        (n.cpu?`<div class="r"><span>CPU used</span><b class="num">${sc?sc.cpu_used:0} / ${n.cpu}</b></div><div class="r"><span>Memory used</span><b class="num">${sc?sc.mem_used:0} / ${n.mem} GB</b></div>`:`<div class="r"><span>Hosting</span><b>not possible</b></div>`)+
+        `<div class="r"><span>User demand</span><b class="num">${dem.toFixed(0)} req/s</b></div>`+(vms?`<div style="margin-top:6px">${vms}</div>`:"");
+      tip.style.display="block";
+    });
+    g.addEventListener("pointermove",e=>{const r=wrap.getBoundingClientRect();let x=e.clientX-r.left+14,y=e.clientY-r.top+14;if(x>r.width-220)x-=240;tip.style.left=x+"px";tip.style.top=y+"px"});
+    g.addEventListener("pointerleave",()=>tip.style.display="none");
+  });
+
+  // layer chips
+  document.querySelectorAll("[data-layer]").forEach(b=>b.onclick=()=>{const k=b.dataset.layer;state.layers[k]=!state.layers[k];b.setAttribute("aria-pressed",state.layers[k]);renderStudio()});
+  // service chips
+  const row = document.getElementById("svcRow");
+  const mk=(label,color,val)=>{const b=document.createElement("button");b.className="chip";b.setAttribute("aria-pressed",val===state.svc);b.innerHTML=(color?`<i style="background:${color}"></i>`:"")+`<span>${label}</span>`;b.onclick=()=>{state.svc=val;state.sel=null;row.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===b));renderStudio()};row.appendChild(b)};
+  mk("All services",null,null); S.forEach((s,j)=>mk(s.name,s.color,j));
+
+  document.querySelectorAll("#tablist button").forEach(b=>b.onclick=()=>{state.tab=b.dataset.tab;document.querySelectorAll("#tablist button").forEach(x=>x.setAttribute("aria-selected",x===b));renderTab()});
+
+  document.getElementById("solveBtn").onclick=e=>{const b=e.currentTarget;b.classList.add("busy");b.textContent="Solving";setTimeout(()=>{b.classList.remove("busy");b.textContent="Solve placement";countReadouts();renderStrat()},650)};
+
+  document.getElementById("recs").innerHTML = sol.recommendations.map(r=>`<li>${r.replace(/'([a-z_+]+)'/g,(m,n)=>prettyStrat(n))}</li>`).join("");
+  renderStudio(); renderStrat(); renderTab();
+})();
+
+function countReadouts(){
+  const ro = document.getElementById("readouts");
+  const items = [[best.mean_ms,2,"ms","average latency"],[best.p95_ms,2,"ms","95th percentile"],[best.cost_per_hour,2,"$/h","VM cost"],[sol.total_runtime_ms,0,"ms","full pipeline"]];
+  ro.innerHTML = items.map(()=>"<div><b><span class='num'>0</span><small></small></b><span></span></div>").join("");
+  [...ro.children].forEach((d,i)=>{d.querySelector("small").textContent=items[i][2];d.querySelector("span:last-child").textContent=items[i][3];countUp(d.querySelector(".num"),items[i][0],items[i][1],1000,i*80)});
+  const ex = sol.exact.objective;
+  document.getElementById("verdict").innerHTML = `Best plan: <strong>${prettyStrat(sol.best)}</strong>. ${ex!=null?`It matches the exact optimum of ${ex} ms found by the MILP in ${sol.exact.runtime_ms.toFixed(0)} ms.`:""}`;
+}
+
+function renderStrat(){
+  const box = document.getElementById("strat");
+  const rows = sol.strategies.filter(s=>s.feasible).slice().sort((a,b)=>a.mean_ms-b.mean_ms);
+  const max = Math.max(...rows.map(r=>r.mean_ms));
+  box.innerHTML = rows.map(r=>`<div class="srow ${r.name===sol.best?"best":""} ${r.name.endsWith("+ls")?"ls":""} ${r.name==="exact_milp"?"opt":""}"><span class="nm">${prettyStrat(r.name)}</span><div class="tr"><i style="width:0%" data-w="${100*r.mean_ms/max}"></i></div><span class="v num">${r.mean_ms.toFixed(2)}</span></div>`).join("");
+  requestAnimationFrame(()=>box.querySelectorAll("i[data-w]").forEach((i,k)=>setTimeout(()=>i.style.width=i.dataset.w+"%",k*40)));
+  const ex = sol.exact.objective;
+  if(ex!=null){const tr=box.querySelector(".tr");const line=document.createElement("div");line.className="optline";box.appendChild(line);
+    line.style.left=`calc(142px + (100% - 214px) * ${ex/max})`;}
+}
+
+function visibleRoutes(){
+  return sol.policy.routes.filter(r=>state.svc===null||r.service_id===state.svc);
+}
+function renderStudio(){
+  SM.gMst.style.display = state.layers.mst?"":"none";
+  SM.gN.querySelectorAll(".rep-ring,.rep-fill,.rep-dot").forEach(e=>e.style.display=state.layers.rep?"":"none");
+  SM.gN.querySelectorAll("[data-i]").forEach(g=>{
+    const i=+g.dataset.i; const h=hosts[i]; const on = state.svc===null || (h&&h.includes(state.svc)) || visibleRoutes().some(r=>r.client===i);
+    g.style.opacity = on?1:.28;
+  });
+  let rs = state.layers.rt ? visibleRoutes() : [];
+  if(state.sel!=null) rs = rs.filter((r,k)=>r===state.sel);
+  addPulses(SM.gR,SM.gP,rs,"s",r=>S[r.service_id].color);
+  renderTab();
+}
+
+function renderTab(){
+  const body = document.getElementById("tabbody");
+  const t = state.tab;
+  if(t==="routes"){
+    const rs = visibleRoutes();
+    body.innerHTML = `<table><thead><tr><th>Service</th><th>Users in</th><th>Served from</th><th>Path</th><th class="r">Requests/s</th><th class="r">Latency</th><th class="r">Backbone only</th></tr></thead><tbody>${
+      rs.map((r,k)=>`<tr data-k="${k}" class="${state.sel===r?"sel":""}"><td><i class="sw" style="background:${S[r.service_id].color}"></i>${r.service}</td><td>${r.client_name}</td><td>${r.replica_name}</td><td class="path">${r.path_names.join(" → ")}</td><td class="r num">${r.rate.toFixed(0)}</td><td class="r num">${r.latency_ms.toFixed(2)} ms</td><td class="r num">${r.stretch.toFixed(2)}×</td></tr>`).join("")}</tbody></table>`;
+    body.querySelectorAll("tbody tr").forEach(tr=>tr.onclick=()=>{const r=rs[+tr.dataset.k];state.sel = state.sel===r?null:r;renderStudio()});
+  } else if(t==="servers"){
+    const used = sol.policy.schedule.filter(r=>r.cpu_used>0 || true);
+    body.innerHTML = `<table><thead><tr><th>Server</th><th>Tier</th><th>Running</th><th>CPU</th><th>Memory</th></tr></thead><tbody>${
+      used.map(r=>`<tr><td>${r.name}</td><td style="color:var(--muted)">${r.tier}</td><td>${r.vms.map(v=>{const s=S.find(x=>x.name===v);return `<span class="vm"><i class="sw" style="background:${s.color};width:7px;height:7px;margin-right:5px"></i>${v}</span>`}).join("")||'<span style="color:var(--dim)">idle</span>'}</td>
+      <td><div style="display:flex;gap:8px;align-items:center"><div class="bar ${r.cpu_util>=.9?"hot":""}" style="flex:1"><i style="width:${r.cpu_util*100}%"></i></div><span class="num" style="color:var(--muted);width:64px;text-align:right">${r.cpu_used}/${r.cpu_cap}</span></div></td>
+      <td><div style="display:flex;gap:8px;align-items:center"><div class="bar ${r.mem_util>=.9?"hot":""}" style="flex:1"><i style="width:${r.mem_util*100}%"></i></div><span class="num" style="color:var(--muted);width:72px;text-align:right">${r.mem_used}/${r.mem_cap}</span></div></td></tr>`).join("")}</tbody></table>`;
+  } else if(t==="cost"){
+    const by = {}; sol.sizing.table.forEach(r=>(by[r.service_id] ||= []).push(r));
+    const K = Math.max(...sol.sizing.table.map(r=>r.replicas));
+    body.innerHTML = `<p style="color:var(--muted);font-size:13px;margin:8px 0 6px">Average latency in ms for each replica count. Amber is what the knapsack DP bought within the $${sol.sizing.budget}/h budget (spent $${sol.sizing.spend}/h).</p><table><thead><tr><th>Service</th><th class="r">$ per replica-hour</th>${Array.from({length:K},(_,k)=>`<th class="r">${k+1}</th>`).join("")}<th class="r">Next replica saves</th></tr></thead><tbody>${
+      S.map((s,j)=>{const rows=by[j]||[];const ch=rows.find(r=>r.chosen);const nx=rows.find(r=>ch&&r.replicas===ch.replicas+1);
+        return `<tr><td><i class="sw" style="background:${s.color}"></i>${s.name}</td><td class="r num">${s.vm_cost.toFixed(3)}</td>${Array.from({length:K},(_,k)=>{const r=rows.find(x=>x.replicas===k+1);return `<td class="r num ${r&&r.chosen?"chosen":""}">${r?r.avg_latency_ms.toFixed(2):'<span style="color:var(--dim)">–</span>'}</td>`}).join("")}<td class="r num" style="color:var(--muted)">${nx?`${nx.marginal_saving_ms.toFixed(2)} ms ($${s.vm_cost.toFixed(2)})`:"at maximum"}</td></tr>`}).join("")}</tbody></table>`;
+  } else if(t==="sync"){
+    const tr = sol.policy.transfer;
+    body.innerHTML = `<p style="color:var(--muted);font-size:13px;margin:8px 0 6px">Replica-to-replica sync traffic. ${tr.negative_arcs} peering links pay a rebate (negative cost), so the cheapest route comes from Johnson's algorithm, not Dijkstra.</p><table><thead><tr><th>Service</th><th>From</th><th>To</th><th>Fastest path</th><th class="r">ms</th><th class="r">$/GB</th><th>Cheapest path</th><th class="r">ms</th><th class="r">$/GB</th><th class="r">Saving</th></tr></thead><tbody>${
+      tr.rows.map(r=>`<tr><td>${r.service}</td><td>${r.from}</td><td>${r.to}</td><td class="path">${r.fast_path.join(" → ")}</td><td class="r num">${r.fast_latency_ms.toFixed(1)}</td><td class="r num">${r.fast_cost_per_gb.toFixed(4)}</td><td class="path">${r.cheap_path.join(" → ")}</td><td class="r num">${r.cheap_latency_ms.toFixed(1)}</td><td class="r num">${r.cheap_cost_per_gb.toFixed(4)}</td><td class="r num" style="color:${r.saving_per_gb>0?"var(--fibre)":"var(--dim)"}">${r.saving_per_gb>0?r.saving_per_gb.toFixed(4):"same"}</td></tr>`).join("")}</tbody></table>`;
+  } else if(t==="batch"){
+    const b = sol.policy.batch;
+    const lanes = [...new Set(b.entries.map(e=>e.server+"/"+e.lane))].sort((a,c)=>N[+a.split("/")[0]].name.localeCompare(N[+c.split("/")[0]].name));
+    const W = Math.max(body.clientWidth-40, 600), rowH = 22, left = 140, H = lanes.length*rowH+34;
+    const x = v=>left+(W-left-10)*v/b.makespan;
+    let s = `<svg width="${W}" height="${H}" style="display:block;margin-top:8px">`;
+    for(let t=0;t<=b.makespan;t+=20) s+=`<line x1="${x(t)}" x2="${x(t)}" y1="0" y2="${H-24}" stroke="rgba(150,170,255,.1)"/><text x="${x(t)}" y="${H-8}" fill="#5B6488" font-size="11" text-anchor="middle">${t}s</text>`;
+    lanes.forEach((ln,i)=>{const [sv,lane]=ln.split("/");s+=`<text x="0" y="${i*rowH+15}" fill="#8A93B8" font-size="12">${N[+sv].name}${lane>0?", lane "+(+lane+1):""}</text>`});
+    b.entries.forEach(e=>{const i=lanes.indexOf(e.server+"/"+e.lane);const y=i*rowH+4;
+      s+=`<rect x="${x(e.start)}" y="${y}" width="${Math.max(2,x(e.end)-x(e.start)-2)}" height="${rowH-8}" rx="4" fill="#5CE1E6" fill-opacity=".75"><title>${e.name}: ${e.start}s to ${e.end}s on ${N[e.server].name}</title></rect>`;
+      if(x(e.end)-x(e.start)>60) s+=`<text x="${x(e.start)+6}" y="${y+11}" fill="#06202A" font-size="11" font-weight="600">${e.name}</text>`});
+    s+=`<line x1="${x(b.makespan)}" x2="${x(b.makespan)}" y1="0" y2="${H-24}" stroke="#FFB547" stroke-dasharray="4 3"/><text x="${x(b.makespan)-4}" y="${H-28}" fill="#FFB547" font-size="11" text-anchor="end">makespan ${b.makespan}s</text></svg>`;
+    body.innerHTML = `<p style="color:var(--muted);font-size:13px;margin:8px 0 0">${b.entries.length} batch jobs, longest first, each sent to the server lane where it finishes earliest after its input data arrives.</p>`+s;
+  }
+}
+countReadouts();
+</script>
+</body>
+</html>
