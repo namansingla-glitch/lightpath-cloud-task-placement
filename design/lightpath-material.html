@@ -273,9 +273,84 @@ td.chosen{color:var(--primary);font-weight:700}
 .region button{border:0;background:none;padding:6px 16px;border-radius:999px;font-size:14px;font-weight:600;color:var(--ink2);cursor:pointer}
 .region button[aria-checked="true"]{background:var(--ink);color:#fff}
 .hero .region + .chip-k{vertical-align:middle}
+
+/* ================= intro / landing screen ================= */
+.intro{position:fixed;inset:0;z-index:12;background:var(--bg);display:none;flex-direction:column;overflow:auto}
+body.intro-on .intro{display:flex}
+body.intro-on .rail,body.intro-on .page{display:none}
+.intro-top{display:flex;justify-content:space-between;align-items:center;padding:24px 40px}
+.intro-brand{display:flex;align-items:center;gap:12px;font-weight:600;font-size:17px}
+.intro-brand .mark{margin:0;width:44px;height:44px;border-radius:14px}
+.intro-main{flex:1;display:flex;flex-direction:column;justify-content:center;padding:24px 40px 40px;max-width:1240px;width:100%;margin:0 auto}
+.intro-title{font-family:var(--display);font-weight:600;font-size:clamp(76px,13vw,200px);line-height:.95;letter-spacing:-.055em;margin-top:22px;font-variation-settings:"opsz" 144}
+.intro-title .ch{display:inline-block;opacity:0;transform:translateY(.25em);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+.intro-title .dot{color:var(--blue)}
+.intro-sub{margin-top:22px;font-size:clamp(17px,1.6vw,21px);color:var(--ink2);max-width:36em;line-height:1.55}
+.team-h{margin-top:52px;font-size:14px;color:var(--ink2);font-weight:500;display:flex;align-items:center;gap:12px}
+.team-h::after{content:"";flex:1;height:1px;background:var(--surface2)}
+.team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+.member{background:var(--surface);border-radius:28px;padding:22px 22px 24px;display:flex;gap:16px;align-items:flex-start;opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+.member:nth-child(1){animation-delay:.55s}.member:nth-child(2){animation-delay:.68s}.member:nth-child(3){animation-delay:.81s}
+.avatar{flex:none;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:600;font-size:19px;letter-spacing:.02em}
+.member .who{font-weight:600;font-size:18px;line-height:1.25}
+.member .role{display:inline-block;margin-top:6px;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:600}
+.member .what{margin-top:10px;font-size:14px;color:var(--ink2);line-height:1.5}
+.member.guide{background:#fff;border:1.5px solid var(--outline)}
+.intro-cta{display:flex;align-items:center;gap:16px;margin-top:40px;flex-wrap:wrap;opacity:0;animation:rise .7s .95s cubic-bezier(.2,.7,.2,1) forwards}
+.intro-cta .btn{height:56px;padding:0 30px;font-size:16px}
+.intro-cta .hint{font-size:13.5px;color:var(--ink3)}
+.intro-cta kbd{font-family:var(--mono);font-size:12px;background:var(--surface);border:1px solid var(--outline);border-bottom-width:2px;border-radius:6px;padding:1px 6px;margin:0 2px}
+.intro.leaving{animation:introOut .75s cubic-bezier(.6,0,.2,1) forwards}
+@keyframes introOut{to{opacity:0;transform:translateY(-6%) scale(.98);filter:blur(6px)}}
+.page.entering{animation:pageIn .8s cubic-bezier(.2,.7,.2,1)}
+@keyframes pageIn{from{opacity:0;transform:translateY(24px)}}
+.credits{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:6px}
+.credits b{color:var(--ink2);font-weight:600}
+@media (max-width:860px){
+  .intro-top{padding:16px}
+  .intro-main{padding:16px 16px 32px}
+  .team{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion: reduce){
+  .intro-title .ch,.member,.intro-cta{animation:none;opacity:1;transform:none}
+  .intro.leaving,.page.entering{animation:none}
+}
 </style>
 </head>
-<body class="splash-on tc-on glitch-on vel-on on-home">
+<body class="splash-on tc-on glitch-on vel-on on-home intro-on">
+<section class="intro" id="intro" aria-label="Welcome">
+  <div class="intro-top">
+    <div class="intro-brand"><div class="mark"><span class="glitch hover-only" data-text="Lp">Lp</span></div>Lightpath</div>
+    <span class="chip-k"><span class="dots"><i style="background:var(--blue)"></i><i style="background:var(--red)"></i><i style="background:var(--yellow)"></i><i style="background:var(--green)"></i></span>Woxsen University</span>
+  </div>
+  <div class="intro-main">
+    <span class="chip-k" style="align-self:flex-start">Cloud task placement on network graphs</span>
+    <h1 class="intro-title" id="introTitle">Lightpath<span class="dot">.</span></h1>
+    <p class="intro-sub">Servers become nodes, fibre links become weighted edges, and shortest paths, spanning trees and knapsack dynamic programming decide where every workload runs.</p>
+    <div class="team-h">The team</div>
+    <div class="team">
+      <div class="member">
+        <div class="avatar" style="background:var(--primary)">NS</div>
+        <div><div class="who">Naman Singla</div><span class="role" style="background:var(--tone);color:var(--on-tone)">Built the platform</span>
+          <p class="what">Graph algorithms, placement solver, experiments, API and this website, end to end.</p></div>
+      </div>
+      <div class="member">
+        <div class="avatar" style="background:var(--red)">MG</div>
+        <div><div class="who">Mohak Gupta</div><span class="role" style="background:#FCE8E6;color:#A50E0E">Research and front end</span>
+          <p class="what">The research report and the front-end foundations.</p></div>
+      </div>
+      <div class="member guide">
+        <div class="avatar" style="background:var(--green)">MA</div>
+        <div><div class="who">Dr. Monday Jubrin Abdullahi</div><span class="role" style="background:#E6F4EA;color:#0D652D">Guided by</span>
+          <p class="what">Faculty guide for the project.</p></div>
+      </div>
+    </div>
+    <div class="intro-cta">
+      <button class="btn primary" id="enterBtn">Enter Lightpath</button>
+      <span class="hint">or press <kbd>Enter</kbd></span>
+    </div>
+  </div>
+</section>
 <nav class="rail" aria-label="Main">
   <div class="mark" data-go="home" tabindex="0" title="Lightpath"><span class="glitch hover-only" data-text="Lp">Lp</span></div>
   <div class="links">
@@ -333,7 +408,7 @@ td.chosen{color:var(--primary);font-weight:700}
   </section>
   <div class="bigmark"><span class="glitch" data-text="Lightpath">Lightpath</span>
     <p>Latency-aware cloud task placement. Graph algorithms, dynamic programming and greedy scheduling.</p></div>
-  <footer>Lightpath. Python 3 (NumPy, SciPy HiGHS) backend, React dashboard. Mockup built from real solver output for the India, Nigeria and Woxsen datasets.</footer>
+  <footer><div class="credits"><span>Built by <b>Naman Singla</b> and <b>Mohak Gupta</b></span><span>Guided by <b>Dr. Monday Jubrin Abdullahi</b></span></div><div style="margin-top:6px">Lightpath. Python 3 (NumPy, SciPy HiGHS) backend, React dashboard. Mockup built from real solver output for the India, Nigeria and Woxsen datasets.</div></footer>
 </main>
 
 <!-- =============================== STUDIO =============================== -->
@@ -545,6 +620,7 @@ function addPulses(gR, gP, routes, id, colorFn){
   ];
   const t = document.getElementById("telemetry");
   tel.forEach(([v,d,u,lab],i)=>{const div=document.createElement("div");div.innerHTML=`<b><span class="num">0</span><small>${u}</small></b><span>${lab}</span>`;t.appendChild(div);countUp(div.querySelector(".num"),v,d,1400,900+i*120)});
+  window.__recount=()=>t.querySelectorAll(".num").forEach((n,i)=>countUp(n,tel[i][0],tel[i][1],1400,250+i*120));
 
   const stages = [
     ["Latency matrix","Floyd–Warshall or Johnson","Θ(V³) · O(VE log V)"],
@@ -842,6 +918,8 @@ const onHome = ()=>document.body.classList.contains("on-home");
     }
     requestAnimationFrame(loop);
   }
+  window.splashBurst=(cx,cy)=>{const dpr=canvas.width/innerWidth;const x=cx*dpr/canvas.width,y=1-cy*dpr/canvas.height;
+    for(let k=0;k<8;k++){const a=k/8*Math.PI*2;splat(x,y,Math.cos(a)*1400,Math.sin(a)*1400,colOf(k).map(v=>v*5))}};
   requestAnimationFrame(loop);
 })();
 
@@ -908,6 +986,25 @@ const onHome = ()=>document.body.classList.contains("on-home");
 })();
 
 if(START_VIEW==="studio") go("studio");
+
+/* ---------- intro / landing screen ---------- */
+(function(){
+  const intro=document.getElementById("intro");
+  // dataset/region switches reload with a hash: skip the intro then
+  if(location.hash){document.body.classList.remove("intro-on");return}
+  const t=document.getElementById("introTitle");const txt=[...t.childNodes];t.textContent="";let i=0;
+  txt.forEach(nd=>{if(nd.nodeType===3){[...nd.textContent].forEach(c=>{const s=document.createElement("span");s.className="ch";s.textContent=c;s.style.animationDelay=(0.1+i++*0.045)+"s";t.appendChild(s)})}else{nd.classList.add("ch");nd.style.animationDelay=(0.1+i++*0.045)+"s";t.appendChild(nd)}});
+  let done=false;
+  function enter(e){if(done)return;done=true;
+    const b=document.getElementById("enterBtn").getBoundingClientRect();
+    if(window.splashBurst&&FX.splash)window.splashBurst(b.left+b.width/2,b.top+b.height/2);
+    intro.classList.add("leaving");
+    setTimeout(()=>{document.body.classList.remove("intro-on");const pg=document.querySelector(".page");pg.classList.add("entering");
+      window.scrollTo(0,0);window.__recount&&window.__recount();setTimeout(()=>pg.classList.remove("entering"),900)}, reduce?0:650);
+    removeEventListener("keydown",onKey);}
+  function onKey(e){if(e.key==="Enter")enter()}
+  document.getElementById("enterBtn").onclick=enter;addEventListener("keydown",onKey);
+})();
 </script>
 </body>
 </html>
