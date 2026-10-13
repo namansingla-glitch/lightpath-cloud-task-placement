@@ -7,3 +7,11 @@ __pycache__/
 web/node_modules/
 .DS_Store
 # web/dist is committed on purpose so the site runs without Node.js
+
+# LaTeX build files
+report/*.aux
+report/*.log
+report/*.out
+report/*.toc
+report/main.pdf
+log.txt
