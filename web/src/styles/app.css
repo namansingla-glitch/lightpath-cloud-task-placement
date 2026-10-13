@@ -93,7 +93,11 @@ a{color:var(--primary)}
 .gen .btn{height:44px}
 
 @media (max-width:1150px){
-  .labpage{grid-template-columns:1fr;height:auto}
+  .labpage{grid-template-columns:minmax(0,1fr);height:auto}
+  .lab-tabs{max-width:100%;overflow-x:auto}.lab-tabs button{white-space:nowrap;padding:8px 12px}
+  .lab-map{min-height:420px}
+  .lab-center{grid-template-columns:minmax(0,1fr)}
+  .player{flex-wrap:wrap;border-radius:24px;row-gap:6px}.player input[type=range]{min-width:120px}.player .cnt{min-width:0}
   .lab-center{grid-template-rows:480px auto}
   .charts,.ds-list{grid-template-columns:1fr}
   .gen{grid-template-columns:1fr 1fr}
@@ -134,3 +138,4 @@ a{color:var(--primary)}
 .cmp-table th,.cmp-table td{padding:8px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--surface2)}
 .cmp-table thead th{font-weight:600}.cmp-table tbody th{color:var(--ink2);font-weight:500;width:150px}
 @media (max-width:1000px){.cmp-maps{grid-template-columns:1fr}}
+.tabbody{overflow-x:auto;max-width:100%}

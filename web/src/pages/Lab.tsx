@@ -198,7 +198,7 @@ export default function Lab() {
       <div className="lab-center" data-tour="lab">
         <div className="lab-tabs" role="tablist">
           <button role="tab" aria-selected={tab === "watch"} onClick={() => setTab("watch")}>Watch it run</button>
-          <button role="tab" aria-selected={tab === "compare"} onClick={() => setTab("compare")}>Compare two algorithms</button>
+          <button role="tab" aria-selected={tab === "compare"} onClick={() => { setTab("compare"); setPlaying(false); }}>Compare two algorithms</button>
           <Info title="Watch or compare">Watch it run replays one algorithm step by step from the start city to the destination. Compare runs two algorithms on the same trip and tells you which one suits it best.</Info>
         </div>
         {tab === "compare" && inst ? <Compare ds={ds} inst={inst} src={srcOk ? src : 0} dst={target >= 0 ? target : dst} live={live} heap={live ? heap : "binary"} /> : <>

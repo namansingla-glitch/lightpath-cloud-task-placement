@@ -77,7 +77,7 @@ h2.title{font-family:var(--display);font-weight:500;font-size:clamp(34px,3.6vw,5
 .vrow span{font-family:var(--display);font-weight:600;font-size:clamp(52px,7.5vw,112px);line-height:1.1;padding-right:.3em;letter-spacing:-.035em}
 .vrow.r1 span:nth-child(4n+1){color:var(--blue)} .vrow.r1 span:nth-child(4n+2){color:var(--red)}
 .vrow.r1 span:nth-child(4n+3){color:var(--ink)} .vrow.r1 span:nth-child(4n+4){color:var(--green)}
-.vrow.r2 span{color:transparent;-webkit-text-stroke:1.2px var(--outline);font-weight:500}
+.vrow.r2 span{color:transparent;-webkit-text-stroke:1.4px var(--ink3);font-weight:500}
 .vrow .sep{display:inline-block;width:.28em;height:.28em;border-radius:50%;margin:0 .4em .14em 0;vertical-align:middle;background:var(--yellow)}
 .vrow.r2 .sep{background:none;border:1.5px solid var(--outline)}
 .velocity-note{position:absolute;right:24px;bottom:12px;font-size:12px;color:var(--ink3)}
