@@ -377,6 +377,17 @@ body.intro-on .rail,body.intro-on .page{display:none}
 @media (max-width:1000px){.guide{grid-template-columns:1fr;padding:32px 16px 96px}.toc{position:static;flex-direction:row;flex-wrap:wrap}.toc .btn{width:auto}
   .steps{grid-template-columns:1fr 1fr}.pagecards,.gloss{grid-template-columns:1fr}.ctl{grid-template-columns:1fr}.ctl > div:nth-child(odd){border-bottom:0;padding-bottom:2px}}
 @media (max-width:860px){.tour-card{width:auto;left:12px !important;right:12px}.snack{width:calc(100% - 24px);bottom:84px}}
+
+/* landing title: light sweep + text pressure */
+.intro-title{position:relative;display:inline-block;align-self:flex-start;font-variation-settings:"wght" 600,"wdth" 100,"opsz" 144}
+.intro-title .ch{font-variation-settings:inherit;transition:font-variation-settings .12s linear}
+.intro-title .sweep{position:absolute;inset:-4% -3% -12% -3%;pointer-events:none;mix-blend-mode:screen;
+  background:linear-gradient(100deg,transparent 0 30%,#4285F4 37%,#EA4335 45%,#FBBC05 53%,#34A853 61%,transparent 68% 100%);
+  background-size:220% 100%;background-position:130% 0;animation:sweep 5s cubic-bezier(.4,0,.3,1) .9s infinite}
+@keyframes sweep{0%{background-position:150% 0}60%,100%{background-position:-50% 0}}
+.intro-title .dot{animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards,dotPulse 2.8s ease-in-out infinite}
+@keyframes dotPulse{0%,100%{color:var(--blue)}25%{color:var(--red)}50%{color:#F9AB00}75%{color:var(--green)}}
+@media (prefers-reduced-motion: reduce){.intro-title .sweep,.intro-title .dot{animation:none}}
 </style>
 </head>
 <body class="splash-on tc-on glitch-on vel-on on-home intro-on">
@@ -1249,6 +1260,22 @@ if(START_VIEW==="studio") go("studio");
   if(location.hash){document.body.classList.remove("intro-on");return}
   const t=document.getElementById("introTitle");const txt=[...t.childNodes];t.textContent="";let i=0;
   txt.forEach(nd=>{if(nd.nodeType===3){[...nd.textContent].forEach(c=>{const s=document.createElement("span");s.className="ch";s.textContent=c;s.style.animationDelay=(0.1+i++*0.045)+"s";t.appendChild(s)})}else{nd.classList.add("ch");nd.style.animationDelay=(0.1+i++*0.045)+"s";t.appendChild(nd)}});
+  const dt=t.querySelector(".dot");if(dt){const d0=parseFloat(dt.style.animationDelay)||0;dt.style.animationDelay=`${d0}s, ${d0+1.2}s`}
+  const sw=document.createElement("span");sw.className="sweep";sw.setAttribute("aria-hidden","true");t.appendChild(sw);
+  t.setAttribute("aria-label","Lightpath");
+  /* text pressure: letters near the pointer grow heavier and wider */
+  if(!reduce && matchMedia("(pointer:fine)").matches){
+    const chars=[...t.querySelectorAll(".ch")];const cur=chars.map(()=>({w:600,d:100}));let px=-1e4,py=-1e4,raf=0;
+    const R=()=>Math.max(220,t.getBoundingClientRect().height*1.6);
+    function frame(){raf=0;let moving=false;const rad=R();
+      chars.forEach((c,k)=>{const r=c.getBoundingClientRect();const d=Math.hypot(px-(r.left+r.width/2),py-(r.top+r.height/2));
+        const f=Math.max(0,1-d/rad);const e=f*f*(3-2*f);const tw=600+e*350,td=100+e*25;
+        cur[k].w+=(tw-cur[k].w)*.25;cur[k].d+=(td-cur[k].d)*.25;if(Math.abs(tw-cur[k].w)>.5||Math.abs(td-cur[k].d)>.2)moving=true;
+        c.style.fontVariationSettings=`"wght" ${cur[k].w.toFixed(0)},"wdth" ${cur[k].d.toFixed(1)},"opsz" 144`});
+      if(moving)raf=requestAnimationFrame(frame)}
+    addEventListener("pointermove",e=>{if(!document.body.classList.contains("intro-on"))return;px=e.clientX;py=e.clientY;if(!raf)raf=requestAnimationFrame(frame)});
+    document.addEventListener("pointerleave",()=>{px=py=-1e4;if(!raf)raf=requestAnimationFrame(frame)});
+  }
   let done=false;
   function enter(e){if(done)return;done=true;
     const b=document.getElementById("enterBtn").getBoundingClientRect();
