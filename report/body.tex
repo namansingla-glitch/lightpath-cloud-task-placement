@@ -1,65 +1,362 @@
 %======================================================================
-\begin{center}
-{\Large\bfseries Lightpath: Latency-Aware Cloud Task Placement on Network Graphs}\\[4pt]
-{\normalsize Naman Singla (25WU0101084) \quad Mohak Gupta (25WU0101074)}\\[2pt]
-{\small Guided by Dr.\ Monday Jubrin Abdullahi \;\textbullet\; Section CSE RHINOS \;\textbullet\; Woxsen University}
-\end{center}
+\section{Introduction and Problem Statement}\label{sec:intro}
 
-\noindent\textbf{Abstract---}%
-Cloud services run as replicated virtual machines (VMs) spread over a network of servers. Where those replicas sit decides how long every user request waits. We model the infrastructure as a weighted graph whose nodes are sites and whose edge weights are link latencies, and we place service replicas to minimise demand-weighted mean latency subject to CPU, memory and budget constraints. The problem contains the $p$-median problem and is NP-hard, so we combine exact polynomial algorithms where they apply with greedy heuristics where they do not: minimum spanning trees (Prim, Kruskal) for the provisioning backbone, single- and all-pairs shortest paths (Dijkstra, Bellman-Ford, Floyd--Warshall, Johnson) for routing and the latency matrix, 0/1 and multiple-choice knapsack dynamic programs for budgeted selection, four greedy schedulers refined by local search, and a mixed-integer program that certifies optimality on small instances. We evaluate on ten networks, including the real Abilene and NSFNET backbones, 25 Indian and 24 Nigerian cities at real coordinates, and the Woxsen University campus. Greedy placement with local search lands within 0.5\,\% of the proven optimum on average (worst case about 3\,\%) at roughly a fifth of the exact solver's time. Under tight capacity, packing-first placement remains feasible where latency-first greedies fail. All results are reproducible through a tested Python package, a REST API and an interactive web dashboard.
+\subsection{Course context}
+This report documents \emph{Lightpath}, our project for the Design and Analysis of Algorithms (DAA) course at Woxsen University. Of the problem statements offered in the brief, we chose \textbf{Cloud Task Placement}: servers are nodes, link latencies are edge weights, and replicas or virtual machines (VMs) must be placed to minimise average latency while respecting server capacity. The brief asks for minimum spanning trees for the backbone, shortest paths for routing and dynamic programming for placement selection, together with greedy schedulers, experiments that vary size, density and capacity, and policy outputs. Lightpath implements every item on that list and adds an exact optimiser so that the quality of each heuristic can be measured rather than assumed.
 
-\noindent\textbf{Keywords---} replica placement, $p$-median, shortest paths, minimum spanning tree, knapsack, submodularity, local search, mixed-integer programming.
+\subsection{Motivation: why placement is a real algorithmic problem}
+A request to an online service, whether a video stream, a payment or a search, travels from the user's nearest network site to a server that holds a copy of the service. The delay the user feels is dominated by the distance the signal travels through fibre and the number of switches it crosses. Putting copies close to users makes them fast, but three concerns pull against each other:
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Latency.} Every user should reach a nearby copy. This pushes copies towards the cities with the most demand.
+  \item \textbf{Capacity.} Each server has limited CPU and memory. A popular city cannot host every service, and a server used by one service may be needed by another.
+  \item \textbf{Cost.} Every copy costs money per hour, and every server that is switched on has a running cost. The budget limits how many copies we can buy.
+\end{itemize}
+Deciding \emph{where to run what} under these pressures is a combinatorial optimisation problem on a graph. It touches almost every family of algorithms in the course: shortest paths to measure distance, spanning trees to design the network, dynamic programming to spend a budget, and greedy methods to make fast decisions when exact search is too slow.
 
-%======================================================================
-\section{Introduction}
-A request to an online service travels from the user's nearest network site to a server that holds a copy (\emph{replica}) of the service. Its delay is dominated by propagation along fibre (about 5\,$\mu$s per km) and per-hop switching. Placing replicas close to demand therefore reduces latency, but servers have finite CPU and memory, replicas cost money, and a server chosen for one service may be needed by another. Deciding where to run what is a combinatorial optimisation problem on a graph.
+\subsection{What makes it hard}
+If there were only one service, no capacity limits and a fixed number of copies, the problem would be exactly the classical \emph{p-median} problem: choose $p$ sites so that the total distance from every client to its nearest chosen site is as small as possible. The p-median problem is NP-hard on general graphs \cite{kariv1979}, and adding capacities adds bin-packing structure, which is NP-hard by itself. No known algorithm solves every instance exactly in polynomial time. Our approach therefore uses exact algorithms wherever a sub-problem is tractable, fast greedy heuristics for the hard placement step, and an exact solver on smaller networks to measure how far the heuristics are from the true optimum.
 
-This project builds \emph{Lightpath}, a complete placement system, and uses it to study three questions:
+\subsection{Objectives and contributions}
+The project set out to answer three questions:
 \begin{enumerate}[label=\textbf{Q\arabic*},leftmargin=*]
-  \item Which classical graph algorithms are appropriate at each stage, and how do their theoretical bounds compare with measured behaviour in Python?
+  \item Which classical algorithm is the right one for each stage, and do their theoretical bounds match what we measure?
   \item How close do fast greedy schedulers get to the true optimum, and what does closing the gap cost?
-  \item How do network size, density, capacity pressure and budget change the answer?
+  \item How do network size, density, server capacity and budget change the answer?
 \end{enumerate}
-\textbf{Contributions.} (i) A clean formulation of capacitated, budgeted, multi-service replica placement and a 7-stage pipeline that solves it (Section~\ref{sec:model},~\ref{sec:algo}). (ii) Implementations of every algorithm from first principles, including binary, Fibonacci and pairing heaps and union-find, with correctness arguments and complexity bounds. (iii) A transfer-cost model in which some links have negative cost but negative cycles provably cannot occur, which motivates Bellman-Ford and Johnson. (iv) Eight experiments with an exact MILP reference. (v) Policy outputs (routes, schedules, cost/benefit tables) and an interactive dashboard for India, Nigeria and the Woxsen campus.
+Our contributions are: a seven-stage pipeline that solves capacitated, budgeted, multi-service placement; implementations of every algorithm from first principles (including four priority queues and union-find); a transfer-cost model with negative edges that motivates Bellman-Ford and Johnson; ten test networks including India, Nigeria and the Woxsen campus; eight experiments with an exact reference; 191 automated tests; and an interactive website that explains and demonstrates all of it.
+
+\subsection{Scope of this report}
+Section~\ref{sec:model} states the problem formally. Section~\ref{sec:tech} explains the technology choices. Section~\ref{sec:algo}, the analytical core, explains each algorithm, why it was chosen and which alternatives were rejected. Section~\ref{sec:uml} documents the design with UML diagrams. Section~\ref{sec:impl} walks through the working website. Sections~\ref{sec:cx}--\ref{sec:exp} cover complexity, testing and the experiments. Section~\ref{sec:policy} presents the plans for India, Nigeria and Woxsen. The report closes with correctness arguments, limitations, reflection and conclusions.
 
 %======================================================================
 \section{Problem Formulation}\label{sec:model}
-\textbf{Network.} $G=(V,E)$ is an undirected graph of $n=|V|$ sites and $m=|E|$ links. Link $(u,v)$ has latency $\ell_{uv}$ (ms) and bandwidth $b_{uv}$ (Gbit/s). For geographic networks we use
-\begin{equation}\label{eq:lat}
-\ell_{uv} = 1.3\cdot\frac{d_{\text{km}}(u,v)}{200\ \text{km/ms}} + 0.3\ \text{ms},
-\end{equation}
-where 200\,km/ms is the speed of light in fibre, 1.3 accounts for cable detours, and 0.3\,ms models switching. $d(u,v)$ denotes the shortest-path latency between sites.
 
-\textbf{Servers and services.} A subset $S\subseteq V$ are servers with CPU capacity $C_s$, memory $M_s$ and activation cost $f_s$; routers have $C_s=0$. Each service $j\in J$ needs $c_j$ vCPU and $\mu_j$ GB per replica, costs $p_j$ per replica-hour, has priority $\pi_j$, demand $r_{jc}$ (requests/s) at client sites $c$, and between $k^{\min}_j$ and $k^{\max}_j$ replicas.
+\subsection{Inputs}
+The cloud is modelled as a weighted, undirected graph $G=(V,E)$:
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Nodes} $V$ are network sites. Most are servers with a CPU capacity (vCPU), a memory capacity (GB) and an hourly running cost. Some are routers that forward traffic but cannot host anything.
+  \item \textbf{Edges} $E$ are fibre links. Each link carries a \textbf{latency} in milliseconds and a bandwidth. For networks with real coordinates, latency is computed from distance: light in fibre covers about 200\,km per millisecond, cables are about 30\,\% longer than the straight line, and each hop adds about 0.3\,ms of switching.
+  \item \textbf{Services} are the workloads, such as web front end, video transcoding or payments. Each needs a fixed amount of CPU and memory per copy, costs a fixed amount per copy-hour, has a priority, a minimum and maximum number of copies, and a \textbf{demand}: how many requests per second each city sends to it.
+  \item \textbf{Budgets} limit the total hourly spend on copies and, optionally, on switching servers on.
+\end{itemize}
+Storage is an adjacency list, so memory grows with the number of nodes plus links rather than with the square of the number of nodes. Real networks are sparse, with each city linked to only a few others, so this matters.
 
-\textbf{Decision and objective.} Binary $y_{sj}=1$ if a replica of $j$ runs on $s$ (at most one per server, for fault isolation). Each client is served by its nearest replica, so with weights $w_{jc}=\pi_j r_{jc}$ we minimise
-\begin{equation}\label{eq:obj}
-L(y)=\frac{\sum_{j}\sum_{c} w_{jc}\,\min_{s:\,y_{sj}=1} d(c,s)}{\sum_{j}\sum_{c} w_{jc}}
-\end{equation}
-subject to $\sum_s y_{sj}=k_j$, $k^{\min}_j\le k_j\le k^{\max}_j$, $\sum_j c_j y_{sj}\le C_s$, $\sum_j \mu_j y_{sj}\le M_s$ for every server, and the hourly budget $\sum_j p_j k_j \le B$. An optional server budget $\sum_{s \text{ active}} f_s\le B_S$ switches servers off.
+\subsection{Objective}
+Every user is served by the nearest copy of the service they request, measured along the shortest path in the network. The quantity we minimise is the \textbf{demand-weighted average latency}:
+\[
+\text{average latency} \;=\; \frac{\sum\ (\text{requests from city } c \text{ for service } j)\times(\text{distance from } c \text{ to the nearest copy of } j)}{\text{total requests}}.
+\]
+Requests from higher-priority services count more. We also report the 95th-percentile and worst-case latency, because an average can hide a few badly served cities.
 
-\textbf{Hardness.} With one service, unlimited capacity and fixed $k$, the problem is exactly the $p$-median problem, which is NP-hard on general graphs \cite{kariv1979}. Capacities add bin-packing structure, which is NP-hard by itself. This justifies exact algorithms for the polynomial sub-problems (paths, trees, pseudo-polynomial knapsacks) and heuristics with a measured optimality gap for placement.
+\subsection{Constraints}
+A plan is valid only if:
+\begin{itemize}[leftmargin=*]
+  \item every service has between its minimum and maximum number of copies, and at most one copy per server (so one server failure cannot take out two copies);
+  \item on every server, the CPU and memory used by the copies it hosts do not exceed its capacity;
+  \item the total hourly cost of all copies stays within the VM budget, and if a server budget is set, only servers bought within it are used.
+\end{itemize}
 
-\textbf{Transfer costs with negative edges.} Replicas of the same service synchronise data. Moving data $u\to v$ costs
-\begin{equation}\label{eq:cost}
-\kappa(u\!\to\!v)=\beta+\gamma\,\ell_{uv}+\varphi(u)-\varphi(v)\quad(\$/\text{GB}),
-\end{equation}
-where $\varphi$ is a regional price level (lower at core data centres, with a deterministic per-site jitter). Arcs into higher-priced regions become negative: a rebate.
-\begin{lemma}\label{lem:nocycle}
-The directed graph with weights~\eqref{eq:cost} has negative arcs but no negative cycle.
-\end{lemma}
-\begin{proofsketch}
-Around any directed cycle the terms $\varphi(u)-\varphi(v)$ telescope to zero, so the cycle's cost is $\sum(\beta+\gamma\ell_{uv})>0$.
-\end{proofsketch}
-\noindent Lemma~\ref{lem:nocycle} is the same potential argument that underlies Johnson's reweighting. It guarantees that Bellman-Ford and Johnson always succeed, while Dijkstra is unsafe because of the negative arcs. In the India network 24 of 88 directed arcs are negative.
+\subsection{Transfer costs and negative edges}
+Copies of the same service must synchronise data. Moving a gigabyte from site $u$ to site $v$ costs a small base fee plus a per-millisecond charge, adjusted by the difference in regional price levels between $u$ and $v$. Core data centres are cheaper than edge sites, so sending data towards a more expensive region earns a \emph{rebate}. Some arcs therefore have a \textbf{negative cost}: in the India network, 24 of 88 directed arcs are negative.
+
+Negative edges break Dijkstra's algorithm, which is why the brief's Bellman-Ford and Johnson algorithms have a genuine role here. Negative edges are only dangerous if they form a \emph{negative cycle}, because then the cost could be lowered for ever by going round the loop. Our cost model rules this out (Lemma~\ref{lem:nocycle}, Section~\ref{sec:proofs}).
+
+\subsection{Infeasibility handling}
+The system reports problems instead of crashing or silently returning a wrong plan:
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Invalid network.} Before solving, the instance is validated: links must have positive latency, services must have valid replica ranges, and every demand must come from a real site. Disconnected networks are flagged, and the spanning tree becomes a spanning forest.
+  \item \textbf{Not enough capacity.} If the minimum copies cannot all fit, the sizing stage reports it, and strategies that cannot place every copy are marked \emph{infeasible} with the reason. They are never shown as valid plans.
+  \item \textbf{A service no server can host.} Such a service is kept at zero copies and the same penalty is applied in both the heuristics and the exact solver, so their scores remain comparable.
+\end{itemize}
 
 %======================================================================
-\section{Datasets}\label{sec:data}
-Table~\ref{tab:data} lists the ten instances. Abilene (Internet2) and NSFNET T1 are real research backbones. India (24 metros plus Woxsen University at Kamkole) and Nigeria (24 cities, with Lagos, Abuja and Port Harcourt as core data centres) use real coordinates with links synthesised to each city's three nearest neighbours; they are not carrier maps. The Woxsen campus has 23 sites named and arranged from the official campus map (Main Entrance in the west to Student Hostels A--D in the east), with sub-millisecond links, two data centres (Academic Block and Admin Block) and campus workloads such as the learning portal, Bloomberg feed, AI-lab GPU jobs and sports live streaming. Synthetic families cover geographic WANs (Waxman \cite{waxman1988}), random graphs (Erd\H{o}s--R\'enyi \cite{erdos1959}), scale-free ISP-like graphs (Barab\'asi--Albert \cite{barabasi1999}) and a $k=4$ data-centre fat-tree \cite{alfares2008}. Server tiers (core 48 vCPU, regional 24, edge 8, routers 0) are assigned by degree centrality. Services draw Zipf-like demand clustered around a random centre.
+\section{Technology Stack and Justification}\label{sec:tech}
+Lightpath has three layers: a Python engine that contains every algorithm, a small web API, and a browser dashboard. Table~\ref{tab:tech} gives each tool and the reason it was chosen.
 
 \begin{table}[!htbp]
 \centering\small
-\caption{Datasets. Load is the CPU needed by minimum replicas divided by total capacity; best is the recommended plan's mean latency.}\label{tab:data}
+\caption{Technology stack and the rationale for each choice.}\label{tab:tech}
+\begin{tabularx}{\textwidth}{@{}p{2.9cm}p{4.2cm}X@{}}
+\toprule
+Tool & Role in the project & Why it was chosen\\
+\midrule
+Python 3 (\texttt{cloudplace} package) & All algorithms, the problem model, data generators, the solver and the experiments & Readable enough that every algorithm can be written from first principles and checked line by line against the textbook. Graphs, heaps, union-find, the DPs and the greedy methods are our own code, not library calls. \\
+NumPy & Vectorised Floyd--Warshall and the distance matrices & One vectorised version of Floyd--Warshall runs the same $\Theta(n^3)$ algorithm much faster than pure Python. That made Experiment E2 possible, comparing constant factors with asymptotics. \\
+SciPy (HiGHS solver) & Exact MILP used only as a referee & An independent, proven-optimal answer is the only honest way to measure a heuristic's gap. It checks our algorithms and is never used to produce them. \\
+FastAPI + Uvicorn & REST API serving datasets, solving and step-by-step traces & Typed request models catch bad input early, and one process serves both the API and the website. \\
+React 18 + TypeScript + Vite & Interactive dashboard & State-driven rendering suits an app where one change (network, budget, start city) must update the map, tables and charts together. TypeScript catches data-shape errors between engine and UI. \\
+Custom SVG map & Network drawing, routes, step animations & Full control over highlighting exactly the edge or node each algorithm touches at each step, without a heavy graph library. \\
+Recharts & Experiment charts on the Results page & Lightweight, interactive charts with hover values. Loaded only on the page that needs them. \\
+pytest, Hypothesis, NetworkX & 191 automated tests & NetworkX is an independent reference for every graph algorithm; Hypothesis generates random inputs for heap tests. \\
+Playwright / WebKit & End-to-end browser tests & The website is tested in the Chrome and Safari engines, at desktop and phone sizes. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\noindent\textbf{Why a working application and not only a script.} The brief asks for a dashboard and policy outputs. An interactive site also makes the algorithms visible: in the Algorithm Lab a viewer can watch Dijkstra settle cities one by one, or see Bellman-Ford handle a rebate link that would fool Dijkstra. Running on saved results, the site also works offline, so it can be demonstrated without installing Python.
+
+%======================================================================
+\section{Algorithms Used, and Why Each One Was Chosen}\label{sec:algo}
+This section is the analytical core of the report. For each stage it states what the stage must achieve, which algorithm was selected, why that algorithm fits, and which alternatives were set aside. Fig.~\ref{fig:pipeline} shows how the stages connect: each one answers one question, and its output feeds the next.
+
+\begin{figure}[!htbp]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[font=\small,node distance=3mm,
+  st/.style={draw=#1,fill=#1!10,rounded corners=3pt,minimum height=11mm,text width=22mm,align=center,line width=0.8pt}]
+  \definecolor{gb}{HTML}{4285F4}\definecolor{gr}{HTML}{EA4335}\definecolor{gy}{HTML}{F9AB00}\definecolor{gg}{HTML}{34A853}
+  \node[st=gb] (a) {\textbf{1 Latency matrix}\\FW / Johnson};
+  \node[st=gb,right=of a] (b) {\textbf{2 Backbone}\\Prim / Kruskal};
+  \node[st=gr,right=of b] (c) {\textbf{3 Routing}\\Dijkstra / B-F};
+  \node[st=gy,right=of c] (d) {\textbf{4 Activation}\\0/1 knapsack};
+  \node[st=gy,right=of d] (e) {\textbf{5 Sizing}\\MC knapsack};
+  \node[st=gg,right=of e] (f) {\textbf{6 Placement}\\4 greedies};
+  \node[st=gg,right=of f] (g) {\textbf{7 Refinement}\\local search};
+  \foreach \x/\y in {a/b,b/c,c/d,d/e,e/f,f/g} \draw[->,thick] (\x) -- (\y);
+  \node[draw=gg,dashed,rounded corners=3pt,below=4mm of e,text width=52mm,align=center,minimum height=8mm] (x) {\textbf{Exact check}: MILP optimum $\Rightarrow$ optimality gap};
+  \draw[->,dashed] (g.south) |- (x.east);
+\end{tikzpicture}}
+\caption{The Lightpath pipeline. Stages 1--3 are exact polynomial algorithms, 4--5 exact dynamic programs, and 6--7 fast heuristics whose distance from the optimum is measured by the exact MILP.}\label{fig:pipeline}
+\end{figure}
+
+\subsection{Supporting data structures}
+\subsubsection{Adjacency list}
+Each site keeps a list of its neighbours with the link's latency, bandwidth and cost. Memory is proportional to sites plus links, and visiting a site's neighbours costs only its number of links. An adjacency matrix was rejected: it wastes $n^2$ cells on links that do not exist and makes every neighbour scan cost $n$.
+
+\subsubsection{Four priority queues}
+Dijkstra and Prim repeatedly need the closest unfinished site, which is a priority-queue job. We implemented four queues behind one interface (\emph{push}, \emph{pop-minimum}, \emph{decrease-key}) so the same algorithm can run on any of them:
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Binary heap} with a position map: every operation in $O(\log n)$.
+  \item \textbf{Fibonacci heap} \cite{fredman1987}: insert and decrease-key in amortised $O(1)$, extract-min in $O(\log n)$. It is the textbook way to get the best bound for Dijkstra and Prim.
+  \item \textbf{Pairing heap}: simpler than Fibonacci with good practical speed.
+  \item \textbf{Lazy heap} (Python's built-in \texttt{heapq}): instead of decreasing a key, it pushes a new entry and skips stale ones when they surface.
+\end{itemize}
+Implementing all four was a deliberate choice: Experiment E1 tests whether the heap with the best Big-O is also the fastest in practice. It is not.
+
+\subsubsection{Union-find}
+Kruskal must check quickly whether a link would close a loop. Union-find with \emph{union by rank} and \emph{path compression} does this in almost constant amortised time, $O(\alpha(n))$ per operation \cite{tarjan1975}.
+
+\subsection{Minimum spanning tree: Prim's and Kruskal's algorithms}
+\subsubsection{Why an MST at all?}
+Every physical link costs money to build and maintain. The cheapest way to connect every site with no redundant link is the \textbf{minimum spanning tree}: a set of $n-1$ links that connects all sites with the smallest total latency. In Lightpath the MST is the \emph{provisioning backbone}, the first set of links an operator would build. It is also used to measure \emph{stretch}: how much slower requests would be if they could only travel along the backbone.
+
+\subsubsection{Why implement both Prim and Kruskal}
+Both find the same cheapest tree but in different ways, and each wins in a different situation.
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Prim} \cite{prim1957} grows a single tree from a start city, always adding the cheapest link that reaches a new city. Using our heaps it runs in $O(E\log V)$, or $O(E+V\log V)$ with a Fibonacci heap. It never sorts the whole edge list, which makes it better on \emph{dense} graphs.
+  \item \textbf{Kruskal} \cite{kruskal1956} sorts all links from cheapest to most expensive and keeps each one unless union-find reports that it would close a loop. Its cost is dominated by the sort, $O(E\log E)$, which is small on \emph{sparse} graphs.
+\end{itemize}
+The pipeline chooses automatically: \textbf{Prim if $E > V\log_2 V$, otherwise Kruskal}. Experiment E3 confirms the rule. On sparse graphs Kruskal took 1.5\,ms against Prim's 3.7\,ms; on dense graphs Prim took 42\,ms against Kruskal's 126\,ms. Both always returned the same tree weight.
+
+\subsubsection{Alternatives considered}
+\textbf{Bor\r{u}vka's algorithm} grows many fragments in parallel. Its advantage is parallelism, which a single-threaded Python program does not use, so we did not implement it. \textbf{Steiner trees} connect only a chosen subset of sites. They do not match our assumption that every site belongs to the backbone.
+
+\subsection{Single-source shortest paths: Dijkstra and Bellman-Ford}
+\subsubsection{Role in the pipeline}
+Once copies are placed, every request must be \emph{routed}: we need the actual path from each city to its nearest copy, hop by hop, for the route table that operators use. Copies of the same service must also synchronise, and that traffic should take the \emph{cheapest} route in dollars per gigabyte. These are two single-source shortest-path problems with different weights.
+
+\subsubsection{Dijkstra for latency}
+Dijkstra's algorithm \cite{dijkstra1959} repeatedly takes the closest unsettled city from a priority queue and declares its distance final, then updates its neighbours. Latency can never be negative, so Dijkstra is correct and fast: $O((V+E)\log V)$ with a binary heap. In the Algorithm Lab it also demonstrates an important property: if only one destination matters, Dijkstra can \emph{stop} as soon as that destination is settled, because its distance can no longer change.
+
+\subsubsection{Bellman-Ford for transfer cost}
+For dollars per gigabyte, some links are rebates with negative cost. Dijkstra can then give wrong answers, because a city it has already settled might be reached more cheaply later through a negative link. \textbf{Bellman-Ford} \cite{bellman1958,ford1956} relaxes every link in rounds. After round $i$, every route that uses at most $i$ links is correct, so $V-1$ rounds are enough. Any improvement in round $V$ would reveal a negative cycle, which our implementation detects and reports. It is slower, $O(VE)$, but it is the right tool when weights can be negative. In Lightpath it computes the cheapest replica-synchronisation routes.
+
+\subsubsection{Why both, and not one}
+Using Bellman-Ford everywhere would be correct but needlessly slow for latency, at 490\,ms against 144\,ms at 4000 sites in E1. Using Dijkstra everywhere would be fast but wrong for costs with rebates. Each is used exactly where its guarantee holds.
+
+\subsection{All-pairs shortest paths: Floyd--Warshall and Johnson}
+\subsubsection{Role in the pipeline}
+Placement must try many candidate servers for every service, and each trial needs the distance from every city to every server. Computing those distances once, as a full \textbf{latency matrix} with an entry for every pair of sites, makes each trial a cheap table lookup. This matrix is the input to every later stage.
+
+\subsubsection{Floyd--Warshall}
+Floyd--Warshall \cite{floyd1962,warshall1962} is dynamic programming over intermediate cities. The best route from $i$ to $j$ that may pass through cities $1..k$ either avoids city $k$ or goes through it once, so the table is updated with \(d[i][j] = \min(d[i][j],\ d[i][k] + d[k][j])\) for every $k$. It runs in $\Theta(V^3)$ time and handles negative edges. Its triple loop is also easy to vectorise: our NumPy version runs the same algorithm many times faster than pure Python.
+
+\subsubsection{Johnson}
+Johnson's algorithm \cite{johnson1977} targets sparse graphs with negative edges. It runs Bellman-Ford once from an added helper vertex to get a \emph{potential} $h$ for every city, then reweights every link to $w + h(u) - h(v)$, which is never negative. Dijkstra can then run safely from every city. Every route between the same two cities changes by the same amount, so shortest routes stay shortest. The total is $O(VE + V(V+E)\log V)$, better than $V^3$ when the graph is sparse.
+
+\subsubsection{The choice rule, and what the experiment taught us}
+The pipeline treats a graph as sparse when $E\log V < V^2$ and then uses repeated Dijkstra (or Johnson if any weight is negative); dense graphs use Floyd--Warshall. Experiment E2 tested this rule. On dense graphs it was clearly right: at 400 sites, NumPy Floyd--Warshall took 277\,ms against Johnson's 5015\,ms. On sparse graphs, Big-O favours Johnson, yet NumPy Floyd--Warshall was still fastest at this size (285\,ms against 985\,ms). The lesson is that \emph{constant factors and implementation matter as much as asymptotics}, so a choice rule should be calibrated by measurement.
+
+\subsection{Dynamic programming: two knapsack problems}
+\subsubsection{Why dynamic programming here}
+Two budget decisions have exactly the structure of knapsack problems: a set of items with costs and values, a fixed budget, and the goal of the most value within budget. A greedy rule such as ``best value per dollar first'' can be fooled: a cheap item may block a better combination. Dynamic programming considers every budget level systematically and is guaranteed optimal. Budgets are in steps of \$0.01, so the tables stay small enough to be fast.
+
+\subsubsection{0/1 knapsack: which servers to switch on}
+When a server budget is set, each server is either on or off. Its \emph{value} is the latency saving it offers and its \emph{weight} is its hourly cost. The DP table \(\mathrm{OPT}[i][w]\) holds the best value using the first $i$ servers with budget $w$: server $i$ is either skipped, keeping \(\mathrm{OPT}[i-1][w]\), or taken, giving its value plus \(\mathrm{OPT}[i-1][w - \text{cost}_i]\). Time and space are $\Theta(nW)$, where $W$ is the budget in cents. Experiment E8 measured about 97\,ns per table cell, growing exactly linearly as predicted.
+
+\subsubsection{Multiple-choice knapsack: how many copies of each service}
+Each service must take \emph{exactly one} option from its group: 1 copy, 2 copies, 3 copies and so on, each with a cost and an estimated latency saving. This is the multiple-choice knapsack problem. The DP processes one service at a time and, for every budget level, picks the best option for that service plus the best result for the earlier services with the remaining budget. Because the savings are estimated without capacity limits, a \emph{capacity repair} step then removes the largest extra copies until first-fit-decreasing packing confirms that everything fits. This guarantees that a feasible placement exists before the placement stage starts. Experiment E7 shows the payoff: raising the India budget from \$2.41 to \$7.51 per hour cut average latency from 4.34\,ms to 1.28\,ms.
+
+\subsubsection{Alternatives considered}
+Solving the whole placement as one giant DP over every server's remaining capacity would be exact, but its table grows with the \emph{product} of all server capacities. That is impossible for networks of 25 to 150 sites. We therefore use DP where its tables are small (budgets) and greedy methods where they would explode (placement).
+
+\subsection{Greedy schedulers for placement}
+\subsubsection{Why greedy}
+Choosing the exact server for every copy is the NP-hard heart of the problem. A greedy method makes one good local choice at a time, never undoes it, and finishes in polynomial time. We built four greedy schedulers because each optimises a different concern, and the experiments compare them.
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Demand-first.} Services with the most traffic choose first, and each copy goes to the free server nearest the next demand hotspot. Simple and intuitive.
+  \item \textbf{Marginal gain (CELF).} At every step, add the single copy that reduces total latency the most. Benefits shrink as more copies open (the function is \emph{submodular}), so old estimates can be re-checked lazily instead of recomputed (CELF \cite{leskovec2007}). Without capacity limits this greedy achieves at least $1-1/e\approx63\,\%$ of the best possible saving \cite{nemhauser1978}.
+  \item \textbf{Regret.} Place first the service that would lose the most if it missed its best server, which is the gap between its best and second-best options \cite{martello1990}. This protects services with few good choices from being crowded out.
+  \item \textbf{FFD packing.} First-fit decreasing: place the largest copies first, each on a well-located server that fits. It focuses on \emph{fitting} capacity rather than latency; plain FFD uses at most $\tfrac{11}{9}\mathrm{OPT}+\tfrac{6}{9}$ bins \cite{dosa2007}.
+\end{itemize}
+
+\subsection{Local search refinement}
+Greedy methods never revisit a decision, so they can lock in early mistakes. Local search repeatedly tries two kinds of move: \textbf{relocate} (move one copy to a free server) and \textbf{swap} (exchange copies of two services between two servers when both fit). Any move that lowers average latency is kept. Every accepted move strictly improves the plan and there are finitely many plans, so the search always stops. For the uncapacitated version, single-swap local optima are within a factor of 5 of optimal \cite{arya2004}; in practice we observe about 0.5\,\%. Local search is what turns 9--38\,\% greedy gaps into near-optimal plans.
+
+\subsection{The exact referee: a mixed-integer program}
+To know whether a heuristic is good, we need the true optimum. On networks small enough, Lightpath formulates placement as a \textbf{mixed-integer linear program} (MILP): binary variables say which server hosts which copy, and the constraints are exactly those of Section~\ref{sec:model}. It is solved with the open-source HiGHS solver \cite{huangfu2018} through SciPy \cite{virtanen2020}. When the program is too large, we report its linear relaxation as a lower bound instead. The MILP is a \emph{checking tool}: every stage of our own pipeline is implemented by hand, and the MILP only tells us how far each heuristic is from the best possible answer.
+
+\subsection{Batch scheduling}
+Background batch jobs, such as nightly analytics, are scheduled with the classic greedy \textbf{LPT} rule: longest job first, each assigned to the server lane where it will finish earliest once its input data arrives over the network. Without transfer delays, LPT is within $\tfrac43$ of the optimal finishing time \cite{graham1969}.
+
+\input{uml}
+
+%======================================================================
+\section{Implementation and Working Screenshots}\label{sec:impl}
+This section walks through the working website. All screenshots were captured from the running build in Chrome at $1440\times900$ by a script that drives the real interface, using the live Python engine. The same build also runs offline on saved results.
+
+\subsection{Landing page}
+The landing page (Fig.~\ref{fig:ui-landing}) introduces the project and the team: Naman Singla, who built the platform; Mohak Gupta, who wrote the research report and built the front-end foundations; and the faculty guide, Dr.\ Monday Jubrin Abdullahi. The title letters rise in one by one and pass through a wave of colour. Pressing \emph{Enter} or the button opens the site.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/ui_landing.png}
+\caption{Landing page with the project title and the team.}\label{fig:ui-landing}
+\end{figure}
+
+\subsection{Home}
+The Home page (Fig.~\ref{fig:ui-home}) shows a live map of the selected region, India or Nigeria. Yellow cities host copies, and each moving dot is a user request travelling its shortest path to the nearest copy. Below the map, four headline numbers report average latency, the improvement over a random placement, the distance from the proven optimum and the time taken to compute the plan. Further down, the seven-stage pipeline is drawn as a metro line (Fig.~\ref{fig:ui-pipeline}) with the algorithm and complexity of each stage, followed by the ten test networks. A \emph{quick tour} link starts a 13-step guided tour of the whole site.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/ui_home.png}
+\caption{Home page: region switch, live request map and headline numbers.}\label{fig:ui-home}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/ui_home_pipeline.png}
+\caption{Home page: the seven pipeline stages as a metro line.}\label{fig:ui-pipeline}
+\end{figure}
+
+\subsection{Placement Studio}
+The Studio (Fig.~\ref{fig:ui-studio}) is the main tool. On the left the user chooses a network, the VM budget, an optional server budget, the replica-sizing method and which strategies to compare. Pressing \emph{Solve placement} runs the whole pipeline. The centre map shows where every service runs, with layers for the MST backbone, the copies and the routes. The right panel compares every strategy against the exact optimum and gives plain-language recommendations. Tabs below the map show the route table, server load, the cost-benefit of each extra copy, the replica-synchronisation routes and the batch-job schedule.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/ui_studio.png}
+\caption{Placement Studio solving the India network: controls, map, strategy comparison and route table.}\label{fig:ui-studio}
+\end{figure}
+
+\subsection{Algorithm Lab}
+The Lab replays any of the six graph algorithms step by step from its recorded trace, with the matching line of pseudocode highlighted. The user picks a network, a \textbf{start city} and a \textbf{destination}, and can play, pause, step and choose a speed of 0.5$\times$, 1$\times$, 1.5$\times$, 2$\times$ or 4$\times$. When the run ends, the route is drawn in blue and listed hop by hop with its delay and cost (Fig.~\ref{fig:ui-lab}). Dijkstra and Prim stop early once the destination is final, which demonstrates why Dijkstra suits a single trip. Bellman-Ford (Fig.~\ref{fig:ui-lab-bf}) shows the red rebate arcs and the round number. Floyd--Warshall and Johnson display the full distance table as a heat map with the chosen pair outlined.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/ui_lab_route.png}
+\caption{Algorithm Lab: Dijkstra from Lagos to Calabar. It stopped early after the destination was settled; the blue line is the final route.}\label{fig:ui-lab}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/ui_lab_bf.png}
+\caption{Algorithm Lab: Bellman-Ford on transfer costs. Red arrows are rebate links with negative cost.}\label{fig:ui-lab-bf}
+\end{figure}
+
+The \textbf{Compare two algorithms} view (Fig.~\ref{fig:ui-compare}) runs two algorithms on the same trip and shows both routes side by side, a table of what each optimises, the route, delay, hops, cost, work needed and run time, and a verdict on which suits the trip best. For example, Dijkstra against Floyd--Warshall is won by Dijkstra for a single trip, while Dijkstra against Bellman-Ford depends on whether speed or the transfer bill matters.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/ui_lab_compare.png}
+\caption{Algorithm Lab: comparing Dijkstra and Bellman-Ford on the same trip, with a verdict.}\label{fig:ui-compare}
+\end{figure}
+
+\subsection{Results, Data and Guide}
+The Results page (Fig.~\ref{fig:ui-results}) presents the eight experiments as interactive charts, each with a one-line takeaway and links to its raw CSV data. The Data page (Fig.~\ref{fig:ui-data}) lists all ten networks with downloads in JSON, Gephi (GEXF) and CSV formats, and a generator for new random networks. The Guide (Fig.~\ref{fig:ui-guide}) explains every page in plain language for someone who does not know the algorithms. Every panel also has a \textbf{?} button with short help.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/ui_results.png}
+\caption{Results page: interactive charts for the experiments.}\label{fig:ui-results}
+\end{figure}
+
+\begin{figure}[!htbp]
+\centering
+\begin{subfigure}{0.49\textwidth}\includegraphics[width=\linewidth]{figures/ui_data.png}\caption{Data page.}\label{fig:ui-data}\end{subfigure}\hfill
+\begin{subfigure}{0.49\textwidth}\includegraphics[width=\linewidth]{figures/ui_guide.png}\caption{Guide page.}\label{fig:ui-guide}\end{subfigure}
+\caption{Data downloads and the plain-language guide.}
+\end{figure}
+
+%======================================================================
+\section{Complexity Analysis}\label{sec:cx}
+Table~\ref{tab:cx} summarises the cost of each stage, using $V$ for sites, $E$ for links, $W$ for the budget in cents, $J$ for services, $k$ for copies per service and $S$ for servers. The dominant cost on large networks is the all-pairs latency matrix. On small networks with many services, greedy placement and local search dominate. The exact MILP is exponential in the worst case, which is why it serves only as a referee.
+
+\begin{table}[!htbp]
+\centering\small
+\caption{Time complexity and guarantees by pipeline stage.}\label{tab:cx}
+\begin{tabularx}{\textwidth}{@{}p{2.7cm}p{3.6cm}p{4.2cm}X@{}}
+\toprule
+Stage & Algorithm & Time & Guarantee\\
+\midrule
+Backbone & Prim (binary heap) & $O(E\log V)$ & exact (cut property)\\
+ & Prim (Fibonacci heap) & $O(E + V\log V)$ & exact\\
+ & Kruskal + union-find & $O(E\log E)$ & exact\\
+Routing & Dijkstra & $O((V+E)\log V)$ & exact for non-negative weights\\
+ & Bellman-Ford & $O(VE)$ & exact with negative edges; detects negative cycles\\
+Latency matrix & Floyd--Warshall & $\Theta(V^3)$ & exact\\
+ & Johnson & $O(VE + V(V+E)\log V)$ & exact with negative edges\\
+Activation & 0/1 knapsack DP & $\Theta(SW)$ & optimal for the given values\\
+Sizing & Multiple-choice knapsack DP & $\Theta(W\cdot\sum\text{options})$ & optimal for the given values\\
+Placement & 4 greedy schedulers & polynomial, about $O(J k S V)$ & heuristic; $1-1/e$ for CELF without capacities\\
+Refinement & Relocate/swap local search & polynomial per pass & local optimum; never worse than its input\\
+Referee & MILP (HiGHS) & exponential worst case & proven optimum or lower bound\\
+Batch & LPT, earliest finish & $O(T\log T + T S)$ & within $\tfrac43$ of optimal without transfers\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+%======================================================================
+\section{Testing and Demonstrated Scenarios}\label{sec:test}
+
+\subsection{Automated test suite}
+Correctness is checked by 191 automated tests (Table~\ref{tab:tests}), all passing. Each algorithm is compared with an \emph{independent} reference rather than only with our own expectations: graph algorithms against NetworkX \cite{hagberg2008} on random graphs, knapsack DPs against brute-force enumeration, and the MILP against exhaustive search on small placements.
+
+\begin{table}[!htbp]
+\centering\small
+\caption{Automated test suite (191 tests, all passing).}\label{tab:tests}
+\begin{tabularx}{\textwidth}{@{}l r X@{}}
+\toprule
+File & Tests & What is checked \\
+\midrule
+\texttt{test\_core.py} & 15 & Heap operations with random inputs (Hypothesis), union-find, graph construction \\
+\texttt{test\_paths.py} & 66 & MST, Dijkstra, Bellman-Ford, Floyd--Warshall and Johnson against NetworkX with every heap; negative-cycle detection; no negative cycle in any transfer graph \\
+\texttt{test\_optimisation.py} & 100 & Knapsack and multiple-choice knapsack against brute force; MILP against exhaustive search; greedies never exceed capacity; local search never makes a plan worse; scheduler lanes never overlap; the full pipeline on every dataset \\
+\texttt{test\_api.py} & 10 & Every API endpoint, error codes and the path-traversal guard \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Scenario A: the full pipeline on India}
+On the India network (25 sites, 44 links, 8 services) the solver builds a 24-link MST backbone with a total latency of 56.2\,ms, sizes the services within a \$3.86/h budget and runs all four greedy schedulers with local search. The best plan reaches an average latency of \textbf{2.326\,ms}, 64\,\% lower than a random placement, and it \emph{matches the exact MILP optimum} (gap 0.00\,\%) while taking 4.1\,ms against the MILP's 27\,ms. Mumbai, Pune, Kochi, Chandigarh and Varanasi run at 90\,\% CPU or more, so capacity there is the binding constraint.
+
+\subsection{Scenario B: shortest routes beat direct links}
+In the Lab on the Nigeria network, Dijkstra from Lagos to Calabar finds the route Lagos $\to$ Akure $\to$ Benin City $\to$ Onitsha $\to$ Owerri $\to$ Calabar (6.00\,ms, five hops), settling the destination after 39 of 50 recorded events and stopping early. On India, the Compare view shows the same lesson for Chennai $\to$ Kochi: Dijkstra's route takes 3.93\,ms, while travelling only along Prim's spanning tree takes 5.20\,ms (1.32$\times$). Requests are therefore routed on the full network, and only the backbone is provisioned from the MST.
+
+\subsection{Scenario C: negative costs}
+On transfer costs, Bellman-Ford finds the cheapest Chennai $\to$ Kochi transfer to be $-\$0.025$ per GB, a net rebate, along the direct link. The Compare view shows that Dijkstra cannot be trusted on these weights, and the test suite confirms that no transfer graph in any dataset contains a negative cycle.
+
+\subsection{Scenario D: capacity pressure and infeasibility}
+On the \texttt{waxman-60-tight} network every server has half the normal capacity. As capacity shrinks further (Experiment E5), latency-first strategies stop finding complete plans: at $0.35\times$ capacity, demand-first, marginal gain and regret fail in every run and are reported as \emph{infeasible} rather than returned as broken plans. FFD packing still finds a valid plan at every level, so the solver uses it as a fallback. With capacity at $0.1\times$ the solver reports the shortage and every result can still be read (a dedicated test checks this).
+
+%======================================================================
+\section{Experimental Evaluation}\label{sec:exp}
+
+\subsection{Method}
+All experiments call the Python engine directly, bypassing the website. Networks come from seeded generators so that results are reproducible. Timings are medians of repeated runs on a single core in CPython 3.13, and quality results average three seeds. The full suite runs in about 80 seconds and writes CSV files and the figures below. Table~\ref{tab:data} lists the ten networks.
+
+\begin{table}[!htbp]
+\centering\small
+\caption{The ten networks. Load is the CPU needed by the minimum copies divided by total capacity; best is the recommended plan's average latency.}\label{tab:data}
 \begin{tabular}{@{}llrrrrrr@{}}
 \toprule
 Name & Source & Sites & Links & Servers & Services & Load & Best (ms)\\
@@ -71,192 +368,61 @@ abilene & real topology & 11 & 14 & 10 & 6 & 42\% & 3.827\\
 nsfnet & real topology & 14 & 21 & 12 & 7 & 26\% & 5.220\\
 fat-tree-k4 & data centre & 36 & 48 & 16 & 6 & 18\% & 0.022\\
 waxman-60 & synthetic WAN & 60 & 89 & 51 & 14 & 13\% & 5.245\\
-waxman-60-tight & $0.5\times$ capacity & 60 & 89 & 51 & 14 & 27\% & 6.686\\
+waxman-60-tight & half capacity & 60 & 89 & 51 & 14 & 27\% & 6.686\\
 er-100 & Erd\H{o}s--R\'enyi & 100 & 350 & 85 & 16 & 10\% & 5.062\\
 ba-150 & Barab\'asi--Albert & 150 & 296 & 128 & 20 & 7\% & 7.594\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-%======================================================================
-\section{Algorithms, Correctness and Complexity}\label{sec:algo}
-Fig.~\ref{fig:pipeline} shows the pipeline; Table~\ref{tab:cx} summarises the bounds.
+\noindent Abilene and NSFNET are real US research backbones. India (24 metros plus Woxsen University) and Nigeria (24 cities, with Lagos, Abuja and Port Harcourt as core data centres) use real city coordinates with each city linked to its three nearest neighbours. The Woxsen campus has 23 buildings laid out from the official campus map. The synthetic families let us vary size and density: Waxman geographic networks \cite{waxman1988}, Erd\H{o}s--R\'enyi random graphs \cite{erdos1959}, Barab\'asi--Albert hub-heavy graphs \cite{barabasi1999} and a data-centre fat-tree \cite{alfares2008}.
 
-\begin{figure}[!htbp]
-\centering
-\resizebox{\textwidth}{!}{%
-\begin{tikzpicture}[font=\small,node distance=3mm,
-  st/.style={draw=#1,fill=#1!10,rounded corners=3pt,minimum height=11mm,text width=22mm,align=center,line width=0.8pt}]
-  \definecolor{gb}{HTML}{4285F4}\definecolor{gr}{HTML}{EA4335}\definecolor{gy}{HTML}{F9AB00}\definecolor{gg}{HTML}{34A853}
-  \node[st=gb] (a) {\textbf{1 Latency matrix}\\FW / Johnson};
-  \node[st=gb,right=of a] (b) {\textbf{2 Backbone}\\Prim / Kruskal};
-  \node[st=gr,right=of b] (c) {\textbf{3 Activation}\\0/1 knapsack};
-  \node[st=gr,right=of c] (d) {\textbf{4 Sizing}\\MCKP + FFD};
-  \node[st=gy,right=of d] (e) {\textbf{5 Placement}\\4 greedies};
-  \node[st=gy,right=of e] (f) {\textbf{6 Refinement}\\local search};
-  \node[st=gg,right=of f] (g) {\textbf{7 Policies}\\routes, tables};
-  \foreach \x/\y in {a/b,b/c,c/d,d/e,e/f,f/g} \draw[->,thick] (\x) -- (\y);
-  \node[draw=gg,dashed,rounded corners=3pt,below=4mm of e,text width=48mm,align=center,minimum height=8mm] (x) {\textbf{Exact check}: MILP (HiGHS) $\Rightarrow$ optimality gap};
-  \draw[->,dashed] (d.south) |- (x.west); \draw[->,dashed] (x.east) -| (g.south);
-\end{tikzpicture}}
-\caption{The Lightpath pipeline. Stages 1--2 are exact polynomial algorithms, 3--4 pseudo-polynomial dynamic programs, 5--6 heuristics whose gap is measured by the exact MILP.}\label{fig:pipeline}
-\end{figure}
-
-\subsection{Data structures}
-The graph is stored as adjacency lists (one hash map per vertex), giving $\Theta(n+m)$ space and $O(\deg u)$ neighbour scans. Four addressable priority queues share one interface (\textit{push}, \textit{pop}, \textit{decrease-key}): a binary heap with a position map ($O(\log n)$ for all operations), a Fibonacci heap with cascading cuts (amortised $O(1)$ insert and decrease-key, $O(\log n)$ extract-min \cite{fredman1987}), a two-pass pairing heap, and Python's \texttt{heapq} with lazy deletion. Kruskal uses union-find with union by rank and path compression, $O(\alpha(n))$ amortised per operation \cite{tarjan1975}.
-
-\subsection{Minimum spanning tree (backbone)}
-The MST is the cheapest set of links that keeps every site connected, which is the first set of links to provision. Prim grows one tree from a root and repeatedly adds the lightest edge leaving it \cite{prim1957}. Kruskal scans edges in increasing weight and keeps those that join two components \cite{kruskal1956}.
-\textit{Correctness} for both follows from the \emph{cut property}: for any cut $(X,V\setminus X)$ a lightest crossing edge belongs to some MST. Prim's choice is such an edge for the cut (tree, rest), and Kruskal's for the cut separating either endpoint's component. Disconnected inputs yield a spanning forest.
-\textit{Complexity:} Prim $O((n+m)\log n)$ with a binary heap and $O(m+n\log n)$ with a Fibonacci heap; Kruskal $O(m\log m)$ for sorting plus $O(m\,\alpha(n))$. The pipeline selects Prim when $m>n\log_2 n$ and Kruskal otherwise.
-
-\subsection{Single-source shortest paths}
-\begin{algorithm}[!htbp]
-\caption{Dijkstra with an addressable heap}\label{alg:dij}
-\small
-\begin{algorithmic}[1]
-\Require graph $G$, non-negative weights $w$, source $s$
-\State $\mathit{dist}[v]\gets\infty$ for all $v$; \ $\mathit{dist}[s]\gets 0$; \ $Q\gets\{s\}$
-\While{$Q\neq\emptyset$}
-  \State $u\gets$ \Call{ExtractMin}{$Q$} \Comment{$u$ is settled: $\mathit{dist}[u]=\delta(s,u)$}
-  \For{each edge $(u,v)$ with $v$ not settled}
-    \If{$\mathit{dist}[u]+w(u,v)<\mathit{dist}[v]$}
-      \State $\mathit{dist}[v]\gets \mathit{dist}[u]+w(u,v)$; \ $\mathit{parent}[v]\gets u$; \ \Call{PushOrDecrease}{$Q,v$}
-    \EndIf
-  \EndFor
-\EndWhile
-\end{algorithmic}
-\end{algorithm}
-\textbf{Dijkstra} (Algorithm~\ref{alg:dij}) \cite{dijkstra1959}. \textit{Invariant:} when $u$ is extracted, $\mathit{dist}[u]$ equals the true distance $\delta(s,u)$. Suppose $u$ is the first vertex extracted with $\mathit{dist}[u]>\delta(s,u)$. On a shortest $s\leadsto u$ path, let $y$ be the first unsettled vertex and $x$ its settled predecessor. Then $\mathit{dist}[y]=\delta(s,y)\le\delta(s,u)<\mathit{dist}[u]$ because weights are non-negative, so $y$ would have been extracted first, a contradiction. Time: $O((n+m)\log n)$ with a binary heap, $O(m+n\log n)$ with a Fibonacci heap. Our implementation rejects negative weights explicitly.
-
-\textbf{Bellman-Ford} \cite{bellman1958,ford1956} relaxes every arc in rounds. By induction, after round $i$ every vertex whose shortest path uses at most $i$ arcs has its correct distance; simple paths have at most $n-1$ arcs, so $n-1$ rounds suffice, and any improvement in round $n$ certifies a reachable negative cycle (which we extract by walking parent pointers). Time $O(nm)$, with early exit when a round changes nothing. It computes cheapest replica-synchronisation routes under~\eqref{eq:cost}.
-
-\subsection{All-pairs shortest paths}
-\textbf{Floyd--Warshall} \cite{floyd1962,warshall1962} is dynamic programming over intermediate vertices: with $d_k(i,j)$ the shortest $i\leadsto j$ distance using intermediates in $\{1..k\}$,
-$d_{k}(i,j)=\min\{d_{k-1}(i,j),\ d_{k-1}(i,k)+d_{k-1}(k,j)\}$, because a shortest path either avoids $k$ or passes through it once (no negative cycles). $\Theta(n^3)$ time, $\Theta(n^2)$ space, and a negative diagonal entry exposes a negative cycle. We provide a pure-Python version and a NumPy version that vectorises the $(i,j)$ loop; both are still $\Theta(n^3)$.
-\textbf{Johnson} \cite{johnson1977} adds a vertex $q$ with zero-cost arcs to all vertices, computes potentials $h=$ Bellman-Ford$(q)$, and reweights $w'(u,v)=w(u,v)+h(u)-h(v)\ge 0$ (triangle inequality). Every $s\leadsto t$ path changes by the constant $h(s)-h(t)$, so shortest paths are preserved and Dijkstra can run from every vertex: $O(nm+n(n+m)\log n)$.
-\textbf{Choice rule.} Counting both directions of each undirected link, the pipeline treats a graph as sparse when $m\log_2 n<n^2$. Sparse graphs use repeated Dijkstra (or Johnson if any weight is negative); dense graphs use vectorised Floyd--Warshall. Section~\ref{sec:exp} tests this rule.
-
-\subsection{Knapsack dynamic programs (budgeted selection)}
-\textbf{0/1 knapsack (server activation).} Each server has value $b_s$, the capacity-scaled latency saving it offers relative to an average server, and weight $f_s$. With costs scaled to integer cents ($W$ = budget in cents),
-$\mathrm{OPT}[i][w]=\max\{\mathrm{OPT}[i-1][w],\ \mathrm{OPT}[i-1][w-f_i]+b_i\}$. \textit{Correctness:} by exchange, an optimal set for items $1..i$ either excludes item $i$ (optimal for $1..i-1$ at the same budget) or includes it (item $i$ plus an optimal set at budget $w-f_i$). Time and space $\Theta(nW)$, which is pseudo-polynomial; one bit per cell is kept for reconstruction. Because $b_s$ is an additive surrogate, a repair step re-adds high capacity-per-dollar servers if the minimum replicas would not fit.
-
-\textbf{Multiple-choice knapsack (replica sizing).} For each service the options are $k\in[k^{\min}_j,k^{\max}_j]$ with cost $kp_j$ and value equal to the weighted-latency saving over $k^{\min}_j$, estimated by an uncapacitated greedy placement. Exactly one option per group gives $\mathrm{OPT}[g][w]=\max_{o\in g}\mathrm{OPT}[g-1][w-w_o]+v_o$ in $\Theta(W\sum_g|g|)$. Since this estimate ignores bin packing, a \emph{capacity repair} then removes the largest extra replicas until a first-fit-decreasing (FFD) packing exists. That guarantees at least one feasible placement downstream.
-
-\subsection{Greedy schedulers and local search}
-Let $F_j(T)=\sum_c w_{jc}\,(P-\min_{s\in T}d(c,s))$ be the latency \emph{saving} of placing service $j$ on server set $T$ (with $P$ a large constant). $F_j$ is monotone and submodular: adding a server helps less when more servers are already open.
-\begin{itemize}[leftmargin=*]
-\item \textbf{Demand-first:} services in decreasing demand; each replica goes to the server nearest the next demand hotspot that still has room.
-\item \textbf{Marginal gain (CELF):} a global heap of (service, server) pairs keyed by marginal saving; stale keys are re-evaluated lazily, which is valid because submodularity means gains never increase \cite{leskovec2007}. Without capacities, greedy maximisation of a monotone submodular function under a cardinality constraint achieves at least $(1-1/e)$ of the optimal saving \cite{nemhauser1978}.
-\item \textbf{Regret:} repeatedly place the service whose best and second-best feasible servers differ most, the classic generalised-assignment heuristic \cite{martello1990}. It protects services with few good options from being crowded out.
-\item \textbf{FFD packing:} replicas sorted by CPU descending, each placed on a fitting server chosen by latency saving among the tightest-fitting half. If that gets stuck it falls back to plain FFD, which uses at most $\tfrac{11}{9}\mathrm{OPT}+\tfrac{6}{9}$ bins for one-dimensional packing \cite{dosa2007}.
-\end{itemize}
-\textbf{Local search} repeatedly applies the best improving \emph{relocate} (move one replica to a free server) or \emph{swap} (exchange replicas of two services between two servers when both fit). Candidate relocations are evaluated in a vectorised way using each client's nearest and second-nearest replica. Every accepted move strictly lowers~\eqref{eq:obj} and the number of placements is finite, so the search terminates in a local optimum. For uncapacitated $k$-median, single-swap local optima are within a factor 5 of optimal \cite{arya2004}.
-
-\subsection{Exact MILP and batch scheduling}
-For the optimality reference we solve
-$\min \sum w_{jc}d(c,s)x_{csj}/\sum w_{jc}$ s.t.\ $\sum_s x_{csj}=1$, $x_{csj}\le y_{sj}$, $\sum_s y_{sj}=k_j$, and the capacity rows, with $y$ binary and $x\in[0,1]$, using HiGHS \cite{huangfu2018} through SciPy \cite{virtanen2020}. The disaggregated constraints $x\le y$ give a tight LP relaxation, which we also report as a lower bound when the MILP is too large. Services that no server can host keep the same penalty in both the MILP and the heuristics, so the objectives match. For background \emph{batch jobs}, a list scheduler orders jobs longest-first (LPT) and assigns each to the server lane with the earliest finish time after its input data arrives (latency plus size over bottleneck bandwidth). Without transfer delays, LPT is within $\tfrac43-\tfrac1{3m}$ of the optimal makespan \cite{graham1969}.
-
-\begin{table}[!htbp]
-\centering\small
-\caption{Algorithms used, with guarantees and complexity.}\label{tab:cx}
-\begin{tabularx}{\textwidth}{@{}llX@{}}
-\toprule
-Stage & Algorithm & Guarantee / complexity\\
-\midrule
-Backbone & Prim (binary / Fibonacci heap), Kruskal & exact (cut property); $O(m\log n)$ / $O(m+n\log n)$ / $O(m\log m)$\\
-Routing & Dijkstra; Bellman-Ford & exact for $w\ge0$; exact with negative arcs, $O(nm)$\\
-Latency matrix & Floyd--Warshall; Johnson & exact, $\Theta(n^3)$; exact, $O(nm+n(n+m)\log n)$\\
-Activation, sizing & 0/1 knapsack; multiple-choice knapsack & exact for the surrogate values, $\Theta(nW)$; $\Theta(W\sum|g|)$\\
-Placement & demand-first, CELF, regret, FFD & heuristic; $(1-1/e)$ without capacities (CELF)\\
-Refinement & relocate + swap local search & monotone descent; factor 5 for uncapacitated $k$-median\\
-Reference & MILP (HiGHS), LP relaxation & optimal / lower bound; exponential worst case\\
-Batch & LPT earliest-finish-time & $\tfrac43-\tfrac1{3m}$ without transfers; $O(T\,|S|\log L)$\\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\input{uml}
-
-%======================================================================
-\section{Implementation and Verification}\label{sec:impl}
-Lightpath is a Python package (\texttt{cloudplace}) with modules for core data structures, algorithms, the problem model, data generators and the end-to-end solver. A FastAPI service exposes datasets, network generation, solving and step-by-step algorithm traces. A React/TypeScript dashboard (Fig.~\ref{fig:ui}) offers a placement studio with live solving, an algorithm lab that replays traces alongside pseudocode, experiment charts, dataset downloads (JSON, Gephi GEXF, CSV) and a guided tour. When the Python service is not running, the dashboard falls back to saved results so it also works on a static host.
-
-\textbf{Testing.} 191 automated tests check every algorithm against independent references. MST weights, single-source distances (including negative arcs) and all-pairs matrices from every heap and algorithm are compared with NetworkX \cite{hagberg2008} on random graphs. 0/1 and multiple-choice knapsack results are compared with brute force. The MILP is compared with exhaustive search on small placements, and it lower-bounds every heuristic. Further tests check heap operations with property-based testing, verify that greedy placements never exceed capacity, check that batch-schedule lanes never overlap, confirm that the transfer-cost graph never contains a negative cycle on any dataset (Lemma~\ref{lem:nocycle}), and check that the web server cannot be tricked into serving files outside its directory. Table~\ref{tab:tests} breaks the suite down by file.
-
-\begin{table}[!htbp]
-\centering\small
-\caption{Automated test suite (191 tests, all passing).}\label{tab:tests}
-\begin{tabularx}{\textwidth}{@{}l r X@{}}
-\toprule
-File & Tests & What is checked \\
-\midrule
-\texttt{test\_core.py} & 15 & Heap operations (property-based), union-find, graph construction \\
-\texttt{test\_paths.py} & 66 & MST, Dijkstra, Bellman-Ford, Floyd--Warshall and Johnson against NetworkX; negative-cycle detection; no negative cycle in any transfer graph \\
-\texttt{test\_optimisation.py} & 100 & Knapsack and MCKP against brute force; MILP against exhaustive search; greedies respect capacity; scheduler lanes never overlap; full pipeline on every dataset \\
-\texttt{test\_api.py} & 10 & Every endpoint, error codes, path-traversal guard \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-
-\begin{figure}[!htbp]
-\centering
-\begin{subfigure}{0.49\textwidth}\includegraphics[width=\linewidth]{figures/shot_studio.png}\caption{Placement studio (Nigeria).}\end{subfigure}\hfill
-\begin{subfigure}{0.49\textwidth}\includegraphics[width=\linewidth]{figures/shot_lab.png}\caption{Algorithm lab: Bellman-Ford with negative arcs.}\end{subfigure}
-\caption{The Lightpath dashboard.}\label{fig:ui}
-\end{figure}
-
-%======================================================================
-\section{Experiments and Results}\label{sec:exp}
-All timings are medians of repeated runs in CPython~3.13 on a single core. Quality experiments average three seeds. The full suite runs in about 80 seconds and writes CSV files and the figures below.
-
+\subsection{E1: priority queues}
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.86\textwidth]{figures/e1_heaps.png}
-\caption{E1: Dijkstra and Prim with four priority queues on sparse Waxman graphs ($n$ up to 4000, $m$ up to 252k).}\label{fig:e1}
+\caption{E1: Dijkstra and Prim with four priority queues on sparse graphs of up to 4000 sites.}\label{fig:e1}
 \end{figure}
+The Fibonacci heap has the best Big-O bound but was consistently \emph{slower} (Fig.~\ref{fig:e1}). At 1000 sites Dijkstra took 25.9\,ms with it against 17.7\,ms with the binary heap, and at 4000 sites 196\,ms against 144\,ms. Its pointer-heavy nodes and consolidation cost more in an interpreter than the decrease-key operations it saves. Python's built-in lazy heap is fastest up to 2000 sites but falls behind at 4000 as stale entries accumulate.
 
-\textbf{E1, priority queues (Fig.~\ref{fig:e1}).} The Fibonacci heap has the best asymptotic bound but is consistently slower: at $n=1000$ Dijkstra takes 25.9\,ms with it against 17.7\,ms with the binary heap, and at $n=4000$ 196\,ms against 144\,ms. Its pointer-based nodes and consolidation cost more in an interpreter than the saved $O(\log n)$ decrease-keys. \texttt{heapq} with lazy deletion (implemented in C) is fastest up to $n=2000$ but falls behind at $n=4000$ (212\,ms) as stale entries accumulate on dense graphs. Bellman-Ford on the transfer graph costs 490\,ms at $n=4000$, reflecting its $O(nm)$ bound.
-
+\subsection{E2: all-pairs shortest paths}
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.86\textwidth]{figures/e2_apsp.png}
-\caption{E2: all-pairs algorithms on sparse ($p=3/n$) and dense ($p=0.5$) graphs.}\label{fig:e2}
+\caption{E2: all-pairs algorithms on sparse and dense graphs.}\label{fig:e2}
 \end{figure}
+On dense graphs (Fig.~\ref{fig:e2}) the vectorised Floyd--Warshall wins clearly: 277\,ms at 400 sites against 5015\,ms for Johnson and 5323\,ms for repeated Dijkstra. On sparse graphs repeated Dijkstra (724\,ms) beats Johnson (985\,ms), but NumPy Floyd--Warshall is still faster (285\,ms). The asymptotic rule correctly predicts that Dijkstra beats a pure-Python $V^3$ loop (234\,ms already at 200 sites), but vectorisation moves the crossover well beyond 400 sites.
 
-\textbf{E2, all pairs (Fig.~\ref{fig:e2}).} On dense graphs the choice is clear-cut: at $n=400$ vectorised Floyd--Warshall needs 277\,ms against 5015\,ms for Johnson and 5323\,ms for repeated Dijkstra, and the rule correctly selects it. On sparse graphs repeated Dijkstra (724\,ms) beats Johnson (985\,ms), but the NumPy Floyd--Warshall is faster still (285\,ms). The asymptotic rule is right about Dijkstra versus the pure-Python $\Theta(n^3)$ loop (234\,ms already at $n=200$), but vectorisation shifts the crossover well beyond $n=400$. \emph{Recommendation:} calibrate the threshold with the constant factors of the actual implementation rather than the asymptotics alone.
-
+\subsection{E3: spanning trees versus density}
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.86\textwidth]{figures/e3_mst.png}
-\caption{E3: Prim (four heaps) versus Kruskal as edge density grows ($n=600$).}\label{fig:e3}
+\caption{E3: Prim with four heaps against Kruskal as edge density grows (600 sites).}\label{fig:e3}
 \end{figure}
+With 600 sites and 1.5k to 108k links (Fig.~\ref{fig:e3}), Kruskal is fastest on sparse graphs (1.5\,ms against 3.7\,ms) and slowest on dense ones (126\,ms against 42\,ms), exactly as its sort-dominated cost predicts. Every variant returned the same tree weight.
 
-\textbf{E3, MST versus density (Fig.~\ref{fig:e3})} ($n=600$, $m$ from 1.5k to 108k). Kruskal is fastest on sparse graphs (1.5\,ms against 3.7\,ms for binary-heap Prim) and slowest on dense ones (126\,ms against 42\,ms), matching its $O(m\log m)$ sort against Prim's single pass per edge. All variants return identical tree weights, as the cut property requires.
-
+\subsection{E4: solution quality and cost versus size}
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.86\textwidth]{figures/e4_quality_size.png}
-\caption{E4: optimality gap (left) and runtime (right) versus size on Waxman networks; dashed lines are greedy alone, solid lines include local search. At $n=240$ the reference is the LP bound.}\label{fig:e4}
+\caption{E4: distance from the optimum (left) and run time (right) as networks grow. Dashed lines are greedy alone; solid lines include local search.}\label{fig:e4}
 \end{figure}
-
-\textbf{E4, quality and cost versus size (Fig.~\ref{fig:e4}).} Averaged over $n\in\{20,\dots,240\}$, greedy alone is 8.7\,\% (marginal gain), 9.2\,\% (regret), 16.7\,\% (demand-first) and 38.4\,\% (FFD) above the reference, while a random placement is 167\,\% above. Local search reduces every method to 0.45--0.53\,\% on average and at most 3.0\,\%. The exact MILP grows from 27\,ms at $n=20$ to 1.7\,s at $n=160$, against 4\,ms and 344\,ms for regret plus local search: about five times cheaper, and the gap in growth rate widens with size. Greedy alone is one to two orders of magnitude cheaper than the MILP. Beyond roughly 60\,000 MILP variables we skip the exact solve and report the LP bound. Table~\ref{tab:gap} lists the per-size gaps.
+This is the main quality experiment (Fig.~\ref{fig:e4}, Table~\ref{tab:gap}). Averaged over networks of 20 to 240 servers, greedy alone is 8.7\,\% (marginal gain), 9.2\,\% (regret), 16.7\,\% (demand-first) and 38.4\,\% (FFD) above the optimum, while a random placement is 167\,\% above. \textbf{Local search brings every method to about 0.5\,\% on average}, with a worst case of about 3\,\%. The exact MILP grows from 27\,ms at 20 servers to 1.7\,s at 160, against 4\,ms and 344\,ms for regret with local search, about five times cheaper. Greedy alone is 10 to 100 times cheaper than the MILP.
 
 \begin{table}[!htbp]
 \centering\small
-\caption{E4: mean optimality gap (\%) against the MILP optimum on Waxman networks (three seeds per size).}\label{tab:gap}
+\caption{E4: average distance from the MILP optimum (\%) on Waxman networks, three seeds per size.}\label{tab:gap}
 \begin{tabular}{@{}lrrrrrr@{}}
 \toprule
-Strategy & $n=20$ & 40 & 60 & 80 & 120 & 160 \\
+Strategy & 20 servers & 40 & 60 & 80 & 120 & 160 \\
 \midrule
 Random & 186.63 & 163.01 & 165.61 & 137.93 & 166.80 & 172.12 \\
-FFD pack & 39.35 & 47.34 & 33.14 & 35.75 & 44.54 & 32.50 \\
+FFD packing & 39.35 & 47.34 & 33.14 & 35.75 & 44.54 & 32.50 \\
 Demand-first & 35.41 & 14.06 & 14.11 & 15.73 & 11.80 & 10.12 \\
 Regret & 17.23 & 11.61 & 4.24 & 5.73 & 7.44 & 8.51 \\
 Marginal gain & 13.73 & 11.39 & 4.97 & 5.30 & 7.09 & 8.51 \\
 \midrule
-FFD pack + LS & 0.14 & 0.00 & 0.44 & 0.00 & 0.41 & 0.11 \\
+FFD packing + LS & 0.14 & 0.00 & 0.44 & 0.00 & 0.41 & 0.11 \\
 Demand-first + LS & 0.00 & 0.00 & 0.65 & 0.05 & 0.00 & 0.29 \\
 Regret + LS & 0.00 & 0.00 & 0.00 & 0.45 & 0.72 & 0.24 \\
 Marginal gain + LS & 0.14 & 0.00 & 0.00 & 0.00 & 0.52 & 0.24 \\
@@ -264,31 +430,26 @@ Marginal gain + LS & 0.14 & 0.00 & 0.00 & 0.00 & 0.52 & 0.24 \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=0.86\textwidth]{figures/e6_density.png}
-\caption{E6: optimal mean latency and heuristic gap versus edge probability (Erd\H{o}s--R\'enyi, $n=80$).}\label{fig:e6}
-\end{figure}
-
-
+\subsection{E5: capacity pressure}
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.86\textwidth]{figures/e5_capacity.png}
-\caption{E5: share of runs with a feasible placement (left) and gap after local search (right) as server capacity shrinks (Waxman, $n=50$, 12 services).}\label{fig:e5}
+\caption{E5: share of runs with a valid plan (left) and distance from the optimum after local search (right) as server capacity shrinks.}\label{fig:e5}
 \end{figure}
+At normal capacity every method finds a valid plan (Fig.~\ref{fig:e5}). At $0.35\times$ capacity, the three latency-first methods fail in every run because their early choices fragment server capacity, while FFD packing remains valid at every level and local search then brings its latency close to optimal. Under tight capacity, feasibility and latency pull in different directions, and packing first is the safer strategy.
 
-\textbf{E5, capacity pressure (Fig.~\ref{fig:e5}).} At nominal capacity every method is feasible. At $0.35\times$ capacity (34\,\% minimum load, more after sizing) demand-first, marginal gain and regret all fail to place every replica in every run, because latency-first choices fragment server capacity. FFD packing stays feasible at every capacity level, and local search then brings its latency within a few percent of optimal. Under tight capacity, feasibility and latency pull in different directions, and packing first is the safer strategy.
-
-\textbf{E6, density (Fig.~\ref{fig:e6}).} On Erd\H{o}s--R\'enyi graphs with $n=80$, raising the edge probability from 0.025 to 0.7 cuts the optimal mean latency from 7.71\,ms to 2.59\,ms, with diminishing returns beyond $p\approx0.2$. Regret plus local search matches the optimum at five of six densities (0.9\,\% gap at $p=0.2$). The automatic rule switches from repeated Dijkstra to Floyd--Warshall at $p=0.2$.
-
-\textbf{E7, budget frontier.} On the India network, raising the VM budget lets the multiple-choice knapsack buy replicas where they help most. Spending rises from \$2.41/h (9 replicas) to \$7.51/h (27 replicas) and mean latency falls from 4.34\,ms to 1.28\,ms (70\,\%), with diminishing returns. Beyond \$7.51/h every service is already at its maximum replica count. The minimum-replica plan stays at 4.34\,ms regardless of budget.
-
-\textbf{E8, knapsack scaling.} Runtime grows linearly in the number of table cells $n(W+1)$, from 0.15\,ms (1\,010 cells) to 96.9\,ms (1\,000\,200 cells), roughly 97\,ns per cell, which confirms the $\Theta(nW)$ bound. Fig.~\ref{fig:e78} shows E7 and E8 and Table~\ref{tab:expsum} summarises all eight experiments.
+\subsection{E6, E7 and E8: density, budget and knapsack scaling}
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.86\textwidth]{figures/e6_density.png}
+\caption{E6: optimal latency and heuristic gap as link density grows (80 sites).}\label{fig:e6}
+\end{figure}
+\textbf{E6} (Fig.~\ref{fig:e6}): raising link density from 0.025 to 0.7 cut the optimal average latency from 7.71\,ms to 2.59\,ms (67\,\%), with little extra gain beyond about 0.2. Regret plus local search matched the optimum at five of six densities. \textbf{E7}: on India, increasing the VM budget from \$2.41 to \$7.51 per hour bought 9 to 27 copies and cut latency from 4.34\,ms to 1.28\,ms (70\,\%), with diminishing returns. \textbf{E8}: knapsack run time grew linearly with table size, about 97\,ns per cell, confirming the $\Theta(nW)$ bound (Fig.~\ref{fig:e78}).
 
 \begin{figure}[!htbp]
 \centering
-\begin{subfigure}{0.49\textwidth}\includegraphics[width=\linewidth]{figures/e7_budget.png}\caption{E7: VM budget versus latency (India).}\end{subfigure}\hfill
-\begin{subfigure}{0.49\textwidth}\includegraphics[width=\linewidth]{figures/e8_knapsack.png}\caption{E8: knapsack runtime versus table size.}\end{subfigure}
+\begin{subfigure}{0.49\textwidth}\includegraphics[width=\linewidth]{figures/e7_budget.png}\caption{E7: budget against latency (India).}\end{subfigure}\hfill
+\begin{subfigure}{0.49\textwidth}\includegraphics[width=\linewidth]{figures/e8_knapsack.png}\caption{E8: knapsack run time against table size.}\end{subfigure}
 \caption{Budget frontier and knapsack scaling.}\label{fig:e78}
 \end{figure}
 
@@ -299,33 +460,32 @@ Marginal gain + LS & 0.14 & 0.00 & 0.00 & 0.00 & 0.52 & 0.24 \\
 \toprule
 Exp. & Varied & Main finding \\
 \midrule
-E1 & graph size, heap type & Binary heap fastest at scale; Fibonacci slower in practice despite better bound \\
-E2 & size, density & NumPy Floyd--Warshall wins on dense graphs; repeated Dijkstra beats Johnson on sparse \\
+E1 & size, heap type & Binary heap fastest at scale; Fibonacci slower in practice despite its better bound \\
+E2 & size, density & NumPy Floyd--Warshall wins on dense graphs and, at these sizes, on sparse ones too \\
 E3 & density & Kruskal best when sparse, Prim best when dense; identical tree weight \\
-E4 & size & Greedy + LS within $\approx$0.5\,\% of optimum, about 5$\times$ faster than MILP \\
-E5 & capacity & Under tight capacity only FFD packing stays feasible \\
-E6 & density & More links cut latency 67\,\%, with diminishing returns after $p\approx0.2$ \\
-E7 & VM budget & \$2.41$\to$\$7.51/h cuts latency 70\,\% (4.34$\to$1.28\,ms) \\
-E8 & DP table size & Linear in $n(W+1)$, about 97\,ns per cell \\
+E4 & size & Greedy + local search within about 0.5\,\% of the optimum, about 5$\times$ faster than the MILP \\
+E5 & capacity & Under tight capacity only FFD packing always finds a valid plan \\
+E6 & density & More links cut latency by 67\,\%, with diminishing returns after density 0.2 \\
+E7 & VM budget & \$2.41 $\to$ \$7.51/h cuts latency by 70\,\% (4.34 $\to$ 1.28\,ms) \\
+E8 & DP table size & Linear in table size, about 97\,ns per cell \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-
 %======================================================================
 \section{Case Studies and Policy Outputs}\label{sec:policy}
-For every instance the solver emits a route table (client $\to$ replica, path, latency, backbone-only stretch), a server schedule (VMs and utilisation), a cost/benefit table (latency for every replica count and the saving per extra dollar), cheapest replica-sync routes, and a batch Gantt chart. Table~\ref{tab:cases} and Figs.~\ref{fig:regions}--\ref{fig:woxsen} summarise the three main networks.
+For every network the solver produces deployable \emph{policies}: a route table (each city, its copy, the path and latency, and the stretch if only the backbone were used), a server schedule with the VMs and utilisation of each server, a cost-benefit table giving the latency saved by each extra copy and its price, the cheapest replica-synchronisation routes, and a batch-job timetable. Table~\ref{tab:cases} and Figs.~\ref{fig:regions}--\ref{fig:woxsen} summarise the three main networks.
 
 \begin{table}[!htbp]
 \centering\small
-\caption{Recommended plans. Gap is the best heuristic's distance from the MILP optimum; stretch is the latency increase if requests were routed over the MST backbone only.}\label{tab:cases}
-\begin{tabular}{@{}lrrrrrrl@{}}
+\caption{Recommended plans. Stretch is the latency increase if requests used only the MST backbone.}\label{tab:cases}
+\begin{tabular}{@{}lrrrrrl@{}}
 \toprule
-Network & Mean (ms) & p95 (ms) & vs.\ random & Best heuristic & MILP time & Stretch & Best next replica\\
+Network & Mean (ms) & p95 (ms) & vs.\ random & Gap from optimum & Stretch & Best next copy\\
 \midrule
-India & 2.326 & 10.16 & $-64.0\%$ & 0.00\,\% in 4.1\,ms & 27\,ms & 1.55$\times$ & video-transcode: $-2.45$\,ms for \$0.48/h\\
-Nigeria & 1.137 & 2.88 & $-44.3\%$ & 0.09\,\% in 9.6\,ms & 70\,ms & 1.23$\times$ & analytics: $-1.23$\,ms for \$0.58/h\\
-Woxsen & 0.055 & 0.21 & $-38.9\%$ & 0.00\,\% in 2.9\,ms & 20\,ms & 1.39$\times$ & dining POS: $-0.028$\,ms for \$0.06/h\\
+India & 2.326 & 10.16 & $-64.0\%$ & 0.00\,\% & 1.55$\times$ & video-transcode: $-2.45$\,ms for \$0.48/h\\
+Nigeria & 1.137 & 2.88 & $-44.3\%$ & 0.09\,\% & 1.23$\times$ & analytics: $-1.23$\,ms for \$0.58/h\\
+Woxsen & 0.055 & 0.21 & $-38.9\%$ & 0.00\,\% & 1.39$\times$ & dining POS: $-0.028$\,ms for \$0.06/h\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -333,30 +493,72 @@ Woxsen & 0.055 & 0.21 & $-38.9\%$ & 0.00\,\% in 2.9\,ms & 20\,ms & 1.39$\times$ 
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.92\textwidth]{figures/plans_regions.png}
-\caption{Recommended placements for India and Nigeria. Yellow sites host replicas; coloured lines are request routes (one colour per service); grey diamonds are routers.}\label{fig:regions}
+\caption{Recommended placements for India and Nigeria. Yellow sites host copies; coloured lines are request routes, one colour per service.}\label{fig:regions}
 \end{figure}
 
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{figures/plan_woxsen.png}
-\caption{Woxsen University campus plan. Replicas cluster around the Academic Block, the hostels and The League sports arena, where demand originates.}\label{fig:woxsen}
+\caption{Woxsen University campus plan. Copies cluster around the Academic Block, the hostels and The League sports arena, where demand originates.}\label{fig:woxsen}
 \end{figure}
 
-\textbf{India.} The 24-link MST backbone totals 56.2\,ms. The best plan matches the MILP optimum. Mumbai, Pune, Kochi, Chandigarh and Varanasi run at $\ge 90\,\%$ CPU, so capacity there is the binding constraint, and upgrading those servers is the highest-value hardware change. \textbf{Nigeria.} The exact MILP is best (1.137\,ms); marginal gain plus local search is within 0.09\,\%. Lagos, Abuja and Port Harcourt host the core VMs, while Onitsha and Owerri saturate. \textbf{Woxsen.} Everything is within 0.52\,ms. Hostel and sports traffic dominate, so the learning portal and Wi-Fi authentication replicate into Student Hostels A and D, and live streaming runs at The League.
+\textbf{India.} The best plan matches the MILP optimum; upgrading the saturated Mumbai, Pune, Kochi, Chandigarh and Varanasi servers is the most valuable hardware change. \textbf{Nigeria.} The MILP optimum is 1.137\,ms and marginal gain with local search is within 0.09\,\% of it. Lagos, Abuja and Port Harcourt host the core VMs while Onitsha and Owerri saturate. \textbf{Woxsen.} Every building is within 0.52\,ms. Hostel and sports traffic dominate, so the learning portal and Wi-Fi authentication replicate into Student Hostels A and D, and live streaming runs at The League.
 
-%======================================================================
-\section{Recommendations}\label{sec:rec}
+\subsection*{Recommendations}
 \begin{enumerate}[leftmargin=*]
-\item \textbf{Default solver:} run all four greedy schedulers with local search and keep the best. This lands within 0.5\,\% of optimal on average at a fraction of the exact cost. Run the MILP as a certificate whenever it has fewer than about 60k variables.
-\item \textbf{Capacity first when load is high:} when minimum-replica load exceeds about 30\,\%, start from FFD packing, then refine for latency (E5).
-\item \textbf{Spend by marginal value:} size replicas with the multiple-choice knapsack and buy the next replica with the best ms-per-dollar ratio from the cost/benefit table. Returns diminish quickly (E7).
-\item \textbf{Provision the MST backbone first, but route on the full graph:} routing over the tree alone would stretch latency by 1.2--1.6$\times$.
-\item \textbf{Engineering in Python:} prefer binary heaps or \texttt{heapq} over Fibonacci heaps (E1), and choose all-pairs algorithms with constants measured on the actual implementation (E2).
-\item \textbf{Transfer pricing:} with negative costs, use Bellman-Ford or Johnson only. The potential form~\eqref{eq:cost} keeps rebates safe from negative cycles.
+\item \textbf{Default solver:} run all four greedy schedulers with local search and keep the best. This lands within 0.5\,\% of optimal on average, and the MILP can certify the result on smaller networks.
+\item \textbf{Capacity first when load is high:} when servers are crowded, start from FFD packing, then refine for latency (E5).
+\item \textbf{Spend by marginal value:} buy the next copy with the best milliseconds-per-dollar ratio from the cost-benefit table; returns diminish quickly (E7).
+\item \textbf{Build the MST backbone, but route on the full network:} routing only along the tree would be 1.2--1.6$\times$ slower.
+\item \textbf{Use Bellman-Ford or Johnson for costs with rebates,} never Dijkstra.
+\item \textbf{Measure, don't assume:} choose heaps and all-pairs methods by measured speed, not Big-O alone (E1, E2).
 \end{enumerate}
 
-\section{Limitations and Future Work}
-India and Nigeria use real city locations but synthetic links, and Woxsen's fibre plan and server sizes are modelling assumptions. Demand is static, and latency ignores queueing and congestion. The activation stage uses an additive surrogate value, so it is not optimal for the joint problem. Timings reflect CPython constants. Natural extensions are online re-placement as demand shifts, queueing-aware latency (for example M/M/$c$ servers), multi-objective cost--latency fronts, carrier topology data such as the Internet Topology Zoo \cite{knight2011}, and a compiled core for larger instances.
+%======================================================================
+\section{Correctness Reasoning (Proof Sketches)}\label{sec:proofs}
 
+\subsection{MST correctness: the cut property}
+For any split of the sites into two groups, the cheapest link crossing the split belongs to some minimum spanning tree. Prim applies this to the split between ``already in the tree'' and ``not yet in the tree'' and always adds the cheapest crossing link. Kruskal applies it to the split between the two separate groups that a link joins. Both add only safe links and stop at $V-1$ links, so both return a minimum spanning tree. Our tests confirm that both always produce the same weight as NetworkX.
+
+\subsection{Dijkstra correctness: the settled distance is final}
+When Dijkstra takes the closest unsettled city $u$, any other route to $u$ must leave the settled region through some city $y$ that is at least as far away as $u$. With non-negative link weights, the rest of that route cannot make it shorter. So $u$'s distance is final \cite{cormen2022}. This argument fails with negative weights, which is exactly why transfer costs use Bellman-Ford.
+
+\subsection{Bellman-Ford correctness: one more link per round}
+After round $i$, every city whose best route uses at most $i$ links has its correct distance, because the round relaxes the last link of every such route. A route without loops has at most $V-1$ links, so $V-1$ rounds suffice. If round $V$ still improves something, some loop must reduce cost, which is a negative cycle.
+
+\begin{lemma}\label{lem:nocycle}
+The transfer-cost network has negative arcs but no negative cycle.
+\end{lemma}
+\begin{proofsketch}
+Each arc's cost is a positive base plus a positive per-millisecond charge plus the difference of two regional price levels, $\varphi(u)-\varphi(v)$. Around any closed loop these differences cancel out, because each price level is added once and subtracted once. What remains is a sum of positive terms, so every loop has positive total cost.
+\end{proofsketch}
+\noindent This is the same ``potential'' idea that makes Johnson's reweighting correct.
+
+\subsection{Knapsack DP correctness: optimal substructure}
+An optimal choice for the first $i$ items at budget $w$ either skips item $i$, in which case the rest is an optimal choice for $i-1$ items at the same budget, or takes it, in which case the rest is optimal for $i-1$ items at budget $w$ minus the item's cost. The table tries both and keeps the better, so by induction every entry is optimal. Our tests compare both knapsack DPs with brute-force enumeration on random instances.
+
+\subsection{Local search: it always stops and never makes things worse}
+Every accepted move strictly lowers the average latency and there are finitely many plans, so the search must stop, at a plan that no single move can improve. Because it only accepts improvements, the result is never worse than the greedy plan it started from, which the test suite checks.
+
+%======================================================================
+\section{Limitations and Future Work}
+\begin{itemize}[leftmargin=*]
+  \item \textbf{Synthetic links.} India and Nigeria use real city locations, but the links are synthesised (three nearest neighbours) rather than taken from carrier maps. Woxsen's fibre plan and server sizes are modelling assumptions. Real topologies such as the Internet Topology Zoo \cite{knight2011} could be added.
+  \item \textbf{Static demand.} Demand does not change over the day. Re-placing copies as demand shifts, without moving too many at once, is a natural next step.
+  \item \textbf{Latency model.} Latency counts distance and hops, not queueing at busy servers. A queueing model such as M/M/$c$ servers would make crowded servers look slower.
+  \item \textbf{Surrogate values.} Server activation uses an estimated value per server, so it is optimal for that estimate, not for the joint problem.
+  \item \textbf{Scale.} Timings reflect CPython. A compiled core and approximate all-pairs methods would extend the exact referee and the matrix stage to thousands of sites.
+\end{itemize}
+
+%======================================================================
+\section{Reflection on Design Trade-offs}
+\textbf{Exact where we can, heuristic where we must.} The tractable stages (paths, trees, knapsack budgets) are solved exactly. Placement is NP-hard, and an exact DP over every server's remaining capacity would have a table as large as the product of all capacities, which is impossible at 25 to 150 sites. Greedy methods with local search scale to every network we tested, and the exact MILP referee shows they lose only about 0.5\,\%.
+
+\textbf{Implementing every alternative.} Several stages have two or more algorithms (Prim and Kruskal, Dijkstra and Bellman-Ford, Floyd--Warshall and Johnson, four heaps, four greedies). Building all of them let the experiments test textbook claims instead of repeating them. Two results surprised us: the Fibonacci heap was slower than the binary heap, and NumPy Floyd--Warshall beat Johnson even on sparse graphs at these sizes.
+
+\textbf{A tool, not just a script.} The website turns the algorithms into something a non-specialist can explore: choosing a start and a destination and watching Dijkstra stop early, or comparing two algorithms on the same trip, communicates the ideas of the course more directly than a table of numbers.
+
+%======================================================================
 \section{Conclusion}
-Lightpath shows how classical algorithm design fits a practical systems problem. Exact algorithms (MST, Dijkstra, Bellman-Ford, Floyd--Warshall, Johnson) and pseudo-polynomial dynamic programs handle the tractable parts. Greedy schedulers with local search handle the NP-hard placement. An exact MILP shows the heuristics are within 0.5\,\% of optimal on average, while the experiments expose where asymptotic theory and practical constants disagree. The same pipeline produces deployable policies for national networks in India and Nigeria and for the Woxsen campus.
+Lightpath shows how classical algorithm design fits a practical systems problem. Exact algorithms (Prim, Kruskal, Dijkstra, Bellman-Ford, Floyd--Warshall and Johnson) and two knapsack dynamic programs handle the tractable parts. Greedy schedulers with local search handle the NP-hard placement, and an exact solver confirms that they land within about 0.5\,\% of the optimum on average while running about five times faster. The experiments show where Big-O and measured speed agree and where they do not. The same pipeline produces deployable plans for national networks in India and Nigeria and for the Woxsen University campus, all explained through an interactive website.
+

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.10.2)  13 OCT 2026 12:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.10.2)  13 OCT 2026 16:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -952,7 +952,7 @@ Package hyperref Info: Link coloring OFF on input line 49.
 \openout4 = `main.out'.
 
  (./cover.tex
-<figures/woxsen_logo.png, id=103, 717.68124pt x 336.25626pt>
+<figures/woxsen_logo.png, id=264, 717.68124pt x 336.25626pt>
 File: figures/woxsen_logo.png Graphic file (type png)
 <use figures/woxsen_logo.png>
 Package pdftex.def Info: figures/woxsen_logo.png  used on input line 13.
@@ -960,16 +960,10 @@ Package pdftex.def Info: figures/woxsen_logo.png  used on input line 13.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-di
-st/fonts/enc/dvips/base/8r.enc} <./figures/woxsen_logo.png (PNG copy)>]) (./bod
-y.tex
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 5
-.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
-File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-)
+st/fonts/enc/dvips/base/8r.enc} <./figures/woxsen_logo.png (PNG copy)>]) (./mai
+n.toc
 LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line
- 9.
+ 2.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
@@ -979,150 +973,233 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line
- 9.
+ 2.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line
- 9.
+ 2.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
 LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line
- 9.
+ 2.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 9
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 2
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 9.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 2.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 9.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 2.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 9.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 2.
 
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+) [1])
+\tf@toc=\write5
+\openout5 = `main.toc'.
+
+ [2]
+(./body.tex
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 9
+.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.30 \end{equation}
-                    [1]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
- [2]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
-06.
+l.27 
+      [1
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `cmtt' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 115.
- [3] [4] (./uml.tex
-[5]
+] [2] (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)
+Underfull \hbox (badness 10000) in paragraph at lines 93--93
+[]|\T1/ptm/m/n/10 (+20) Python 3
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 93--93
+\T1/ptm/m/n/10 (+20) (\T1/cmtt/m/n/10 cloudplace
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 93--93
+[]|\T1/ptm/m/n/10 (+20) Vectorised Floyd--Warshall
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 93--93
+[]|\T1/ptm/m/n/10 (+20) SciPy (HiGHS
+ []
+
+
+Underfull \hbox (badness 2961) in paragraph at lines 93--93
+[]|\T1/ptm/m/n/10 (+20) React 18 + Type-
+ []
+
+
+Underfull \hbox (badness 3260) in paragraph at lines 93--93
+[]|\T1/ptm/m/n/10 (+20) pytest, Hy-poth-e-sis,
+ []
+
+[3] [4] [5] [6] [7] (./uml.tex [8]
 \pgf@layerbox@bg=\box93
 \pgf@layerboxsaved@bg=\box94
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 49.
- [6]) [7] [8]
-<figures/shot_studio.png, id=240, 1445.4pt x 903.375pt>
-File: figures/shot_studio.png Graphic file (type png)
-<use figures/shot_studio.png>
-Package pdftex.def Info: figures/shot_studio.png  used on input line 205.
-(pdftex.def)             Requested size: 223.07211pt x 139.41516pt.
-<figures/shot_lab.png, id=241, 1445.4pt x 903.375pt>
-File: figures/shot_lab.png Graphic file (type png)
-<use figures/shot_lab.png>
-Package pdftex.def Info: figures/shot_lab.png  used on input line 206.
-(pdftex.def)             Requested size: 223.07211pt x 139.41516pt.
- [9]
-<figures/e1_heaps.png, id=249, 715.473pt x 267.399pt>
+ [9] [10]) [11] [12]
+<figures/ui_landing.png, id=495, 2168.1pt x 1355.0625pt>
+File: figures/ui_landing.png Graphic file (type png)
+<use figures/ui_landing.png>
+Package pdftex.def Info: figures/ui_landing.png  used on input line 223.
+(pdftex.def)             Requested size: 418.82375pt x 261.7446pt.
+<figures/ui_home.png, id=498, 2168.1pt x 1355.0625pt>
+File: figures/ui_home.png Graphic file (type png)
+<use figures/ui_home.png>
+Package pdftex.def Info: figures/ui_home.png  used on input line 232.
+(pdftex.def)             Requested size: 418.82375pt x 261.7446pt.
+<figures/ui_home_pipeline.png, id=499, 2168.1pt x 1355.0625pt>
+File: figures/ui_home_pipeline.png Graphic file (type png)
+<use figures/ui_home_pipeline.png>
+Package pdftex.def Info: figures/ui_home_pipeline.png  used on input line 238.
+(pdftex.def)             Requested size: 418.82375pt x 261.7446pt.
+<figures/ui_studio.png, id=501, 2168.1pt x 1355.0625pt>
+File: figures/ui_studio.png Graphic file (type png)
+<use figures/ui_studio.png>
+Package pdftex.def Info: figures/ui_studio.png  used on input line 247.
+(pdftex.def)             Requested size: 418.82375pt x 261.7446pt.
+ [13 <./figures/ui_landing.png (PNG copy)>] [14 <./figures/ui_home.png (PNG cop
+y)> <./figures/ui_home_pipeline.png (PNG copy)>]
+<figures/ui_lab_route.png, id=516, 2168.1pt x 1355.0625pt>
+File: figures/ui_lab_route.png Graphic file (type png)
+<use figures/ui_lab_route.png>
+Package pdftex.def Info: figures/ui_lab_route.png  used on input line 256.
+(pdftex.def)             Requested size: 418.82375pt x 261.7446pt.
+<figures/ui_lab_bf.png, id=517, 2168.1pt x 1355.0625pt>
+File: figures/ui_lab_bf.png Graphic file (type png)
+<use figures/ui_lab_bf.png>
+Package pdftex.def Info: figures/ui_lab_bf.png  used on input line 262.
+(pdftex.def)             Requested size: 418.82375pt x 261.7446pt.
+<figures/ui_lab_compare.png, id=519, 2168.1pt x 1355.0625pt>
+File: figures/ui_lab_compare.png Graphic file (type png)
+<use figures/ui_lab_compare.png>
+Package pdftex.def Info: figures/ui_lab_compare.png  used on input line 270.
+(pdftex.def)             Requested size: 418.82375pt x 261.7446pt.
+<figures/ui_results.png, id=524, 2168.1pt x 1355.0625pt>
+File: figures/ui_results.png Graphic file (type png)
+<use figures/ui_results.png>
+Package pdftex.def Info: figures/ui_results.png  used on input line 279.
+(pdftex.def)             Requested size: 418.82375pt x 261.7446pt.
+<figures/ui_data.png, id=525, 2168.1pt x 1355.0625pt>
+File: figures/ui_data.png Graphic file (type png)
+<use figures/ui_data.png>
+Package pdftex.def Info: figures/ui_data.png  used on input line 285.
+(pdftex.def)             Requested size: 223.07211pt x 139.40138pt.
+<figures/ui_guide.png, id=526, 2168.1pt x 1355.0625pt>
+File: figures/ui_guide.png Graphic file (type png)
+<use figures/ui_guide.png>
+Package pdftex.def Info: figures/ui_guide.png  used on input line 286.
+(pdftex.def)             Requested size: 223.07211pt x 139.40138pt.
+ [15 <./figures/ui_studio.png (PNG copy)>] [16 <./figures/ui_lab_route.png (PNG
+ copy)> <./figures/ui_lab_bf.png (PNG copy)>] [17 <./figures/ui_lab_compare.png
+> <./figures/ui_results.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 315--315
+[]|\T1/ptm/m/n/10 (+20) Relocate/swap lo-cal
+ []
+
+
+Underfull \hbox (badness 5217) in paragraph at lines 315--315
+[]|\T1/ptm/m/n/10 (+20) proven op-ti-mum or lower
+ []
+
+[18 <./figures/ui_data.png (PNG copy)> <./figures/ui_guide.png (PNG copy)>]
+[19]
+<figures/e1_heaps.png, id=566, 715.473pt x 267.399pt>
 File: figures/e1_heaps.png Graphic file (type png)
 <use figures/e1_heaps.png>
-Package pdftex.def Info: figures/e1_heaps.png  used on input line 216.
+Package pdftex.def Info: figures/e1_heaps.png  used on input line 383.
 (pdftex.def)             Requested size: 391.51021pt x 146.31915pt.
-<figures/e2_apsp.png, id=252, 712.5822pt x 267.399pt>
+<figures/e2_apsp.png, id=568, 712.5822pt x 267.399pt>
 File: figures/e2_apsp.png Graphic file (type png)
 <use figures/e2_apsp.png>
-Package pdftex.def Info: figures/e2_apsp.png  used on input line 224.
+Package pdftex.def Info: figures/e2_apsp.png  used on input line 391.
 (pdftex.def)             Requested size: 391.51021pt x 146.91893pt.
- [10 <./figures/shot_studio.png (PNG copy)> <./figures/shot_lab.png (PNG copy)>
- <./figures/e1_heaps.png>]
-<figures/e3_mst.png, id=261, 426.393pt x 267.399pt>
+<figures/e3_mst.png, id=570, 426.393pt x 267.399pt>
 File: figures/e3_mst.png Graphic file (type png)
 <use figures/e3_mst.png>
-Package pdftex.def Info: figures/e3_mst.png  used on input line 232.
+Package pdftex.def Info: figures/e3_mst.png  used on input line 399.
 (pdftex.def)             Requested size: 391.51021pt x 245.53268pt.
-<figures/e4_quality_size.png, id=263, 714.9912pt x 267.399pt>
+ [20 <./figures/e1_heaps.png>]
+<figures/e4_quality_size.png, id=584, 714.9912pt x 267.399pt>
 File: figures/e4_quality_size.png Graphic file (type png)
 <use figures/e4_quality_size.png>
-Package pdftex.def Info: figures/e4_quality_size.png  used on input line 240.
+Package pdftex.def Info: figures/e4_quality_size.png  used on input line 407.
 (pdftex.def)             Requested size: 391.51021pt x 146.42116pt.
-<figures/e6_density.png, id=266, 715.473pt x 267.399pt>
-File: figures/e6_density.png Graphic file (type png)
-<use figures/e6_density.png>
-Package pdftex.def Info: figures/e6_density.png  used on input line 269.
-(pdftex.def)             Requested size: 391.51021pt x 146.31915pt.
-<figures/e5_capacity.png, id=267, 715.473pt x 267.399pt>
+<figures/e5_capacity.png, id=587, 715.473pt x 267.399pt>
 File: figures/e5_capacity.png Graphic file (type png)
 <use figures/e5_capacity.png>
-Package pdftex.def Info: figures/e5_capacity.png  used on input line 276.
+Package pdftex.def Info: figures/e5_capacity.png  used on input line 436.
 (pdftex.def)             Requested size: 391.51021pt x 146.31915pt.
- [11 <./figures/e2_apsp.png> <./figures/e3_mst.png>] [12 <./figures/e4_quality_
-size.png> <./figures/e6_density.png>]
-<figures/e7_budget.png, id=290, 426.393pt x 267.399pt>
+ [21 <./figures/e2_apsp.png> <./figures/e3_mst.png>]
+<figures/e6_density.png, id=599, 715.473pt x 267.399pt>
+File: figures/e6_density.png Graphic file (type png)
+<use figures/e6_density.png>
+Package pdftex.def Info: figures/e6_density.png  used on input line 444.
+(pdftex.def)             Requested size: 391.51021pt x 146.31915pt.
+<figures/e7_budget.png, id=602, 426.393pt x 267.399pt>
 File: figures/e7_budget.png Graphic file (type png)
 <use figures/e7_budget.png>
-Package pdftex.def Info: figures/e7_budget.png  used on input line 290.
+Package pdftex.def Info: figures/e7_budget.png  used on input line 451.
 (pdftex.def)             Requested size: 223.07211pt x 139.89287pt.
-<figures/e8_knapsack.png, id=291, 426.393pt x 267.399pt>
+<figures/e8_knapsack.png, id=603, 426.393pt x 267.399pt>
 File: figures/e8_knapsack.png Graphic file (type png)
 <use figures/e8_knapsack.png>
-Package pdftex.def Info: figures/e8_knapsack.png  used on input line 291.
+Package pdftex.def Info: figures/e8_knapsack.png  used on input line 452.
 (pdftex.def)             Requested size: 223.07211pt x 139.89287pt.
-
-Overfull \hbox (81.69286pt too wide) in paragraph at lines 322--331
+ [22 <./figures/e4_quality_size.png> <./figures/e5_capacity.png>]
+Overfull \hbox (36.62906pt too wide) in paragraph at lines 482--491
  [][] 
  []
 
-<figures/plans_regions.png, id=295, 675.7245pt x 372.9132pt>
+<figures/plans_regions.png, id=616, 675.7245pt x 372.9132pt>
 File: figures/plans_regions.png Graphic file (type png)
 <use figures/plans_regions.png>
-Package pdftex.def Info: figures/plans_regions.png  used on input line 335.
+Package pdftex.def Info: figures/plans_regions.png  used on input line 495.
 (pdftex.def)             Requested size: 418.82375pt x 231.1355pt.
-<figures/plan_woxsen.png, id=296, 625.8582pt x 257.2812pt>
+<figures/plan_woxsen.png, id=617, 625.8582pt x 257.2812pt>
 File: figures/plan_woxsen.png Graphic file (type png)
 <use figures/plan_woxsen.png>
-Package pdftex.def Info: figures/plan_woxsen.png  used on input line 341.
+Package pdftex.def Info: figures/plan_woxsen.png  used on input line 501.
 (pdftex.def)             Requested size: 432.48051pt x 177.78725pt.
-[13 <./figures/e5_capacity.png> <./figures/e7_budget.png> <./figures/e8_knapsac
-k.png>] [14 <./figures/plans_regions.png> <./figures/plan_woxsen.png>])
-[15] (./refs.tex
+[23 <./figures/e6_density.png> <./figures/e7_budget.png> <./figures/e8_knapsack
+.png>] [24 <./figures/plans_regions.png> <./figures/plan_woxsen.png>] [25])
+[26] (./refs.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 4.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 4.
-) [16
+) (./appendix.tex [27
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 23--25
+
+ []
+
+) [28
 
 ] (./main.aux)
  ***********
@@ -1130,19 +1207,19 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: AC4BA584ABDA2EA64EF8D8B888A913E5;4396.
+(rerunfilecheck)             Checksum: 4971036E26016EFF779980DF95671710;13311.
  ) 
 Here is how much of TeX's memory you used:
- 29024 strings out of 476106
- 536110 string characters out of 5793933
- 1966975 words of memory out of 5000000
- 49859 multiletter control sequences out of 15000+600000
- 687460 words of font info for 523 fonts, out of 8000000 for 9000
+ 29209 strings out of 476106
+ 539396 string characters out of 5793933
+ 1968975 words of memory out of 5000000
+ 49937 multiletter control sequences out of 15000+600000
+ 678349 words of font info for 533 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 84i,13n,87p,1587b,864s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </root/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk> </
-root/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk> </root/
-.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk></usr/share/t
+ 84i,14n,87p,1001b,864s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </root/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk> </
+root/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </root/
+.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/f
@@ -1151,10 +1228,10 @@ nts/type1/urw/symbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/sy
 mbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (17 pages, 1641357 bytes).
+Output written on main.pdf (31 pages, 4079533 bytes).
 PDF statistics:
- 486 PDF objects out of 1000 (max. 8388607)
- 343 compressed objects within 4 object streams
- 104 named destinations out of 1000 (max. 500000)
- 132878 words of extra memory for PDF output out of 154059 (max. 10000000)
+ 852 PDF objects out of 1000 (max. 8388607)
+ 671 compressed objects within 7 object streams
+ 188 named destinations out of 1000 (max. 500000)
+ 122998 words of extra memory for PDF output out of 128383 (max. 10000000)
 

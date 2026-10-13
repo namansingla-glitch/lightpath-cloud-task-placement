@@ -48,8 +48,14 @@
 
 \begin{document}
 \input{cover}
-\setcounter{page}{1}
+\pagenumbering{roman}\setcounter{page}{1}
+\renewcommand{\contentsname}{Table of Contents}\setcounter{tocdepth}{2}
+{\setlength{\parskip}{1pt}\tableofcontents}
+\clearpage
+\pagenumbering{arabic}\setcounter{page}{1}
 \input{body}
 \clearpage
+\phantomsection\addcontentsline{toc}{section}{References}
 \input{refs}
+\input{appendix}
 \end{document}

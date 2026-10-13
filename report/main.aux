@@ -2,45 +2,62 @@
 \providecommand\hyper@newdestlabel[2]{}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
 \citation{kariv1979}
-\citation{waxman1988}
-\citation{erdos1959}
-\citation{barabasi1999}
-\citation{alfares2008}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction and Problem Statement}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction and Problem Statement}{section.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Course context}{1}{subsection.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Motivation: why placement is a real algorithmic problem}{1}{subsection.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}What makes it hard}{1}{subsection.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Objectives and contributions}{1}{subsection.1.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Scope of this report}{2}{subsection.1.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}Problem Formulation}{2}{section.2}\protected@file@percent }
 \newlabel{sec:model}{{2}{2}{Problem Formulation}{section.2}{}}
-\newlabel{eq:lat}{{1}{2}{Problem Formulation}{equation.2.1}{}}
-\newlabel{eq:obj}{{2}{2}{Problem Formulation}{equation.2.2}{}}
-\newlabel{eq:cost}{{3}{2}{Problem Formulation}{equation.2.3}{}}
-\newlabel{lem:nocycle}{{1}{2}{Problem Formulation}{lemma.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Datasets}{2}{section.3}\protected@file@percent }
-\newlabel{sec:data}{{3}{2}{Datasets}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Inputs}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Objective}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Constraints}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Transfer costs and negative edges}{3}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Infeasibility handling}{3}{subsection.2.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Technology Stack and Justification}{3}{section.3}\protected@file@percent }
+\newlabel{sec:tech}{{3}{3}{Technology Stack and Justification}{section.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Technology stack and the rationale for each choice.}}{4}{table.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:tech}{{1}{4}{Technology stack and the rationale for each choice}{table.caption.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Algorithms Used, and Why Each One Was Chosen}{4}{section.4}\protected@file@percent }
+\newlabel{sec:algo}{{4}{4}{Algorithms Used, and Why Each One Was Chosen}{section.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The Lightpath pipeline. Stages 1--3 are exact polynomial algorithms, 4--5 exact dynamic programs, and 6--7 fast heuristics whose distance from the optimum is measured by the exact MILP.}}{4}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:pipeline}{{1}{4}{The Lightpath pipeline. Stages 1--3 are exact polynomial algorithms, 4--5 exact dynamic programs, and 6--7 fast heuristics whose distance from the optimum is measured by the exact MILP}{figure.caption.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Supporting data structures}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Adjacency list}{4}{subsubsection.4.1.1}\protected@file@percent }
 \citation{fredman1987}
 \citation{tarjan1975}
 \citation{prim1957}
 \citation{kruskal1956}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Four priority queues}{5}{subsubsection.4.1.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Union-find}{5}{subsubsection.4.1.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Minimum spanning tree: Prim's and Kruskal's algorithms}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.1}Why an MST at all?}{5}{subsubsection.4.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.2}Why implement both Prim and Kruskal}{5}{subsubsection.4.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3}Alternatives considered}{5}{subsubsection.4.2.3}\protected@file@percent }
 \citation{dijkstra1959}
 \citation{bellman1958}
 \citation{ford1956}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Datasets. Load is the CPU needed by minimum replicas divided by total capacity; best is the recommended plan's mean latency.}}{3}{table.caption.1}\protected@file@percent }
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:data}{{1}{3}{Datasets. Load is the CPU needed by minimum replicas divided by total capacity; best is the recommended plan's mean latency}{table.caption.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Algorithms, Correctness and Complexity}{3}{section.4}\protected@file@percent }
-\newlabel{sec:algo}{{4}{3}{Algorithms, Correctness and Complexity}{section.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces The Lightpath pipeline. Stages 1--2 are exact polynomial algorithms, 3--4 pseudo-polynomial dynamic programs, 5--6 heuristics whose gap is measured by the exact MILP.}}{3}{figure.caption.2}\protected@file@percent }
-\newlabel{fig:pipeline}{{1}{3}{The Lightpath pipeline. Stages 1--2 are exact polynomial algorithms, 3--4 pseudo-polynomial dynamic programs, 5--6 heuristics whose gap is measured by the exact MILP}{figure.caption.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Data structures}{3}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Minimum spanning tree (backbone)}{3}{subsection.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Single-source shortest paths}{3}{subsection.4.3}\protected@file@percent }
 \citation{floyd1962}
 \citation{warshall1962}
 \citation{johnson1977}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Dijkstra with an addressable heap}}{4}{algorithm.1}\protected@file@percent }
-\newlabel{alg:dij}{{1}{4}{Dijkstra with an addressable heap}{algorithm.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}All-pairs shortest paths}{4}{subsection.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Knapsack dynamic programs (budgeted selection)}{4}{subsection.4.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Greedy schedulers and local search}{4}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Single-source shortest paths: Dijkstra and Bellman-Ford}{6}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.1}Role in the pipeline}{6}{subsubsection.4.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}Dijkstra for latency}{6}{subsubsection.4.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}Bellman-Ford for transfer cost}{6}{subsubsection.4.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.4}Why both, and not one}{6}{subsubsection.4.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}All-pairs shortest paths: Floyd--Warshall and Johnson}{6}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.1}Role in the pipeline}{6}{subsubsection.4.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.2}Floyd--Warshall}{6}{subsubsection.4.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.3}Johnson}{7}{subsubsection.4.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.4.4}The choice rule, and what the experiment taught us}{7}{subsubsection.4.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Dynamic programming: two knapsack problems}{7}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.1}Why dynamic programming here}{7}{subsubsection.4.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.2}0/1 knapsack: which servers to switch on}{7}{subsubsection.4.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.3}Multiple-choice knapsack: how many copies of each service}{7}{subsubsection.4.5.3}\protected@file@percent }
 \citation{leskovec2007}
 \citation{nemhauser1978}
 \citation{martello1990}
@@ -49,71 +66,130 @@
 \citation{huangfu2018}
 \citation{virtanen2020}
 \citation{graham1969}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Exact MILP and batch scheduling}{5}{subsection.4.7}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Algorithms used, with guarantees and complexity.}}{5}{table.caption.3}\protected@file@percent }
-\newlabel{tab:cx}{{2}{5}{Algorithms used, with guarantees and complexity}{table.caption.3}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}System Design (UML)}{5}{section.5}\protected@file@percent }
-\newlabel{sec:uml}{{5}{5}{System Design (UML)}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Use-case diagram}{5}{subsection.5.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Use-case diagram: three actors and the nine main use cases.}}{6}{figure.caption.4}\protected@file@percent }
-\newlabel{fig:usecase}{{2}{6}{Use-case diagram: three actors and the nine main use cases}{figure.caption.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Component and deployment view}{6}{subsection.5.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Component diagram. Solid arrows are calls; dashed arrows are optional or data dependencies.}}{6}{figure.caption.5}\protected@file@percent }
-\newlabel{fig:component}{{3}{6}{Component diagram. Solid arrows are calls; dashed arrows are optional or data dependencies}{figure.caption.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Class diagram}{6}{subsection.5.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces UML class diagram of the core model (filled diamond: composition; hollow diamond: aggregation; hollow triangle: realisation of an interface; dashed: dependency).}}{7}{figure.caption.6}\protected@file@percent }
-\newlabel{fig:class}{{4}{7}{UML class diagram of the core model (filled diamond: composition; hollow diamond: aggregation; hollow triangle: realisation of an interface; dashed: dependency)}{figure.caption.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Sequence diagram for one solve request}{7}{subsection.5.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Activity diagram of the solver}{7}{subsection.5.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Module and interface summary}{7}{subsection.5.6}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Sequence diagram of \texttt  {POST /api/solve}. Dashed arrows are returns; the \textbf  {opt} frame runs only when the MILP is small enough.}}{8}{figure.caption.7}\protected@file@percent }
-\newlabel{fig:sequence}{{5}{8}{Sequence diagram of \texttt {POST /api/solve}. Dashed arrows are returns; the \textbf {opt} frame runs only when the MILP is small enough}{figure.caption.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Activity diagram of the solver pipeline with its automatic algorithm choices.}}{8}{figure.caption.8}\protected@file@percent }
-\newlabel{fig:activity}{{6}{8}{Activity diagram of the solver pipeline with its automatic algorithm choices}{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.5.4}Alternatives considered}{8}{subsubsection.4.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Greedy schedulers for placement}{8}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.1}Why greedy}{8}{subsubsection.4.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Local search refinement}{8}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8}The exact referee: a mixed-integer program}{8}{subsection.4.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.9}Batch scheduling}{8}{subsection.4.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}System Design (UML)}{9}{section.5}\protected@file@percent }
+\newlabel{sec:uml}{{5}{9}{System Design (UML)}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Use-case diagram}{9}{subsection.5.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Use-case diagram: three actors and the nine main use cases.}}{9}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:usecase}{{2}{9}{Use-case diagram: three actors and the nine main use cases}{figure.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Component and deployment view}{9}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Class diagram}{9}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Sequence diagram for one solve request}{9}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Activity diagram of the solver}{9}{subsection.5.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Component diagram. Solid arrows are calls; dashed arrows are optional or data dependencies.}}{10}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:component}{{3}{10}{Component diagram. Solid arrows are calls; dashed arrows are optional or data dependencies}{figure.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces UML class diagram of the core model (filled diamond: composition; hollow diamond: aggregation; hollow triangle: realisation of an interface; dashed: dependency).}}{10}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:class}{{4}{10}{UML class diagram of the core model (filled diamond: composition; hollow diamond: aggregation; hollow triangle: realisation of an interface; dashed: dependency)}{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Sequence diagram of \texttt  {POST /api/solve}. Dashed arrows are returns; the \textbf  {opt} frame runs only when the MILP is small enough.}}{11}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:sequence}{{5}{11}{Sequence diagram of \texttt {POST /api/solve}. Dashed arrows are returns; the \textbf {opt} frame runs only when the MILP is small enough}{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Module and interface summary}{11}{subsection.5.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Package structure of \texttt  {cloudplace}.}}{11}{table.caption.8}\protected@file@percent }
+\newlabel{tab:modules}{{2}{11}{Package structure of \texttt {cloudplace}}{table.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Activity diagram of the solver pipeline with its automatic algorithm choices.}}{12}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:activity}{{6}{12}{Activity diagram of the solver pipeline with its automatic algorithm choices}{figure.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces REST endpoints exposed by \texttt  {api/server.py}.}}{12}{table.caption.9}\protected@file@percent }
+\newlabel{tab:api}{{3}{12}{REST endpoints exposed by \texttt {api/server.py}}{table.caption.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Implementation and Working Screenshots}{13}{section.6}\protected@file@percent }
+\newlabel{sec:impl}{{6}{13}{Implementation and Working Screenshots}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Landing page}{13}{subsection.6.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Landing page with the project title and the team.}}{13}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:ui-landing}{{7}{13}{Landing page with the project title and the team}{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Home}{13}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Placement Studio}{13}{subsection.6.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Home page: region switch, live request map and headline numbers.}}{14}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:ui-home}{{8}{14}{Home page: region switch, live request map and headline numbers}{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Home page: the seven pipeline stages as a metro line.}}{14}{figure.caption.12}\protected@file@percent }
+\newlabel{fig:ui-pipeline}{{9}{14}{Home page: the seven pipeline stages as a metro line}{figure.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Placement Studio solving the India network: controls, map, strategy comparison and route table.}}{15}{figure.caption.13}\protected@file@percent }
+\newlabel{fig:ui-studio}{{10}{15}{Placement Studio solving the India network: controls, map, strategy comparison and route table}{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Algorithm Lab}{15}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Results, Data and Guide}{15}{subsection.6.5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Algorithm Lab: Dijkstra from Lagos to Calabar. It stopped early after the destination was settled; the blue line is the final route.}}{16}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:ui-lab}{{11}{16}{Algorithm Lab: Dijkstra from Lagos to Calabar. It stopped early after the destination was settled; the blue line is the final route}{figure.caption.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Algorithm Lab: Bellman-Ford on transfer costs. Red arrows are rebate links with negative cost.}}{16}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:ui-lab-bf}{{12}{16}{Algorithm Lab: Bellman-Ford on transfer costs. Red arrows are rebate links with negative cost}{figure.caption.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Algorithm Lab: comparing Dijkstra and Bellman-Ford on the same trip, with a verdict.}}{17}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:ui-compare}{{13}{17}{Algorithm Lab: comparing Dijkstra and Bellman-Ford on the same trip, with a verdict}{figure.caption.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Results page: interactive charts for the experiments.}}{17}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:ui-results}{{14}{17}{Results page: interactive charts for the experiments}{figure.caption.17}{}}
 \citation{hagberg2008}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Package structure of \texttt  {cloudplace}.}}{9}{table.caption.9}\protected@file@percent }
-\newlabel{tab:modules}{{3}{9}{Package structure of \texttt {cloudplace}}{table.caption.9}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces REST endpoints exposed by \texttt  {api/server.py}.}}{9}{table.caption.10}\protected@file@percent }
-\newlabel{tab:api}{{4}{9}{REST endpoints exposed by \texttt {api/server.py}}{table.caption.10}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Implementation and Verification}{9}{section.6}\protected@file@percent }
-\newlabel{sec:impl}{{6}{9}{Implementation and Verification}{section.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Automated test suite (191 tests, all passing).}}{10}{table.caption.11}\protected@file@percent }
-\newlabel{tab:tests}{{5}{10}{Automated test suite (191 tests, all passing)}{table.caption.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The Lightpath dashboard.}}{10}{figure.caption.12}\protected@file@percent }
-\newlabel{fig:ui}{{7}{10}{The Lightpath dashboard}{figure.caption.12}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Experiments and Results}{10}{section.7}\protected@file@percent }
-\newlabel{sec:exp}{{7}{10}{Experiments and Results}{section.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces E1: Dijkstra and Prim with four priority queues on sparse Waxman graphs ($n$ up to 4000, $m$ up to 252k).}}{10}{figure.caption.13}\protected@file@percent }
-\newlabel{fig:e1}{{8}{10}{E1: Dijkstra and Prim with four priority queues on sparse Waxman graphs ($n$ up to 4000, $m$ up to 252k)}{figure.caption.13}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces E2: all-pairs algorithms on sparse ($p=3/n$) and dense ($p=0.5$) graphs.}}{11}{figure.caption.14}\protected@file@percent }
-\newlabel{fig:e2}{{9}{11}{E2: all-pairs algorithms on sparse ($p=3/n$) and dense ($p=0.5$) graphs}{figure.caption.14}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces E3: Prim (four heaps) versus Kruskal as edge density grows ($n=600$).}}{11}{figure.caption.15}\protected@file@percent }
-\newlabel{fig:e3}{{10}{11}{E3: Prim (four heaps) versus Kruskal as edge density grows ($n=600$)}{figure.caption.15}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces E4: optimality gap (left) and runtime (right) versus size on Waxman networks; dashed lines are greedy alone, solid lines include local search. At $n=240$ the reference is the LP bound.}}{12}{figure.caption.16}\protected@file@percent }
-\newlabel{fig:e4}{{11}{12}{E4: optimality gap (left) and runtime (right) versus size on Waxman networks; dashed lines are greedy alone, solid lines include local search. At $n=240$ the reference is the LP bound}{figure.caption.16}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces E4: mean optimality gap (\%) against the MILP optimum on Waxman networks (three seeds per size).}}{12}{table.caption.17}\protected@file@percent }
-\newlabel{tab:gap}{{6}{12}{E4: mean optimality gap (\%) against the MILP optimum on Waxman networks (three seeds per size)}{table.caption.17}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces E6: optimal mean latency and heuristic gap versus edge probability (Erd\H {o}s--R\'enyi, $n=80$).}}{12}{figure.caption.18}\protected@file@percent }
-\newlabel{fig:e6}{{12}{12}{E6: optimal mean latency and heuristic gap versus edge probability (Erd\H {o}s--R\'enyi, $n=80$)}{figure.caption.18}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces E5: share of runs with a feasible placement (left) and gap after local search (right) as server capacity shrinks (Waxman, $n=50$, 12 services).}}{13}{figure.caption.19}\protected@file@percent }
-\newlabel{fig:e5}{{13}{13}{E5: share of runs with a feasible placement (left) and gap after local search (right) as server capacity shrinks (Waxman, $n=50$, 12 services)}{figure.caption.19}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Budget frontier and knapsack scaling.}}{13}{figure.caption.20}\protected@file@percent }
-\newlabel{fig:e78}{{14}{13}{Budget frontier and knapsack scaling}{figure.caption.20}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Summary of the eight experiments.}}{13}{table.caption.21}\protected@file@percent }
-\newlabel{tab:expsum}{{7}{13}{Summary of the eight experiments}{table.caption.21}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Case Studies and Policy Outputs}{13}{section.8}\protected@file@percent }
-\newlabel{sec:policy}{{8}{13}{Case Studies and Policy Outputs}{section.8}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Recommended plans. Gap is the best heuristic's distance from the MILP optimum; stretch is the latency increase if requests were routed over the MST backbone only.}}{14}{table.caption.22}\protected@file@percent }
-\newlabel{tab:cases}{{8}{14}{Recommended plans. Gap is the best heuristic's distance from the MILP optimum; stretch is the latency increase if requests were routed over the MST backbone only}{table.caption.22}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Recommended placements for India and Nigeria. Yellow sites host replicas; coloured lines are request routes (one colour per service); grey diamonds are routers.}}{14}{figure.caption.23}\protected@file@percent }
-\newlabel{fig:regions}{{15}{14}{Recommended placements for India and Nigeria. Yellow sites host replicas; coloured lines are request routes (one colour per service); grey diamonds are routers}{figure.caption.23}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Woxsen University campus plan. Replicas cluster around the Academic Block, the hostels and The League sports arena, where demand originates.}}{14}{figure.caption.24}\protected@file@percent }
-\newlabel{fig:woxsen}{{16}{14}{Woxsen University campus plan. Replicas cluster around the Academic Block, the hostels and The League sports arena, where demand originates}{figure.caption.24}{}}
+\newlabel{fig:ui-data}{{15a}{18}{Data page}{figure.caption.18}{}}
+\newlabel{sub@fig:ui-data}{{a}{18}{Data page}{figure.caption.18}{}}
+\newlabel{fig:ui-guide}{{15b}{18}{Guide page}{figure.caption.18}{}}
+\newlabel{sub@fig:ui-guide}{{b}{18}{Guide page}{figure.caption.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Data downloads and the plain-language guide.}}{18}{figure.caption.18}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Complexity Analysis}{18}{section.7}\protected@file@percent }
+\newlabel{sec:cx}{{7}{18}{Complexity Analysis}{section.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Time complexity and guarantees by pipeline stage.}}{18}{table.caption.19}\protected@file@percent }
+\newlabel{tab:cx}{{4}{18}{Time complexity and guarantees by pipeline stage}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Testing and Demonstrated Scenarios}{18}{section.8}\protected@file@percent }
+\newlabel{sec:test}{{8}{18}{Testing and Demonstrated Scenarios}{section.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Automated test suite}{18}{subsection.8.1}\protected@file@percent }
+\citation{waxman1988}
+\citation{erdos1959}
+\citation{barabasi1999}
+\citation{alfares2008}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Automated test suite (191 tests, all passing).}}{19}{table.caption.20}\protected@file@percent }
+\newlabel{tab:tests}{{5}{19}{Automated test suite (191 tests, all passing)}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Scenario A: the full pipeline on India}{19}{subsection.8.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Scenario B: shortest routes beat direct links}{19}{subsection.8.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}Scenario C: negative costs}{19}{subsection.8.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.5}Scenario D: capacity pressure and infeasibility}{19}{subsection.8.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Experimental Evaluation}{19}{section.9}\protected@file@percent }
+\newlabel{sec:exp}{{9}{19}{Experimental Evaluation}{section.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Method}{19}{subsection.9.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces The ten networks. Load is the CPU needed by the minimum copies divided by total capacity; best is the recommended plan's average latency.}}{20}{table.caption.21}\protected@file@percent }
+\newlabel{tab:data}{{6}{20}{The ten networks. Load is the CPU needed by the minimum copies divided by total capacity; best is the recommended plan's average latency}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}E1: priority queues}{20}{subsection.9.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces E1: Dijkstra and Prim with four priority queues on sparse graphs of up to 4000 sites.}}{20}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:e1}{{16}{20}{E1: Dijkstra and Prim with four priority queues on sparse graphs of up to 4000 sites}{figure.caption.22}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}E2: all-pairs shortest paths}{20}{subsection.9.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces E2: all-pairs algorithms on sparse and dense graphs.}}{21}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:e2}{{17}{21}{E2: all-pairs algorithms on sparse and dense graphs}{figure.caption.23}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces E3: Prim with four heaps against Kruskal as edge density grows (600 sites).}}{21}{figure.caption.24}\protected@file@percent }
+\newlabel{fig:e3}{{18}{21}{E3: Prim with four heaps against Kruskal as edge density grows (600 sites)}{figure.caption.24}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}E3: spanning trees versus density}{21}{subsection.9.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.5}E4: solution quality and cost versus size}{21}{subsection.9.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.6}E5: capacity pressure}{21}{subsection.9.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces E4: distance from the optimum (left) and run time (right) as networks grow. Dashed lines are greedy alone; solid lines include local search.}}{22}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:e4}{{19}{22}{E4: distance from the optimum (left) and run time (right) as networks grow. Dashed lines are greedy alone; solid lines include local search}{figure.caption.25}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces E4: average distance from the MILP optimum (\%) on Waxman networks, three seeds per size.}}{22}{table.caption.26}\protected@file@percent }
+\newlabel{tab:gap}{{7}{22}{E4: average distance from the MILP optimum (\%) on Waxman networks, three seeds per size}{table.caption.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces E5: share of runs with a valid plan (left) and distance from the optimum after local search (right) as server capacity shrinks.}}{22}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:e5}{{20}{22}{E5: share of runs with a valid plan (left) and distance from the optimum after local search (right) as server capacity shrinks}{figure.caption.27}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.7}E6, E7 and E8: density, budget and knapsack scaling}{22}{subsection.9.7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {21}{\ignorespaces E6: optimal latency and heuristic gap as link density grows (80 sites).}}{23}{figure.caption.28}\protected@file@percent }
+\newlabel{fig:e6}{{21}{23}{E6: optimal latency and heuristic gap as link density grows (80 sites)}{figure.caption.28}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Budget frontier and knapsack scaling.}}{23}{figure.caption.29}\protected@file@percent }
+\newlabel{fig:e78}{{22}{23}{Budget frontier and knapsack scaling}{figure.caption.29}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Summary of the eight experiments.}}{23}{table.caption.30}\protected@file@percent }
+\newlabel{tab:expsum}{{8}{23}{Summary of the eight experiments}{table.caption.30}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {10}Case Studies and Policy Outputs}{23}{section.10}\protected@file@percent }
+\newlabel{sec:policy}{{10}{23}{Case Studies and Policy Outputs}{section.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Recommended plans. Stretch is the latency increase if requests used only the MST backbone.}}{23}{table.caption.31}\protected@file@percent }
+\newlabel{tab:cases}{{9}{23}{Recommended plans. Stretch is the latency increase if requests used only the MST backbone}{table.caption.31}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Recommended placements for India and Nigeria. Yellow sites host copies; coloured lines are request routes, one colour per service.}}{24}{figure.caption.32}\protected@file@percent }
+\newlabel{fig:regions}{{23}{24}{Recommended placements for India and Nigeria. Yellow sites host copies; coloured lines are request routes, one colour per service}{figure.caption.32}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Woxsen University campus plan. Copies cluster around the Academic Block, the hostels and The League sports arena, where demand originates.}}{24}{figure.caption.33}\protected@file@percent }
+\newlabel{fig:woxsen}{{24}{24}{Woxsen University campus plan. Copies cluster around the Academic Block, the hostels and The League sports arena, where demand originates}{figure.caption.33}{}}
+\citation{cormen2022}
 \citation{knight2011}
-\@writefile{toc}{\contentsline {section}{\numberline {9}Recommendations}{15}{section.9}\protected@file@percent }
-\newlabel{sec:rec}{{9}{15}{Recommendations}{section.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {10}Limitations and Future Work}{15}{section.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {11}Conclusion}{15}{section.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {11}Correctness Reasoning (Proof Sketches)}{25}{section.11}\protected@file@percent }
+\newlabel{sec:proofs}{{11}{25}{Correctness Reasoning (Proof Sketches)}{section.11}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.1}MST correctness: the cut property}{25}{subsection.11.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.2}Dijkstra correctness: the settled distance is final}{25}{subsection.11.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.3}Bellman-Ford correctness: one more link per round}{25}{subsection.11.3}\protected@file@percent }
+\newlabel{lem:nocycle}{{1}{25}{Bellman-Ford correctness: one more link per round}{lemma.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.4}Knapsack DP correctness: optimal substructure}{25}{subsection.11.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.5}Local search: it always stops and never makes things worse}{25}{subsection.11.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {12}Limitations and Future Work}{26}{section.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {13}Reflection on Design Trade-offs}{26}{section.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {14}Conclusion}{26}{section.14}\protected@file@percent }
 \bibcite{kariv1979}{1}
 \bibcite{waxman1988}{2}
 \bibcite{erdos1959}{3}
@@ -139,4 +215,8 @@
 \bibcite{graham1969}{23}
 \bibcite{hagberg2008}{24}
 \bibcite{knight2011}{25}
-\gdef \@abspage@last{17}
+\bibcite{cormen2022}{26}
+\@writefile{toc}{\contentsline {section}{References}{27}{section*.34}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {A}Project File Structure}{28}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B}Running the Application}{28}{appendix.B}\protected@file@percent }
+\gdef \@abspage@last{31}

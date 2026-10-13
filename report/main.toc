@@ -1,0 +1,83 @@
+\contentsline {section}{\numberline {1}Introduction and Problem Statement}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Course context}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Motivation: why placement is a real algorithmic problem}{1}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}What makes it hard}{1}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Objectives and contributions}{1}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Scope of this report}{2}{subsection.1.5}%
+\contentsline {section}{\numberline {2}Problem Formulation}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Inputs}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Objective}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Constraints}{2}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Transfer costs and negative edges}{3}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Infeasibility handling}{3}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Technology Stack and Justification}{3}{section.3}%
+\contentsline {section}{\numberline {4}Algorithms Used, and Why Each One Was Chosen}{4}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Supporting data structures}{4}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Adjacency list}{4}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Four priority queues}{5}{subsubsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.3}Union-find}{5}{subsubsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.2}Minimum spanning tree: Prim's and Kruskal's algorithms}{5}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Why an MST at all?}{5}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Why implement both Prim and Kruskal}{5}{subsubsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.3}Alternatives considered}{5}{subsubsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.3}Single-source shortest paths: Dijkstra and Bellman-Ford}{6}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}Role in the pipeline}{6}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}Dijkstra for latency}{6}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3}Bellman-Ford for transfer cost}{6}{subsubsection.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.4}Why both, and not one}{6}{subsubsection.4.3.4}%
+\contentsline {subsection}{\numberline {4.4}All-pairs shortest paths: Floyd--Warshall and Johnson}{6}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Role in the pipeline}{6}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Floyd--Warshall}{6}{subsubsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.3}Johnson}{7}{subsubsection.4.4.3}%
+\contentsline {subsubsection}{\numberline {4.4.4}The choice rule, and what the experiment taught us}{7}{subsubsection.4.4.4}%
+\contentsline {subsection}{\numberline {4.5}Dynamic programming: two knapsack problems}{7}{subsection.4.5}%
+\contentsline {subsubsection}{\numberline {4.5.1}Why dynamic programming here}{7}{subsubsection.4.5.1}%
+\contentsline {subsubsection}{\numberline {4.5.2}0/1 knapsack: which servers to switch on}{7}{subsubsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.3}Multiple-choice knapsack: how many copies of each service}{7}{subsubsection.4.5.3}%
+\contentsline {subsubsection}{\numberline {4.5.4}Alternatives considered}{8}{subsubsection.4.5.4}%
+\contentsline {subsection}{\numberline {4.6}Greedy schedulers for placement}{8}{subsection.4.6}%
+\contentsline {subsubsection}{\numberline {4.6.1}Why greedy}{8}{subsubsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.7}Local search refinement}{8}{subsection.4.7}%
+\contentsline {subsection}{\numberline {4.8}The exact referee: a mixed-integer program}{8}{subsection.4.8}%
+\contentsline {subsection}{\numberline {4.9}Batch scheduling}{8}{subsection.4.9}%
+\contentsline {section}{\numberline {5}System Design (UML)}{9}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Use-case diagram}{9}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Component and deployment view}{9}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Class diagram}{9}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Sequence diagram for one solve request}{9}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Activity diagram of the solver}{9}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Module and interface summary}{11}{subsection.5.6}%
+\contentsline {section}{\numberline {6}Implementation and Working Screenshots}{13}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Landing page}{13}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Home}{13}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Placement Studio}{13}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Algorithm Lab}{15}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Results, Data and Guide}{15}{subsection.6.5}%
+\contentsline {section}{\numberline {7}Complexity Analysis}{18}{section.7}%
+\contentsline {section}{\numberline {8}Testing and Demonstrated Scenarios}{18}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Automated test suite}{18}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Scenario A: the full pipeline on India}{19}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Scenario B: shortest routes beat direct links}{19}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Scenario C: negative costs}{19}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}Scenario D: capacity pressure and infeasibility}{19}{subsection.8.5}%
+\contentsline {section}{\numberline {9}Experimental Evaluation}{19}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Method}{19}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}E1: priority queues}{20}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}E2: all-pairs shortest paths}{20}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}E3: spanning trees versus density}{21}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.5}E4: solution quality and cost versus size}{21}{subsection.9.5}%
+\contentsline {subsection}{\numberline {9.6}E5: capacity pressure}{21}{subsection.9.6}%
+\contentsline {subsection}{\numberline {9.7}E6, E7 and E8: density, budget and knapsack scaling}{22}{subsection.9.7}%
+\contentsline {section}{\numberline {10}Case Studies and Policy Outputs}{23}{section.10}%
+\contentsline {section}{\numberline {11}Correctness Reasoning (Proof Sketches)}{25}{section.11}%
+\contentsline {subsection}{\numberline {11.1}MST correctness: the cut property}{25}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Dijkstra correctness: the settled distance is final}{25}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Bellman-Ford correctness: one more link per round}{25}{subsection.11.3}%
+\contentsline {subsection}{\numberline {11.4}Knapsack DP correctness: optimal substructure}{25}{subsection.11.4}%
+\contentsline {subsection}{\numberline {11.5}Local search: it always stops and never makes things worse}{25}{subsection.11.5}%
+\contentsline {section}{\numberline {12}Limitations and Future Work}{26}{section.12}%
+\contentsline {section}{\numberline {13}Reflection on Design Trade-offs}{26}{section.13}%
+\contentsline {section}{\numberline {14}Conclusion}{26}{section.14}%
+\contentsline {section}{References}{27}{section*.34}%
+\contentsline {section}{\numberline {A}Project File Structure}{28}{appendix.A}%
+\contentsline {section}{\numberline {B}Running the Application}{28}{appendix.B}%
