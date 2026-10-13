@@ -51,8 +51,8 @@ Without Python the website still works: open `web/dist` on any static host and i
 | **Data** | Every network with JSON, Gephi (GEXF) and CSV downloads, plus a generator for new networks. |
 | **Guide** | How to use each page, a glossary, a 1-minute guided tour and `?` help on every panel. |
 
-Design: Material 3 layout with the Google palette, Roboto Flex. Effects (splash fluid cursor, scroll
-velocity, text cursor, glitch, split text, count-up) can be switched off with the **Motion** toggle and respect
+Design: Material 3 layout with the Google palette, Roboto Flex. Effects (target reticle cursor, scroll
+velocity, glitch, split text, count-up) can be switched off with the **Motion** toggle and respect
 the system reduced-motion setting.
 
 ## Algorithms
