@@ -1,0 +1,596 @@
+{
+ "name": "nsfnet",
+ "description": "NSFNET T1 backbone (14 nodes, 21 links)",
+ "source": "real",
+ "budget": 2.82,
+ "meta": {
+  "model": "nsfnet",
+  "n": 14,
+  "seed": 7,
+  "capacity_factor": 1.0,
+  "name": "nsfnet"
+ },
+ "graph": {
+  "directed": false,
+  "nodes": [
+   {
+    "id": 0,
+    "name": "Seattle",
+    "lat": 47.61,
+    "lon": -122.33,
+    "x": 60.0,
+    "y": 60.0,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 1,
+    "name": "Palo Alto",
+    "lat": 37.44,
+    "lon": -122.14,
+    "x": 63.5,
+    "y": 300.5,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 2,
+    "name": "San Diego",
+    "lat": 32.72,
+    "lon": -117.16,
+    "x": 155.4,
+    "y": 412.1,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 3,
+    "name": "Salt Lake City",
+    "lat": 40.76,
+    "lon": -111.89,
+    "x": 252.7,
+    "y": 222.0,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 4,
+    "name": "Boulder",
+    "lat": 40.01,
+    "lon": -105.27,
+    "x": 374.9,
+    "y": 239.7,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 5,
+    "name": "Houston",
+    "lat": 29.76,
+    "lon": -95.37,
+    "x": 557.7,
+    "y": 482.1,
+    "tier": "core",
+    "cpu": 48,
+    "mem": 192,
+    "cost": 1.9
+   },
+   {
+    "id": 6,
+    "name": "Lincoln",
+    "lat": 40.81,
+    "lon": -96.7,
+    "x": 533.1,
+    "y": 220.8,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 7,
+    "name": "Champaign",
+    "lat": 40.12,
+    "lon": -88.24,
+    "x": 689.3,
+    "y": 237.1,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 8,
+    "name": "Pittsburgh",
+    "lat": 40.44,
+    "lon": -79.99,
+    "x": 841.6,
+    "y": 229.6,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 9,
+    "name": "Atlanta",
+    "lat": 33.75,
+    "lon": -84.39,
+    "x": 760.4,
+    "y": 387.8,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 10,
+    "name": "Ann Arbor",
+    "lat": 42.28,
+    "lon": -83.74,
+    "x": 772.4,
+    "y": 186.0,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 11,
+    "name": "Ithaca",
+    "lat": 42.44,
+    "lon": -76.5,
+    "x": 906.0,
+    "y": 182.3,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 12,
+    "name": "Princeton",
+    "lat": 40.35,
+    "lon": -74.66,
+    "x": 940.0,
+    "y": 231.7,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 13,
+    "name": "College Park",
+    "lat": 38.99,
+    "lon": -76.94,
+    "x": 897.9,
+    "y": 263.9,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   }
+  ],
+  "links": [
+   {
+    "u": 0,
+    "v": 1,
+    "latency": 7.651,
+    "bandwidth": 40,
+    "km": 1131.0
+   },
+   {
+    "u": 0,
+    "v": 2,
+    "latency": 11.428,
+    "bandwidth": 10,
+    "km": 1712.0
+   },
+   {
+    "u": 0,
+    "v": 7,
+    "latency": 18.703,
+    "bandwidth": 40,
+    "km": 2831.2
+   },
+   {
+    "u": 1,
+    "v": 2,
+    "latency": 4.806,
+    "bandwidth": 100,
+    "km": 693.2
+   },
+   {
+    "u": 1,
+    "v": 3,
+    "latency": 6.525,
+    "bandwidth": 10,
+    "km": 957.7
+   },
+   {
+    "u": 2,
+    "v": 5,
+    "latency": 13.91,
+    "bandwidth": 10,
+    "km": 2093.8
+   },
+   {
+    "u": 3,
+    "v": 4,
+    "latency": 3.984,
+    "bandwidth": 100,
+    "km": 566.7,
+    "rebate": 0.0172,
+    "rebate_dir": [
+     4,
+     3
+    ]
+   },
+   {
+    "u": 3,
+    "v": 10,
+    "latency": 15.504,
+    "bandwidth": 10,
+    "km": 2339.0
+   },
+   {
+    "u": 4,
+    "v": 5,
+    "latency": 9.738,
+    "bandwidth": 40,
+    "km": 1452.0
+   },
+   {
+    "u": 4,
+    "v": 6,
+    "latency": 5.05,
+    "bandwidth": 100,
+    "km": 730.7
+   },
+   {
+    "u": 5,
+    "v": 9,
+    "latency": 7.633,
+    "bandwidth": 10,
+    "km": 1128.2
+   },
+   {
+    "u": 5,
+    "v": 13,
+    "latency": 13.122,
+    "bandwidth": 100,
+    "km": 1972.7
+   },
+   {
+    "u": 6,
+    "v": 7,
+    "latency": 4.977,
+    "bandwidth": 10,
+    "km": 719.5
+   },
+   {
+    "u": 7,
+    "v": 8,
+    "latency": 4.853,
+    "bandwidth": 10,
+    "km": 700.5
+   },
+   {
+    "u": 8,
+    "v": 9,
+    "latency": 5.758,
+    "bandwidth": 10,
+    "km": 839.7
+   },
+   {
+    "u": 8,
+    "v": 11,
+    "latency": 2.68,
+    "bandwidth": 40,
+    "km": 366.1
+   },
+   {
+    "u": 8,
+    "v": 12,
+    "latency": 3.234,
+    "bandwidth": 40,
+    "km": 451.4
+   },
+   {
+    "u": 10,
+    "v": 11,
+    "latency": 4.167,
+    "bandwidth": 10,
+    "km": 595.0
+   },
+   {
+    "u": 10,
+    "v": 12,
+    "latency": 5.42,
+    "bandwidth": 10,
+    "km": 787.7
+   },
+   {
+    "u": 11,
+    "v": 13,
+    "latency": 2.805,
+    "bandwidth": 10,
+    "km": 385.4
+   },
+   {
+    "u": 12,
+    "v": 13,
+    "latency": 1.905,
+    "bandwidth": 100,
+    "km": 246.9
+   }
+  ]
+ },
+ "services": [
+  {
+   "id": 0,
+   "name": "web-frontend",
+   "cpu": 4,
+   "mem": 8,
+   "demand": {
+    "0": 858.9,
+    "9": 386.7,
+    "10": 323.7,
+    "7": 369.0,
+    "11": 173.4
+   },
+   "min_replicas": 2,
+   "max_replicas": 4,
+   "vm_cost": 0.12,
+   "priority": 1.5,
+   "color": "#7c5cff"
+  },
+  {
+   "id": 1,
+   "name": "auth",
+   "cpu": 2,
+   "mem": 4,
+   "demand": {
+    "11": 759.1,
+    "1": 684.7,
+    "9": 274.3,
+    "2": 215.0,
+    "6": 272.5,
+    "3": 171.0,
+    "8": 158.0,
+    "5": 158.8,
+    "10": 166.4,
+    "0": 91.7
+   },
+   "min_replicas": 1,
+   "max_replicas": 5,
+   "vm_cost": 0.06,
+   "priority": 1.0,
+   "color": "#22d3ee"
+  },
+  {
+   "id": 2,
+   "name": "search",
+   "cpu": 8,
+   "mem": 32,
+   "demand": {
+    "7": 851.4,
+    "8": 383.6,
+    "13": 408.7,
+    "0": 232.4,
+    "11": 271.9,
+    "6": 200.7
+   },
+   "min_replicas": 1,
+   "max_replicas": 2,
+   "vm_cost": 0.288,
+   "priority": 2.0,
+   "color": "#f472b6"
+  },
+  {
+   "id": 3,
+   "name": "video-transcode",
+   "cpu": 16,
+   "mem": 32,
+   "demand": {
+    "0": 738.3,
+    "8": 393.0,
+    "11": 470.8,
+    "7": 303.0,
+    "6": 196.8,
+    "2": 187.1,
+    "3": 132.8,
+    "1": 167.0
+   },
+   "min_replicas": 1,
+   "max_replicas": 3,
+   "vm_cost": 0.48,
+   "priority": 1.5,
+   "color": "#facc15"
+  },
+  {
+   "id": 4,
+   "name": "ml-inference",
+   "cpu": 8,
+   "mem": 64,
+   "demand": {
+    "4": 704.1,
+    "7": 431.8,
+    "8": 449.3,
+    "2": 369.7,
+    "13": 214.1,
+    "11": 193.8,
+    "10": 224.5
+   },
+   "min_replicas": 1,
+   "max_replicas": 3,
+   "vm_cost": 0.384,
+   "priority": 1.0,
+   "color": "#34d399"
+  },
+  {
+   "id": 5,
+   "name": "cache",
+   "cpu": 4,
+   "mem": 32,
+   "demand": {
+    "7": 855.7,
+    "11": 470.2,
+    "1": 470.2,
+    "5": 240.6
+   },
+   "min_replicas": 1,
+   "max_replicas": 3,
+   "vm_cost": 0.192,
+   "priority": 1.0,
+   "color": "#fb923c"
+  },
+  {
+   "id": 6,
+   "name": "payments",
+   "cpu": 4,
+   "mem": 8,
+   "demand": {
+    "5": 925.8,
+    "10": 591.8,
+    "2": 338.9,
+    "0": 214.6,
+    "1": 256.1,
+    "3": 203.0,
+    "9": 145.1,
+    "12": 114.1,
+    "6": 171.7
+   },
+   "min_replicas": 1,
+   "max_replicas": 4,
+   "vm_cost": 0.12,
+   "priority": 1.0,
+   "color": "#60a5fa"
+  }
+ ],
+ "tasks": [
+  {
+   "id": 0,
+   "name": "encode-00",
+   "duration": 9.6,
+   "data_node": 13,
+   "data_gb": 11.2,
+   "priority": 2.0
+  },
+  {
+   "id": 1,
+   "name": "render-01",
+   "duration": 43.2,
+   "data_node": 13,
+   "data_gb": 10.7,
+   "priority": 1.0
+  },
+  {
+   "id": 2,
+   "name": "backup-02",
+   "duration": 31.3,
+   "data_node": 8,
+   "data_gb": 16.7,
+   "priority": 1.0
+  },
+  {
+   "id": 3,
+   "name": "render-03",
+   "duration": 92.9,
+   "data_node": 13,
+   "data_gb": 14.0,
+   "priority": 1.0
+  },
+  {
+   "id": 4,
+   "name": "backup-04",
+   "duration": 52.4,
+   "data_node": 13,
+   "data_gb": 14.4,
+   "priority": 2.0
+  },
+  {
+   "id": 5,
+   "name": "etl-05",
+   "duration": 36.5,
+   "data_node": 0,
+   "data_gb": 19.8,
+   "priority": 2.0
+  },
+  {
+   "id": 6,
+   "name": "simulate-06",
+   "duration": 19.1,
+   "data_node": 1,
+   "data_gb": 19.0,
+   "priority": 3.0
+  },
+  {
+   "id": 7,
+   "name": "index-07",
+   "duration": 14.6,
+   "data_node": 13,
+   "data_gb": 9.6,
+   "priority": 3.0
+  },
+  {
+   "id": 8,
+   "name": "backup-08",
+   "duration": 29.4,
+   "data_node": 9,
+   "data_gb": 7.4,
+   "priority": 3.0
+  },
+  {
+   "id": 9,
+   "name": "index-09",
+   "duration": 23.7,
+   "data_node": 13,
+   "data_gb": 0.6,
+   "priority": 1.0
+  },
+  {
+   "id": 10,
+   "name": "backup-10",
+   "duration": 9.9,
+   "data_node": 6,
+   "data_gb": 16.9,
+   "priority": 3.0
+  },
+  {
+   "id": 11,
+   "name": "index-11",
+   "duration": 45.3,
+   "data_node": 11,
+   "data_gb": 12.0,
+   "priority": 3.0
+  },
+  {
+   "id": 12,
+   "name": "render-12",
+   "duration": 58.7,
+   "data_node": 10,
+   "data_gb": 7.9,
+   "priority": 2.0
+  },
+  {
+   "id": 13,
+   "name": "render-13",
+   "duration": 44.7,
+   "data_node": 6,
+   "data_gb": 14.5,
+   "priority": 2.0
+  }
+ ]
+}

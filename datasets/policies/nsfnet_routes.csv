@@ -1,0 +1,50 @@
+service,service_id,client,client_name,replica,replica_name,rate,latency_ms,hops,path,path_names,backbone_latency_ms,stretch
+payments,6,5,Houston,5,Houston,925.8,0.0,0,5,Houston,0.0,1.0
+web-frontend,0,0,Seattle,0,Seattle,858.9,0.0,0,0,Seattle,0.0,1.0
+cache,5,7,Champaign,13,College Park,855.7,9.992,3,7 > 8 > 12 > 13,Champaign > Pittsburgh > Princeton > College Park,10.338,1.035
+search,2,7,Champaign,7,Champaign,851.4,0.0,0,7,Champaign,0.0,1.0
+auth,1,11,Ithaca,11,Ithaca,759.1,0.0,0,11,Ithaca,0.0,1.0
+video-transcode,3,0,Seattle,0,Seattle,738.3,0.0,0,0,Seattle,0.0,1.0
+ml-inference,4,4,Boulder,8,Pittsburgh,704.1,14.88,3,4 > 6 > 7 > 8,Boulder > Lincoln > Champaign > Pittsburgh,14.88,1.0
+auth,1,1,Palo Alto,1,Palo Alto,684.7,0.0,0,1,Palo Alto,0.0,1.0
+payments,6,10,Ann Arbor,10,Ann Arbor,591.8,0.0,0,10,Ann Arbor,0.0,1.0
+video-transcode,3,11,Ithaca,8,Pittsburgh,470.8,2.68,1,11 > 8,Ithaca > Pittsburgh,2.68,1.0
+cache,5,11,Ithaca,13,College Park,470.2,2.805,1,11 > 13,Ithaca > College Park,2.805,1.0
+cache,5,1,Palo Alto,1,Palo Alto,470.2,0.0,0,1,Palo Alto,0.0,1.0
+ml-inference,4,8,Pittsburgh,8,Pittsburgh,449.3,0.0,0,8,Pittsburgh,0.0,1.0
+ml-inference,4,7,Champaign,8,Pittsburgh,431.8,4.853,1,7 > 8,Champaign > Pittsburgh,4.853,1.0
+search,2,13,College Park,7,Champaign,408.7,9.992,3,13 > 12 > 8 > 7,College Park > Princeton > Pittsburgh > Champaign,10.338,1.035
+video-transcode,3,8,Pittsburgh,8,Pittsburgh,393.0,0.0,0,8,Pittsburgh,0.0,1.0
+web-frontend,0,9,Atlanta,11,Ithaca,386.7,8.438,2,9 > 8 > 11,Atlanta > Pittsburgh > Ithaca,8.438,1.0
+search,2,8,Pittsburgh,7,Champaign,383.6,4.853,1,8 > 7,Pittsburgh > Champaign,4.853,1.0
+ml-inference,4,2,San Diego,8,Pittsburgh,369.7,27.301,3,2 > 5 > 9 > 8,San Diego > Houston > Atlanta > Pittsburgh,30.195,1.106
+web-frontend,0,7,Champaign,11,Ithaca,369.0,7.533,2,7 > 8 > 11,Champaign > Pittsburgh > Ithaca,7.533,1.0
+payments,6,2,San Diego,1,Palo Alto,338.9,4.806,1,2 > 1,San Diego > Palo Alto,4.806,1.0
+web-frontend,0,10,Ann Arbor,11,Ithaca,323.7,4.167,1,10 > 11,Ann Arbor > Ithaca,4.167,1.0
+video-transcode,3,7,Champaign,8,Pittsburgh,303.0,4.853,1,7 > 8,Champaign > Pittsburgh,4.853,1.0
+auth,1,9,Atlanta,9,Atlanta,274.3,0.0,0,9,Atlanta,0.0,1.0
+auth,1,6,Lincoln,11,Ithaca,272.5,12.51,3,6 > 7 > 8 > 11,Lincoln > Champaign > Pittsburgh > Ithaca,12.51,1.0
+search,2,11,Ithaca,7,Champaign,271.9,7.533,2,11 > 8 > 7,Ithaca > Pittsburgh > Champaign,7.533,1.0
+payments,6,1,Palo Alto,1,Palo Alto,256.1,0.0,0,1,Palo Alto,0.0,1.0
+cache,5,5,Houston,13,College Park,240.6,13.122,1,5 > 13,Houston > College Park,18.876,1.439
+search,2,0,Seattle,7,Champaign,232.4,18.703,1,0 > 7,Seattle > Champaign,28.187,1.507
+ml-inference,4,10,Ann Arbor,8,Pittsburgh,224.5,6.847,2,10 > 11 > 8,Ann Arbor > Ithaca > Pittsburgh,6.847,1.0
+auth,1,2,San Diego,1,Palo Alto,215.0,4.806,1,2 > 1,San Diego > Palo Alto,4.806,1.0
+payments,6,0,Seattle,1,Palo Alto,214.6,7.651,1,0 > 1,Seattle > Palo Alto,7.651,1.0
+ml-inference,4,13,College Park,8,Pittsburgh,214.1,5.139,2,13 > 12 > 8,College Park > Princeton > Pittsburgh,5.485,1.067
+payments,6,3,Salt Lake City,1,Palo Alto,203.0,6.525,1,3 > 1,Salt Lake City > Palo Alto,6.525,1.0
+search,2,6,Lincoln,7,Champaign,200.7,4.977,1,6 > 7,Lincoln > Champaign,4.977,1.0
+video-transcode,3,6,Lincoln,8,Pittsburgh,196.8,9.83,2,6 > 7 > 8,Lincoln > Champaign > Pittsburgh,9.83,1.0
+ml-inference,4,11,Ithaca,8,Pittsburgh,193.8,2.68,1,11 > 8,Ithaca > Pittsburgh,2.68,1.0
+video-transcode,3,2,San Diego,0,Seattle,187.1,11.428,1,2 > 0,San Diego > Seattle,12.457,1.09
+web-frontend,0,11,Ithaca,11,Ithaca,173.4,0.0,0,11,Ithaca,0.0,1.0
+payments,6,6,Lincoln,5,Houston,171.7,14.788,2,6 > 4 > 5,Lincoln > Boulder > Houston,23.221,1.57
+auth,1,3,Salt Lake City,1,Palo Alto,171.0,6.525,1,3 > 1,Salt Lake City > Palo Alto,6.525,1.0
+video-transcode,3,1,Palo Alto,0,Seattle,167.0,7.651,1,1 > 0,Palo Alto > Seattle,7.651,1.0
+auth,1,10,Ann Arbor,11,Ithaca,166.4,4.167,1,10 > 11,Ann Arbor > Ithaca,4.167,1.0
+auth,1,5,Houston,9,Atlanta,158.8,7.633,1,5 > 9,Houston > Atlanta,7.633,1.0
+auth,1,8,Pittsburgh,11,Ithaca,158.0,2.68,1,8 > 11,Pittsburgh > Ithaca,2.68,1.0
+payments,6,9,Atlanta,5,Houston,145.1,7.633,1,9 > 5,Atlanta > Houston,7.633,1.0
+video-transcode,3,3,Salt Lake City,0,Seattle,132.8,14.176,2,3 > 1 > 0,Salt Lake City > Palo Alto > Seattle,14.176,1.0
+payments,6,12,Princeton,10,Ann Arbor,114.1,5.42,1,12 > 10,Princeton > Ann Arbor,8.877,1.638
+auth,1,0,Seattle,1,Palo Alto,91.7,7.651,1,0 > 1,Seattle > Palo Alto,7.651,1.0

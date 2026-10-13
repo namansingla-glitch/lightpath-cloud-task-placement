@@ -1,0 +1,41 @@
+service,service_id,client,client_name,replica,replica_name,rate,latency_ms,hops,path,path_names,backbone_latency_ms,stretch
+web-frontend,0,11,Bhubaneswar,11,Bhubaneswar,1284.8,0.0,0,11,Bhubaneswar,0.0,1.0
+payments,6,19,Bhopal,15,Indore,1229.5,1.403,1,19 > 15,Bhopal > Indore,1.403,1.0
+cache,5,6,Pune,6,Pune,1220.3,0.0,0,6,Pune,0.0,1.0
+search,2,10,Kochi,10,Kochi,1196.4,0.0,0,10,Kochi,0.0,1.0
+video-transcode,3,19,Bhopal,19,Bhopal,1157.6,0.0,0,19,Bhopal,0.0,1.0
+ml-inference,4,19,Bhopal,19,Bhopal,1089.5,0.0,0,19,Bhopal,0.0,1.0
+analytics,7,17,Visakhapatnam,4,Hyderabad,877.4,3.567,1,17 > 4,Visakhapatnam > Hyderabad,8.153,2.286
+auth,1,21,Goa,21,Goa,806.2,0.0,0,21,Goa,0.0,1.0
+analytics,7,21,Goa,4,Hyderabad,677.2,6.069,2,21 > 6 > 4,Goa > Pune > Hyderabad,15.869,2.615
+cache,5,14,Chandigarh,1,Delhi,615.9,1.856,1,14 > 1,Chandigarh > Delhi,1.856,1.0
+ml-inference,4,14,Chandigarh,19,Bhopal,599.5,6.274,2,14 > 8 > 19,Chandigarh > Jaipur > Bhopal,6.827,1.088
+video-transcode,3,22,Raipur,19,Bhopal,539.4,4.208,2,22 > 12 > 19,Raipur > Nagpur > Bhopal,4.208,1.0
+auth,1,16,Patna,5,Kolkata,504.6,3.346,1,16 > 5,Patna > Kolkata,24.586,7.348
+search,2,2,Bengaluru,2,Bengaluru,486.0,0.0,0,2,Bengaluru,0.0,1.0
+payments,6,20,Srinagar,20,Srinagar,481.5,0.0,0,20,Srinagar,0.0,1.0
+search,2,12,Nagpur,12,Nagpur,465.6,0.0,0,12,Nagpur,0.0,1.0
+web-frontend,0,13,Guwahati,13,Guwahati,402.5,0.0,0,13,Guwahati,0.0,1.0
+web-frontend,0,10,Kochi,2,Bengaluru,395.6,2.688,1,10 > 2,Kochi > Bengaluru,3.006,1.118
+auth,1,5,Kolkata,5,Kolkata,361.3,0.0,0,5,Kolkata,0.0,1.0
+video-transcode,3,13,Guwahati,16,Patna,356.1,4.61,1,13 > 16,Guwahati > Patna,28.293,6.137
+video-transcode,3,0,Mumbai,19,Bhopal,349.7,6.676,2,0 > 7 > 19,Mumbai > Ahmedabad > Bhopal,7.06,1.058
+search,2,18,Coimbatore,10,Kochi,332.7,1.228,1,18 > 10,Coimbatore > Kochi,1.228,1.0
+ml-inference,4,2,Bengaluru,2,Bengaluru,332.1,0.0,0,2,Bengaluru,0.0,1.0
+cache,5,1,Delhi,1,Delhi,327.6,0.0,0,1,Delhi,0.0,1.0
+payments,6,22,Raipur,23,Varanasi,316.3,3.373,1,22 > 23,Raipur > Varanasi,14.204,4.211
+analytics,7,2,Bengaluru,4,Hyderabad,311.8,3.556,1,2 > 4,Bengaluru > Hyderabad,19.375,5.449
+cache,5,22,Raipur,1,Delhi,294.0,8.398,3,22 > 23 > 9 > 1,Raipur > Varanasi > Lucknow > Delhi,9.179,1.093
+auth,1,22,Raipur,12,Nagpur,290.6,2.013,1,22 > 12,Raipur > Nagpur,2.013,1.0
+video-transcode,3,8,Jaipur,19,Bhopal,289.6,3.143,1,8 > 19,Jaipur > Bhopal,3.143,1.0
+payments,6,15,Indore,15,Indore,273.2,0.0,0,15,Indore,0.0,1.0
+web-frontend,0,8,Jaipur,8,Jaipur,265.5,0.0,0,8,Jaipur,0.0,1.0
+analytics,7,14,Chandigarh,1,Delhi,263.1,1.856,1,14 > 1,Chandigarh > Delhi,1.856,1.0
+ml-inference,4,15,Indore,19,Bhopal,252.0,1.403,1,15 > 19,Indore > Bhopal,1.403,1.0
+payments,6,9,Lucknow,23,Varanasi,244.8,2.015,1,9 > 23,Lucknow > Varanasi,2.015,1.0
+auth,1,11,Bhubaneswar,5,Kolkata,222.0,2.669,1,11 > 5,Bhubaneswar > Kolkata,2.669,1.0
+analytics,7,1,Delhi,1,Delhi,214.0,0.0,0,1,Delhi,0.0,1.0
+auth,1,19,Bhopal,12,Nagpur,194.8,2.195,1,19 > 12,Bhopal > Nagpur,2.195,1.0
+video-transcode,3,2,Bengaluru,19,Bhopal,182.1,8.799,3,2 > 4 > 12 > 19,Bengaluru > Hyderabad > Nagpur > Bhopal,14.132,1.606
+video-transcode,3,21,Goa,19,Bhopal,160.7,9.645,3,21 > 0 > 7 > 19,Goa > Mumbai > Ahmedabad > Bhopal,10.626,1.102
+payments,6,16,Patna,23,Varanasi,141.3,1.73,1,16 > 23,Patna > Varanasi,1.73,1.0

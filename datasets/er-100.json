@@ -1,0 +1,4109 @@
+{
+ "name": "er-100",
+ "description": "Erd\u0151s\u2013R\u00e9nyi G(n=100, p=0.050) with spanning tree",
+ "source": "synthetic",
+ "budget": 6.11,
+ "meta": {
+  "model": "erdos_renyi",
+  "n": 100,
+  "seed": 7,
+  "capacity_factor": 1.0,
+  "name": "er-100",
+  "p": 0.05
+ },
+ "graph": {
+  "directed": false,
+  "nodes": [
+   {
+    "id": 0,
+    "name": "dc-000",
+    "x": 330.9,
+    "y": 164.8,
+    "tier": "core",
+    "cpu": 48,
+    "mem": 192,
+    "cost": 1.9
+   },
+   {
+    "id": 1,
+    "name": "dc-001",
+    "x": 644.9,
+    "y": 89.5,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 2,
+    "name": "dc-002",
+    "x": 534.4,
+    "y": 371.1,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 3,
+    "name": "dc-003",
+    "x": 75.7,
+    "y": 507.1,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 4,
+    "name": "dc-004",
+    "x": 56.0,
+    "y": 436.3,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 5,
+    "name": "dc-005",
+    "x": 87.1,
+    "y": 107.1,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 6,
+    "name": "dc-006",
+    "x": 427.5,
+    "y": 813.8,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 7,
+    "name": "dc-007",
+    "x": 138.8,
+    "y": 234.3,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 8,
+    "name": "dc-008",
+    "x": 622.3,
+    "y": 929.8,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 9,
+    "name": "dc-009",
+    "x": 574.0,
+    "y": 400.8,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 10,
+    "name": "dc-010",
+    "x": 957.2,
+    "y": 64.7,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 11,
+    "name": "dc-011",
+    "x": 844.1,
+    "y": 298.0,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 12,
+    "name": "dc-012",
+    "x": 158.5,
+    "y": 133.1,
+    "tier": "core",
+    "cpu": 48,
+    "mem": 192,
+    "cost": 1.9
+   },
+   {
+    "id": 13,
+    "name": "dc-013",
+    "x": 316.1,
+    "y": 803.5,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 14,
+    "name": "dc-014",
+    "x": 193.5,
+    "y": 578.3,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 15,
+    "name": "dc-015",
+    "x": 633.4,
+    "y": 377.5,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 16,
+    "name": "dc-016",
+    "x": 545.8,
+    "y": 80.3,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 17,
+    "name": "dc-017",
+    "x": 77.2,
+    "y": 217.7,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 18,
+    "name": "dc-018",
+    "x": 673.2,
+    "y": 430.5,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 19,
+    "name": "dc-019",
+    "x": 321.6,
+    "y": 582.1,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 20,
+    "name": "dc-020",
+    "x": 455.1,
+    "y": 307.8,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 21,
+    "name": "dc-021",
+    "x": 782.6,
+    "y": 691.0,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 22,
+    "name": "dc-022",
+    "x": 254.3,
+    "y": 571.4,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 23,
+    "name": "dc-023",
+    "x": 524.2,
+    "y": 860.1,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 24,
+    "name": "dc-024",
+    "x": 720.3,
+    "y": 296.4,
+    "tier": "core",
+    "cpu": 48,
+    "mem": 192,
+    "cost": 1.9
+   },
+   {
+    "id": 25,
+    "name": "dc-025",
+    "x": 961.0,
+    "y": 133.3,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 26,
+    "name": "dc-026",
+    "x": 421.4,
+    "y": 746.9,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 27,
+    "name": "dc-027",
+    "x": 165.9,
+    "y": 489.4,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 28,
+    "name": "dc-028",
+    "x": 57.6,
+    "y": 661.5,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 29,
+    "name": "dc-029",
+    "x": 754.0,
+    "y": 570.1,
+    "tier": "core",
+    "cpu": 48,
+    "mem": 192,
+    "cost": 1.9
+   },
+   {
+    "id": 30,
+    "name": "dc-030",
+    "x": 860.5,
+    "y": 321.2,
+    "tier": "core",
+    "cpu": 48,
+    "mem": 192,
+    "cost": 1.9
+   },
+   {
+    "id": 31,
+    "name": "dc-031",
+    "x": 687.5,
+    "y": 590.6,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 32,
+    "name": "dc-032",
+    "x": 576.7,
+    "y": 458.0,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 33,
+    "name": "dc-033",
+    "x": 826.4,
+    "y": 926.9,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 34,
+    "name": "dc-034",
+    "x": 475.1,
+    "y": 657.6,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 35,
+    "name": "dc-035",
+    "x": 78.2,
+    "y": 693.4,
+    "tier": "core",
+    "cpu": 48,
+    "mem": 192,
+    "cost": 1.9
+   },
+   {
+    "id": 36,
+    "name": "dc-036",
+    "x": 641.2,
+    "y": 973.4,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 37,
+    "name": "dc-037",
+    "x": 809.0,
+    "y": 293.2,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 38,
+    "name": "dc-038",
+    "x": 390.4,
+    "y": 661.9,
+    "tier": "core",
+    "cpu": 48,
+    "mem": 192,
+    "cost": 1.9
+   },
+   {
+    "id": 39,
+    "name": "dc-039",
+    "x": 41.7,
+    "y": 463.2,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 40,
+    "name": "dc-040",
+    "x": 181.3,
+    "y": 132.4,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 41,
+    "name": "dc-041",
+    "x": 76.6,
+    "y": 757.5,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 42,
+    "name": "dc-042",
+    "x": 144.2,
+    "y": 257.7,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 43,
+    "name": "dc-043",
+    "x": 395.3,
+    "y": 856.6,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 44,
+    "name": "dc-044",
+    "x": 97.4,
+    "y": 451.2,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 45,
+    "name": "dc-045",
+    "x": 547.5,
+    "y": 868.0,
+    "tier": "core",
+    "cpu": 48,
+    "mem": 192,
+    "cost": 1.9
+   },
+   {
+    "id": 46,
+    "name": "dc-046",
+    "x": 806.5,
+    "y": 849.4,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 47,
+    "name": "dc-047",
+    "x": 287.3,
+    "y": 418.7,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 48,
+    "name": "dc-048",
+    "x": 364.4,
+    "y": 868.8,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 49,
+    "name": "dc-049",
+    "x": 939.4,
+    "y": 164.9,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 50,
+    "name": "dc-050",
+    "x": 189.2,
+    "y": 242.7,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 51,
+    "name": "dc-051",
+    "x": 244.0,
+    "y": 485.6,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 52,
+    "name": "dc-052",
+    "x": 585.6,
+    "y": 272.2,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 53,
+    "name": "dc-053",
+    "x": 23.9,
+    "y": 422.2,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 54,
+    "name": "dc-054",
+    "x": 374.5,
+    "y": 563.7,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 55,
+    "name": "dc-055",
+    "x": 935.0,
+    "y": 682.9,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 56,
+    "name": "dc-056",
+    "x": 514.9,
+    "y": 612.9,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 57,
+    "name": "dc-057",
+    "x": 669.2,
+    "y": 71.8,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 58,
+    "name": "dc-058",
+    "x": 883.6,
+    "y": 768.8,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 59,
+    "name": "dc-059",
+    "x": 859.5,
+    "y": 786.0,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 60,
+    "name": "dc-060",
+    "x": 396.7,
+    "y": 403.0,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 61,
+    "name": "dc-061",
+    "x": 119.4,
+    "y": 628.9,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 62,
+    "name": "dc-062",
+    "x": 79.8,
+    "y": 84.7,
+    "tier": "core",
+    "cpu": 48,
+    "mem": 192,
+    "cost": 1.9
+   },
+   {
+    "id": 63,
+    "name": "dc-063",
+    "x": 220.4,
+    "y": 175.8,
+    "tier": "core",
+    "cpu": 48,
+    "mem": 192,
+    "cost": 1.9
+   },
+   {
+    "id": 64,
+    "name": "dc-064",
+    "x": 346.5,
+    "y": 70.5,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 65,
+    "name": "dc-065",
+    "x": 20.2,
+    "y": 165.2,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 66,
+    "name": "dc-066",
+    "x": 117.4,
+    "y": 369.1,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 67,
+    "name": "dc-067",
+    "x": 44.5,
+    "y": 859.4,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 68,
+    "name": "dc-068",
+    "x": 609.5,
+    "y": 162.6,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 69,
+    "name": "dc-069",
+    "x": 262.2,
+    "y": 353.5,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 70,
+    "name": "dc-070",
+    "x": 369.6,
+    "y": 137.9,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 71,
+    "name": "dc-071",
+    "x": 835.0,
+    "y": 973.4,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 72,
+    "name": "dc-072",
+    "x": 467.3,
+    "y": 484.5,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 73,
+    "name": "dc-073",
+    "x": 102.4,
+    "y": 118.1,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 74,
+    "name": "dc-074",
+    "x": 348.9,
+    "y": 274.2,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 75,
+    "name": "dc-075",
+    "x": 815.7,
+    "y": 175.0,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 76,
+    "name": "dc-076",
+    "x": 42.2,
+    "y": 932.9,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 77,
+    "name": "dc-077",
+    "x": 527.1,
+    "y": 160.7,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 78,
+    "name": "dc-078",
+    "x": 541.4,
+    "y": 46.0,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 79,
+    "name": "dc-079",
+    "x": 527.0,
+    "y": 959.4,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 80,
+    "name": "dc-080",
+    "x": 848.8,
+    "y": 688.3,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 81,
+    "name": "dc-081",
+    "x": 270.7,
+    "y": 372.0,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 82,
+    "name": "dc-082",
+    "x": 180.4,
+    "y": 761.1,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 83,
+    "name": "dc-083",
+    "x": 531.3,
+    "y": 767.9,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 84,
+    "name": "dc-084",
+    "x": 336.5,
+    "y": 234.1,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 85,
+    "name": "dc-085",
+    "x": 799.1,
+    "y": 965.5,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 86,
+    "name": "dc-086",
+    "x": 838.5,
+    "y": 793.8,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 87,
+    "name": "dc-087",
+    "x": 805.6,
+    "y": 730.3,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 88,
+    "name": "dc-088",
+    "x": 237.7,
+    "y": 516.9,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 89,
+    "name": "dc-089",
+    "x": 361.3,
+    "y": 47.8,
+    "tier": "router",
+    "cpu": 0,
+    "mem": 0,
+    "cost": 0.0
+   },
+   {
+    "id": 90,
+    "name": "dc-090",
+    "x": 46.8,
+    "y": 288.2,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 91,
+    "name": "dc-091",
+    "x": 268.8,
+    "y": 684.8,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 92,
+    "name": "dc-092",
+    "x": 938.3,
+    "y": 449.3,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 93,
+    "name": "dc-093",
+    "x": 919.5,
+    "y": 968.5,
+    "tier": "regional",
+    "cpu": 24,
+    "mem": 96,
+    "cost": 0.95
+   },
+   {
+    "id": 94,
+    "name": "dc-094",
+    "x": 936.8,
+    "y": 370.1,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 95,
+    "name": "dc-095",
+    "x": 231.6,
+    "y": 237.8,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 96,
+    "name": "dc-096",
+    "x": 208.8,
+    "y": 216.2,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 97,
+    "name": "dc-097",
+    "x": 619.1,
+    "y": 884.3,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 98,
+    "name": "dc-098",
+    "x": 826.8,
+    "y": 480.3,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   },
+   {
+    "id": 99,
+    "name": "dc-099",
+    "x": 646.9,
+    "y": 787.7,
+    "tier": "edge",
+    "cpu": 8,
+    "mem": 48,
+    "cost": 0.32
+   }
+  ],
+  "links": [
+   {
+    "u": 0,
+    "v": 64,
+    "latency": 2.164,
+    "bandwidth": 100,
+    "km": 286.7
+   },
+   {
+    "u": 0,
+    "v": 58,
+    "latency": 16.265,
+    "bandwidth": 100,
+    "km": 2456.1
+   },
+   {
+    "u": 0,
+    "v": 1,
+    "latency": 6.597,
+    "bandwidth": 10,
+    "km": 968.7
+   },
+   {
+    "u": 0,
+    "v": 99,
+    "latency": 13.92,
+    "bandwidth": 40,
+    "km": 2095.4
+   },
+   {
+    "u": 0,
+    "v": 2,
+    "latency": 5.951,
+    "bandwidth": 40,
+    "km": 869.3
+   },
+   {
+    "u": 0,
+    "v": 38,
+    "latency": 10.063,
+    "bandwidth": 100,
+    "km": 1501.9
+   },
+   {
+    "u": 0,
+    "v": 44,
+    "latency": 7.506,
+    "bandwidth": 10,
+    "km": 1108.6
+   },
+   {
+    "u": 0,
+    "v": 50,
+    "latency": 3.453,
+    "bandwidth": 100,
+    "km": 485.1
+   },
+   {
+    "u": 0,
+    "v": 53,
+    "latency": 8.112,
+    "bandwidth": 10,
+    "km": 1201.9
+   },
+   {
+    "u": 0,
+    "v": 82,
+    "latency": 12.292,
+    "bandwidth": 10,
+    "km": 1845.0
+   },
+   {
+    "u": 1,
+    "v": 35,
+    "latency": 16.449,
+    "bandwidth": 100,
+    "km": 2484.5
+   },
+   {
+    "u": 1,
+    "v": 44,
+    "latency": 13.096,
+    "bandwidth": 10,
+    "km": 1968.6
+   },
+   {
+    "u": 1,
+    "v": 55,
+    "latency": 13.18,
+    "bandwidth": 100,
+    "km": 1981.5
+   },
+   {
+    "u": 1,
+    "v": 97,
+    "latency": 15.807,
+    "bandwidth": 40,
+    "km": 2385.7
+   },
+   {
+    "u": 2,
+    "v": 30,
+    "latency": 6.733,
+    "bandwidth": 10,
+    "km": 989.7
+   },
+   {
+    "u": 2,
+    "v": 45,
+    "latency": 9.993,
+    "bandwidth": 10,
+    "km": 1491.2
+   },
+   {
+    "u": 2,
+    "v": 61,
+    "latency": 9.827,
+    "bandwidth": 40,
+    "km": 1465.7
+   },
+   {
+    "u": 2,
+    "v": 69,
+    "latency": 5.619,
+    "bandwidth": 40,
+    "km": 818.3
+   },
+   {
+    "u": 2,
+    "v": 72,
+    "latency": 2.869,
+    "bandwidth": 40,
+    "km": 395.3,
+    "rebate": 0.0089,
+    "rebate_dir": [
+     72,
+     2
+    ]
+   },
+   {
+    "u": 2,
+    "v": 84,
+    "latency": 4.994,
+    "bandwidth": 40,
+    "km": 722.1
+   },
+   {
+    "u": 3,
+    "v": 39,
+    "latency": 1.383,
+    "bandwidth": 40,
+    "km": 166.6
+   },
+   {
+    "u": 3,
+    "v": 23,
+    "latency": 11.43,
+    "bandwidth": 100,
+    "km": 1712.3
+   },
+   {
+    "u": 3,
+    "v": 62,
+    "latency": 8.537,
+    "bandwidth": 100,
+    "km": 1267.3
+   },
+   {
+    "u": 3,
+    "v": 66,
+    "latency": 3.111,
+    "bandwidth": 100,
+    "km": 432.5
+   },
+   {
+    "u": 3,
+    "v": 70,
+    "latency": 9.502,
+    "bandwidth": 10,
+    "km": 1415.7
+   },
+   {
+    "u": 3,
+    "v": 80,
+    "latency": 15.784,
+    "bandwidth": 100,
+    "km": 2382.2
+   },
+   {
+    "u": 4,
+    "v": 63,
+    "latency": 6.307,
+    "bandwidth": 40,
+    "km": 924.1
+   },
+   {
+    "u": 4,
+    "v": 37,
+    "latency": 15.246,
+    "bandwidth": 10,
+    "km": 2299.4
+   },
+   {
+    "u": 4,
+    "v": 42,
+    "latency": 4.184,
+    "bandwidth": 40,
+    "km": 597.6
+   },
+   {
+    "u": 4,
+    "v": 54,
+    "latency": 6.989,
+    "bandwidth": 100,
+    "km": 1029.1,
+    "rebate": 0.0092,
+    "rebate_dir": [
+     54,
+     4
+    ]
+   },
+   {
+    "u": 4,
+    "v": 66,
+    "latency": 2.075,
+    "bandwidth": 40,
+    "km": 273.1
+   },
+   {
+    "u": 4,
+    "v": 71,
+    "latency": 18.751,
+    "bandwidth": 40,
+    "km": 2838.6
+   },
+   {
+    "u": 4,
+    "v": 95,
+    "latency": 5.468,
+    "bandwidth": 10,
+    "km": 795.1,
+    "rebate": 0.0097,
+    "rebate_dir": [
+     4,
+     95
+    ]
+   },
+   {
+    "u": 5,
+    "v": 98,
+    "latency": 16.456,
+    "bandwidth": 10,
+    "km": 2485.5
+   },
+   {
+    "u": 5,
+    "v": 8,
+    "latency": 19.439,
+    "bandwidth": 100,
+    "km": 2944.4
+   },
+   {
+    "u": 5,
+    "v": 26,
+    "latency": 14.377,
+    "bandwidth": 40,
+    "km": 2165.6
+   },
+   {
+    "u": 5,
+    "v": 41,
+    "latency": 12.984,
+    "bandwidth": 100,
+    "km": 1951.5
+   },
+   {
+    "u": 5,
+    "v": 64,
+    "latency": 5.408,
+    "bandwidth": 40,
+    "km": 785.9
+   },
+   {
+    "u": 5,
+    "v": 78,
+    "latency": 9.239,
+    "bandwidth": 10,
+    "km": 1375.2
+   },
+   {
+    "u": 6,
+    "v": 30,
+    "latency": 13.089,
+    "bandwidth": 40,
+    "km": 1967.6
+   },
+   {
+    "u": 6,
+    "v": 22,
+    "latency": 6.109,
+    "bandwidth": 10,
+    "km": 893.8
+   },
+   {
+    "u": 6,
+    "v": 32,
+    "latency": 7.823,
+    "bandwidth": 40,
+    "km": 1157.4
+   },
+   {
+    "u": 6,
+    "v": 65,
+    "latency": 15.235,
+    "bandwidth": 40,
+    "km": 2297.6
+   },
+   {
+    "u": 6,
+    "v": 68,
+    "latency": 13.485,
+    "bandwidth": 10,
+    "km": 2028.5
+   },
+   {
+    "u": 6,
+    "v": 79,
+    "latency": 3.739,
+    "bandwidth": 10,
+    "km": 529.1,
+    "rebate": 0.0065,
+    "rebate_dir": [
+     79,
+     6
+    ]
+   },
+   {
+    "u": 6,
+    "v": 97,
+    "latency": 4.281,
+    "bandwidth": 10,
+    "km": 612.5
+   },
+   {
+    "u": 7,
+    "v": 74,
+    "latency": 4.47,
+    "bandwidth": 40,
+    "km": 641.6
+   },
+   {
+    "u": 7,
+    "v": 39,
+    "latency": 5.149,
+    "bandwidth": 10,
+    "km": 745.9
+   },
+   {
+    "u": 7,
+    "v": 9,
+    "latency": 9.386,
+    "bandwidth": 40,
+    "km": 1397.9
+   },
+   {
+    "u": 7,
+    "v": 48,
+    "latency": 13.432,
+    "bandwidth": 10,
+    "km": 2020.2
+   },
+   {
+    "u": 7,
+    "v": 12,
+    "latency": 2.31,
+    "bandwidth": 100,
+    "km": 309.3
+   },
+   {
+    "u": 7,
+    "v": 72,
+    "latency": 8.352,
+    "bandwidth": 10,
+    "km": 1238.8,
+    "rebate": 0.0195,
+    "rebate_dir": [
+     72,
+     7
+    ]
+   },
+   {
+    "u": 7,
+    "v": 83,
+    "latency": 13.217,
+    "bandwidth": 10,
+    "km": 1987.2
+   },
+   {
+    "u": 7,
+    "v": 88,
+    "latency": 6.138,
+    "bandwidth": 10,
+    "km": 898.2
+   },
+   {
+    "u": 8,
+    "v": 9,
+    "latency": 10.658,
+    "bandwidth": 10,
+    "km": 1593.6
+   },
+   {
+    "u": 8,
+    "v": 18,
+    "latency": 10.087,
+    "bandwidth": 100,
+    "km": 1505.7
+   },
+   {
+    "u": 8,
+    "v": 16,
+    "latency": 16.932,
+    "bandwidth": 100,
+    "km": 2558.8
+   },
+   {
+    "u": 8,
+    "v": 30,
+    "latency": 13.044,
+    "bandwidth": 40,
+    "km": 1960.7
+   },
+   {
+    "u": 8,
+    "v": 38,
+    "latency": 7.209,
+    "bandwidth": 100,
+    "km": 1063.0
+   },
+   {
+    "u": 8,
+    "v": 48,
+    "latency": 5.468,
+    "bandwidth": 10,
+    "km": 795.0
+   },
+   {
+    "u": 8,
+    "v": 91,
+    "latency": 8.687,
+    "bandwidth": 100,
+    "km": 1290.3
+   },
+   {
+    "u": 9,
+    "v": 42,
+    "latency": 9.133,
+    "bandwidth": 40,
+    "km": 1359.0
+   },
+   {
+    "u": 9,
+    "v": 48,
+    "latency": 10.299,
+    "bandwidth": 40,
+    "km": 1538.4
+   },
+   {
+    "u": 9,
+    "v": 86,
+    "latency": 9.538,
+    "bandwidth": 100,
+    "km": 1421.2
+   },
+   {
+    "u": 9,
+    "v": 96,
+    "latency": 8.279,
+    "bandwidth": 40,
+    "km": 1227.6
+   },
+   {
+    "u": 10,
+    "v": 89,
+    "latency": 11.925,
+    "bandwidth": 10,
+    "km": 1788.4
+   },
+   {
+    "u": 10,
+    "v": 21,
+    "latency": 12.979,
+    "bandwidth": 40,
+    "km": 1950.5
+   },
+   {
+    "u": 11,
+    "v": 51,
+    "latency": 12.56,
+    "bandwidth": 40,
+    "km": 1886.2
+   },
+   {
+    "u": 11,
+    "v": 81,
+    "latency": 11.574,
+    "bandwidth": 40,
+    "km": 1734.5
+   },
+   {
+    "u": 11,
+    "v": 42,
+    "latency": 13.971,
+    "bandwidth": 10,
+    "km": 2103.2
+   },
+   {
+    "u": 11,
+    "v": 50,
+    "latency": 13.116,
+    "bandwidth": 100,
+    "km": 1971.7
+   },
+   {
+    "u": 11,
+    "v": 87,
+    "latency": 8.763,
+    "bandwidth": 40,
+    "km": 1302.0
+   },
+   {
+    "u": 12,
+    "v": 30,
+    "latency": 14.472,
+    "bandwidth": 100,
+    "km": 2180.3
+   },
+   {
+    "u": 12,
+    "v": 78,
+    "latency": 7.957,
+    "bandwidth": 100,
+    "km": 1178.0
+   },
+   {
+    "u": 12,
+    "v": 23,
+    "latency": 16.169,
+    "bandwidth": 100,
+    "km": 2441.4,
+    "rebate": 0.0156,
+    "rebate_dir": [
+     12,
+     23
+    ]
+   },
+   {
+    "u": 12,
+    "v": 17,
+    "latency": 2.588,
+    "bandwidth": 10,
+    "km": 352.0
+   },
+   {
+    "u": 12,
+    "v": 35,
+    "latency": 11.337,
+    "bandwidth": 10,
+    "km": 1698.1
+   },
+   {
+    "u": 12,
+    "v": 53,
+    "latency": 6.519,
+    "bandwidth": 100,
+    "km": 956.7
+   },
+   {
+    "u": 12,
+    "v": 59,
+    "latency": 18.98,
+    "bandwidth": 100,
+    "km": 2873.9
+   },
+   {
+    "u": 12,
+    "v": 76,
+    "latency": 16.06,
+    "bandwidth": 10,
+    "km": 2424.6
+   },
+   {
+    "u": 12,
+    "v": 77,
+    "latency": 7.508,
+    "bandwidth": 100,
+    "km": 1108.9
+   },
+   {
+    "u": 13,
+    "v": 65,
+    "latency": 14.019,
+    "bandwidth": 10,
+    "km": 2110.7
+   },
+   {
+    "u": 13,
+    "v": 24,
+    "latency": 12.945,
+    "bandwidth": 10,
+    "km": 1945.4
+   },
+   {
+    "u": 13,
+    "v": 35,
+    "latency": 5.412,
+    "bandwidth": 40,
+    "km": 786.4
+   },
+   {
+    "u": 13,
+    "v": 64,
+    "latency": 14.606,
+    "bandwidth": 40,
+    "km": 2200.9
+   },
+   {
+    "u": 13,
+    "v": 86,
+    "latency": 10.489,
+    "bandwidth": 40,
+    "km": 1567.5
+   },
+   {
+    "u": 13,
+    "v": 95,
+    "latency": 11.454,
+    "bandwidth": 10,
+    "km": 1715.9
+   },
+   {
+    "u": 14,
+    "v": 46,
+    "latency": 13.37,
+    "bandwidth": 10,
+    "km": 2010.8
+   },
+   {
+    "u": 14,
+    "v": 98,
+    "latency": 12.796,
+    "bandwidth": 100,
+    "km": 1922.5
+   },
+   {
+    "u": 14,
+    "v": 66,
+    "latency": 4.641,
+    "bandwidth": 10,
+    "km": 667.8
+   },
+   {
+    "u": 14,
+    "v": 27,
+    "latency": 2.115,
+    "bandwidth": 10,
+    "km": 279.3
+   },
+   {
+    "u": 14,
+    "v": 50,
+    "latency": 6.845,
+    "bandwidth": 40,
+    "km": 1006.9
+   },
+   {
+    "u": 14,
+    "v": 54,
+    "latency": 3.841,
+    "bandwidth": 10,
+    "km": 544.8
+   },
+   {
+    "u": 14,
+    "v": 62,
+    "latency": 10.177,
+    "bandwidth": 10,
+    "km": 1519.6
+   },
+   {
+    "u": 14,
+    "v": 77,
+    "latency": 10.723,
+    "bandwidth": 100,
+    "km": 1603.5
+   },
+   {
+    "u": 14,
+    "v": 90,
+    "latency": 6.639,
+    "bandwidth": 10,
+    "km": 975.2,
+    "rebate": 0.0069,
+    "rebate_dir": [
+     14,
+     90
+    ]
+   },
+   {
+    "u": 15,
+    "v": 38,
+    "latency": 7.594,
+    "bandwidth": 10,
+    "km": 1122.2
+   },
+   {
+    "u": 15,
+    "v": 52,
+    "latency": 2.555,
+    "bandwidth": 100,
+    "km": 346.9
+   },
+   {
+    "u": 15,
+    "v": 55,
+    "latency": 8.67,
+    "bandwidth": 100,
+    "km": 1287.7
+   },
+   {
+    "u": 15,
+    "v": 58,
+    "latency": 9.357,
+    "bandwidth": 40,
+    "km": 1393.4
+   },
+   {
+    "u": 15,
+    "v": 87,
+    "latency": 7.955,
+    "bandwidth": 40,
+    "km": 1177.7
+   },
+   {
+    "u": 15,
+    "v": 93,
+    "latency": 13.104,
+    "bandwidth": 100,
+    "km": 1969.8
+   },
+   {
+    "u": 15,
+    "v": 96,
+    "latency": 9.157,
+    "bandwidth": 100,
+    "km": 1362.6,
+    "rebate": 0.0111,
+    "rebate_dir": [
+     96,
+     15
+    ]
+   },
+   {
+    "u": 16,
+    "v": 65,
+    "latency": 10.682,
+    "bandwidth": 10,
+    "km": 1597.2
+   },
+   {
+    "u": 16,
+    "v": 29,
+    "latency": 10.678,
+    "bandwidth": 100,
+    "km": 1596.6
+   },
+   {
+    "u": 16,
+    "v": 38,
+    "latency": 12.039,
+    "bandwidth": 100,
+    "km": 1806.0
+   },
+   {
+    "u": 16,
+    "v": 63,
+    "latency": 6.913,
+    "bandwidth": 100,
+    "km": 1017.4
+   },
+   {
+    "u": 16,
+    "v": 93,
+    "latency": 19.09,
+    "bandwidth": 10,
+    "km": 2890.8
+   },
+   {
+    "u": 16,
+    "v": 98,
+    "latency": 9.832,
+    "bandwidth": 10,
+    "km": 1466.5
+   },
+   {
+    "u": 16,
+    "v": 99,
+    "latency": 14.234,
+    "bandwidth": 100,
+    "km": 2143.8
+   },
+   {
+    "u": 17,
+    "v": 98,
+    "latency": 15.788,
+    "bandwidth": 40,
+    "km": 2382.8
+   },
+   {
+    "u": 17,
+    "v": 23,
+    "latency": 15.561,
+    "bandwidth": 10,
+    "km": 2347.8
+   },
+   {
+    "u": 17,
+    "v": 63,
+    "latency": 3.209,
+    "bandwidth": 40,
+    "km": 447.6
+   },
+   {
+    "u": 17,
+    "v": 72,
+    "latency": 9.516,
+    "bandwidth": 100,
+    "km": 1417.8
+   },
+   {
+    "u": 18,
+    "v": 42,
+    "latency": 11.152,
+    "bandwidth": 10,
+    "km": 1669.5
+   },
+   {
+    "u": 18,
+    "v": 21,
+    "latency": 5.81,
+    "bandwidth": 100,
+    "km": 847.6
+   },
+   {
+    "u": 18,
+    "v": 58,
+    "latency": 8.069,
+    "bandwidth": 10,
+    "km": 1195.2
+   },
+   {
+    "u": 18,
+    "v": 70,
+    "latency": 8.522,
+    "bandwidth": 100,
+    "km": 1264.9
+   },
+   {
+    "u": 19,
+    "v": 33,
+    "latency": 12.221,
+    "bandwidth": 10,
+    "km": 1834.0
+   },
+   {
+    "u": 19,
+    "v": 32,
+    "latency": 5.832,
+    "bandwidth": 40,
+    "km": 851.1
+   },
+   {
+    "u": 19,
+    "v": 34,
+    "latency": 3.636,
+    "bandwidth": 10,
+    "km": 513.2
+   },
+   {
+    "u": 19,
+    "v": 37,
+    "latency": 11.348,
+    "bandwidth": 40,
+    "km": 1699.8
+   },
+   {
+    "u": 19,
+    "v": 40,
+    "latency": 9.486,
+    "bandwidth": 10,
+    "km": 1413.2
+   },
+   {
+    "u": 19,
+    "v": 61,
+    "latency": 4.347,
+    "bandwidth": 100,
+    "km": 622.6
+   },
+   {
+    "u": 19,
+    "v": 80,
+    "latency": 10.787,
+    "bandwidth": 100,
+    "km": 1613.4
+   },
+   {
+    "u": 20,
+    "v": 40,
+    "latency": 6.641,
+    "bandwidth": 100,
+    "km": 975.5
+   },
+   {
+    "u": 20,
+    "v": 38,
+    "latency": 7.319,
+    "bandwidth": 100,
+    "km": 1079.9
+   },
+   {
+    "u": 20,
+    "v": 39,
+    "latency": 8.912,
+    "bandwidth": 10,
+    "km": 1324.9
+   },
+   {
+    "u": 20,
+    "v": 75,
+    "latency": 7.793,
+    "bandwidth": 100,
+    "km": 1152.8
+   },
+   {
+    "u": 21,
+    "v": 94,
+    "latency": 7.243,
+    "bandwidth": 10,
+    "km": 1068.1
+   },
+   {
+    "u": 21,
+    "v": 24,
+    "latency": 8.09,
+    "bandwidth": 100,
+    "km": 1198.5
+   },
+   {
+    "u": 21,
+    "v": 28,
+    "latency": 14.449,
+    "bandwidth": 100,
+    "km": 2176.8
+   },
+   {
+    "u": 21,
+    "v": 39,
+    "latency": 15.415,
+    "bandwidth": 10,
+    "km": 2325.4
+   },
+   {
+    "u": 21,
+    "v": 65,
+    "latency": 18.36,
+    "bandwidth": 40,
+    "km": 2778.4
+   },
+   {
+    "u": 21,
+    "v": 91,
+    "latency": 10.32,
+    "bandwidth": 100,
+    "km": 1541.5
+   },
+   {
+    "u": 22,
+    "v": 35,
+    "latency": 4.478,
+    "bandwidth": 10,
+    "km": 642.7,
+    "rebate": 0.0194,
+    "rebate_dir": [
+     22,
+     35
+    ]
+   },
+   {
+    "u": 22,
+    "v": 33,
+    "latency": 13.434,
+    "bandwidth": 100,
+    "km": 2020.7
+   },
+   {
+    "u": 22,
+    "v": 67,
+    "latency": 7.248,
+    "bandwidth": 40,
+    "km": 1068.9
+   },
+   {
+    "u": 22,
+    "v": 77,
+    "latency": 9.914,
+    "bandwidth": 10,
+    "km": 1479.1
+   },
+   {
+    "u": 22,
+    "v": 85,
+    "latency": 13.412,
+    "bandwidth": 40,
+    "km": 2017.2
+   },
+   {
+    "u": 23,
+    "v": 29,
+    "latency": 7.515,
+    "bandwidth": 100,
+    "km": 1110.0
+   },
+   {
+    "u": 23,
+    "v": 51,
+    "latency": 9.421,
+    "bandwidth": 100,
+    "km": 1403.2
+   },
+   {
+    "u": 23,
+    "v": 91,
+    "latency": 6.341,
+    "bandwidth": 10,
+    "km": 929.3
+   },
+   {
+    "u": 24,
+    "v": 43,
+    "latency": 12.929,
+    "bandwidth": 40,
+    "km": 1942.9
+   },
+   {
+    "u": 24,
+    "v": 95,
+    "latency": 9.898,
+    "bandwidth": 100,
+    "km": 1476.6
+   },
+   {
+    "u": 24,
+    "v": 90,
+    "latency": 13.434,
+    "bandwidth": 100,
+    "km": 2020.6,
+    "rebate": 0.0057,
+    "rebate_dir": [
+     90,
+     24
+    ]
+   },
+   {
+    "u": 24,
+    "v": 67,
+    "latency": 17.452,
+    "bandwidth": 10,
+    "km": 2638.8
+   },
+   {
+    "u": 24,
+    "v": 68,
+    "latency": 3.688,
+    "bandwidth": 100,
+    "km": 521.2
+   },
+   {
+    "u": 24,
+    "v": 84,
+    "latency": 7.882,
+    "bandwidth": 40,
+    "km": 1166.5
+   },
+   {
+    "u": 24,
+    "v": 91,
+    "latency": 11.914,
+    "bandwidth": 100,
+    "km": 1786.7
+   },
+   {
+    "u": 24,
+    "v": 97,
+    "latency": 11.933,
+    "bandwidth": 100,
+    "km": 1789.6
+   },
+   {
+    "u": 25,
+    "v": 56,
+    "latency": 13.072,
+    "bandwidth": 40,
+    "km": 1965.0
+   },
+   {
+    "u": 25,
+    "v": 27,
+    "latency": 17.288,
+    "bandwidth": 100,
+    "km": 2613.6
+   },
+   {
+    "u": 25,
+    "v": 44,
+    "latency": 18.245,
+    "bandwidth": 10,
+    "km": 2760.8
+   },
+   {
+    "u": 25,
+    "v": 47,
+    "latency": 14.567,
+    "bandwidth": 10,
+    "km": 2195.0
+   },
+   {
+    "u": 26,
+    "v": 78,
+    "latency": 14.166,
+    "bandwidth": 40,
+    "km": 2133.3
+   },
+   {
+    "u": 26,
+    "v": 80,
+    "latency": 8.712,
+    "bandwidth": 10,
+    "km": 1294.2,
+    "rebate": 0.0091,
+    "rebate_dir": [
+     26,
+     80
+    ]
+   },
+   {
+    "u": 27,
+    "v": 88,
+    "latency": 1.799,
+    "bandwidth": 10,
+    "km": 230.7
+   },
+   {
+    "u": 27,
+    "v": 60,
+    "latency": 5.106,
+    "bandwidth": 100,
+    "km": 739.3
+   },
+   {
+    "u": 27,
+    "v": 37,
+    "latency": 13.411,
+    "bandwidth": 100,
+    "km": 2017.1
+   },
+   {
+    "u": 27,
+    "v": 44,
+    "latency": 1.829,
+    "bandwidth": 40,
+    "km": 235.3
+   },
+   {
+    "u": 27,
+    "v": 78,
+    "latency": 11.63,
+    "bandwidth": 40,
+    "km": 1743.1
+   },
+   {
+    "u": 28,
+    "v": 63,
+    "latency": 10.289,
+    "bandwidth": 10,
+    "km": 1536.8
+   },
+   {
+    "u": 28,
+    "v": 61,
+    "latency": 1.662,
+    "bandwidth": 40,
+    "km": 209.6
+   },
+   {
+    "u": 28,
+    "v": 40,
+    "latency": 10.896,
+    "bandwidth": 100,
+    "km": 1630.1,
+    "rebate": 0.0077,
+    "rebate_dir": [
+     40,
+     28
+    ]
+   },
+   {
+    "u": 28,
+    "v": 91,
+    "latency": 4.443,
+    "bandwidth": 10,
+    "km": 637.4
+   },
+   {
+    "u": 29,
+    "v": 73,
+    "latency": 15.764,
+    "bandwidth": 10,
+    "km": 2379.1
+   },
+   {
+    "u": 29,
+    "v": 91,
+    "latency": 10.022,
+    "bandwidth": 40,
+    "km": 1495.7
+   },
+   {
+    "u": 29,
+    "v": 40,
+    "latency": 14.356,
+    "bandwidth": 10,
+    "km": 2162.4
+   },
+   {
+    "u": 29,
+    "v": 45,
+    "latency": 7.368,
+    "bandwidth": 40,
+    "km": 1087.4
+   },
+   {
+    "u": 29,
+    "v": 51,
+    "latency": 10.381,
+    "bandwidth": 10,
+    "km": 1550.9
+   },
+   {
+    "u": 29,
+    "v": 69,
+    "latency": 10.779,
+    "bandwidth": 100,
+    "km": 1612.2
+   },
+   {
+    "u": 29,
+    "v": 70,
+    "latency": 11.579,
+    "bandwidth": 100,
+    "km": 1735.2,
+    "rebate": 0.0149,
+    "rebate_dir": [
+     29,
+     70
+    ]
+   },
+   {
+    "u": 29,
+    "v": 75,
+    "latency": 8.098,
+    "bandwidth": 40,
+    "km": 1199.7
+   },
+   {
+    "u": 29,
+    "v": 92,
+    "latency": 4.597,
+    "bandwidth": 100,
+    "km": 661.1
+   },
+   {
+    "u": 30,
+    "v": 56,
+    "latency": 9.119,
+    "bandwidth": 40,
+    "km": 1356.7
+   },
+   {
+    "u": 30,
+    "v": 31,
+    "latency": 6.543,
+    "bandwidth": 40,
+    "km": 960.5
+   },
+   {
+    "u": 30,
+    "v": 40,
+    "latency": 14.047,
+    "bandwidth": 100,
+    "km": 2114.9
+   },
+   {
+    "u": 30,
+    "v": 36,
+    "latency": 13.718,
+    "bandwidth": 10,
+    "km": 2064.2
+   },
+   {
+    "u": 30,
+    "v": 34,
+    "latency": 10.276,
+    "bandwidth": 100,
+    "km": 1534.7,
+    "rebate": 0.0062,
+    "rebate_dir": [
+     30,
+     34
+    ]
+   },
+   {
+    "u": 30,
+    "v": 35,
+    "latency": 17.193,
+    "bandwidth": 100,
+    "km": 2599.0,
+    "rebate": 0.0187,
+    "rebate_dir": [
+     30,
+     35
+    ]
+   },
+   {
+    "u": 31,
+    "v": 62,
+    "latency": 15.719,
+    "bandwidth": 40,
+    "km": 2372.2
+   },
+   {
+    "u": 31,
+    "v": 55,
+    "latency": 5.451,
+    "bandwidth": 40,
+    "km": 792.5
+   },
+   {
+    "u": 31,
+    "v": 38,
+    "latency": 6.258,
+    "bandwidth": 10,
+    "km": 916.6
+   },
+   {
+    "u": 31,
+    "v": 45,
+    "latency": 6.359,
+    "bandwidth": 10,
+    "km": 932.2
+   },
+   {
+    "u": 31,
+    "v": 46,
+    "latency": 5.855,
+    "bandwidth": 40,
+    "km": 854.5
+   },
+   {
+    "u": 31,
+    "v": 64,
+    "latency": 12.427,
+    "bandwidth": 40,
+    "km": 1865.8
+   },
+   {
+    "u": 31,
+    "v": 66,
+    "latency": 12.227,
+    "bandwidth": 40,
+    "km": 1834.9
+   },
+   {
+    "u": 31,
+    "v": 99,
+    "latency": 4.224,
+    "bandwidth": 10,
+    "km": 603.7
+   },
+   {
+    "u": 32,
+    "v": 45,
+    "latency": 8.315,
+    "bandwidth": 10,
+    "km": 1233.1
+   },
+   {
+    "u": 32,
+    "v": 35,
+    "latency": 11.05,
+    "bandwidth": 100,
+    "km": 1653.9
+   },
+   {
+    "u": 32,
+    "v": 43,
+    "latency": 8.84,
+    "bandwidth": 40,
+    "km": 1313.8,
+    "rebate": 0.0155,
+    "rebate_dir": [
+     43,
+     32
+    ]
+   },
+   {
+    "u": 32,
+    "v": 62,
+    "latency": 12.419,
+    "bandwidth": 100,
+    "km": 1864.5
+   },
+   {
+    "u": 33,
+    "v": 53,
+    "latency": 18.786,
+    "bandwidth": 10,
+    "km": 2844.0
+   },
+   {
+    "u": 33,
+    "v": 42,
+    "latency": 18.935,
+    "bandwidth": 10,
+    "km": 2866.9
+   },
+   {
+    "u": 33,
+    "v": 45,
+    "latency": 5.859,
+    "bandwidth": 100,
+    "km": 855.2
+   },
+   {
+    "u": 33,
+    "v": 70,
+    "latency": 18.078,
+    "bandwidth": 40,
+    "km": 2735.1
+   },
+   {
+    "u": 33,
+    "v": 84,
+    "latency": 16.846,
+    "bandwidth": 40,
+    "km": 2545.5
+   },
+   {
+    "u": 33,
+    "v": 94,
+    "latency": 11.369,
+    "bandwidth": 40,
+    "km": 1702.9
+   },
+   {
+    "u": 34,
+    "v": 74,
+    "latency": 8.171,
+    "bandwidth": 40,
+    "km": 1210.9
+   },
+   {
+    "u": 34,
+    "v": 52,
+    "latency": 8.118,
+    "bandwidth": 100,
+    "km": 1202.8
+   },
+   {
+    "u": 34,
+    "v": 54,
+    "latency": 2.983,
+    "bandwidth": 10,
+    "km": 412.8
+   },
+   {
+    "u": 34,
+    "v": 72,
+    "latency": 3.679,
+    "bandwidth": 100,
+    "km": 519.8
+   },
+   {
+    "u": 34,
+    "v": 85,
+    "latency": 9.016,
+    "bandwidth": 100,
+    "km": 1340.9
+   },
+   {
+    "u": 35,
+    "v": 46,
+    "latency": 14.824,
+    "bandwidth": 40,
+    "km": 2234.5,
+    "rebate": 0.0064,
+    "rebate_dir": [
+     46,
+     35
+    ]
+   },
+   {
+    "u": 35,
+    "v": 44,
+    "latency": 5.038,
+    "bandwidth": 10,
+    "km": 728.9
+   },
+   {
+    "u": 35,
+    "v": 54,
+    "latency": 6.607,
+    "bandwidth": 40,
+    "km": 970.3
+   },
+   {
+    "u": 35,
+    "v": 80,
+    "latency": 15.327,
+    "bandwidth": 10,
+    "km": 2311.9
+   },
+   {
+    "u": 35,
+    "v": 91,
+    "latency": 4.02,
+    "bandwidth": 40,
+    "km": 572.4
+   },
+   {
+    "u": 35,
+    "v": 92,
+    "latency": 17.734,
+    "bandwidth": 100,
+    "km": 2682.2
+   },
+   {
+    "u": 36,
+    "v": 45,
+    "latency": 3.05,
+    "bandwidth": 100,
+    "km": 423.1
+   },
+   {
+    "u": 36,
+    "v": 94,
+    "latency": 13.401,
+    "bandwidth": 10,
+    "km": 2015.5
+   },
+   {
+    "u": 36,
+    "v": 96,
+    "latency": 17.303,
+    "bandwidth": 40,
+    "km": 2615.9
+   },
+   {
+    "u": 36,
+    "v": 73,
+    "latency": 20.012,
+    "bandwidth": 10,
+    "km": 3032.6
+   },
+   {
+    "u": 36,
+    "v": 43,
+    "latency": 5.608,
+    "bandwidth": 40,
+    "km": 816.7
+   },
+   {
+    "u": 36,
+    "v": 91,
+    "latency": 9.487,
+    "bandwidth": 40,
+    "km": 1413.4
+   },
+   {
+    "u": 37,
+    "v": 39,
+    "latency": 15.625,
+    "bandwidth": 100,
+    "km": 2357.7
+   },
+   {
+    "u": 37,
+    "v": 44,
+    "latency": 14.514,
+    "bandwidth": 100,
+    "km": 2186.8
+   },
+   {
+    "u": 37,
+    "v": 45,
+    "latency": 12.614,
+    "bandwidth": 40,
+    "km": 1894.5
+   },
+   {
+    "u": 37,
+    "v": 54,
+    "latency": 10.281,
+    "bandwidth": 10,
+    "km": 1535.5
+   },
+   {
+    "u": 37,
+    "v": 71,
+    "latency": 13.574,
+    "bandwidth": 10,
+    "km": 2042.1
+   },
+   {
+    "u": 37,
+    "v": 99,
+    "latency": 10.448,
+    "bandwidth": 100,
+    "km": 1561.2,
+    "rebate": 0.0169,
+    "rebate_dir": [
+     99,
+     37
+    ]
+   },
+   {
+    "u": 38,
+    "v": 46,
+    "latency": 9.2,
+    "bandwidth": 40,
+    "km": 1369.2
+   },
+   {
+    "u": 38,
+    "v": 85,
+    "latency": 10.228,
+    "bandwidth": 100,
+    "km": 1527.4
+   },
+   {
+    "u": 38,
+    "v": 49,
+    "latency": 14.741,
+    "bandwidth": 40,
+    "km": 2221.6
+   },
+   {
+    "u": 38,
+    "v": 53,
+    "latency": 8.84,
+    "bandwidth": 40,
+    "km": 1313.8
+   },
+   {
+    "u": 38,
+    "v": 60,
+    "latency": 5.35,
+    "bandwidth": 100,
+    "km": 776.9
+   },
+   {
+    "u": 39,
+    "v": 41,
+    "latency": 6.079,
+    "bandwidth": 10,
+    "km": 889.1
+   },
+   {
+    "u": 39,
+    "v": 65,
+    "latency": 6.126,
+    "bandwidth": 10,
+    "km": 896.3
+   },
+   {
+    "u": 39,
+    "v": 92,
+    "latency": 17.786,
+    "bandwidth": 10,
+    "km": 2690.1
+   },
+   {
+    "u": 39,
+    "v": 62,
+    "latency": 7.718,
+    "bandwidth": 100,
+    "km": 1141.2
+   },
+   {
+    "u": 40,
+    "v": 87,
+    "latency": 17.156,
+    "bandwidth": 100,
+    "km": 2593.3
+   },
+   {
+    "u": 40,
+    "v": 81,
+    "latency": 5.287,
+    "bandwidth": 100,
+    "km": 767.2
+   },
+   {
+    "u": 40,
+    "v": 89,
+    "latency": 4.178,
+    "bandwidth": 100,
+    "km": 596.7
+   },
+   {
+    "u": 41,
+    "v": 45,
+    "latency": 9.732,
+    "bandwidth": 10,
+    "km": 1451.1
+   },
+   {
+    "u": 41,
+    "v": 46,
+    "latency": 14.645,
+    "bandwidth": 100,
+    "km": 2207.0
+   },
+   {
+    "u": 41,
+    "v": 76,
+    "latency": 3.785,
+    "bandwidth": 10,
+    "km": 536.2
+   },
+   {
+    "u": 41,
+    "v": 85,
+    "latency": 14.961,
+    "bandwidth": 100,
+    "km": 2255.5
+   },
+   {
+    "u": 41,
+    "v": 90,
+    "latency": 9.47,
+    "bandwidth": 100,
+    "km": 1410.7
+   },
+   {
+    "u": 41,
+    "v": 99,
+    "latency": 11.436,
+    "bandwidth": 10,
+    "km": 1713.3
+   },
+   {
+    "u": 42,
+    "v": 45,
+    "latency": 14.565,
+    "bandwidth": 100,
+    "km": 2194.6
+   },
+   {
+    "u": 42,
+    "v": 63,
+    "latency": 2.481,
+    "bandwidth": 10,
+    "km": 335.6
+   },
+   {
+    "u": 42,
+    "v": 73,
+    "latency": 3.142,
+    "bandwidth": 10,
+    "km": 437.2
+   },
+   {
+    "u": 42,
+    "v": 76,
+    "latency": 13.616,
+    "bandwidth": 10,
+    "km": 2048.6
+   },
+   {
+    "u": 42,
+    "v": 78,
+    "latency": 9.077,
+    "bandwidth": 100,
+    "km": 1350.3
+   },
+   {
+    "u": 43,
+    "v": 66,
+    "latency": 11.242,
+    "bandwidth": 10,
+    "km": 1683.4
+   },
+   {
+    "u": 43,
+    "v": 69,
+    "latency": 10.448,
+    "bandwidth": 40,
+    "km": 1561.2
+   },
+   {
+    "u": 43,
+    "v": 70,
+    "latency": 14.324,
+    "bandwidth": 10,
+    "km": 2157.5
+   },
+   {
+    "u": 43,
+    "v": 74,
+    "latency": 11.693,
+    "bandwidth": 100,
+    "km": 1752.7
+   },
+   {
+    "u": 43,
+    "v": 79,
+    "latency": 3.558,
+    "bandwidth": 10,
+    "km": 501.2,
+    "rebate": 0.0118,
+    "rebate_dir": [
+     43,
+     79
+    ]
+   },
+   {
+    "u": 43,
+    "v": 92,
+    "latency": 13.536,
+    "bandwidth": 100,
+    "km": 2036.3
+   },
+   {
+    "u": 44,
+    "v": 48,
+    "latency": 9.965,
+    "bandwidth": 100,
+    "km": 1487.0
+   },
+   {
+    "u": 44,
+    "v": 75,
+    "latency": 15.307,
+    "bandwidth": 100,
+    "km": 2308.7
+   },
+   {
+    "u": 44,
+    "v": 89,
+    "latency": 9.7,
+    "bandwidth": 100,
+    "km": 1446.2
+   },
+   {
+    "u": 45,
+    "v": 53,
+    "latency": 13.71,
+    "bandwidth": 10,
+    "km": 2063.0
+   },
+   {
+    "u": 45,
+    "v": 46,
+    "latency": 5.364,
+    "bandwidth": 40,
+    "km": 779.0
+   },
+   {
+    "u": 45,
+    "v": 60,
+    "latency": 9.832,
+    "bandwidth": 10,
+    "km": 1466.5
+   },
+   {
+    "u": 45,
+    "v": 64,
+    "latency": 16.338,
+    "bandwidth": 10,
+    "km": 2467.3
+   },
+   {
+    "u": 45,
+    "v": 88,
+    "latency": 9.431,
+    "bandwidth": 40,
+    "km": 1404.7
+   },
+   {
+    "u": 46,
+    "v": 77,
+    "latency": 14.793,
+    "bandwidth": 40,
+    "km": 2229.7
+   },
+   {
+    "u": 46,
+    "v": 63,
+    "latency": 17.711,
+    "bandwidth": 10,
+    "km": 2678.7
+   },
+   {
+    "u": 46,
+    "v": 71,
+    "latency": 2.781,
+    "bandwidth": 40,
+    "km": 381.7
+   },
+   {
+    "u": 46,
+    "v": 97,
+    "latency": 4.017,
+    "bandwidth": 40,
+    "km": 571.9
+   },
+   {
+    "u": 47,
+    "v": 87,
+    "latency": 12.093,
+    "bandwidth": 10,
+    "km": 1814.3
+   },
+   {
+    "u": 47,
+    "v": 50,
+    "latency": 4.229,
+    "bandwidth": 100,
+    "km": 604.5
+   },
+   {
+    "u": 47,
+    "v": 54,
+    "latency": 3.599,
+    "bandwidth": 10,
+    "km": 507.6
+   },
+   {
+    "u": 47,
+    "v": 69,
+    "latency": 1.662,
+    "bandwidth": 100,
+    "km": 209.6
+   },
+   {
+    "u": 47,
+    "v": 81,
+    "latency": 1.266,
+    "bandwidth": 40,
+    "km": 148.7
+   },
+   {
+    "u": 48,
+    "v": 82,
+    "latency": 4.457,
+    "bandwidth": 100,
+    "km": 639.6
+   },
+   {
+    "u": 49,
+    "v": 90,
+    "latency": 17.871,
+    "bandwidth": 40,
+    "km": 2703.2
+   },
+   {
+    "u": 49,
+    "v": 50,
+    "latency": 15.007,
+    "bandwidth": 40,
+    "km": 2262.7
+   },
+   {
+    "u": 49,
+    "v": 57,
+    "latency": 5.873,
+    "bandwidth": 10,
+    "km": 857.4
+   },
+   {
+    "u": 49,
+    "v": 58,
+    "latency": 12.126,
+    "bandwidth": 40,
+    "km": 1819.4
+   },
+   {
+    "u": 49,
+    "v": 77,
+    "latency": 8.34,
+    "bandwidth": 40,
+    "km": 1237.0
+   },
+   {
+    "u": 51,
+    "v": 53,
+    "latency": 4.766,
+    "bandwidth": 10,
+    "km": 687.1
+   },
+   {
+    "u": 52,
+    "v": 94,
+    "latency": 7.41,
+    "bandwidth": 40,
+    "km": 1093.8
+   },
+   {
+    "u": 52,
+    "v": 86,
+    "latency": 11.604,
+    "bandwidth": 100,
+    "km": 1739.0
+   },
+   {
+    "u": 52,
+    "v": 84,
+    "latency": 5.214,
+    "bandwidth": 10,
+    "km": 756.0,
+    "rebate": 0.0189,
+    "rebate_dir": [
+     52,
+     84
+    ]
+   },
+   {
+    "u": 52,
+    "v": 61,
+    "latency": 11.747,
+    "bandwidth": 10,
+    "km": 1761.0
+   },
+   {
+    "u": 52,
+    "v": 65,
+    "latency": 11.521,
+    "bandwidth": 10,
+    "km": 1726.3
+   },
+   {
+    "u": 52,
+    "v": 74,
+    "latency": 4.916,
+    "bandwidth": 10,
+    "km": 710.1,
+    "rebate": 0.0061,
+    "rebate_dir": [
+     74,
+     52
+    ]
+   },
+   {
+    "u": 53,
+    "v": 83,
+    "latency": 12.272,
+    "bandwidth": 100,
+    "km": 1841.9
+   },
+   {
+    "u": 53,
+    "v": 84,
+    "latency": 7.414,
+    "bandwidth": 100,
+    "km": 1094.5
+   },
+   {
+    "u": 54,
+    "v": 69,
+    "latency": 4.947,
+    "bandwidth": 40,
+    "km": 715.0
+   },
+   {
+    "u": 54,
+    "v": 62,
+    "latency": 11.267,
+    "bandwidth": 100,
+    "km": 1687.2
+   },
+   {
+    "u": 54,
+    "v": 67,
+    "latency": 8.94,
+    "bandwidth": 40,
+    "km": 1329.3
+   },
+   {
+    "u": 54,
+    "v": 96,
+    "latency": 7.807,
+    "bandwidth": 100,
+    "km": 1155.0,
+    "rebate": 0.0131,
+    "rebate_dir": [
+     96,
+     54
+    ]
+   },
+   {
+    "u": 56,
+    "v": 69,
+    "latency": 7.362,
+    "bandwidth": 100,
+    "km": 1086.4
+   },
+   {
+    "u": 56,
+    "v": 74,
+    "latency": 7.655,
+    "bandwidth": 40,
+    "km": 1131.6
+   },
+   {
+    "u": 56,
+    "v": 93,
+    "latency": 10.804,
+    "bandwidth": 40,
+    "km": 1616.0
+   },
+   {
+    "u": 56,
+    "v": 73,
+    "latency": 12.862,
+    "bandwidth": 40,
+    "km": 1932.6
+   },
+   {
+    "u": 57,
+    "v": 77,
+    "latency": 3.569,
+    "bandwidth": 100,
+    "km": 502.9
+   },
+   {
+    "u": 57,
+    "v": 76,
+    "latency": 21.071,
+    "bandwidth": 100,
+    "km": 3195.6
+   },
+   {
+    "u": 57,
+    "v": 90,
+    "latency": 13.149,
+    "bandwidth": 40,
+    "km": 1976.8
+   },
+   {
+    "u": 58,
+    "v": 82,
+    "latency": 14.013,
+    "bandwidth": 100,
+    "km": 2109.7
+   },
+   {
+    "u": 58,
+    "v": 84,
+    "latency": 15.217,
+    "bandwidth": 10,
+    "km": 2295.0
+   },
+   {
+    "u": 59,
+    "v": 77,
+    "latency": 14.109,
+    "bandwidth": 100,
+    "km": 2124.5,
+    "rebate": 0.0179,
+    "rebate_dir": [
+     59,
+     77
+    ]
+   },
+   {
+    "u": 59,
+    "v": 83,
+    "latency": 6.71,
+    "bandwidth": 100,
+    "km": 986.1
+   },
+   {
+    "u": 59,
+    "v": 93,
+    "latency": 4.046,
+    "bandwidth": 10,
+    "km": 576.3
+   },
+   {
+    "u": 60,
+    "v": 62,
+    "latency": 9.059,
+    "bandwidth": 40,
+    "km": 1347.5
+   },
+   {
+    "u": 60,
+    "v": 82,
+    "latency": 8.458,
+    "bandwidth": 10,
+    "km": 1255.1,
+    "rebate": 0.0087,
+    "rebate_dir": [
+     60,
+     82
+    ]
+   },
+   {
+    "u": 61,
+    "v": 90,
+    "latency": 7.093,
+    "bandwidth": 100,
+    "km": 1045.0
+   },
+   {
+    "u": 62,
+    "v": 83,
+    "latency": 16.269,
+    "bandwidth": 40,
+    "km": 2456.7
+   },
+   {
+    "u": 62,
+    "v": 63,
+    "latency": 3.567,
+    "bandwidth": 100,
+    "km": 502.6
+   },
+   {
+    "u": 62,
+    "v": 78,
+    "latency": 9.333,
+    "bandwidth": 40,
+    "km": 1389.7
+   },
+   {
+    "u": 62,
+    "v": 84,
+    "latency": 6.092,
+    "bandwidth": 100,
+    "km": 891.0
+   },
+   {
+    "u": 63,
+    "v": 64,
+    "latency": 3.504,
+    "bandwidth": 10,
+    "km": 492.9
+   },
+   {
+    "u": 63,
+    "v": 69,
+    "latency": 3.86,
+    "bandwidth": 10,
+    "km": 547.7
+   },
+   {
+    "u": 63,
+    "v": 86,
+    "latency": 17.344,
+    "bandwidth": 40,
+    "km": 2622.2
+   },
+   {
+    "u": 63,
+    "v": 94,
+    "latency": 14.774,
+    "bandwidth": 10,
+    "km": 2226.8,
+    "rebate": 0.0133,
+    "rebate_dir": [
+     63,
+     94
+    ]
+   },
+   {
+    "u": 63,
+    "v": 96,
+    "latency": 1.12,
+    "bandwidth": 40,
+    "km": 126.1
+   },
+   {
+    "u": 64,
+    "v": 87,
+    "latency": 15.974,
+    "bandwidth": 40,
+    "km": 2411.4
+   },
+   {
+    "u": 64,
+    "v": 90,
+    "latency": 7.523,
+    "bandwidth": 40,
+    "km": 1111.3
+   },
+   {
+    "u": 65,
+    "v": 89,
+    "latency": 7.334,
+    "bandwidth": 10,
+    "km": 1082.2
+   },
+   {
+    "u": 65,
+    "v": 69,
+    "latency": 6.279,
+    "bandwidth": 100,
+    "km": 919.9
+   },
+   {
+    "u": 65,
+    "v": 71,
+    "latency": 22.679,
+    "bandwidth": 40,
+    "km": 3442.9
+   },
+   {
+    "u": 66,
+    "v": 72,
+    "latency": 7.485,
+    "bandwidth": 100,
+    "km": 1105.3
+   },
+   {
+    "u": 67,
+    "v": 69,
+    "latency": 11.04,
+    "bandwidth": 10,
+    "km": 1652.3
+   },
+   {
+    "u": 67,
+    "v": 70,
+    "latency": 15.732,
+    "bandwidth": 10,
+    "km": 2374.1
+   },
+   {
+    "u": 67,
+    "v": 91,
+    "latency": 5.843,
+    "bandwidth": 40,
+    "km": 852.7
+   },
+   {
+    "u": 67,
+    "v": 92,
+    "latency": 19.476,
+    "bandwidth": 10,
+    "km": 2950.2
+   },
+   {
+    "u": 67,
+    "v": 95,
+    "latency": 12.958,
+    "bandwidth": 40,
+    "km": 1947.4
+   },
+   {
+    "u": 68,
+    "v": 87,
+    "latency": 12.012,
+    "bandwidth": 40,
+    "km": 1801.8
+   },
+   {
+    "u": 69,
+    "v": 77,
+    "latency": 6.689,
+    "bandwidth": 40,
+    "km": 982.9
+   },
+   {
+    "u": 71,
+    "v": 98,
+    "latency": 9.917,
+    "bandwidth": 100,
+    "km": 1479.5
+   },
+   {
+    "u": 73,
+    "v": 75,
+    "latency": 14.254,
+    "bandwidth": 10,
+    "km": 2146.7,
+    "rebate": 0.0189,
+    "rebate_dir": [
+     73,
+     75
+    ]
+   },
+   {
+    "u": 73,
+    "v": 77,
+    "latency": 8.623,
+    "bandwidth": 10,
+    "km": 1280.5,
+    "rebate": 0.0111,
+    "rebate_dir": [
+     73,
+     77
+    ]
+   },
+   {
+    "u": 73,
+    "v": 81,
+    "latency": 6.24,
+    "bandwidth": 40,
+    "km": 913.8
+   },
+   {
+    "u": 74,
+    "v": 82,
+    "latency": 10.347,
+    "bandwidth": 10,
+    "km": 1545.7
+   },
+   {
+    "u": 74,
+    "v": 89,
+    "latency": 4.721,
+    "bandwidth": 10,
+    "km": 680.2
+   },
+   {
+    "u": 74,
+    "v": 96,
+    "latency": 3.257,
+    "bandwidth": 10,
+    "km": 454.9
+   },
+   {
+    "u": 75,
+    "v": 83,
+    "latency": 13.123,
+    "bandwidth": 10,
+    "km": 1972.7
+   },
+   {
+    "u": 75,
+    "v": 93,
+    "latency": 15.905,
+    "bandwidth": 40,
+    "km": 2400.8
+   },
+   {
+    "u": 76,
+    "v": 77,
+    "latency": 18.081,
+    "bandwidth": 40,
+    "km": 2735.5
+   },
+   {
+    "u": 76,
+    "v": 97,
+    "latency": 11.589,
+    "bandwidth": 100,
+    "km": 1736.8
+   },
+   {
+    "u": 78,
+    "v": 88,
+    "latency": 11.227,
+    "bandwidth": 10,
+    "km": 1681.0
+   },
+   {
+    "u": 79,
+    "v": 97,
+    "latency": 2.617,
+    "bandwidth": 10,
+    "km": 356.5
+   },
+   {
+    "u": 79,
+    "v": 85,
+    "latency": 5.607,
+    "bandwidth": 40,
+    "km": 816.5
+   },
+   {
+    "u": 80,
+    "v": 94,
+    "latency": 6.738,
+    "bandwidth": 10,
+    "km": 990.4
+   },
+   {
+    "u": 81,
+    "v": 86,
+    "latency": 14.093,
+    "bandwidth": 100,
+    "km": 2122.0
+   },
+   {
+    "u": 83,
+    "v": 93,
+    "latency": 8.821,
+    "bandwidth": 40,
+    "km": 1310.9
+   },
+   {
+    "u": 84,
+    "v": 85,
+    "latency": 17.176,
+    "bandwidth": 100,
+    "km": 2596.2
+   },
+   {
+    "u": 84,
+    "v": 87,
+    "latency": 13.615,
+    "bandwidth": 100,
+    "km": 2048.5
+   },
+   {
+    "u": 85,
+    "v": 93,
+    "latency": 2.649,
+    "bandwidth": 10,
+    "km": 361.3
+   },
+   {
+    "u": 86,
+    "v": 88,
+    "latency": 13.2,
+    "bandwidth": 100,
+    "km": 1984.6
+   },
+   {
+    "u": 87,
+    "v": 99,
+    "latency": 3.591,
+    "bandwidth": 10,
+    "km": 506.3
+   },
+   {
+    "u": 88,
+    "v": 97,
+    "latency": 10.627,
+    "bandwidth": 100,
+    "km": 1588.7
+   },
+   {
+    "u": 88,
+    "v": 91,
+    "latency": 3.63,
+    "bandwidth": 40,
+    "km": 512.3
+   },
+   {
+    "u": 93,
+    "v": 95,
+    "latency": 19.869,
+    "bandwidth": 10,
+    "km": 3010.7,
+    "rebate": 0.0155,
+    "rebate_dir": [
+     95,
+     93
+    ]
+   },
+   {
+    "u": 93,
+    "v": 99,
+    "latency": 6.679,
+    "bandwidth": 100,
+    "km": 981.3
+   }
+  ]
+ },
+ "services": [
+  {
+   "id": 0,
+   "name": "web-frontend",
+   "cpu": 4,
+   "mem": 8,
+   "demand": {
+    "67": 833.1,
+    "8": 395.6,
+    "58": 272.8,
+    "54": 363.4,
+    "85": 247.9,
+    "44": 167.0,
+    "19": 162.9,
+    "43": 117.8
+   },
+   "min_replicas": 2,
+   "max_replicas": 3,
+   "vm_cost": 0.12,
+   "priority": 2.0,
+   "color": "#7c5cff"
+  },
+  {
+   "id": 1,
+   "name": "auth",
+   "cpu": 2,
+   "mem": 4,
+   "demand": {
+    "72": 1071.1,
+    "91": 582.3,
+    "27": 433.0,
+    "50": 264.1,
+    "28": 278.9
+   },
+   "min_replicas": 1,
+   "max_replicas": 4,
+   "vm_cost": 0.06,
+   "priority": 2.0,
+   "color": "#22d3ee"
+  },
+  {
+   "id": 2,
+   "name": "search",
+   "cpu": 8,
+   "mem": 32,
+   "demand": {
+    "32": 1151.7,
+    "87": 669.1,
+    "18": 279.8,
+    "76": 362.5,
+    "11": 263.3,
+    "24": 259.0,
+    "25": 136.0
+   },
+   "min_replicas": 1,
+   "max_replicas": 4,
+   "vm_cost": 0.288,
+   "priority": 2.0,
+   "color": "#f472b6"
+  },
+  {
+   "id": 3,
+   "name": "video-transcode",
+   "cpu": 16,
+   "mem": 32,
+   "demand": {
+    "20": 907.9,
+    "12": 571.3,
+    "78": 417.5,
+    "46": 266.5,
+    "15": 180.2
+   },
+   "min_replicas": 1,
+   "max_replicas": 2,
+   "vm_cost": 0.48,
+   "priority": 2.0,
+   "color": "#facc15"
+  },
+  {
+   "id": 4,
+   "name": "ml-inference",
+   "cpu": 8,
+   "mem": 64,
+   "demand": {
+    "79": 970.3,
+    "34": 606.4,
+    "49": 271.1,
+    "8": 314.1,
+    "36": 238.9,
+    "23": 234.4,
+    "16": 208.7,
+    "63": 199.1,
+    "67": 172.1
+   },
+   "min_replicas": 1,
+   "max_replicas": 4,
+   "vm_cost": 0.384,
+   "priority": 1.0,
+   "color": "#34d399"
+  },
+  {
+   "id": 5,
+   "name": "cache",
+   "cpu": 4,
+   "mem": 32,
+   "demand": {
+    "58": 999.5,
+    "82": 526.6,
+    "29": 263.2,
+    "81": 369.4,
+    "87": 284.1
+   },
+   "min_replicas": 1,
+   "max_replicas": 2,
+   "vm_cost": 0.192,
+   "priority": 1.0,
+   "color": "#fb923c"
+  },
+  {
+   "id": 6,
+   "name": "payments",
+   "cpu": 4,
+   "mem": 8,
+   "demand": {
+    "13": 1038.7,
+    "55": 447.9,
+    "91": 322.5,
+    "81": 350.4,
+    "34": 220.5
+   },
+   "min_replicas": 1,
+   "max_replicas": 3,
+   "vm_cost": 0.12,
+   "priority": 1.0,
+   "color": "#60a5fa"
+  },
+  {
+   "id": 7,
+   "name": "analytics",
+   "cpu": 16,
+   "mem": 64,
+   "demand": {
+    "45": 722.6,
+    "12": 596.0,
+    "26": 307.4,
+    "70": 225.0,
+    "73": 230.3
+   },
+   "min_replicas": 1,
+   "max_replicas": 5,
+   "vm_cost": 0.576,
+   "priority": 2.0,
+   "color": "#e879f9"
+  },
+  {
+   "id": 8,
+   "name": "chat",
+   "cpu": 2,
+   "mem": 4,
+   "demand": {
+    "98": 835.3,
+    "93": 475.9,
+    "57": 361.9,
+    "97": 354.9,
+    "21": 294.5,
+    "6": 212.2,
+    "41": 159.8
+   },
+   "min_replicas": 2,
+   "max_replicas": 3,
+   "vm_cost": 0.06,
+   "priority": 2.0,
+   "color": "#a3e635"
+  },
+  {
+   "id": 9,
+   "name": "cdn-edge",
+   "cpu": 4,
+   "mem": 16,
+   "demand": {
+    "40": 748.3,
+    "50": 446.7,
+    "18": 465.3,
+    "25": 265.9
+   },
+   "min_replicas": 2,
+   "max_replicas": 5,
+   "vm_cost": 0.144,
+   "priority": 1.0,
+   "color": "#f87171"
+  },
+  {
+   "id": 10,
+   "name": "db-replica",
+   "cpu": 8,
+   "mem": 64,
+   "demand": {
+    "28": 1081.4,
+    "13": 548.5,
+    "59": 423.7,
+    "42": 342.5,
+    "44": 279.2
+   },
+   "min_replicas": 1,
+   "max_replicas": 2,
+   "vm_cost": 0.384,
+   "priority": 2.0,
+   "color": "#2dd4bf"
+  },
+  {
+   "id": 11,
+   "name": "notifications",
+   "cpu": 2,
+   "mem": 4,
+   "demand": {
+    "56": 742.4,
+    "92": 537.0,
+    "18": 261.2,
+    "33": 243.9,
+    "44": 225.5,
+    "99": 194.3,
+    "9": 137.6
+   },
+   "min_replicas": 1,
+   "max_replicas": 5,
+   "vm_cost": 0.06,
+   "priority": 1.5,
+   "color": "#c084fc"
+  },
+  {
+   "id": 12,
+   "name": "maps",
+   "cpu": 4,
+   "mem": 16,
+   "demand": {
+    "33": 959.5,
+    "77": 518.6,
+    "97": 400.8,
+    "36": 232.8
+   },
+   "min_replicas": 1,
+   "max_replicas": 3,
+   "vm_cost": 0.144,
+   "priority": 1.5,
+   "color": "#fbbf24"
+  },
+  {
+   "id": 13,
+   "name": "recommendations",
+   "cpu": 8,
+   "mem": 32,
+   "demand": {
+    "84": 836.2,
+    "14": 439.3,
+    "67": 474.4,
+    "15": 244.4,
+    "7": 181.6,
+    "38": 178.8
+   },
+   "min_replicas": 1,
+   "max_replicas": 3,
+   "vm_cost": 0.288,
+   "priority": 1.0,
+   "color": "#38bdf8"
+  },
+  {
+   "id": 14,
+   "name": "iot-ingest",
+   "cpu": 4,
+   "mem": 8,
+   "demand": {
+    "36": 879.6,
+    "87": 412.5,
+    "26": 305.6,
+    "9": 263.0,
+    "53": 166.9
+   },
+   "min_replicas": 1,
+   "max_replicas": 4,
+   "vm_cost": 0.12,
+   "priority": 1.5,
+   "color": "#4ade80"
+  },
+  {
+   "id": 15,
+   "name": "logging",
+   "cpu": 2,
+   "mem": 8,
+   "demand": {
+    "14": 1029.8,
+    "58": 686.6,
+    "93": 409.0,
+    "18": 333.9,
+    "41": 296.2,
+    "77": 142.6,
+    "84": 200.7
+   },
+   "min_replicas": 1,
+   "max_replicas": 2,
+   "vm_cost": 0.072,
+   "priority": 1.0,
+   "color": "#f9a8d4"
+  }
+ ],
+ "tasks": [
+  {
+   "id": 0,
+   "name": "backup-00",
+   "duration": 59.1,
+   "data_node": 28,
+   "data_gb": 15.2,
+   "priority": 2.0
+  },
+  {
+   "id": 1,
+   "name": "index-01",
+   "duration": 63.4,
+   "data_node": 18,
+   "data_gb": 17.3,
+   "priority": 1.0
+  },
+  {
+   "id": 2,
+   "name": "index-02",
+   "duration": 47.7,
+   "data_node": 43,
+   "data_gb": 11.0,
+   "priority": 1.0
+  },
+  {
+   "id": 3,
+   "name": "index-03",
+   "duration": 20.2,
+   "data_node": 92,
+   "data_gb": 8.6,
+   "priority": 3.0
+  },
+  {
+   "id": 4,
+   "name": "train-04",
+   "duration": 16.6,
+   "data_node": 99,
+   "data_gb": 3.7,
+   "priority": 1.0
+  },
+  {
+   "id": 5,
+   "name": "render-05",
+   "duration": 31.4,
+   "data_node": 9,
+   "data_gb": 19.5,
+   "priority": 3.0
+  },
+  {
+   "id": 6,
+   "name": "report-06",
+   "duration": 24.5,
+   "data_node": 33,
+   "data_gb": 13.6,
+   "priority": 1.0
+  },
+  {
+   "id": 7,
+   "name": "etl-07",
+   "duration": 22.5,
+   "data_node": 21,
+   "data_gb": 15.1,
+   "priority": 1.0
+  },
+  {
+   "id": 8,
+   "name": "report-08",
+   "duration": 32.4,
+   "data_node": 29,
+   "data_gb": 14.1,
+   "priority": 3.0
+  },
+  {
+   "id": 9,
+   "name": "render-09",
+   "duration": 44.2,
+   "data_node": 92,
+   "data_gb": 8.4,
+   "priority": 2.0
+  },
+  {
+   "id": 10,
+   "name": "render-10",
+   "duration": 32.0,
+   "data_node": 6,
+   "data_gb": 18.6,
+   "priority": 2.0
+  },
+  {
+   "id": 11,
+   "name": "simulate-11",
+   "duration": 34.1,
+   "data_node": 34,
+   "data_gb": 9.0,
+   "priority": 1.0
+  },
+  {
+   "id": 12,
+   "name": "report-12",
+   "duration": 28.8,
+   "data_node": 76,
+   "data_gb": 15.0,
+   "priority": 2.0
+  },
+  {
+   "id": 13,
+   "name": "backup-13",
+   "duration": 5.3,
+   "data_node": 77,
+   "data_gb": 10.6,
+   "priority": 2.0
+  },
+  {
+   "id": 14,
+   "name": "train-14",
+   "duration": 59.8,
+   "data_node": 18,
+   "data_gb": 10.9,
+   "priority": 1.0
+  },
+  {
+   "id": 15,
+   "name": "index-15",
+   "duration": 41.7,
+   "data_node": 80,
+   "data_gb": 8.1,
+   "priority": 2.0
+  },
+  {
+   "id": 16,
+   "name": "backup-16",
+   "duration": 19.4,
+   "data_node": 85,
+   "data_gb": 5.2,
+   "priority": 1.0
+  },
+  {
+   "id": 17,
+   "name": "encode-17",
+   "duration": 50.0,
+   "data_node": 78,
+   "data_gb": 11.4,
+   "priority": 2.0
+  },
+  {
+   "id": 18,
+   "name": "etl-18",
+   "duration": 58.3,
+   "data_node": 88,
+   "data_gb": 15.0,
+   "priority": 2.0
+  },
+  {
+   "id": 19,
+   "name": "backup-19",
+   "duration": 54.6,
+   "data_node": 75,
+   "data_gb": 10.5,
+   "priority": 3.0
+  },
+  {
+   "id": 20,
+   "name": "encode-20",
+   "duration": 53.0,
+   "data_node": 43,
+   "data_gb": 1.2,
+   "priority": 1.0
+  },
+  {
+   "id": 21,
+   "name": "train-21",
+   "duration": 18.4,
+   "data_node": 60,
+   "data_gb": 9.8,
+   "priority": 1.0
+  },
+  {
+   "id": 22,
+   "name": "encode-22",
+   "duration": 53.9,
+   "data_node": 23,
+   "data_gb": 15.9,
+   "priority": 2.0
+  },
+  {
+   "id": 23,
+   "name": "backup-23",
+   "duration": 27.1,
+   "data_node": 5,
+   "data_gb": 9.2,
+   "priority": 2.0
+  }
+ ]
+}

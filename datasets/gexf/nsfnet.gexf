@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf xmlns="http://gexf.net/1.3" xmlns:viz="http://gexf.net/1.3/viz" version="1.3">
+<meta><creator>cloudplace</creator><description>NSFNET T1 backbone (14 nodes, 21 links)</description></meta>
+<graph defaultedgetype="undirected" mode="static">
+<attributes class="node"><attribute id="0" title="tier" type="string"/><attribute id="1" title="cpu" type="double"/><attribute id="2" title="mem" type="double"/><attribute id="3" title="replicas" type="string"/></attributes>
+<attributes class="edge"><attribute id="0" title="latency_ms" type="double"/><attribute id="1" title="bandwidth_gbps" type="double"/><attribute id="2" title="mst" type="boolean"/></attributes>
+<nodes>
+<node id="0" label="Seattle"><attvalues><attvalue for="0" value="regional"/><attvalue for="1" value="24"/><attvalue for="2" value="96"/><attvalue for="3" value="web-frontend;video-transcode"/></attvalues><viz:color r="34" g="211" b="238"/><viz:size value="9.0"/><viz:position x="60.0" y="-60.0" z="0"/></node>
+<node id="1" label="Palo Alto"><attvalues><attvalue for="0" value="regional"/><attvalue for="1" value="24"/><attvalue for="2" value="96"/><attvalue for="3" value="auth;cache;payments"/></attvalues><viz:color r="34" g="211" b="238"/><viz:size value="9.0"/><viz:position x="63.5" y="-300.5" z="0"/></node>
+<node id="2" label="San Diego"><attvalues><attvalue for="0" value="regional"/><attvalue for="1" value="24"/><attvalue for="2" value="96"/><attvalue for="3" value=""/></attvalues><viz:color r="34" g="211" b="238"/><viz:size value="9.0"/><viz:position x="155.4" y="-412.1" z="0"/></node>
+<node id="3" label="Salt Lake City"><attvalues><attvalue for="0" value="edge"/><attvalue for="1" value="8"/><attvalue for="2" value="48"/><attvalue for="3" value=""/></attvalues><viz:color r="52" g="211" b="153"/><viz:size value="7.0"/><viz:position x="252.7" y="-222.0" z="0"/></node>
+<node id="4" label="Boulder"><attvalues><attvalue for="0" value="edge"/><attvalue for="1" value="8"/><attvalue for="2" value="48"/><attvalue for="3" value=""/></attvalues><viz:color r="52" g="211" b="153"/><viz:size value="7.0"/><viz:position x="374.9" y="-239.7" z="0"/></node>
+<node id="5" label="Houston"><attvalues><attvalue for="0" value="core"/><attvalue for="1" value="48"/><attvalue for="2" value="192"/><attvalue for="3" value="payments"/></attvalues><viz:color r="124" g="92" b="255"/><viz:size value="12.0"/><viz:position x="557.7" y="-482.1" z="0"/></node>
+<node id="6" label="Lincoln"><attvalues><attvalue for="0" value="router"/><attvalue for="1" value="0"/><attvalue for="2" value="0"/><attvalue for="3" value=""/></attvalues><viz:color r="148" g="163" b="184"/><viz:size value="6.0"/><viz:position x="533.1" y="-220.8" z="0"/></node>
+<node id="7" label="Champaign"><attvalues><attvalue for="0" value="edge"/><attvalue for="1" value="8"/><attvalue for="2" value="48"/><attvalue for="3" value="search"/></attvalues><viz:color r="52" g="211" b="153"/><viz:size value="7.0"/><viz:position x="689.3" y="-237.1" z="0"/></node>
+<node id="8" label="Pittsburgh"><attvalues><attvalue for="0" value="regional"/><attvalue for="1" value="24"/><attvalue for="2" value="96"/><attvalue for="3" value="video-transcode;ml-inference"/></attvalues><viz:color r="34" g="211" b="238"/><viz:size value="9.0"/><viz:position x="841.6" y="-229.6" z="0"/></node>
+<node id="9" label="Atlanta"><attvalues><attvalue for="0" value="edge"/><attvalue for="1" value="8"/><attvalue for="2" value="48"/><attvalue for="3" value="auth"/></attvalues><viz:color r="52" g="211" b="153"/><viz:size value="7.0"/><viz:position x="760.4" y="-387.8" z="0"/></node>
+<node id="10" label="Ann Arbor"><attvalues><attvalue for="0" value="edge"/><attvalue for="1" value="8"/><attvalue for="2" value="48"/><attvalue for="3" value="payments"/></attvalues><viz:color r="52" g="211" b="153"/><viz:size value="7.0"/><viz:position x="772.4" y="-186.0" z="0"/></node>
+<node id="11" label="Ithaca"><attvalues><attvalue for="0" value="edge"/><attvalue for="1" value="8"/><attvalue for="2" value="48"/><attvalue for="3" value="web-frontend;auth"/></attvalues><viz:color r="52" g="211" b="153"/><viz:size value="7.0"/><viz:position x="906.0" y="-182.3" z="0"/></node>
+<node id="12" label="Princeton"><attvalues><attvalue for="0" value="router"/><attvalue for="1" value="0"/><attvalue for="2" value="0"/><attvalue for="3" value=""/></attvalues><viz:color r="148" g="163" b="184"/><viz:size value="6.0"/><viz:position x="940.0" y="-231.7" z="0"/></node>
+<node id="13" label="College Park"><attvalues><attvalue for="0" value="edge"/><attvalue for="1" value="8"/><attvalue for="2" value="48"/><attvalue for="3" value="cache"/></attvalues><viz:color r="52" g="211" b="153"/><viz:size value="7.0"/><viz:position x="897.9" y="-263.9" z="0"/></node>
+</nodes><edges>
+<edge id="0" source="0" target="1" weight="0.1307"><attvalues><attvalue for="0" value="7.651"/><attvalue for="1" value="40"/><attvalue for="2" value="true"/></attvalues></edge>
+<edge id="1" source="0" target="2" weight="0.0875"><attvalues><attvalue for="0" value="11.428"/><attvalue for="1" value="10"/><attvalue for="2" value="false"/></attvalues></edge>
+<edge id="2" source="0" target="7" weight="0.0535"><attvalues><attvalue for="0" value="18.703"/><attvalue for="1" value="40"/><attvalue for="2" value="false"/></attvalues></edge>
+<edge id="3" source="1" target="2" weight="0.2081"><attvalues><attvalue for="0" value="4.806"/><attvalue for="1" value="100"/><attvalue for="2" value="true"/></attvalues></edge>
+<edge id="4" source="1" target="3" weight="0.1533"><attvalues><attvalue for="0" value="6.525"/><attvalue for="1" value="10"/><attvalue for="2" value="true"/></attvalues></edge>
+<edge id="5" source="2" target="5" weight="0.0719"><attvalues><attvalue for="0" value="13.91"/><attvalue for="1" value="10"/><attvalue for="2" value="false"/></attvalues></edge>
+<edge id="6" source="3" target="4" weight="0.2510"><attvalues><attvalue for="0" value="3.984"/><attvalue for="1" value="100"/><attvalue for="2" value="true"/></attvalues></edge>
+<edge id="7" source="3" target="10" weight="0.0645"><attvalues><attvalue for="0" value="15.504"/><attvalue for="1" value="10"/><attvalue for="2" value="false"/></attvalues></edge>
+<edge id="8" source="4" target="5" weight="0.1027"><attvalues><attvalue for="0" value="9.738"/><attvalue for="1" value="40"/><attvalue for="2" value="false"/></attvalues></edge>
+<edge id="9" source="4" target="6" weight="0.1980"><attvalues><attvalue for="0" value="5.05"/><attvalue for="1" value="100"/><attvalue for="2" value="true"/></attvalues></edge>
+<edge id="10" source="5" target="9" weight="0.1310"><attvalues><attvalue for="0" value="7.633"/><attvalue for="1" value="10"/><attvalue for="2" value="true"/></attvalues></edge>
+<edge id="11" source="5" target="13" weight="0.0762"><attvalues><attvalue for="0" value="13.122"/><attvalue for="1" value="100"/><attvalue for="2" value="false"/></attvalues></edge>
+<edge id="12" source="6" target="7" weight="0.2009"><attvalues><attvalue for="0" value="4.977"/><attvalue for="1" value="10"/><attvalue for="2" value="true"/></attvalues></edge>
+<edge id="13" source="7" target="8" weight="0.2061"><attvalues><attvalue for="0" value="4.853"/><attvalue for="1" value="10"/><attvalue for="2" value="true"/></attvalues></edge>
+<edge id="14" source="8" target="9" weight="0.1737"><attvalues><attvalue for="0" value="5.758"/><attvalue for="1" value="10"/><attvalue for="2" value="true"/></attvalues></edge>
+<edge id="15" source="8" target="11" weight="0.3731"><attvalues><attvalue for="0" value="2.68"/><attvalue for="1" value="40"/><attvalue for="2" value="true"/></attvalues></edge>
+<edge id="16" source="8" target="12" weight="0.3092"><attvalues><attvalue for="0" value="3.234"/><attvalue for="1" value="40"/><attvalue for="2" value="false"/></attvalues></edge>
+<edge id="17" source="10" target="11" weight="0.2400"><attvalues><attvalue for="0" value="4.167"/><attvalue for="1" value="10"/><attvalue for="2" value="true"/></attvalues></edge>
+<edge id="18" source="10" target="12" weight="0.1845"><attvalues><attvalue for="0" value="5.42"/><attvalue for="1" value="10"/><attvalue for="2" value="false"/></attvalues></edge>
+<edge id="19" source="11" target="13" weight="0.3565"><attvalues><attvalue for="0" value="2.805"/><attvalue for="1" value="10"/><attvalue for="2" value="true"/></attvalues></edge>
+<edge id="20" source="12" target="13" weight="0.5249"><attvalues><attvalue for="0" value="1.905"/><attvalue for="1" value="100"/><attvalue for="2" value="true"/></attvalues></edge>
+</edges></graph></gexf>
