@@ -315,6 +315,68 @@ body.intro-on .rail,body.intro-on .page{display:none}
   .intro-title .ch,.member,.intro-cta{animation:none;opacity:1;transform:none}
   .intro.leaving,.page.entering{animation:none}
 }
+
+/* ================= help: guide page, tour, info popovers ================= */
+.guide{display:grid;grid-template-columns:240px minmax(0,1fr);gap:48px;padding:48px 56px 96px;max-width:1280px}
+.toc{position:sticky;top:24px;align-self:start;display:flex;flex-direction:column;gap:2px}
+.toc a{display:block;padding:8px 14px;border-radius:999px;color:var(--ink2);text-decoration:none;font-size:14px;font-weight:500}
+.toc a:hover{background:var(--surface)}
+.toc a.on{background:var(--tone);color:var(--on-tone)}
+.toc .btn{margin-top:16px;height:44px;width:100%}
+.gbody h1{font-family:var(--display);font-weight:500;font-size:clamp(36px,4vw,56px);letter-spacing:-.03em;line-height:1.05}
+.gbody > p.lead{font-size:18px;color:var(--ink2);margin-top:14px;max-width:38em;line-height:1.6}
+.gsec{margin-top:56px;scroll-margin-top:24px}
+.gsec h2{font-family:var(--display);font-weight:500;font-size:30px;letter-spacing:-.02em}
+.gsec > p{color:var(--ink2);margin-top:8px;max-width:42em;font-size:16px;line-height:1.6}
+.steps{list-style:none;counter-reset:st;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px}
+.steps li{counter-increment:st;background:var(--surface);border-radius:24px;padding:20px;font-size:14.5px;line-height:1.55;color:var(--ink2)}
+.steps li::before{content:counter(st);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--primary);color:#fff;font-weight:600;margin-bottom:14px}
+.steps li:nth-child(2)::before{background:var(--red)}.steps li:nth-child(3)::before{background:#E37400}.steps li:nth-child(4)::before{background:var(--green)}
+.steps li b{color:var(--ink);display:block;margin-bottom:4px;font-size:15.5px}
+.pagecards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}
+.pc{background:var(--surface);border-radius:28px;padding:22px 24px 24px}
+.pc h3{font-size:19px;font-weight:600;display:flex;align-items:center;gap:10px}
+.pc h3 .tag{font-size:12px;font-weight:600;padding:2px 10px;border-radius:999px;background:#fff;color:var(--ink2)}
+.pc .does{margin-top:8px;color:var(--ink2);font-size:14.5px;line-height:1.55}
+.pc .how{margin-top:14px;font-size:13px;font-weight:600;color:var(--ink)}
+.pc ul{margin:6px 0 0 18px;color:var(--ink2);font-size:14px;line-height:1.6}
+.pc ul li{margin-top:3px}
+.pc .go{margin-top:16px;height:40px;font-size:14px}
+.ctl{display:grid;grid-template-columns:220px minmax(0,1fr);gap:0;margin-top:20px;background:var(--surface);border-radius:24px;overflow:hidden}
+.ctl > div{padding:14px 20px;border-bottom:1px solid var(--surface2);font-size:14.5px;line-height:1.55}
+.ctl > div:nth-last-child(-n+2){border-bottom:0}
+.ctl > div:nth-child(odd){font-weight:600;background:#fff}
+.ctl > div:nth-child(even){color:var(--ink2)}
+.ctl-h{margin-top:28px;font-size:17px;font-weight:600}
+.gloss{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:20px}
+.gloss div{background:#fff;border:1px solid var(--outline);border-radius:20px;padding:14px 18px;font-size:14.5px;color:var(--ink2);line-height:1.55}
+.gloss b{display:block;color:var(--ink);font-size:15.5px;margin-bottom:2px}
+
+/* info buttons + popovers */
+.info{width:26px;height:26px;border-radius:50%;border:1px solid var(--outline);background:#fff;color:var(--ink2);font-weight:700;font-size:13px;cursor:pointer;display:inline-grid;place-items:center;flex:none}
+.info:hover{background:var(--tone);border-color:var(--tone);color:var(--on-tone)}
+.pop{position:fixed;z-index:40;max-width:320px;background:var(--ink);color:#fff;border-radius:16px;padding:14px 16px;font-size:13.5px;line-height:1.55;box-shadow:0 4px 16px rgba(0,0,0,.25);display:none}
+.pop b{display:block;font-size:14px;margin-bottom:4px}
+.ttl-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.mapinfo{position:absolute;right:14px;bottom:14px;z-index:3}
+
+/* tour */
+.tour-hole{position:fixed;z-index:50;border-radius:20px;box-shadow:0 0 0 9999px rgba(32,33,36,.6);pointer-events:none;transition:all .35s cubic-bezier(.2,.7,.2,1);outline:3px solid #fff}
+.tour-card{position:fixed;z-index:51;width:340px;background:#fff;border-radius:24px;padding:20px 20px 16px;box-shadow:0 8px 28px rgba(0,0,0,.28);transition:top .35s cubic-bezier(.2,.7,.2,1),left .35s cubic-bezier(.2,.7,.2,1)}
+.tour-card .n{font-size:12.5px;color:var(--ink3);font-weight:600}
+.tour-card h4{font-size:18px;font-weight:600;margin-top:4px}
+.tour-card p{font-size:14.5px;color:var(--ink2);margin-top:6px;line-height:1.55}
+.tour-card .row{display:flex;justify-content:space-between;align-items:center;margin-top:16px}
+.tour-card .row .btn{height:40px;padding:0 18px;font-size:14px}
+.tour-card .skip{background:none;border:0;color:var(--ink2);cursor:pointer;font-size:14px;font-weight:500}
+.tour-dots{display:flex;gap:4px;margin-top:12px}.tour-dots i{width:6px;height:6px;border-radius:50%;background:var(--surface2)}.tour-dots i.on{background:var(--primary);width:16px;border-radius:3px}
+.snack{position:fixed;left:50%;bottom:24px;transform:translate(-50%,40px);opacity:0;visibility:hidden;pointer-events:none;z-index:35;background:var(--ink);color:#fff;border-radius:16px;padding:10px 10px 10px 20px;display:flex;align-items:center;gap:12px;font-size:14.5px;box-shadow:0 6px 20px rgba(0,0,0,.25);transition:transform .45s cubic-bezier(.2,.7,.2,1),opacity .3s,visibility .3s}
+.snack.show{transform:translate(-50%,0);opacity:1;visibility:visible;pointer-events:auto}
+.snack button{border:0;border-radius:999px;height:36px;padding:0 16px;font-weight:600;cursor:pointer;font-size:14px}
+.snack .yes{background:#8AB4F8;color:#041E49}.snack .no{background:none;color:#C4C7C5}
+@media (max-width:1000px){.guide{grid-template-columns:1fr;padding:32px 16px 96px}.toc{position:static;flex-direction:row;flex-wrap:wrap}.toc .btn{width:auto}
+  .steps{grid-template-columns:1fr 1fr}.pagecards,.gloss{grid-template-columns:1fr}.ctl{grid-template-columns:1fr}.ctl > div:nth-child(odd){border-bottom:0;padding-bottom:2px}}
+@media (max-width:860px){.tour-card{width:auto;left:12px !important;right:12px}.snack{width:calc(100% - 24px);bottom:84px}}
 </style>
 </head>
 <body class="splash-on tc-on glitch-on vel-on on-home intro-on">
@@ -359,6 +421,7 @@ body.intro-on .rail,body.intro-on .page{display:none}
     <button class="dest soon" title="Not part of this mockup"><span class="ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M9 3h6M10 3v6L5 19a1.5 1.5 0 0 0 1.3 2h11.4a1.5 1.5 0 0 0 1.3-2l-5-10V3"/></svg></span>Lab</button>
     <button class="dest soon" title="Not part of this mockup"><span class="ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 20V11M12 20V5M19 20v-7"/></svg></span>Results</button>
     <button class="dest soon" title="Not part of this mockup"><span class="ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="6" rx="7" ry="2.6"/><path d="M5 6v12c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6V6M5 12c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6"/></svg></span>Data</button>
+    <button class="dest" data-go="guide"><span class="ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.6"/><circle cx="12" cy="16.9" r=".6" fill="currentColor"/></svg></span>Guide</button>
   </div>
   <div class="spacer"></div>
   <div class="status"><i></i>Python API connected</div>
@@ -411,11 +474,120 @@ body.intro-on .rail,body.intro-on .page{display:none}
   <footer><div class="credits"><span>Built by <b>Naman Singla</b> and <b>Mohak Gupta</b></span><span>Guided by <b>Dr. Monday Jubrin Abdullahi</b></span></div><div style="margin-top:6px">Lightpath. Python 3 (NumPy, SciPy HiGHS) backend, React dashboard. Mockup built from real solver output for the India, Nigeria and Woxsen datasets.</div></footer>
 </main>
 
+
+<!-- =============================== GUIDE =============================== -->
+<main id="guide" class="view">
+  <div class="guide">
+    <nav class="toc" id="toc" aria-label="Guide sections">
+      <a href="#g-start" class="on">Start here</a>
+      <a href="#g-pages">What each page does</a>
+      <a href="#g-studio">Using the studio</a>
+      <a href="#g-results">Reading the results</a>
+      <a href="#g-terms">Words used on the site</a>
+      <button class="btn primary" data-tour="1">Take the 1-minute tour</button>
+    </nav>
+    <div class="gbody">
+      <h1>How to use Lightpath</h1>
+      <p class="lead">Lightpath decides where to run copies of online services on a network of servers, so that users get answers as fast as possible without overloading any server or going over budget. You do not need to know the algorithms to use it.</p>
+
+      <section class="gsec" id="g-start">
+        <h2>Start here</h2>
+        <p>Four steps get you from nothing to a full placement plan.</p>
+        <ol class="steps">
+          <li><b>Pick a region</b>Choose India or Nigeria with the switch at the top of Home. Everything on the site follows that choice.</li>
+          <li><b>Open the studio</b>Press "Open the placement studio", or Studio in the left rail.</li>
+          <li><b>Set it up and solve</b>Choose a network, set a budget, and press "Solve placement".</li>
+          <li><b>Read the plan</b>The map shows where each service runs, the right panel shows how good the plan is, and the tabs give the details.</li>
+        </ol>
+      </section>
+
+      <section class="gsec" id="g-pages">
+        <h2>What each page does</h2>
+        <div class="pagecards">
+          <div class="pc"><h3>Landing</h3><p class="does">The first screen. It names the project and the people behind it.</p>
+            <div class="how">How to use it</div><ul><li>Press "Enter Lightpath" or the Enter key to go to the site.</li></ul></div>
+          <div class="pc"><h3>Home</h3><p class="does">A one-page overview of the project, with a live map of the selected region.</p>
+            <div class="how">How to use it</div><ul><li>Switch between India and Nigeria at the top.</li><li>Each moving dot on the map is a user request travelling the fastest path to the nearest copy of its service.</li><li>The four tiles summarise the best plan found.</li><li>Click any network card at the bottom to open it in the studio.</li></ul>
+            <button class="btn tonal go" data-go="home">Go to Home</button></div>
+          <div class="pc"><h3>Placement studio</h3><p class="does">Where you run the planner and explore its answer.</p>
+            <div class="how">How to use it</div><ul><li>Set the controls on the left, then press "Solve placement".</li><li>Explore the plan on the map and in the tabs underneath.</li><li>Read the score and advice on the right.</li></ul>
+            <button class="btn tonal go" data-go="studio">Open the studio</button></div>
+          <div class="pc"><h3>Algorithm lab <span class="tag">In the full app</span></h3><p class="does">Watch each algorithm work, one step at a time, on a real network.</p>
+            <div class="how">How to use it</div><ul><li>Pick an algorithm and a starting city.</li><li>Press play, or step forward and back, and follow the highlighted line of pseudocode.</li></ul></div>
+          <div class="pc"><h3>Results <span class="tag">In the full app</span></h3><p class="does">Charts from the experiments: how speed and quality change as networks grow, get denser, run short of capacity or get more budget.</p>
+            <div class="how">How to use it</div><ul><li>Hover any point to see its exact value.</li><li>Each chart has a one-line takeaway underneath.</li></ul></div>
+          <div class="pc"><h3>Data <span class="tag">In the full app</span></h3><p class="does">Every network used in the project, with downloads.</p>
+            <div class="how">How to use it</div><ul><li>Download a network as JSON, as a Gephi file, or its plan as CSV tables.</li><li>Generate a new random network and open it in the studio.</li></ul></div>
+        </div>
+      </section>
+
+      <section class="gsec" id="g-studio">
+        <h2>Using the studio</h2>
+        <p>The studio has three parts: controls on the left, the map with its tabs in the middle, and the results on the right. Every panel has a small "?" button that explains it on the spot.</p>
+        <div class="ctl-h">Controls</div>
+        <div class="ctl">
+          <div>Network</div><div>Which network to plan for: India, Nigeria, the Woxsen campus, or one of the test networks.</div>
+          <div>VM budget</div><div>Dollars per hour you can spend on copies of services. More budget buys more copies, which brings services closer to users, but each extra copy helps less than the one before.</div>
+          <div>Server budget</div><div>Optional. Limits which servers are switched on, picking the most useful ones that fit the budget.</div>
+          <div>Replica sizing</div><div>How many copies each service gets. "Knapsack DP" finds the best mix for your budget; "Minimum" and "Maximum" are for comparison.</div>
+          <div>Strategies</div><div>The placement methods to compare. "Local search refinement" improves each method's answer. "Exact MILP check" computes the true best answer on small networks so you can see how close the fast methods get.</div>
+          <div>Solve placement</div><div>Runs everything and refreshes the map, tabs and results.</div>
+        </div>
+        <div class="ctl-h">Map</div>
+        <div class="ctl">
+          <div>Backbone (MST)</div><div>Shows, in red, the cheapest set of links that still connects every site.</div>
+          <div>Replicas</div><div>Yellow sites host copies of services; the small coloured dots around them say which services.</div>
+          <div>Routes</div><div>The path each group of users takes to reach its nearest copy.</div>
+          <div>Service chips</div><div>Click a service to show only its copies and routes. "All services" shows everything.</div>
+          <div>Moving around</div><div>Scroll to zoom, drag to move, and hover any site to see its load and what runs there.</div>
+        </div>
+        <div class="ctl-h">Tabs under the map</div>
+        <div class="ctl">
+          <div>Routes</div><div>Who is served from where, along which path, and how fast. Click a row to highlight that route on the map.</div>
+          <div>Servers</div><div>How full each server is. Red bars are nearly full; these are the places where extra capacity would help most.</div>
+          <div>Cost and benefit</div><div>Average delay for each number of copies of each service, with the option the budget bought marked in blue, and what the next copy would save.</div>
+          <div>Replica sync</div><div>How copies of the same service keep each other up to date: the fastest path versus the cheapest path, which can use links that pay a rebate.</div>
+          <div>Batch jobs</div><div>A timeline of background jobs on each server. The red dashed line marks when the last one finishes.</div>
+        </div>
+      </section>
+
+      <section class="gsec" id="g-results">
+        <h2>Reading the results</h2>
+        <div class="ctl">
+          <div>Average latency</div><div>How long a typical request waits for the network, in milliseconds. Lower is better.</div>
+          <div>95th percentile</div><div>95 out of 100 requests are at least this fast. It shows how the slowest users fare.</div>
+          <div>VM cost</div><div>What the plan costs per hour.</div>
+          <div>Full pipeline</div><div>How long the computer took to produce the whole plan.</div>
+          <div>Strategy chart</div><div>One bar per method; shorter is better. The dashed green line is the proven best answer, so a bar touching it is optimal.</div>
+          <div>Recommendations</div><div>The plan explained in plain sentences, including where one more dollar or one more server would help most.</div>
+        </div>
+      </section>
+
+      <section class="gsec" id="g-terms">
+        <h2>Words used on the site</h2>
+        <div class="gloss">
+          <div><b>Latency</b>The delay before data arrives, in milliseconds (ms). 1 ms is a thousandth of a second.</div>
+          <div><b>Node and link</b>A node is a site such as a city, data centre or campus building. A link is the cable between two sites.</div>
+          <div><b>Replica</b>A copy of a service running on a server. More copies in more places means shorter trips for users.</div>
+          <div><b>Capacity</b>How much processing power (CPU) and memory a server has. Copies cannot exceed it.</div>
+          <div><b>Shortest path</b>The fastest route between two sites through the network (Dijkstra, Bellman-Ford, Floyd–Warshall, Johnson).</div>
+          <div><b>Spanning tree (MST)</b>The cheapest set of links that keeps every site connected (Prim, Kruskal).</div>
+          <div><b>Knapsack DP</b>A method that picks the best combination of options that fits within a budget.</div>
+          <div><b>Greedy method</b>A fast method that makes the best-looking choice at each step.</div>
+          <div><b>Local search</b>Takes a plan and keeps making small swaps while they improve it.</div>
+          <div><b>Exact optimum (MILP)</b>The provably best plan. Slow on big networks, so it is used as a reference on small ones.</div>
+          <div><b>Gap</b>How far a method's plan is from the proven best, in percent. 0% means optimal.</div>
+          <div><b>Rebate link</b>A link that pays you to send data over it (a negative cost), which is why some routes use special algorithms.</div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
 <!-- =============================== STUDIO =============================== -->
 <main id="studio" class="view">
   <div class="studio">
     <aside class="card rail-c">
-      <div class="ttl">Placement studio</div>
+      <div class="ttl-row"><div class="ttl">Placement studio</div><button class="info" data-info="controls" aria-label="What are these controls?">?</button></div>
       <div class="field"><label class="lab" for="ds">Network</label>
         <select id="ds"></select></div>
       <div class="field"><label class="lab" for="vmb">VM budget <b id="vmbv" class="num"></b></label>
@@ -451,17 +623,18 @@ body.intro-on .rail,body.intro-on .page{display:none}
           <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="5" fill="#FBBC05" stroke="#B06000"/></svg>Hosts replicas</div>
         </div>
         <svg id="studioMap"></svg>
+        <button class="info mapinfo" data-info="map" aria-label="How to use the map">?</button>
         <div class="svc-row" id="svcRow"></div>
         <div class="tip" id="tip"></div>
       </div>
       <div class="card tabs">
-        <div class="tablist" role="tablist" id="tablist">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding-right:14px"><div class="tablist" role="tablist" id="tablist">
           <button role="tab" aria-selected="true" data-tab="routes">Routes</button>
           <button role="tab" aria-selected="false" data-tab="servers">Servers</button>
           <button role="tab" aria-selected="false" data-tab="cost">Cost and benefit</button>
           <button role="tab" aria-selected="false" data-tab="sync">Replica sync</button>
           <button role="tab" aria-selected="false" data-tab="batch">Batch jobs</button>
-        </div>
+        </div><button class="info" data-info="tabs" aria-label="What do these tabs show?">?</button></div>
         <div class="tabbody" id="tabbody"></div>
       </div>
     </div>
@@ -470,7 +643,7 @@ body.intro-on .rail,body.intro-on .page{display:none}
       <div class="readouts" id="readouts"></div>
       <p class="verdict" id="verdict"></p>
       <div>
-        <div class="h-sub"><span>Average latency by strategy</span><span>ms, lower is better</span></div>
+        <div class="h-sub"><span>Average latency by strategy</span><span style="display:flex;gap:8px;align-items:center">ms, lower is better <button class="info" data-info="strategies" aria-label="How to read this chart">?</button></span></div>
         <div class="stratchart" id="strat"></div>
       </div>
       <div>
@@ -482,6 +655,8 @@ body.intro-on .rail,body.intro-on .page{display:none}
 </main>
 </div>
 
+<div class="snack" id="snack" role="status"><span>New here? Take a 1-minute tour of the site.</span><button class="yes" data-tour="1">Start tour</button><button class="no" id="snackNo">Not now</button></div>
+<div class="pop" id="pop" role="tooltip"></div>
 <canvas id="splash" aria-hidden="true"></canvas>
 <canvas id="swarm" aria-hidden="true"></canvas>
 <div class="pv" id="pv">
@@ -985,6 +1160,86 @@ const onHome = ()=>document.body.classList.contains("on-home");
   });
 })();
 
+
+/* ---------- help: info popovers ---------- */
+(function(){
+  const INFO={
+    controls:["Controls","Pick a network, set how much you can spend, choose the methods to compare, then press Solve placement. Everything else on the page updates from that."],
+    map:["The map","Yellow sites host copies of services, coloured dots show which ones, and lines show each group of users' route to its nearest copy. Scroll to zoom, drag to move, hover a site for details, and use the chips to filter."],
+    tabs:["Detail tabs","Routes: who is served from where. Servers: how full each one is. Cost and benefit: what each extra copy buys. Replica sync: fastest versus cheapest path between copies. Batch jobs: a timeline of background work."],
+    strategies:["Comparing methods","One bar per method; shorter means faster for users. The dashed green line is the proven best answer, so a bar that reaches it is optimal."],
+  };
+  const pop=document.getElementById("pop");let openBtn=null;
+  document.querySelectorAll("[data-info]").forEach(b=>b.addEventListener("click",e=>{
+    e.stopPropagation();
+    if(openBtn===b){pop.style.display="none";openBtn=null;return}
+    const [t,x]=INFO[b.dataset.info];pop.innerHTML=`<b>${t}</b>${x}`;pop.style.display="block";
+    const r=b.getBoundingClientRect(),w=pop.offsetWidth,h=pop.offsetHeight;
+    let left=Math.min(innerWidth-w-12,Math.max(12,r.left+r.width/2-w/2)),top=r.bottom+10;if(top+h>innerHeight-12)top=r.top-h-10;
+    pop.style.left=left+"px";pop.style.top=top+"px";openBtn=b;}));
+  addEventListener("click",()=>{pop.style.display="none";openBtn=null});
+})();
+
+/* ---------- help: guide page table of contents ---------- */
+(function(){
+  const links=[...document.querySelectorAll("#toc a")];
+  links.forEach(a=>a.addEventListener("click",e=>{e.preventDefault();document.querySelector(a.getAttribute("href")).scrollIntoView({behavior:reduce?"auto":"smooth"})}));
+  addEventListener("scroll",()=>{if(!document.getElementById("guide").classList.contains("on"))return;
+    let cur=links[0];for(const a of links){const t=document.querySelector(a.getAttribute("href"));if(t.getBoundingClientRect().top<160)cur=a}
+    links.forEach(a=>a.classList.toggle("on",a===cur))});
+})();
+
+/* ---------- help: guided tour ---------- */
+const TOUR=[
+  {view:"home",sel:".rail",t:"Getting around",x:"Use this rail to move between pages. Guide, at the bottom, explains everything in more detail."},
+  {view:"home",sel:".hero .region",t:"Pick a region",x:"Switch between India and Nigeria. The map, numbers and default network all follow this choice."},
+  {view:"home",sel:".mapcard",t:"The live map",x:"Each moving dot is a user request travelling the fastest path to the nearest copy of its service. Yellow cities host copies."},
+  {view:"home",sel:"#telemetry",t:"The headline numbers",x:"How fast users are served, how much better that is than a random plan, how close it is to the proven best, and how long it took to compute."},
+  {view:"studio",sel:".rail-c",t:"Set up a plan",x:"In the studio, choose a network, a budget and the methods to compare here."},
+  {view:"studio",sel:"#solveBtn",t:"Solve",x:"Press Solve placement to compute the plan. Everything on the page updates."},
+  {view:"studio",sel:"#mapwrap",t:"Explore the plan",x:"See where each service runs. Turn layers on and off at the top, filter by service at the bottom, and hover any site for details."},
+  {view:"studio",sel:".tabs",t:"The details",x:"Tables for routes, server load, cost and benefit, replica sync and batch jobs. Click a route to highlight it on the map."},
+  {view:"studio",sel:".results",t:"How good is it?",x:"The key numbers, a comparison of every method against the proven best, and plain-language advice."},
+  {view:"guide",sel:".gbody h1",t:"You're ready",x:"Come back to the Guide whenever you need it. Every studio panel also has a ? button for quick help."},
+];
+let tourI=-1,hole=null,card=null;
+function tourEnd(){tourI=-1;hole&&hole.remove();card&&card.remove();hole=card=null;removeEventListener("keydown",tourKey);removeEventListener("resize",tourPlace)}
+function tourKey(e){if(e.key==="Escape")tourEnd();if(e.key==="ArrowRight")tourGo(tourI+1);if(e.key==="ArrowLeft"&&tourI>0)tourGo(tourI-1)}
+function tourPlace(){
+  if(tourI<0)return;const st=TOUR[tourI];const el=document.querySelector(st.sel);if(!el)return;
+  const r=el.getBoundingClientRect(),pad=8;
+  Object.assign(hole.style,{left:(r.left-pad)+"px",top:(r.top-pad)+"px",width:(r.width+2*pad)+"px",height:(r.height+2*pad)+"px"});
+  const cw=card.offsetWidth,ch=card.offsetHeight;let left,top;
+  if(r.right+16+cw<innerWidth){left=r.right+16;top=Math.max(12,Math.min(innerHeight-ch-12,r.top))}
+  else if(r.bottom+16+ch<innerHeight){top=r.bottom+16;left=Math.max(12,Math.min(innerWidth-cw-12,r.left))}
+  else if(r.top-16-ch>0){top=r.top-16-ch;left=Math.max(12,Math.min(innerWidth-cw-12,r.left))}
+  else{left=Math.max(12,r.left-cw-16);top=Math.max(12,Math.min(innerHeight-ch-12,r.top))}
+  card.style.left=left+"px";card.style.top=top+"px";
+}
+function tourGo(i){
+  if(i>=TOUR.length){tourEnd();return}
+  tourI=i;const st=TOUR[i];
+  if(!document.getElementById(st.view).classList.contains("on"))go(st.view);
+  const el=document.querySelector(st.sel);el.scrollIntoView({block:"center",behavior:"auto"});
+  card.innerHTML=`<div class="n">Step ${i+1} of ${TOUR.length}</div><h4>${st.t}</h4><p>${st.x}</p>
+    <div class="tour-dots">${TOUR.map((_,k)=>`<i class="${k===i?"on":""}"></i>`).join("")}</div>
+    <div class="row"><button class="skip">${i===TOUR.length-1?"Close":"Skip tour"}</button>
+    <span style="display:flex;gap:8px">${i>0?'<button class="btn tonal back">Back</button>':""}<button class="btn primary next">${i===TOUR.length-1?"Finish":"Next"}</button></span></div>`;
+  card.querySelector(".skip").onclick=tourEnd;card.querySelector(".next").onclick=()=>tourGo(i+1);
+  const bk=card.querySelector(".back");if(bk)bk.onclick=()=>tourGo(i-1);
+  requestAnimationFrame(tourPlace);card.querySelector(".next").focus();
+}
+function tourStart(){
+  document.getElementById("snack").classList.remove("show");
+  if(document.body.classList.contains("intro-on"))return;
+  tourEnd();hole=document.createElement("div");hole.className="tour-hole";card=document.createElement("div");card.className="tour-card";
+  card.setAttribute("role","dialog");card.setAttribute("aria-label","Site tour");document.body.append(hole,card);
+  addEventListener("keydown",tourKey);addEventListener("resize",tourPlace);tourGo(0);
+}
+document.querySelectorAll("[data-tour]").forEach(b=>b.addEventListener("click",e=>{e.stopPropagation();tourStart()}));
+document.getElementById("snackNo").onclick=()=>document.getElementById("snack").classList.remove("show");
+window.__offerTour=()=>setTimeout(()=>document.getElementById("snack").classList.add("show"),1400);
+
 if(START_VIEW==="studio") go("studio");
 
 /* ---------- intro / landing screen ---------- */
@@ -1000,7 +1255,7 @@ if(START_VIEW==="studio") go("studio");
     if(window.splashBurst&&FX.splash)window.splashBurst(b.left+b.width/2,b.top+b.height/2);
     intro.classList.add("leaving");
     setTimeout(()=>{document.body.classList.remove("intro-on");const pg=document.querySelector(".page");pg.classList.add("entering");
-      window.scrollTo(0,0);window.__recount&&window.__recount();setTimeout(()=>pg.classList.remove("entering"),900)}, reduce?0:650);
+      window.scrollTo(0,0);window.__recount&&window.__recount();window.__offerTour&&window.__offerTour();setTimeout(()=>pg.classList.remove("entering"),900)}, reduce?0:650);
     removeEventListener("keydown",onKey);}
   function onKey(e){if(e.key==="Enter")enter()}
   document.getElementById("enterBtn").onclick=enter;addEventListener("keydown",onKey);
