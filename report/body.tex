@@ -154,7 +154,7 @@ Once copies are placed, every request must be \emph{routed}: we need the actual 
 Dijkstra's algorithm \cite{dijkstra1959} repeatedly takes the closest unsettled city from a priority queue and declares its distance final, then updates its neighbours. Latency can never be negative, so Dijkstra is correct and fast: $O((V+E)\log V)$ with a binary heap. In the Algorithm Lab it also demonstrates an important property: if only one destination matters, Dijkstra can \emph{stop} as soon as that destination is settled, because its distance can no longer change.
 
 \subsubsection{Bellman-Ford for transfer cost}
-For dollars per gigabyte, some links are rebates with negative cost. Dijkstra can then give wrong answers, because a city it has already settled might be reached more cheaply later through a negative link. \textbf{Bellman-Ford} \cite{bellman1958,ford1956} relaxes every link in rounds. After round $i$, every route that uses at most $i$ links is correct, so $V-1$ rounds are enough. Any improvement in round $V$ would reveal a negative cycle, which our implementation detects and reports. It is slower, $O(VE)$, but it is the right tool when weights can be negative. In Lightpath it computes the cheapest replica-synchronisation routes.
+For dollars per gigabyte, some links are rebates with negative cost. Dijkstra can then give wrong answers, because a city it has already settled might be reached more cheaply later through a negative link. \textbf{Bellman-Ford} \cite{bellman1958} relaxes every link in rounds. After round $i$, every route that uses at most $i$ links is correct, so $V-1$ rounds are enough. Any improvement in round $V$ would reveal a negative cycle, which our implementation detects and reports. It is slower, $O(VE)$, but it is the right tool when weights can be negative. In Lightpath it computes the cheapest replica-synchronisation routes.
 
 \subsubsection{Why both, and not one}
 Using Bellman-Ford everywhere would be correct but needlessly slow for latency, at 490\,ms against 144\,ms at 4000 sites in E1. Using Dijkstra everywhere would be fast but wrong for costs with rebates. Each is used exactly where its guarantee holds.
@@ -164,7 +164,7 @@ Using Bellman-Ford everywhere would be correct but needlessly slow for latency, 
 Placement must try many candidate servers for every service, and each trial needs the distance from every city to every server. Computing those distances once, as a full \textbf{latency matrix} with an entry for every pair of sites, makes each trial a cheap table lookup. This matrix is the input to every later stage.
 
 \subsubsection{Floyd--Warshall}
-Floyd--Warshall \cite{floyd1962,warshall1962} is dynamic programming over intermediate cities. The best route from $i$ to $j$ that may pass through cities $1..k$ either avoids city $k$ or goes through it once, so the table is updated with \(d[i][j] = \min(d[i][j],\ d[i][k] + d[k][j])\) for every $k$. It runs in $\Theta(V^3)$ time and handles negative edges. Its triple loop is also easy to vectorise: our NumPy version runs the same algorithm many times faster than pure Python.
+Floyd--Warshall \cite{floyd1962} is dynamic programming over intermediate cities. The best route from $i$ to $j$ that may pass through cities $1..k$ either avoids city $k$ or goes through it once, so the table is updated with \(d[i][j] = \min(d[i][j],\ d[i][k] + d[k][j])\) for every $k$. It runs in $\Theta(V^3)$ time and handles negative edges. Its triple loop is also easy to vectorise: our NumPy version runs the same algorithm many times faster than pure Python.
 
 \subsubsection{Johnson}
 Johnson's algorithm \cite{johnson1977} targets sparse graphs with negative edges. It runs Bellman-Ford once from an added helper vertex to get a \emph{potential} $h$ for every city, then reweights every link to $w + h(u) - h(v)$, which is never negative. Dijkstra can then run safely from every city. Every route between the same two cities changes by the same amount, so shortest routes stay shortest. The total is $O(VE + V(V+E)\log V)$, better than $V^3$ when the graph is sparse.
@@ -190,19 +190,19 @@ Solving the whole placement as one giant DP over every server's remaining capaci
 Choosing the exact server for every copy is the NP-hard heart of the problem. A greedy method makes one good local choice at a time, never undoes it, and finishes in polynomial time. We built four greedy schedulers because each optimises a different concern, and the experiments compare them.
 \begin{itemize}[leftmargin=*]
   \item \textbf{Demand-first.} Services with the most traffic choose first, and each copy goes to the free server nearest the next demand hotspot. Simple and intuitive.
-  \item \textbf{Marginal gain (CELF).} At every step, add the single copy that reduces total latency the most. Benefits shrink as more copies open (the function is \emph{submodular}), so old estimates can be re-checked lazily instead of recomputed (CELF \cite{leskovec2007}). Without capacity limits this greedy achieves at least $1-1/e\approx63\,\%$ of the best possible saving \cite{nemhauser1978}.
-  \item \textbf{Regret.} Place first the service that would lose the most if it missed its best server, which is the gap between its best and second-best options \cite{martello1990}. This protects services with few good choices from being crowded out.
-  \item \textbf{FFD packing.} First-fit decreasing: place the largest copies first, each on a well-located server that fits. It focuses on \emph{fitting} capacity rather than latency; plain FFD uses at most $\tfrac{11}{9}\mathrm{OPT}+\tfrac{6}{9}$ bins \cite{dosa2007}.
+  \item \textbf{Marginal gain (CELF).} At every step, add the single copy that reduces total latency the most. Benefits shrink as more copies open (the function is \emph{submodular}), so old estimates can be re-checked lazily instead of recomputed (CELF). Without capacity limits this greedy achieves at least $1-1/e\approx63\,\%$ of the best possible saving \cite{nemhauser1978}.
+  \item \textbf{Regret.} Place first the service that would lose the most if it missed its best server, which is the gap between its best and second-best options. This protects services with few good choices from being crowded out.
+  \item \textbf{FFD packing.} First-fit decreasing: place the largest copies first, each on a well-located server that fits. It focuses on \emph{fitting} capacity rather than latency; plain FFD uses at most $\tfrac{11}{9}\mathrm{OPT}+\tfrac{6}{9}$ bins.
 \end{itemize}
 
 \subsection{Local search refinement}
-Greedy methods never revisit a decision, so they can lock in early mistakes. Local search repeatedly tries two kinds of move: \textbf{relocate} (move one copy to a free server) and \textbf{swap} (exchange copies of two services between two servers when both fit). Any move that lowers average latency is kept. Every accepted move strictly improves the plan and there are finitely many plans, so the search always stops. For the uncapacitated version, single-swap local optima are within a factor of 5 of optimal \cite{arya2004}; in practice we observe about 0.5\,\%. Local search is what turns 9--38\,\% greedy gaps into near-optimal plans.
+Greedy methods never revisit a decision, so they can lock in early mistakes. Local search repeatedly tries two kinds of move: \textbf{relocate} (move one copy to a free server) and \textbf{swap} (exchange copies of two services between two servers when both fit). Any move that lowers average latency is kept. Every accepted move strictly improves the plan and there are finitely many plans, so the search always stops. For the uncapacitated version, single-swap local optima are within a factor of 5 of optimal; in practice we observe about 0.5\,\%. Local search is what turns 9--38\,\% greedy gaps into near-optimal plans.
 
 \subsection{The exact referee: a mixed-integer program}
-To know whether a heuristic is good, we need the true optimum. On networks small enough, Lightpath formulates placement as a \textbf{mixed-integer linear program} (MILP): binary variables say which server hosts which copy, and the constraints are exactly those of Section~\ref{sec:model}. It is solved with the open-source HiGHS solver \cite{huangfu2018} through SciPy \cite{virtanen2020}. When the program is too large, we report its linear relaxation as a lower bound instead. The MILP is a \emph{checking tool}: every stage of our own pipeline is implemented by hand, and the MILP only tells us how far each heuristic is from the best possible answer.
+To know whether a heuristic is good, we need the true optimum. On networks small enough, Lightpath formulates placement as a \textbf{mixed-integer linear program} (MILP): binary variables say which server hosts which copy, and the constraints are exactly those of Section~\ref{sec:model}. It is solved with the open-source HiGHS solver \cite{huangfu2018} through SciPy. When the program is too large, we report its linear relaxation as a lower bound instead. The MILP is a \emph{checking tool}: every stage of our own pipeline is implemented by hand, and the MILP only tells us how far each heuristic is from the best possible answer.
 
 \subsection{Batch scheduling}
-Background batch jobs, such as nightly analytics, are scheduled with the classic greedy \textbf{LPT} rule: longest job first, each assigned to the server lane where it will finish earliest once its input data arrives over the network. Without transfer delays, LPT is within $\tfrac43$ of the optimal finishing time \cite{graham1969}.
+Background batch jobs, such as nightly analytics, are scheduled with the classic greedy \textbf{LPT} rule: longest job first, each assigned to the server lane where it will finish earliest once its input data arrives over the network. Without transfer delays, LPT is within $\tfrac43$ of the optimal finishing time.
 
 \input{uml}
 
@@ -272,7 +272,7 @@ Batch & LPT, earliest finish & $O(T\log T + T S)$ & within $\tfrac43$ of optimal
 \section{Testing and Demonstrated Scenarios}\label{sec:test}
 
 \subsection{Automated test suite}
-Correctness is checked by 191 automated tests (Table~\ref{tab:tests}), all passing. Each algorithm is compared with an \emph{independent} reference rather than only with our own expectations: graph algorithms against NetworkX \cite{hagberg2008} on random graphs, knapsack DPs against brute-force enumeration, and the MILP against exhaustive search on small placements.
+Correctness is checked by 191 automated tests (Table~\ref{tab:tests}), all passing. Each algorithm is compared with an \emph{independent} reference rather than only with our own expectations: graph algorithms against NetworkX on random graphs, knapsack DPs against brute-force enumeration, and the MILP against exhaustive search on small placements.
 
 \begin{table}[!htbp]
 \centering\small
@@ -327,7 +327,7 @@ ba-150 & Barab\'asi--Albert & 150 & 296 & 128 & 20 & 7\% & 7.594\\
 \end{tabular}
 \end{table}
 
-\noindent Abilene and NSFNET are real US research backbones. India (24 metros plus Woxsen University) and Nigeria (24 cities, with Lagos, Abuja and Port Harcourt as core data centres) use real city coordinates with each city linked to its three nearest neighbours. The Woxsen campus has 23 buildings laid out from the official campus map. The synthetic families let us vary size and density: Waxman geographic networks \cite{waxman1988}, Erd\H{o}s--R\'enyi random graphs \cite{erdos1959}, Barab\'asi--Albert hub-heavy graphs \cite{barabasi1999} and a data-centre fat-tree \cite{alfares2008}.
+\noindent Abilene and NSFNET are real US research backbones. India (24 metros plus Woxsen University) and Nigeria (24 cities, with Lagos, Abuja and Port Harcourt as core data centres) use real city coordinates with each city linked to its three nearest neighbours. The Woxsen campus has 23 buildings laid out from the official campus map. The synthetic families let us vary size and density: Waxman geographic networks \cite{waxman1988}, Erd\H{o}s--R\'enyi random graphs, Barab\'asi--Albert hub-heavy graphs \cite{barabasi1999} and a data-centre fat-tree.
 
 \subsection{E1: priority queues}
 \begin{figure}[!htbp]
@@ -481,7 +481,7 @@ Each arc costs a positive base plus a positive per-millisecond charge plus $\var
 
 %======================================================================
 \section{Limitations and Future Work}
-India and Nigeria use real city locations but synthesised links, and Woxsen's fibre plan and server sizes are modelling assumptions; real topologies such as the Internet Topology Zoo \cite{knight2011} could be added. Demand is static and latency ignores queueing at busy servers, so time-varying re-placement and queueing models (for example M/M/$c$) are natural next steps. Server activation optimises an estimated value per server rather than the joint problem. Timings reflect CPython; a compiled core would extend the exact referee to larger networks.
+India and Nigeria use real city locations but synthesised links, and Woxsen's fibre plan and server sizes are modelling assumptions; real topologies such as the Internet Topology Zoo could be added. Demand is static and latency ignores queueing at busy servers, so time-varying re-placement and queueing models (for example M/M/$c$) are natural next steps. Server activation optimises an estimated value per server rather than the joint problem. Timings reflect CPython; a compiled core would extend the exact referee to larger networks.
 
 %======================================================================
 \section{Conclusion}
